@@ -5,8 +5,8 @@ import { Redirect } from 'react-router-dom'
 import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
-import { logaUsuario } from '../../../actions'
-import './login.css'
+// import { logaUsuario } from '../../../actions'
+// import './login.css'
 
 
 const Login = ({ usuario, logaUsuario }) => (
@@ -14,10 +14,8 @@ const Login = ({ usuario, logaUsuario }) => (
         <Redirect to="/" />
     ) : (
             <Container className="login">
-                <h1>Login</h1>
-                <p>
-                    Seja Bem vindo(a),<br />Entre para ver os seus post-it.
-            </p>
+                <h1>Bem-vindo(a)!</h1>
+                
                 <Form onSubmit={event => logaUsuario(event)}>
                     <FormInput className="login__form-input" type="email" placeholder="E-mail" autoComplete="email" aria-label="email" />
                     <FormInput className="login__form-input" type="password" placeholder="Senha" autoComplete="current-password" aria-label="senha" />
