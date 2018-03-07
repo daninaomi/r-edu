@@ -1,0 +1,10 @@
+.form-input {
+    padding: 25px;
+    border-radius: 20px;
+    background: #b39ddb;
+    color: white;
+}
+
+.form-input--error {
+    border: 4px solid red !important;
+}
