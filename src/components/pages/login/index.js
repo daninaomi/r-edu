@@ -47,7 +47,7 @@ class Login extends React.Component {
                         autoComplete="email"
                         aria-label="email"
                         required
-                        onChange={handleChange} />
+                        onChange={this.handleChange} />
                     <FormInput
                         type="password"
                         name="password"
@@ -55,11 +55,15 @@ class Login extends React.Component {
                         autoComplete="current-password"
                         aria-label="senha"
                         required
-                        onChange={handleChange} />
+                        onChange={this.handleChange} />
                     <FormButton
                         className="login__form-button"
                         disabled={this.state.isInvalid}>
                         Entrar
+                    </FormButton>
+                    <FormButton
+                        className="login__form-button">
+                        Cadastrar
                     </FormButton>
                 </Form>
             </div >
