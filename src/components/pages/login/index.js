@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import Container from '../../container'
+import { Redirect, Link } from 'react-router-dom'
 import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
-import { logaUsuario } from '../../../actions'
-// import './login.css'
+import { logaUser } from '../../../actions'
+import './login.css'
 
 
 class Login extends React.Component {
@@ -24,53 +23,76 @@ class Login extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log('dados', {
+        const user = {
             email: this.email,
             senha: this.senha
-        })
-        this.props.logaUsuario(event)
+        }
+        this.props.logaUser(event, user)
     }
 
     render() {
 
-        const { usuario, logaUsuario } = this.props
+        const { user, logaUser } = this.props
+
         return (
+            user ? (
+                <Redirect to="/" />
+            ) : (
+                    <main className="login">
+                        <div className="login-box" >
+                            <h1 className="login__title">Bem-vindo(a)!</h1>
 
-            <div className="login" >
-                <h1>Bem-vindo(a)!</h1>
-
-                <Form>
-                    <FormInput
-                        type="email"
-                        name="email"
-                        placeholder="E-mail"
-                        autoComplete="email"
-                        aria-label="email"
-                        required
-                        onChange={this.handleChange} />
-                    <FormInput
-                        type="password"
-                        name="password"
-                        placeholder="Senha"
-                        autoComplete="current-password"
-                        aria-label="senha"
-                        required
-                        onChange={this.handleChange} />
-                    <FormButton
-                        className="login__form-button"
-                        disabled={this.state.isInvalid}>
-                        Entrar
-                    </FormButton>
-                    <FormButton
-                        className="login__form-button">
-                        Cadastrar
-                    </FormButton>
-                </Form>
-            </div >
+                            <Form className="login__form" onSubmit={this.handleSubmit}>
+                                <FormInput
+                                    className="login__form-input"
+                                    type="email"
+                                    name="email"
+                                    placeholder="E-mail"
+                                    autoComplete="email"
+                                    aria-label="email"
+                                    required
+                                    onChange={this.handleChange} />
+                                <FormInput
+                                    className="login__form-input"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Senha"
+                                    autoComplete="current-password"
+                                    aria-label="senha"
+                                    required
+                                    onChange={this.handleChange} />
+                                <Link to='' className="login__form-link">
+                                    Esqueci minha senha
+                                </Link>
+                                <FormButton
+                                    className="login__form-button"
+                                    disabled={this.state.isInvalid}>
+                                    Entrar
+                                </FormButton>
+                                <FormButton
+                                    className="login__form-button"
+                                    outline>
+                                    Cadastrar
+                                </FormButton>
+                            </Form>
+                        </div>
+                    </main>
+                )
         )
     }
 
 }
 
+const mapStateToProps = state => ({
+    user: state.user
+})
 
-export default Login
+const mapDispatchToProps = dispatch => ({
+    logaUser: (event, user) => {
+        event.preventDefault()
+        dispatch(logaUser(user))
+    }
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

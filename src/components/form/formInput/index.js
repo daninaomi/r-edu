@@ -2,9 +2,6 @@ import React from 'react';
 import classnames from 'classnames'
 import './input.css'
 
-// const FormInput = props => (
-//     <input className="form-input" {...props} />
-// )
 
 class FormInput extends React.Component {
     constructor(props) {
@@ -32,7 +29,7 @@ class FormInput extends React.Component {
         }
 
         if (this.props.type === 'password' && value.length < 6) {
-            this.setState({ error: 'Senha menor de 6 caracteres' })
+            this.setState({ error: 'Senha inválida' })
             this.props.onChange(name, value, true)
             return
         }
@@ -43,11 +40,10 @@ class FormInput extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <input 
+                <input {...this.props} 
                 className={classnames( 'form-input' ,this.props.className, {
                     'form-input--error': this.state.error
                 })}
-                {...this.props} 
                 onChange={this.validate} />
 
                 {this.state.error && 
@@ -62,3 +58,7 @@ class FormInput extends React.Component {
 export default FormInput
 
 // cada tipo de input (email, password, etc) vai definir nas props
+
+// const FormInput = props => (
+//     <input className="form-input" {...props} />
+// )

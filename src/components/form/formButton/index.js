@@ -3,13 +3,14 @@ import classnames from 'classnames'
 import './button.css'
 
 
-const FormButton = ({ className, children, ...props }) => (
+const FormButton = ({ className, outline, children, ...props }) => (
     <button className={classnames(
         "form-button",
-        this.props.className,
-        { "form-button--outline": outline
-        //     ,"form-button--secondary": secondary,
-        //     "form-button--secondary-outline": secondaryoutline
+        className,
+        {
+            "form-button--outline": outline
+            //     ,"form-button--secondary": secondary,
+            //     "form-button--secondary-outline": secondaryoutline
         }
     )} {...props}>
         {children}

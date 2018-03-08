@@ -1,14 +1,29 @@
 .form-button {
-    width: 75%;
-    padding: 25px;
-    border-radius: 20px;
+    padding: 4% 5%;
+    border-radius: 10px;
     font-weight: bold;
     background: white;
     color: #4a148c;
+    border: none;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .form-button--outline {
-    border: 4px solid white;
-    background: none;
+    border: 2px solid white;
+    background: #4a148c;
     color: white;
+}
+
+@media screen and (min-width: 768px) {
+    .form-button {
+        background: #4a148c;
+        color: white;
+    }
+
+    .form-button--outline {
+        border: 2px solid #4a148c;
+        background: white;
+        color: #4a148c;
+    }
 }
