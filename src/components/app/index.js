@@ -2,11 +2,15 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Login from '../pages/login'
 import Navbar from '../navbar'
+import Cadastro from '../pages/cadastro'
 
 const App = () => (
     <React.Fragment>
         <Navbar />
-        <Login />
+        <Switch>
+            <Route exact path="/" component={Login} />
+            <Route path="/cadastro" component={Cadastro} />
+        </Switch>
     </React.Fragment>
 )
 

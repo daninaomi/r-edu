@@ -1,44 +1,37 @@
 
 
-.login__title {
+.cadastro__title {
     color: white;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
-.login__form {
+.cadastro__form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login__form-input {
-    width: 100%;
+.cadastro__form-input {
+    width: 45%;
     margin: 10px 0;
 }
 
-.login__form-button {
+.cadastro__form-button {
     width: 80%;
-    margin: 10px 0;
+    margin: 110px 0;
 }
 
-.login__form-link {
-    margin: 10px 0 30px 0;
-    text-decoration: none;
-    color: white;
-    text-align: left;
-    font-weight: 700;
-}
 
 @media screen and (min-width: 768px) {
     
-    .login__title {
+    .cadastro__title {
         color: #4a148c;
     }
 
-    .login__form-link {
+    .cadastro__form-link {
         color: #4a148c;
     }
 }

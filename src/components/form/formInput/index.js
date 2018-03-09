@@ -35,6 +35,8 @@ class FormInput extends React.Component {
         }
 
         this.setState({ error: '' })
+
+        this.props.onChange(name, value, false)
     }
 
     render() {

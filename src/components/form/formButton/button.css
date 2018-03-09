@@ -1,11 +1,10 @@
 .form-button {
     padding: 4% 5%;
     border-radius: 10px;
-    font-weight: bold;
     background: white;
     color: #4a148c;
     border: none;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1.2rem;
 }
 

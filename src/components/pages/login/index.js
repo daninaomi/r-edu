@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
+import Main from '../../main'
+import ContainerBox from '../../container-box'
 import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
+import LinkButton from '../../linkButton'
 import { logaUser } from '../../../actions'
 import './login.css'
 
@@ -38,8 +41,8 @@ class Login extends React.Component {
             user ? (
                 <Redirect to="/" />
             ) : (
-                    <main className="login">
-                        <div className="login-box" >
+                    <Main>
+                        <ContainerBox>
                             <h1 className="login__title">Bem-vindo(a)!</h1>
 
                             <Form className="login__form" onSubmit={this.handleSubmit}>
@@ -61,22 +64,26 @@ class Login extends React.Component {
                                     aria-label="senha"
                                     required
                                     onChange={this.handleChange} />
-                                <Link to='' className="login__form-link">
+                                <Link to='/' className="login__form-link">
                                     Esqueci minha senha
                                 </Link>
                                 <FormButton
                                     className="login__form-button"
+                                    type="submit"
                                     disabled={this.state.isInvalid}>
                                     Entrar
                                 </FormButton>
-                                <FormButton
-                                    className="login__form-button"
-                                    outline>
-                                    Cadastrar
-                                </FormButton>
+
                             </Form>
-                        </div>
-                    </main>
+                            <LinkButton
+                                to='/cadastro'
+                                className="login__form-button"
+                                >
+                            Cadastrar
+                            </LinkButton>
+
+                        </ContainerBox>
+                    </Main>
                 )
         )
     }
