@@ -42,7 +42,6 @@ class Cadastro extends React.Component {
     render() {
 
         const { user, selecionarUserType } = this.props
-        // const { match, location, history } = this.props
 
         return (
             <Main>

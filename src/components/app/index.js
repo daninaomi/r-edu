@@ -10,6 +10,7 @@ const App = () => (
         <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/cadastro" component={Cadastro} />
+            <Route path="/cadastroProfAluno" component={Cadastro} />
         </Switch>
     </React.Fragment>
 )

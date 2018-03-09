@@ -1,0 +1,38 @@
+
+
+.cadastro__title {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.cadastro__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro__form-input {
+    width: 45%;
+    margin: 10px 0;
+}
+
+.cadastro__form-button {
+    width: 80%;
+    margin: 110px 0;
+}
+
+
+@media screen and (min-width: 768px) {
+    
+    .cadastro__title {
+        color: #4a148c;
+    }
+
+    .cadastro__form-link {
+        color: #4a148c;
+    }
+}
+

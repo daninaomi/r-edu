@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../form/formButton/button.css'
 
 const LinkButton = ({ children, ...props}) => (
-    <Link className="form-button--outline" {...props}>
+    <Link {...props}>
         {children}
     </Link>
 )

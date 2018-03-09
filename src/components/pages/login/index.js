@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import Main from '../../main'
 import ContainerBox from '../../container-box'
 import Form from '../../form'
@@ -26,11 +27,17 @@ class Login extends React.Component {
     }
 
     handleSubmit(event) {
-        const user = {
-            email: this.email,
-            senha: this.senha
+        event.preventDefault()
+        
+        if (!this.state.isInvalid) {
+            const user = {
+                email: this.email,
+                senha: this.senha
+            }
+            this.props.logaUser(event, user)
+
+            this.props.history.push('/home')
         }
-        this.props.logaUser(event, user)
     }
 
     render() {
@@ -73,13 +80,12 @@ class Login extends React.Component {
                                     disabled={this.state.isInvalid}>
                                     Entrar
                                 </FormButton>
-
                             </Form>
                             <LinkButton
                                 to='/cadastro'
-                                className="login__form-button"
-                                >
-                            Cadastrar
+                                className="login__form-button link-button"
+                            >
+                                Cadastrar
                             </LinkButton>
 
                         </ContainerBox>
@@ -100,6 +106,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch(logaUser(user))
     }
 })
+
+withRouter(connect(mapDispatchToProps)(FormButton))
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
