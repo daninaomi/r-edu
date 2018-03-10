@@ -1,20 +1,63 @@
 import React from 'react'
-import Main from '../../main'
-import ContainerBox from '../../container-box'
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import { selecionarUserType, cadastraUser } from '../../../actions'
 import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
 import Select from '../../form/select'
-import './cadastro.css'
+import './cadastro-aluno.css'
 
-export default FormAluno = () => (
 
-    <Main>
-        <ContainerBox>
-            <h1 className="cadastro-aluno">Cadastro</h1>
-            <Form className="cadastro-aluno" onSubmit={this.handleSubmit}>
+class FormAluno extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { isInvalid: false }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+
+    handleChange(name, value, isInvalid) {
+        this[name] = value;
+        this.setState({ isInvalid })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+
+        if (!this.state.isInvalid) {
+            const user = {
+                apelido: this.apelido,
+                nome: this.nome,
+                sobrenome: this.sobrenome,
+                sexo: this.sexo,
+                email: this.email,
+                senha: this.senha,
+                cidade: this.cidade,
+                estado: this.estado,
+                telefone: this.telefone,
+                dataNascimento: this.dataNascimento,
+                cpf: this.cpf,
+                nomeResponsavel: this.nomeResponsavel,
+                escola: this.escola
+            }
+            this.props.cadastraUser(event, user)
+
+            this.props.history.push('/login')
+        }
+    }
+
+    render() {
+
+        const { user, cadastraUser, selecionarUserType, userType } = this.props
+
+        return (
+
+
+            <Form className="cadastro__form" onSubmit={this.handleSubmit}>
                 <FormInput
-                    className="cadastro-aluno__form-input"
+                    className="cadastro-aluno__form-input cadastro-aluno__form-input--1"
                     type="text"
                     name="apelido"
                     placeholder="apelido"
@@ -35,27 +78,37 @@ export default FormAluno = () => (
                     onChange={this.handleChange}
                     required />
 
-                <FormInput
-                    className="cadastro-aluno__form-input"
-                    type="radio"
-                    name="sexo"
-                    id="sexo-feminino"
-                    value="professor"
-                    onChange={this.handleChange}
-                    required />
-                <label htmlFor="sexo-feminino"> Feminino </label>
-                <FormInput
-                    className="cadastro-aluno__form-input"
-                    type="radio"
-                    name="sexo"
-                    id="sexo-masculino"
-                    value="aluno"
-                    onChange={this.handleChange}
-                    required />
-                <label htmlFor="sexo-masculino"> Masculino </label>
+                <div className="cadastro-aluno__form-radio">
+                    <FormInput
+                        className="cadastro-aluno__form-radio-button"
+                        type="radio"
+                        name="sexo"
+                        id="sexo-feminino"
+                        value="professor"
+                        onChange={this.handleChange}
+                        required />
+                    <label 
+                        htmlFor="sexo-feminino"
+                        className="cadastro-aluno__form-radio-label"> 
+                        Feminino 
+                    </label>
+                    <FormInput
+                        className="cadastro-aluno__form-radio-button"
+                        type="radio"
+                        name="sexo"
+                        id="sexo-masculino"
+                        value="aluno"
+                        onChange={this.handleChange}
+                        required />
+                    <label 
+                        htmlFor="sexo-masculino"
+                        className="cadastro-aluno__form-radio-label"> 
+                        Masculino 
+                    </label>
+                </div>
 
                 <FormInput
-                    className="cadastro-aluno__form-input"
+                    className="cadastro-aluno__form-input cadastro-aluno__form-input--1"
                     type="email"
                     name="email"
                     placeholder="E-mail"
@@ -95,7 +148,7 @@ export default FormAluno = () => (
                 </Select>
 
                 <FormInput
-                    className="cadastro__form-input"
+                    className="cadastro-aluno__form-input"
                     type="tel"
                     name="telefone"
                     placeholder="Telefone"
@@ -103,7 +156,7 @@ export default FormAluno = () => (
                     required
                     onChange={this.handleChange} />
                 <FormInput
-                    className="cadastro__form-input"
+                    className="cadastro-aluno__form-input"
                     type="date"
                     name="dataNascimento"
                     placeholder="Data de nascimento"
@@ -111,7 +164,7 @@ export default FormAluno = () => (
                     required
                     onChange={this.handleChange} />
                 <FormInput
-                    className="cadastro__form-input"
+                    className="cadastro-aluno__form-input"
                     type="number"
                     name="cpf"
                     placeholder="CPF"
@@ -125,10 +178,10 @@ export default FormAluno = () => (
                     placeholder="nomeResponsavel"
                     onChange={this.handleChange}
                     required />
-                <Select name="escola" className="cadastro-aluno__form-select">
-                    <option value="escola1">escola</option>
-                    <option value="escola2">escola</option>
-                    <option value="escola3">escola</option>
+                <Select name="escola" className="cadastro-aluno__form-select cadastro-aluno__form-input--1">
+                    <option value="escola1">Escola</option>
+                    <option value="escola2">Escola</option>
+                    <option value="escola3">Escola</option>
                 </Select>
 
                 <FormButton
@@ -136,9 +189,24 @@ export default FormAluno = () => (
                     type="submit"
                     disabled={this.state.isInvalid}>
                     Cadastrar
-                        </FormButton>
+                </FormButton>
             </Form>
-        </ContainerBox>
-    </Main>
-)
+        )
+    }
+}
 
+
+const mapStateToProps = state => ({
+    userType: state.user.type
+})
+
+const mapDispatchToProps = dispatch => ({
+    cadastraUser: (user) => {
+        dispatch(cadastraUser(user))
+    }
+})
+
+withRouter(connect(mapDispatchToProps)(FormAluno))
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormAluno)

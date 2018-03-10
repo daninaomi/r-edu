@@ -45,7 +45,7 @@ class Login extends React.Component {
         const { user, logaUser } = this.props
 
         return (
-            user ? (
+            user.logado ? (
                 <Redirect to="/" />
             ) : (
                     <Main>
@@ -81,6 +81,7 @@ class Login extends React.Component {
                                     Entrar
                                 </FormButton>
                             </Form>
+                            
                             <LinkButton
                                 to='/cadastro'
                                 className="login__form-button link-button"

@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link} from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import Main from '../../main'
 import ContainerBox from '../../container-box'
 import Form from '../../form'
@@ -31,7 +29,7 @@ class Cadastro extends React.Component {
 
         if (!this.state.isInvalid) {
             const user = {
-                userType: this.userType,
+                type: this.userType,
             }
             this.props.selecionarUserType(event, user)
 

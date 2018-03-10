@@ -14,7 +14,7 @@ const Navbar = ({ user, deslogaUser }) => (
             <img className="navbar__logo" src={logo} alt="logo" />
         </Link>
 
-        {!user && (
+        {/* {!user && ( */}
             <React.Fragment>
                 <input id="menu-burger" className="nav-menu-button" type="checkbox" hidden />
                 <label htmlFor="menu-burger" className="icon-menu">
@@ -35,7 +35,7 @@ const Navbar = ({ user, deslogaUser }) => (
                     </li>
                 </ul>
             </React.Fragment>
-        )}
+        {/* )}
         {user && (
 
             <li className="nav-menu-list__item">
@@ -43,7 +43,7 @@ const Navbar = ({ user, deslogaUser }) => (
                     <IconSair className="navbar-pages-link-icon" /> Sair
                     </a>
             </li>
-        )}
+        )} */}
     </nav>
 )
 

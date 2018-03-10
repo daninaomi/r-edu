@@ -1,4 +1,13 @@
+.cadastro__page {
+    background: #4a148c;
+}
 
+.cadastro__container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 10%;
+}
 
 .cadastro__title {
     color: white;
@@ -7,32 +16,26 @@
     font-weight: 700;
 }
 
-.cadastro__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.cadastro__form-input {
-    width: 45%;
-    margin: 10px 0;
-}
-
-.cadastro__form-button {
-    width: 80%;
-    margin: 110px 0;
-}
-
-
 @media screen and (min-width: 768px) {
-    
+
+    .cadastro__container {
+        padding: 5% 20%;
+        background: white;
+    }
+
     .cadastro__title {
         color: #4a148c;
     }
-
-    .cadastro__form-link {
-        color: #4a148c;
-    }
 }
 
+@media screen and (min-width: 992px) {
+
+    .cadastro__container {
+        padding: 5% 20%;
+        background: white;
+    }
+
+    .cadastro__page {
+        background: #ccc;
+    }
+}

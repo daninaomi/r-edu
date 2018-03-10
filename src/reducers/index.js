@@ -1,12 +1,16 @@
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
 import {
     LOGA_USER,
     DESLOGA_USER,
     SELECIONA_USERTYPE,
-    CADASTRA_USER
+    CADASTRA_USER_SUCCESS
 } from '../actions'
 
-const userLogin = (estadoAtual = {}, acao) => {
+const userLogin = (estadoAtual = {
+    user: {
+        logado: false
+    }
+}, acao) => {
     switch (acao.type) {
         case LOGA_USER:
             return {
@@ -16,6 +20,24 @@ const userLogin = (estadoAtual = {}, acao) => {
             return {
                 user: false
             }
+
+        case SELECIONA_USERTYPE:
+            return {
+                ...estadoAtual,
+                user: {
+                    ...estadoAtual.user,
+                    ...acao.user
+                }
+            }
+
+        case CADASTRA_USER_SUCCESS:
+            return {
+                ...estadoAtual,
+                user: {
+                    ...estadoAtual.user,
+                    ...acao.user
+                }
+            }
         default:
             return estadoAtual
     }
@@ -23,28 +45,6 @@ const userLogin = (estadoAtual = {}, acao) => {
 
 export default userLogin
 
-// const userCadastro = (estadoAtual = {}, acao) => {
-//     switch (acao.type) {
-//         case SELECIONA_USERTYPE:
-//             return {
-//                 // userType: estadoAtual.userType
-//                 userType === 'professor' ? (
-//                     userType = 'professor'
-//                 ) : (
-//                         userType = 'aluno'
-//                     )
-//             }
-            
-//         case CADASTRA_USER:
-//             const newUser
-
-//             return {
-//                 user: true
-//             }
-//         default:
-//             return estadoAtual
-//     }
-// }
 
 // const reducer = combineReducers({
 //     userLogin,

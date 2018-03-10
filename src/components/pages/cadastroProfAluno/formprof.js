@@ -1,20 +1,60 @@
 import React from 'react'
-import Main from '../../main'
-import ContainerBox from '../../container-box'
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import { selecionarUserType, cadastraUser } from '../../../actions'
 import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
 import Select from '../../form/select'
-import './cadastro.css'
+import './cadastro-prof.css'
 
-export default FormProf = () => (
 
-    <Main>
-        <ContainerBox>
-            <h1 className="cadastro-aluno">Cadastro</h1>
-            <Form className="cadastro-aluno" onSubmit={this.handleSubmit}>
+class FormAluno extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { isInvalid: false }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+
+    handleChange(name, value, isInvalid) {
+        this[name] = value;
+        this.setState({ isInvalid })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+
+        if (!this.state.isInvalid) {
+            const user = {
+                apelido: this.apelido,
+                nome: this.nome,
+                sobrenome: this.sobrenome,
+                sexo: this.sexo,
+                email: this.email,
+                senha: this.senha,
+                cidade: this.cidade,
+                estado: this.estado,
+                telefone: this.telefone,
+                dataNascimento: this.dataNascimento,
+                cpf: this.cpf
+            }
+            this.props.cadastraUser(event, user)
+
+            this.props.history.push('/login')
+        }
+    }
+
+    render() {
+
+        const { user, cadastraUser, selecionarUserType, userType } = this.props
+
+        return (
+
+            <Form className="cadastro__form" onSubmit={this.handleSubmit}>
                 <FormInput
-                    className="cadastro-prof__form-input"
+                    className="cadastro-prof__form-input cadastro-prof__form-input--1"
                     type="text"
                     name="apelido"
                     placeholder="apelido"
@@ -40,22 +80,28 @@ export default FormProf = () => (
                     type="radio"
                     name="sexo"
                     id="sexo-feminino"
-                    value="professor"
                     onChange={this.handleChange}
                     required />
-                <label htmlFor="sexo-feminino"> Feminino </label>
+                <label 
+                    htmlFor="sexo-feminino"
+                    className="cadastro-prof__form-radio-label"> 
+                    Feminino 
+                </label>
                 <FormInput
                     className="cadastro-prof__form-input"
                     type="radio"
                     name="sexo"
                     id="sexo-masculino"
-                    value="aluno"
                     onChange={this.handleChange}
                     required />
-                <label htmlFor="sexo-masculino"> Masculino </label>
+                <label 
+                    htmlFor="sexo-masculino"
+                    className="cadastro-prof__form-radio-label"> 
+                    Masculino 
+                </label>
 
                 <FormInput
-                    className="cadastro-prof__form-input"
+                    className="cadastro-prof__form-input cadastro-prof__form-input--1"
                     type="email"
                     name="email"
                     placeholder="E-mail"
@@ -82,18 +128,18 @@ export default FormProf = () => (
                     required
                     onChange={this.handleChange} />
 
-                <Select name="cidade" className="cadastro-prof__form-select">
+                <Select name="cidade" className="cadastro__form-input cadastro-prof__form-select">
                     <option value="cidade1">Cidade</option>
                     <option value="cidade2">Cidade</option>
                     <option value="cidade3">Cidade</option>
                 </Select>
 
-                <Select name="estado" className="cadastro-prof__form-select">
+                <Select name="estado" className="cadastro__form-input cadastro-prof__form-select">
                     <option value="estado1">Estado</option>
                     <option value="estado2">Estado</option>
                     <option value="estado3">Estado</option>
                 </Select>
-                
+
                 <FormInput
                     className="cadastro-prof__form-input"
                     type="tel"
@@ -111,7 +157,7 @@ export default FormProf = () => (
                     required
                     onChange={this.handleChange} />
                 <FormInput
-                    className="cadastro-prof__form-input"
+                    className="cadastro-prof__form-input cadastro-prof__form-input--1"
                     type="number"
                     name="cpf"
                     placeholder="CPF"
@@ -124,9 +170,24 @@ export default FormProf = () => (
                     type="submit"
                     disabled={this.state.isInvalid}>
                     Cadastrar
-                        </FormButton>
+                </FormButton>
             </Form>
-        </ContainerBox>
-    </Main> 
-)
- 
+        )
+    }
+}
+
+
+const mapStateToProps = state => ({
+    userType: state.user.type
+})
+
+const mapDispatchToProps = dispatch => ({
+    cadastraUser: (user) => {
+        dispatch(cadastraUser(user))
+    }
+})
+
+withRouter(connect(mapDispatchToProps)(FormAluno))
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormAluno)

@@ -1,7 +1,12 @@
 import React from 'react'
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import { selecionarUserType, cadastraUser } from '../../../actions'
+import Main from '../../main'
+import ContainerBox from '../../container-box'
 import FormProf from './formprof'
 import FormAluno from './formaluno'
-import { selecionarUserType, cadastraUser } from '../../../actions'
+import './cadastro.css'
 
 
 class Cadastro extends React.Component {
@@ -39,27 +44,37 @@ class Cadastro extends React.Component {
             }
             this.props.cadastraUser(event, user)
 
-            // this.props.history.push('/login')
+            this.props.history.push('/login')
         }
     }
 
     render() {
 
-        const { user, cadastraUser } = this.props
+        const { user, cadastraUser, selecionarUserType, userType } = this.props
 
         return (
             userType === 'Professor' ? (
-                <FormProf />
+                <Main className="cadastro__page">
+                    <ContainerBox className="cadastro__container">
+                        <h1 className="cadastro__title">Cadastro</h1>
+                        <FormProf />
+                    </ContainerBox>
+                </Main>
             ) : (
-                <FormAluno />
-            )
-            
+                    <Main className="cadastro__page">
+                        <ContainerBox className="cadastro__container">
+                            <h1 className="cadastro__title">Cadastro</h1>
+                            <FormAluno />
+                        </ContainerBox>
+                    </Main>
+                )
+
         )
     }
 }
 
 const mapStateToProps = state => ({
-    userType: state.userType
+    userType: state.user.type
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -68,7 +83,7 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(FormButton))
+withRouter(connect(mapDispatchToProps)(FormProf, FormAluno))
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cadastro)
