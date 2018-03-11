@@ -9,6 +9,7 @@ import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
 import Select from '../../form/select'
 import './perfil.css'
+// import imgBack from './background.png'
 
 
 class PerfilAluno extends React.Component {
@@ -64,151 +65,156 @@ class PerfilAluno extends React.Component {
 
         return (
 
-            <Main >
-                <ContainerBox>
-                    {/* <h1 className="cadastro__title">Cadastro</h1> */}
-
-                    <Form className="cadastro__form" onSubmit={this.handleSubmit}>
-                        <FormInput
-                            className="cadastro__form-input cadastro__form-input--1"
-                            type="text"
-                            name="apelido"
-                            placeholder="apelido"
-                            onChange={this.handleChange}
-                            required />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="text"
-                            name="nome"
-                            placeholder="nome"
-                            onChange={this.handleChange}
-                            required />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="text"
-                            name="sobrenome"
-                            placeholder="sobrenome"
-                            onChange={this.handleChange}
-                            required />
-                        <div className="cadastro__container-radio">
-                            <div className="cadastro__form-radio">
-                                <FormInput
-                                    className="cadastro__form-radio-button"
-                                    type="radio"
-                                    name="sexo"
-                                    id="sexo-feminino"
-                                    value="professor"
-                                    onChange={this.handleChange}
-                                    required />
-                                <label
-                                    htmlFor="sexo-feminino"
-                                    className="cadastro__form-radio-label">
-                                    Feminino
+            <React.Fragment>
+                <header className="perfil__header">
+                    <div className="perfil__banner">
+                        <h1 className="perfil__title">Nome Sobrenome</h1>
+                    </div>
+                    <h2 className="perfil__subtitle">ALUNO</h2>
+                </header>
+                <Main >
+                    <ContainerBox>
+                        <Form className="perfil__form" onSubmit={this.handleSubmit}>
+                            <FormInput
+                                className="perfil__form-input perfil__form-input--1"
+                                type="text"
+                                name="apelido"
+                                placeholder="apelido"
+                                onChange={this.handleChange}
+                                required />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="text"
+                                name="nome"
+                                placeholder="nome"
+                                onChange={this.handleChange}
+                                required />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="text"
+                                name="sobrenome"
+                                placeholder="sobrenome"
+                                onChange={this.handleChange}
+                                required />
+                            <div className="perfil__container-radio">
+                                <div className="perfil__form-radio">
+                                    <FormInput
+                                        className="perfil__form-radio-button"
+                                        type="radio"
+                                        name="sexo"
+                                        id="sexo-feminino"
+                                        value="professor"
+                                        onChange={this.handleChange}
+                                        required />
+                                    <label
+                                        htmlFor="sexo-feminino"
+                                        className="perfil__form-radio-label">
+                                        Feminino
                                 </label>
-                            </div>
-                            <div className="cadastro__form-radio">
-                                <FormInput
-                                    className="cadastro__form-radio-button"
-                                    type="radio"
-                                    name="sexo"
-                                    id="sexo-masculino"
-                                    value="aluno"
-                                    onChange={this.handleChange}
-                                    required />
-                                <label
-                                    htmlFor="sexo-masculino"
-                                    className="cadastro__form-radio-label">
-                                    Masculino
+                                </div>
+                                <div className="perfil__form-radio">
+                                    <FormInput
+                                        className="perfil__form-radio-button"
+                                        type="radio"
+                                        name="sexo"
+                                        id="sexo-masculino"
+                                        value="aluno"
+                                        onChange={this.handleChange}
+                                        required />
+                                    <label
+                                        htmlFor="sexo-masculino"
+                                        className="perfil__form-radio-label">
+                                        Masculino
                                 </label>
+                                </div>
                             </div>
-                        </div>
 
-                        <FormInput
-                            className="cadastro__form-input cadastro__form-input--1"
-                            type="email"
-                            name="email"
-                            placeholder="E-mail"
-                            autoComplete="email"
-                            aria-label="email"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="password"
-                            name="password"
-                            placeholder="Senha"
-                            autoComplete="current-password"
-                            aria-label="senha"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="password"
-                            name="password"
-                            placeholder="Confirme senha"
-                            autoComplete="current-password"
-                            aria-label="senha"
-                            required
-                            onChange={this.handleChange} />
+                            <FormInput
+                                className="perfil__form-input perfil__form-input--1"
+                                type="email"
+                                name="email"
+                                placeholder="E-mail"
+                                autoComplete="email"
+                                aria-label="email"
+                                required
+                                onChange={this.handleChange} />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="password"
+                                name="password"
+                                placeholder="Senha"
+                                autoComplete="current-password"
+                                aria-label="senha"
+                                required
+                                onChange={this.handleChange} />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="password"
+                                name="password"
+                                placeholder="Confirme senha"
+                                autoComplete="current-password"
+                                aria-label="senha"
+                                required
+                                onChange={this.handleChange} />
 
-                        <Select name="cidade" className="cadastro__form-select">
-                            <option value="cidade1">Cidade</option>
-                            <option value="cidade2">Cidade</option>
-                            <option value="cidade3">Cidade</option>
-                        </Select>
+                            <Select name="cidade" className="perfil__form-select">
+                                <option value="cidade1">Cidade</option>
+                                <option value="cidade2">Cidade</option>
+                                <option value="cidade3">Cidade</option>
+                            </Select>
 
-                        <Select name="estado" className="cadastro__form-select">
-                            <option value="estado1">Estado</option>
-                            <option value="estado2">Estado</option>
-                            <option value="estado3">Estado</option>
-                        </Select>
+                            <Select name="estado" className="perfil__form-select">
+                                <option value="estado1">Estado</option>
+                                <option value="estado2">Estado</option>
+                                <option value="estado3">Estado</option>
+                            </Select>
 
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="tel"
-                            name="telefone"
-                            placeholder="Telefone"
-                            aria-label="telefone"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="date"
-                            name="dataNascimento"
-                            placeholder="Data de nascimento"
-                            aria-label="dataNascimento"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="number"
-                            name="cpf"
-                            placeholder="CPF"
-                            aria-label="cpf"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="text"
-                            name="nomeResponsavel"
-                            placeholder="Nome do Responsável"
-                            onChange={this.handleChange}
-                            required />
-                        <Select name="escola" className="cadastro__form-select cadastro__form-input--1">
-                            <option value="escola1">Escola</option>
-                            <option value="escola2">Escola</option>
-                            <option value="escola3">Escola</option>
-                        </Select>
+                            <FormInput
+                                className="perfil__form-input"
+                                type="tel"
+                                name="telefone"
+                                placeholder="Telefone"
+                                aria-label="telefone"
+                                required
+                                onChange={this.handleChange} />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="date"
+                                name="dataNascimento"
+                                placeholder="Data de nascimento"
+                                aria-label="dataNascimento"
+                                required
+                                onChange={this.handleChange} />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="number"
+                                name="cpf"
+                                placeholder="CPF"
+                                aria-label="cpf"
+                                onChange={this.handleChange} />
+                            <FormInput
+                                className="perfil__form-input"
+                                type="text"
+                                name="nomeResponsavel"
+                                placeholder="Nome do Responsável"
+                                onChange={this.handleChange}
+                                required />
+                            <Select name="escola" className="perfil__form-select perfil__form-input--1">
+                                <option value="escola1">Escola</option>
+                                <option value="escola2">Escola</option>
+                                <option value="escola3">Escola</option>
+                            </Select>
 
-                        <FormButton
-                            className="cadastro__form-button"
-                            type="submit"
-                            disabled={this.state.isInvalid}>
-                            Salvar
-                        </FormButton>
-                    </Form>
-                </ContainerBox>
-            </Main>
+                            <FormButton
+                                className="perfil__form-button"
+                                type="submit"
+                                disabled={this.state.isInvalid}>
+                                Salvar
+                            </FormButton>
+                        </Form>
+                    </ContainerBox>
+                </Main>
+            </React.Fragment>
         )
     }
 }

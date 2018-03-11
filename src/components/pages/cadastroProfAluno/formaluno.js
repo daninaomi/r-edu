@@ -185,7 +185,7 @@ class FormAluno extends React.Component {
                             name="cpf"
                             placeholder="CPF"
                             aria-label="cpf"
-                            required
+                            
                             onChange={this.handleChange} />
                         <FormInput
                             className="cadastro__form-input"
