@@ -1,0 +1,58 @@
+/* .cadastro__page{} */
+
+.escolha__title {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.escolha__form {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.escolha__container-radio {
+    width: 100%;
+    margin: 10% auto;
+}
+
+.escolha__form-radio-button {
+    border: 2px solid white;
+    color: #4a148c;
+}
+
+.escolha__form-radio-button:checked ~ .escolha__form-radio-label {
+    font-weight: 700;
+    color: #1de9b6;
+}
+
+.escolha__form-radio-label {
+    margin: 15px 0;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.escolha__form-radio-label:visited, .escolha__form-radio-button:visited {
+    color: white;
+}
+
+.escolha__form-radio-label:hover {
+    font-weight: 700;
+}
+
+.escolha__form-button {
+    width: 80%;
+    margin: 10% 0;
+}
+
+@media screen and (min-width: 768px) {
+    
+    .escolha__title, .escolha__form-radio-label, .escolha__form-radio-label:visited, .escolha__form-radio-button:visited {
+        color: #4a148c;
+    }
+
+}
+

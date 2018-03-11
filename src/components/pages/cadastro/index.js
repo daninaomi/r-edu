@@ -7,7 +7,7 @@ import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
 import { selecionarUserType } from '../../../actions'
-import './cadastro.css'
+import './escolha.css'
 
 
 class Cadastro extends React.Component {
@@ -43,30 +43,40 @@ class Cadastro extends React.Component {
 
         return (
             <Main>
-                <ContainerBox>
-                    <h1 className="cadastro__title">Você é:</h1>
-                    <Form className="cadastro__form" onSubmit={this.handleSubmit}>
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="radio"
-                            name="userType"
-                            id="type-professor"
-                            value="professor"
-                            onChange={this.handleChange}
-                            required />
-                        <label htmlFor="type-professor"> Professor(a) </label>
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="radio"
-                            name="userType"
-                            id="type-aluno"
-                            value="aluno"
-                            onChange={this.handleChange}
-                            required />
-                        <label htmlFor="type-aluno"> Aluno(a) </label>
+                <ContainerBox >
+                    <h1 className="escolha__title">Você é:</h1>
+                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
+                        <div className="escolha__container-radio">
+                            <FormInput
+                                className="escolha__form-radio-button"
+                                type="radio"
+                                name="userType"
+                                id="type-professor"
+                                value="professor"
+                                onChange={this.handleChange}
+                                required />
+                            <label
+                                className="escolha__form-radio-label"
+                                htmlFor="type-professor">
+                                Professor(a) </label>
+                        </div>
+                        <div className="escolha__container-radio">
+                            <FormInput
+                                className="escolha__form-radio-button"
+                                type="radio"
+                                name="userType"
+                                id="type-aluno"
+                                value="aluno"
+                                onChange={this.handleChange}
+                                required />
+                            <label
+                                className="escolha__form-radio-label"
+                                htmlFor="type-aluno">
+                                Aluno(a) </label>
+                        </div>
 
                         <FormButton
-                            className="cadastro__form-button"
+                            className="escolha__form-button"
                             type="submit"
                             disabled={this.state.isInvalid}>
                             Continuar

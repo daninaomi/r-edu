@@ -2,12 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { selecionarUserType, cadastraUser } from '../../../actions'
-import Main from '../../main'
-import ContainerBox from '../../container-box'
 import FormProf from './formprof'
 import FormAluno from './formaluno'
-import './cadastro.css'
-
 
 class Cadastro extends React.Component {
     constructor(props) {
@@ -53,21 +49,11 @@ class Cadastro extends React.Component {
         const { user, cadastraUser, selecionarUserType, userType } = this.props
 
         return (
-            userType === 'Professor' ? (
-                <Main className="cadastro__page">
-                    <ContainerBox className="cadastro__container">
-                        <h1 className="cadastro__title">Cadastro</h1>
-                        <FormProf />
-                    </ContainerBox>
-                </Main>
+            userType === 'professor' ? (
+                <FormProf />
             ) : (
-                    <Main className="cadastro__page">
-                        <ContainerBox className="cadastro__container">
-                            <h1 className="cadastro__title">Cadastro</h1>
-                            <FormAluno />
-                        </ContainerBox>
-                    </Main>
-                )
+                <FormAluno />
+            )
 
         )
     }

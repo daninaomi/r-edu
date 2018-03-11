@@ -14,8 +14,12 @@ export function logaUser(user) {
                 type: LOGA_USER
                 
             }))
-            .catch(error => {
-                console.log('Ocorreu um erro', error)
+            .catch((response, error) => {
+                if (error.response.code === 400) {
+                    error: error.response.mensagem
+                } else if (error.response.code === 500) {
+                    error: "Ocorreu um erro inesperado"
+                }
             })
     }
 }
