@@ -25,10 +25,7 @@ const Navbar = ({ user, deslogaUser }) => (
                         <Link to='' className="nav-menu-list__link">Sobre</Link>
                     </li>
                     <li className="nav-menu-list__item">
-                        <Link to='' className="nav-menu-list__link">Link</Link>
-                    </li>
-                    <li className="nav-menu-list__item">
-                        <Link to='' className="nav-menu-list__link">Link</Link>
+                        <Link to='' className="nav-menu-list__link">Contato</Link>
                     </li>
                     <li className="nav-menu-list__item">
                         <Link to='../pages/login' className="nav-menu-list__link">Entrar</Link>

@@ -28,7 +28,7 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        
+
         if (!this.state.isInvalid) {
             const user = {
                 email: this.email,
@@ -46,52 +46,58 @@ class Login extends React.Component {
 
         return (
             user.logado ? (
-                <Redirect to="/" />
-            ) : (
-                    <Main>
-                        <ContainerBox>
-                            <h1 className="login__title">Bem-vindo(a)!</h1>
+                // userType === 'professor' ? (
+                //     <Redirect to="/homeProf" />
+                // ) : (
+                //     <Redirect to="/homeAluno" />
+                // )
 
-                            <Form className="login__form" onSubmit={this.handleSubmit}>
-                                <FormInput
-                                    className="login__form-input"
-                                    type="email"
-                                    name="email"
-                                    placeholder="E-mail"
-                                    autoComplete="email"
-                                    aria-label="email"
-                                    required
-                                    onChange={this.handleChange} />
-                                <FormInput
-                                    className="login__form-input"
-                                    type="password"
-                                    name="password"
-                                    placeholder="Senha"
-                                    autoComplete="current-password"
-                                    aria-label="senha"
-                                    required
-                                    onChange={this.handleChange} />
-                                <Link to='/' className="login__form-link">
-                                    Esqueci minha senha
+                    < Redirect to = "/" />
+            ) : (
+            <Main>
+                <ContainerBox>
+                    <h1 className="login__title">Bem-vindo(a)!</h1>
+
+                    <Form className="login__form" onSubmit={this.handleSubmit}>
+                        <FormInput
+                            className="login__form-input"
+                            type="email"
+                            name="email"
+                            placeholder="E-mail"
+                            autoComplete="email"
+                            aria-label="email"
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="login__form-input"
+                            type="password"
+                            name="password"
+                            placeholder="Senha"
+                            autoComplete="current-password"
+                            aria-label="senha"
+                            required
+                            onChange={this.handleChange} />
+                        <Link to='/' className="login__form-link">
+                            Esqueci minha senha
                                 </Link>
-                                <FormButton
-                                    className="login__form-button"
-                                    type="submit"
-                                    disabled={this.state.isInvalid}>
-                                    Entrar
+                        <FormButton
+                            className="login__form-button"
+                            type="submit"
+                            disabled={this.state.isInvalid}>
+                            Entrar
                                 </FormButton>
-                            </Form>
-                            
-                            <LinkButton
-                                to='/cadastro'
-                                className="login__form-button link-button"
-                            >
-                                Cadastrar
+                    </Form>
+
+                    <LinkButton
+                        to='/cadastro'
+                        className="login__form-button link-button"
+                    >
+                        Cadastrar
                             </LinkButton>
 
-                        </ContainerBox>
-                    </Main>
-                )
+                </ContainerBox>
+            </Main>
+        )
         )
     }
 
