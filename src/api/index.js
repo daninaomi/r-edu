@@ -15,3 +15,7 @@ export function getLogin(user) {
 export function postNewUser(user) {
     return instance.post('/', { user })
 }
+
+export function editUser(user) {
+    return instance.put('/', { user })
+}

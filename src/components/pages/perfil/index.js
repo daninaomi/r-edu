@@ -1,8 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-// import { alteraUser } from '../../../actions'
-// import PerfilProf from './perfilProf'
+import { alteraUser } from '../../../actions'
+import PerfilProf from './perfilProf'
 import PerfilAluno from './perfilAluno'
 
 class Perfil extends React.Component {
@@ -54,7 +54,7 @@ class Perfil extends React.Component {
             // ) : (
             //     <PerfilAluno />
             // )
-            <PerfilAluno />
+            <PerfilProf />
 
         )
     }

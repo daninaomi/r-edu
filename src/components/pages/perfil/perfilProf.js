@@ -11,7 +11,7 @@ import Select from '../../form/select'
 import './perfil.css'
 
 
-class PerfilAluno extends React.Component {
+class PerfilProf extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
@@ -46,7 +46,7 @@ class PerfilAluno extends React.Component {
             }
             // this.props.alteraUser(event, user)
 
-            // this.props.history.push('/homeAluno')
+            // this.props.history.push('/homeProf')
         }
     }
 
@@ -61,13 +61,13 @@ class PerfilAluno extends React.Component {
                 <header className="perfil__header">
                     <div className="perfil__banner">
                         <h2 className="perfil__title perfil__title--nome">
-                        {/* {user.nome} */} Nome
+                            {/* {user.nome} */} Nome
                         </h2>
-                        <h2 className="perfil__title perfil__title--sobrenome"> 
-                        {/* {user.sobrenome} */} Sobrenome
+                        <h2 className="perfil__title perfil__title--sobrenome">
+                            {/* {user.sobrenome} */} Sobrenome
                         </h2>
                     </div>
-                    <h1 className="perfil__subtitle">ALUNO</h1>
+                    <h1 className="perfil__subtitle">PROFESSOR</h1>
                 </header>
                 <Main >
                     <ContainerBox className="perfil__container">
@@ -181,24 +181,12 @@ class PerfilAluno extends React.Component {
                                 required
                                 onChange={this.handleChange} />
                             <FormInput
-                                className="perfil__form-input"
+                                className="perfil__form-input perfil__form-input--1"
                                 type="number"
                                 name="cpf"
                                 placeholder="CPF"
                                 aria-label="cpf"
                                 onChange={this.handleChange} />
-                            <FormInput
-                                className="perfil__form-input"
-                                type="text"
-                                name="nomeResponsavel"
-                                placeholder="Nome do Responsável"
-                                onChange={this.handleChange}
-                                required />
-                            <Select name="escola" className="perfil__form-select perfil__form-input--1">
-                                <option value="escola1">Escola</option>
-                                <option value="escola2">Escola</option>
-                                <option value="escola3">Escola</option>
-                            </Select>
 
                             <FormButton
                                 className="perfil__form-button"
@@ -214,7 +202,7 @@ class PerfilAluno extends React.Component {
     }
 }
 
-// export default PerfilAluno
+// export default PerfilProf
 
 
 const mapStateToProps = state => ({
@@ -227,7 +215,7 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(PerfilAluno))
+withRouter(connect(mapDispatchToProps)(PerfilProf))
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PerfilAluno)
+export default connect(mapStateToProps, mapDispatchToProps)(PerfilProf)

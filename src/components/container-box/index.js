@@ -1,8 +1,9 @@
 import React from 'react'
+import classnames from 'classnames'
 import './container.css'
 
-const Container = ({ children, ...props}) => (
-    <article className="container" {...props}>
+const Container = ({ className, children, ...props}) => (
+    <article className={classnames("container", className)} {...props}>
         {children}
     </article>
 )

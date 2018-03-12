@@ -50,13 +50,6 @@ class FormAluno extends React.Component {
         }
     }
 
-    // uncheckedRadio = ($) => {
-    //     $('cadastro__form-radio-button').on("click", function (event) {
-    //         $('cadastro__form-radio-button').prop('checked', false);
-    //         $(this).prop('checked', true);
-    //     });
-    // }
-
     render() {
 
 
