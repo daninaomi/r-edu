@@ -38,7 +38,7 @@ class Cadastro extends React.Component {
                 nomeResponsavel: this.nomeResponsavel,
                 escola: this.escola
             }
-            this.props.cadastraUser(event, user)
+            this.props.cadastraUser(user)
 
             this.props.history.push('/login')
         }
@@ -46,10 +46,10 @@ class Cadastro extends React.Component {
 
     render() {
 
-        const { user, cadastraUser, selecionarUserType, userType } = this.props
+        const { user, cadastraUser, selecionarUserType } = this.props
 
         return (
-            userType === 'professor' ? (
+            user.type === 'professor' ? (
                 <FormProf />
             ) : (
                 <FormAluno />
@@ -60,7 +60,7 @@ class Cadastro extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    userType: state.user.type
+    user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -69,7 +69,5 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(FormProf, FormAluno))
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cadastro)
+export default withRouter(connect( mapStateToProps, mapDispatchToProps)(Cadastro))

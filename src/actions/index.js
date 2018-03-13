@@ -31,10 +31,10 @@ export function deslogaUser() {
     }
 }
 
-export function selecionarUserType(userType) {
+export function selecionaUserType(userType) {
     return {
         type: SELECIONA_USERTYPE,
-        userType
+        user
     }
 }
 

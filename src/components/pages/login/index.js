@@ -46,13 +46,9 @@ class Login extends React.Component {
 
         return (
             user.logado ? (
-                // userType === 'professor' ? (
-                //     <Redirect to="/homeProf" />
-                // ) : (
-                //     <Redirect to="/homeAluno" />
-                // )
 
-                    < Redirect to = "/" />
+                < Redirect to = "/home" />
+
             ) : (
             <Main>
                 <ContainerBox>
@@ -114,7 +110,6 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(FormButton))
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

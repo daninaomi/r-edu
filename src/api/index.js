@@ -13,9 +13,11 @@ export function getLogin(user) {
 }
 
 export function postNewUser(user) {
-    return instance.post('/', { user })
+    const url = user.type === 'professor' ? '/professor' : '/aluno'
+    return instance.post(url, { user })
 }
 
 export function editUser(user) {
-    return instance.put('/', { user })
+    const url = user.type === 'professor' ? '/professor' : '/aluno'
+    return instance.put(url, { user })
 }

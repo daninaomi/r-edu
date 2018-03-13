@@ -3,9 +3,9 @@ import classnames from 'classnames'
 import './container.css'
 
 const Container = ({ className, children, ...props}) => (
-    <article className={classnames("container", className)} {...props}>
+    <section className={classnames("container", className)} {...props}>
         {children}
-    </article>
+    </section>
 )
 
 export default Container

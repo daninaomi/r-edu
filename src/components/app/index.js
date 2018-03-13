@@ -1,17 +1,18 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Navbar from '../navbar'
-import Home from '../pages/home'
+// import Home from '../pages/home'
 import Login from '../pages/login'
 import Cadastro from '../pages/cadastro'
 import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
+import LandingPage from '../pages/home';
 
 const App = () => (
     <React.Fragment>
         <Navbar />
         <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={LandingPage} />
             <Route path="/login" component={Login} />
             <Route path="/cadastro" component={Cadastro} />
             <Route path="/cadastroProfAluno" component={CadastroProfAluno} />

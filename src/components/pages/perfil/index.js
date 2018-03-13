@@ -38,7 +38,8 @@ class Perfil extends React.Component {
                 nomeResponsavel: this.nomeResponsavel,
                 escola: this.escola
             }
-            // this.props.alteraUser(event, user)
+
+            this.props.alteraUser(user)
 
             // this.props.history.push('/home')
         }
@@ -46,33 +47,28 @@ class Perfil extends React.Component {
 
     render() {
 
-        // const { user, alteraUser, userType } = this.props
+        const { user, alteraUser } = this.props
 
         return (
-            // userType === 'professor' ? (
-            //     <PerfilProf />
-            // ) : (
-            //     <PerfilAluno />
-            // )
-            <PerfilProf />
+            user.type === 'professor' ? (
+                <PerfilProf />
+            ) : (
+                <PerfilAluno />
+            )
 
         )
     }
 }
 
-export default Perfil
+const mapStateToProps = state => ({
+    user: state.user
+})
 
-// const mapStateToProps = state => ({
-//     userType: state.user.type
-// })
-
-// const mapDispatchToProps = dispatch => ({
-//     alteraUser: (user) => {
-//         dispatch(alteraUser(user))
-//     }
-// })
-
-// withRouter(connect(mapDispatchToProps)(PerfilProf, PerfilAluno))
+const mapDispatchToProps = dispatch => ({
+    alteraUser: (user) => {
+        dispatch(alteraUser(user))
+    }
+})
 
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Cadastro)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Perfil))
