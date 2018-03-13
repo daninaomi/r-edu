@@ -2,12 +2,12 @@ import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { alteraUser } from '../../../actions'
-import Main from '../../main'
-import ContainerBox from '../../container-box'
-import Form from '../../form'
-import FormInput from '../../form/formInput'
-import FormButton from '../../form/formButton'
-import Select from '../../form/select'
+import Main from '../../compSimples/main'
+import ContainerBox from '../../compSimples/container-box'
+import Form from '../../compSimples/form'
+import FormInput from '../../compSimples/form/formInput'
+import FormButton from '../../compSimples/form/formButton'
+import Select from '../../compSimples/form/select'
 import './perfil.css'
 
 
@@ -214,8 +214,6 @@ class PerfilAluno extends React.Component {
     }
 }
 
-// export default PerfilAluno
-
 
 const mapStateToProps = state => ({
     userType: state.user.type
@@ -227,7 +225,5 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(PerfilAluno))
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(PerfilAluno)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PerfilAluno))

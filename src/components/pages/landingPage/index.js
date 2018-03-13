@@ -10,7 +10,6 @@ import FaGroup from 'react-icons/lib/fa/group'
 import FaGamepad from 'react-icons/lib/fa/gamepad'
 
 import logo from './img/logo.png'
-// import imgMockup from './img/mockup.png'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -23,7 +22,7 @@ class LandingPage extends React.Component {
             <React.Fragment>
                 <header className="hero" role="banner">
                     <div className="home-container">
-                        <img src={logo} className="home-logo" />
+                        <img src={logo} className="home-logo" alt="logo"/>
                         <h1 className="title">r.edu, a educação refeita.</h1>
                         <h2 className="subtitle">
                             Transforme sua experiência em sala de aula, <em>totalmente de graça</em>, para sempre.

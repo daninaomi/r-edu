@@ -1,4 +1,5 @@
-// import { combineReducers } from 'redux'
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 import {
     LOGA_USER,
     DESLOGA_USER,
@@ -7,66 +8,48 @@ import {
     ALTERA_USER
 } from '../actions'
 
-const userLogin = (estadoAtual = {
-    user: {
-        logado: false
-    }
+const user = (estadoAtual = {
+    logado: true, type: 'aluno'
 }, acao) => {
     switch (acao.type) {
         case LOGA_USER:
             return {
                 ...estadoAtual,
-                user: {
-                    ...estadoAtual.user,
-                    logado: true
-                }
+               logado: true
             }
         case DESLOGA_USER:
             return {
                 ...estadoAtual,
-                user: {
-                    ...estadoAtual.user,
-                    logado: false
-                }
+                logado: false
             }
 
         case SELECIONA_USERTYPE:
             return {
                 ...estadoAtual,
-                user: {
-                    ...estadoAtual.user,
-                    ...acao.user
-                }
+                ...acao.user
             }
 
         case CADASTRA_USER_SUCCESS:
             return {
                 ...estadoAtual,
-                user: {
-                    ...estadoAtual.user,
-                    ...acao.user
-                }
+                ...acao.user
             }
         case ALTERA_USER:
             return {
                 ...estadoAtual,
-                user: {
-                    ...estadoAtual.user,
-                    ...acao.user
-                }
+                ...acao.user
             }
         default:
             return estadoAtual
     }
 }
 
-export default userLogin
 
 
-// const reducer = combineReducers({
-//     userLogin,
-//     userCadastro
-// })
+const reducer = combineReducers({
+    user,
+    routing: routerReducer
+})
 
-// export default reducer
+export default reducer
 

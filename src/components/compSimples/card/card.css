@@ -1,0 +1,13 @@
+.card {
+    width: 40%;
+    height: 50px;
+}
+
+@media screen and (min-width: 992px) {
+
+    .card {
+        width: 25%;
+        height: 70px;
+    }
+
+}

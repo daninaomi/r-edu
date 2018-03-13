@@ -1,21 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import classnames from 'classnames'
+
 import { deslogaUser } from '../../actions'
+import NavProf from './navProf'
+import NavAluno from './navAluno'
+
 import IconMenu from 'react-icons/lib/fa/bars'
-import IconSair from 'react-icons/lib/fa/power-off'
 import './navbar.css'
 import logo from './logo-icon.png'
 
+
 const Navbar = ({ user, deslogaUser }) => (
+
     <nav className="navbar">
-        <Link to="/">
-            <img className="navbar__logo" src={logo} alt="logo" />
-        </Link>
 
         {!user.logado && (
             <React.Fragment>
+                <Link to="/">
+                    <img className="navbar__logo" src={logo} alt="logo" />
+                </Link>
+
                 <input id="menu-burger" className="nav-menu-button" type="checkbox" hidden />
                 <label htmlFor="menu-burger" className="icon-menu">
                     <IconMenu />
@@ -34,32 +39,26 @@ const Navbar = ({ user, deslogaUser }) => (
             </React.Fragment>
         )}
         {user.logado && (
-            // criar if versão prof ou aluno
 
             // react router match url ou path
 
-            <React.Fragment>
-                <input id="menu-burger" className="nav-menu-button" type="checkbox" hidden />
-                <label htmlFor="menu-burger" className="icon-menu">
-                    <IconMenu />
-                </label>
-                <ul className="nav-menu nav-menu-list">
-                    <li className="nav-menu-list__item">
-                        <Link to='../pages/login' className="nav-menu-list__link nav-menu-list__item--sair" onClick={deslogaUser}>
-                            <IconSair className="navbar-pages-link-icon" /> Sair
-                    </Link>
-                    </li>
-                </ul>
-            </React.Fragment>
+            user.type === 'professor' ? (
+                <NavProf />
+            ) : (
+                <NavAluno />
+            )
+
+
         )}
     </nav>
 )
 
-const mapStateToProps = state => (
-    {
+const mapStateToProps = state => {
+    console.log(state)
+    return {
         user: state.user
     }
-)
+}
 
 const mapDispatchToProps = dispatch => (
     {
