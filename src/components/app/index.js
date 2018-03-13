@@ -6,7 +6,7 @@ import Login from '../pages/login'
 import Cadastro from '../pages/cadastro'
 import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
-import LandingPage from '../pages/home';
+import LandingPage from '../pages/landingPage';
 
 const App = () => (
     <React.Fragment>
@@ -18,7 +18,6 @@ const App = () => (
             <Route path="/cadastroProfAluno" component={CadastroProfAluno} />
             <Route path="/Perfil" component={Perfil} />
 
-            {/* <Route exact path="/" component={Perfil} /> */}
         </Switch>
     </React.Fragment>
 )

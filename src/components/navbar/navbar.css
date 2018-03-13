@@ -30,7 +30,7 @@
     width: 50%;
     position: absolute;
     right: -50%;
-    top: 60px;
+    top: 40px;
     z-index: 1;
     overflow-x: hidden;
     transition: all .3s ease-in-out;

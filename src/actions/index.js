@@ -31,7 +31,7 @@ export function deslogaUser() {
     }
 }
 
-export function selecionaUserType(userType) {
+export function selecionaUserType(user) {
     return {
         type: SELECIONA_USERTYPE,
         user
