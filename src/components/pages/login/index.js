@@ -46,13 +46,10 @@ class Login extends React.Component {
 
         return (
             user.logado ? (
-                // userType === 'professor' ? (
-                //     <Redirect to="/homeProf" />
-                // ) : (
-                //     <Redirect to="/homeAluno" />
-                // )
+                
 
-                    < Redirect to = "/" />
+                < Redirect to = "/home" />
+                
             ) : (
             <Main>
                 <ContainerBox>

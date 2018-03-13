@@ -6,7 +6,7 @@ import ContainerBox from '../../container-box'
 import Form from '../../form'
 import FormInput from '../../form/formInput'
 import FormButton from '../../form/formButton'
-import { selecionarUserType } from '../../../actions'
+import { selecionaUserType } from '../../../actions'
 import './escolha.css'
 
 
@@ -31,7 +31,7 @@ class Cadastro extends React.Component {
             const user = {
                 type: this.userType,
             }
-            this.props.selecionarUserType(event, user)
+            this.props.selecionaUserType(user)
 
             this.props.history.push('/cadastroProfAluno')
         }
@@ -90,15 +90,14 @@ class Cadastro extends React.Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    selecionarUserType: (userType) => {
-        dispatch(selecionarUserType(userType))
+    selecionaUserType: (userType) => {
+        dispatch(selecionaUserType(userType))
     }
 })
 
-withRouter(connect(mapDispatchToProps)(FormButton))
 
 
-export default connect(null, mapDispatchToProps)(Cadastro)
+export default withRouter(connect( null , mapDispatchToProps)(Cadastro))
 
 // const mapStateToProps = state => ({
 //     userType: state.userType

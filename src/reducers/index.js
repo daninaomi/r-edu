@@ -3,7 +3,8 @@ import {
     LOGA_USER,
     DESLOGA_USER,
     SELECIONA_USERTYPE,
-    CADASTRA_USER_SUCCESS
+    CADASTRA_USER_SUCCESS,
+    ALTERA_USER
 } from '../actions'
 
 const userLogin = (estadoAtual = {
@@ -14,11 +15,19 @@ const userLogin = (estadoAtual = {
     switch (acao.type) {
         case LOGA_USER:
             return {
-                user: true
+                ...estadoAtual,
+                user: {
+                    ...estadoAtual.user,
+                    logado: true
+                }
             }
         case DESLOGA_USER:
             return {
-                user: false
+                ...estadoAtual,
+                user: {
+                    ...estadoAtual.user,
+                    logado: false
+                }
             }
 
         case SELECIONA_USERTYPE:
@@ -31,6 +40,14 @@ const userLogin = (estadoAtual = {
             }
 
         case CADASTRA_USER_SUCCESS:
+            return {
+                ...estadoAtual,
+                user: {
+                    ...estadoAtual.user,
+                    ...acao.user
+                }
+            }
+        case ALTERA_USER:
             return {
                 ...estadoAtual,
                 user: {

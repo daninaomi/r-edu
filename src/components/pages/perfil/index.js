@@ -38,7 +38,7 @@ class Perfil extends React.Component {
                 nomeResponsavel: this.nomeResponsavel,
                 escola: this.escola
             }
-            // this.props.alteraUser(event, user)
+            // this.props.alteraUser(user)
 
             // this.props.history.push('/home')
         }
