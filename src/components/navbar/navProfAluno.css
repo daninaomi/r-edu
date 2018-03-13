@@ -2,13 +2,17 @@
 .nav-menu-button--logado:checked ~ .nav-menu-list--logado {
     position: absolute; 
     left: 0;
+    text-align: left;
 }
 
 .nav-menu-list--logado {
-    height: 100vh;
-    width: 50%;
     position: absolute;
-    left: -50%;
+    left: -70%;
+    width: 70%;
+    min-height: 100vh;
+    text-align: left;
+    padding: 0;
+    margin: 0;
     top: 40px;
     z-index: 1;
     overflow-x: hidden;
@@ -18,5 +22,24 @@
 	-ms-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
     background: #4a148c;
-    text-align: right;
+}
+
+.nav-menu-list__item--sair {
+    list-style-type: none;
+    margin: 90% 0 0 15%; 
+}
+
+.nav-menu-list__tipo-user {
+    margin-top: 60px;
+    color: white;
+    font-size: 1rem;
+}
+
+.nav-menu-list__nome {
+    color: #1de9b6;
+    text-transform: uppercase;
+}
+
+.nav-menu-list__sobrenome {
+    color: #1de9b6;
 }

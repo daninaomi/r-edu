@@ -17,11 +17,13 @@ const NavProf = ({ user, deslogaUser }) => (
         <label htmlFor="menu-burger" className="icon-menu">
             <IconMenu />
         </label>
-        <ul className="nav-menu-list nav-menu-list--logado">
+        <ul className="nav-menu-list--logado">
             <li className="nav-menu-list__item">
-                <h1 className="">professor</h1>
-                <h2 className="">{user.nome}</h2>
-                <h2 className="">{user.sobrenome}</h2>
+                <h1 className="nav-menu-list__tipo-user">professor</h1>
+                {/* <h2 className="nav-menu-list__nome">{user.nome}</h2>
+                <h2 className="nav-menu-list__sobrenome">{user.sobrenome}</h2> */}
+                <h2 className="nav-menu-list__nome">Nome</h2>
+                <h2 className="nav-menu-list__sobrenome">Sobrenome</h2>
             </li>
 
             <li className="nav-menu-list__item">
@@ -36,8 +38,8 @@ const NavProf = ({ user, deslogaUser }) => (
             <li className="nav-menu-list__item">
                 <Link to='/' className="nav-menu-list__link">ajuda</Link>
             </li>
-            <li className="nav-menu-list__item">
-                <Link to='../pages/login' className="nav-menu-list__link nav-menu-list__item--sair" onClick={deslogaUser}>
+            <li className="nav-menu-list__item--sair">
+                <Link to='../pages/login' className="nav-menu-list__link" onClick={deslogaUser}>
                     <IconSair className="navbar-pages-link-icon" /> Sair
                             </Link>
             </li>

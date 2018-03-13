@@ -10,7 +10,7 @@ import {
 } from '../actions'
 
 const user = (estadoAtual = {
-    logado: true, type: 'aluno'
+    logado: true, type: 'professor'
 }, acao) => {
     switch (acao.type) {
         case LOGA_USER:
