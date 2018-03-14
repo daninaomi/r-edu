@@ -32,7 +32,6 @@ const LandingPage = () => (
         </header>
 
         <main>
-            {/* Intro */}
 
             <section className="section-intro">
                 <div className="home-container">
@@ -42,8 +41,6 @@ const LandingPage = () => (
                             </p>
                 </div>
             </section>
-
-            {/* Features */}
 
             <section className="section-features">
                 <div className="home-container section-features__container">
@@ -85,6 +82,7 @@ const LandingPage = () => (
                     </div>
                 </div>
             </section>
+            
         </main >
 
         <footer className="section-footer">
