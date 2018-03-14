@@ -12,11 +12,12 @@ import logo from './logo-icon.png'
 
 
 const Navbar = ({ user, deslogaUser }) => (
-
-    <nav className="navbar">
+    
+    <React.Fragment>
 
         {!user.logado && (
-            <React.Fragment>
+            
+            <nav className="navbar">
                 <Link to="/">
                     <img className="navbar__logo" src={logo} alt="logo" />
                 </Link>
@@ -36,7 +37,7 @@ const Navbar = ({ user, deslogaUser }) => (
                         <Link to='/login' className="nav-menu-list__link">Entrar</Link>
                     </li>
                 </ul>
-            </React.Fragment>
+                </nav>
         )}
         {user.logado && (
 
@@ -50,7 +51,8 @@ const Navbar = ({ user, deslogaUser }) => (
 
 
         )}
-    </nav>
+    
+    </React.Fragment>
 )
 
 const mapStateToProps = state => {

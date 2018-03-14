@@ -1,8 +1,20 @@
+.navbar--logado {
+    width: 100%;
+    padding: 2% 5%;
+    background: #4a148c;
+    display: flex;
+    justify-content: space-between;
+}
 
 .nav-menu-button--logado:checked ~ .nav-menu-list--logado {
     position: absolute; 
     left: 0;
     text-align: left;
+}
+
+.icon-menu--logado {
+    color: white;
+    font-size: 1.8rem;
 }
 
 .nav-menu-list--logado {
@@ -24,9 +36,9 @@
     background: #4a148c;
 }
 
-.nav-menu-list__item--sair {
-    list-style-type: none;
-    margin: 90% 0 0 15%; 
+.nav-menu-list__item--logado {
+    list-style-type: none; 
+    margin: 10% 10%;
 }
 
 .nav-menu-list__tipo-user {
@@ -36,10 +48,46 @@
 }
 
 .nav-menu-list__nome {
+    margin-bottom: 5px;
     color: #1de9b6;
     text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
 }
 
 .nav-menu-list__sobrenome {
+    margin-top: 0;
     color: #1de9b6;
+    font-weight: 700;
+}
+
+.navbar-pages-link-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.nav-menu-list__item--sair {
+    list-style-type: none;
+    margin: 90% 0 0 15%; 
+}
+
+@media screen and (min-width: 768px) {
+
+    .navbar--logado {
+        padding: 1% 5%;
+    }
+
+    .nav-menu-list--logado {
+        left: -50%;
+        width: 50%;
+        top: 50px;
+    }
+
+    .nav-menu-list__item--logado {
+        margin: 5% 10%;
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
 }

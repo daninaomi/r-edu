@@ -6,19 +6,23 @@ import { deslogaUser } from '../../actions'
 
 import IconMenu from 'react-icons/lib/fa/bars'
 import IconSair from 'react-icons/lib/fa/power-off'
+import FaTrophy from 'react-icons/lib/fa/trophy'
+import FaGroup from 'react-icons/lib/fa/group'
+import FaUser from 'react-icons/lib/fa/user'
+import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 
 import './navProfAluno.css'
 
 
 const NavProf = ({ user, deslogaUser }) => (
 
-    <React.Fragment>
-        <input id="menu-burger" className="nav-menu-button nav-menu-button--logado" type="checkbox" hidden />
-        <label htmlFor="menu-burger" className="icon-menu">
+    <nav className="navbar--logado">
+        <input id="menu-burger" className="nav-menu-button--logado" type="checkbox" hidden />
+        <label htmlFor="menu-burger" className="icon-menu--logado">
             <IconMenu />
         </label>
         <ul className="nav-menu-list--logado">
-            <li className="nav-menu-list__item">
+            <li className="nav-menu-list__item--logado">
                 <h1 className="nav-menu-list__tipo-user">professor</h1>
                 {/* <h2 className="nav-menu-list__nome">{user.nome}</h2>
                 <h2 className="nav-menu-list__sobrenome">{user.sobrenome}</h2> */}
@@ -26,27 +30,35 @@ const NavProf = ({ user, deslogaUser }) => (
                 <h2 className="nav-menu-list__sobrenome">Sobrenome</h2>
             </li>
 
-            <li className="nav-menu-list__item">
-                <Link to='/' className="nav-menu-list__link">desafios</Link>
+            <li className="nav-menu-list__item--logado">
+                <Link to='/' className="nav-menu-list__link">
+                    <FaTrophy className="navbar-pages-link-icon" />
+                    desafios</Link>
             </li>
-            <li className="nav-menu-list__item">
-                <Link to='/' className="nav-menu-list__link">turmas</Link>
+            <li className="nav-menu-list__item--logado">
+                <Link to='/' className="nav-menu-list__link">
+                    <FaGroup className="navbar-pages-link-icon" />
+                    turmas</Link>
             </li>
-            <li className="nav-menu-list__item">
-                <Link to='/perfil' className="nav-menu-list__link">meu perfil</Link>
+            <li className="nav-menu-list__item--logado">
+                <Link to='/perfil' className="nav-menu-list__link">
+                    <FaUser className="navbar-pages-link-icon" />
+                    meu perfil </Link>
             </li>
-            <li className="nav-menu-list__item">
-                <Link to='/' className="nav-menu-list__link">ajuda</Link>
+            <li className="nav-menu-list__item--logado">
+                <Link to='/' className="nav-menu-list__link">
+                    <FaQuestionCircle className="navbar-pages-link-icon" />
+                    ajuda </Link>
             </li>
-            <li className="nav-menu-list__item--sair">
+            <li className="nav-menu-list__item--logado nav-menu-list__item--sair">
                 <Link to='../pages/login' className="nav-menu-list__link" onClick={deslogaUser}>
-                    <IconSair className="navbar-pages-link-icon" /> Sair
-                            </Link>
+                    <IconSair className="navbar-pages-link-icon" />
+                    Sair </Link>
             </li>
         </ul>
-    </React.Fragment>
+    </nav>
 )
-    
+
 
 const mapStateToProps = state => ({
     user: state.user
