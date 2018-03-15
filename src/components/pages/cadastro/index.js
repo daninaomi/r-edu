@@ -46,41 +46,46 @@ class Cadastro extends React.Component {
                 <ContainerBox >
                     <h1 className="escolha__title">Você é:</h1>
                     <Form className="escolha__form" onSubmit={this.handleSubmit}>
-                        <div className="escolha__container-radio">
-                            <FormInput
-                                className="escolha__form-radio-button"
-                                type="radio"
-                                name="userType"
-                                id="type-professor"
-                                value="professor"
-                                onChange={this.handleChange}
-                                required />
-                            <label
-                                className="escolha__form-radio-label"
-                                htmlFor="type-professor">
-                                Professor(a) </label>
-                        </div>
-                        <div className="escolha__container-radio">
-                            <FormInput
-                                className="escolha__form-radio-button"
-                                type="radio"
-                                name="userType"
-                                id="type-aluno"
-                                value="aluno"
-                                onChange={this.handleChange}
-                                required />
-                            <label
-                                className="escolha__form-radio-label"
-                                htmlFor="type-aluno">
-                                Aluno(a) </label>
+                        <div className="escolha__container">
+                            <ul class="escolha-option">
+                                <li class="escolha-option__item">
+                                    <FormInput
+                                        className="escolha-radio-btn"
+                                        type="radio"
+                                        name="userType"
+                                        id="type-professor"
+                                        value="professor"
+                                        onChange={this.handleChange}
+                                        required />
+                                    <label
+                                        className="escolha-radio-label"
+                                        htmlFor="type-professor">
+                                        Professor(a) </label>
+                                </li>
+                                <li class="escolha-option__item">
+                                    <FormInput
+                                        className="escolha-radio-btn"
+                                        type="radio"
+                                        name="userType"
+                                        id="type-aluno"
+                                        value="aluno"
+                                        onChange={this.handleChange}
+                                        required />
+                                    <label
+                                        className="escolha-radio-label"
+                                        htmlFor="type-aluno">
+                                        Aluno(a) </label>
+                                </li>
+                            </ul>
+                            
+                            <FormButton
+                                className="escolha__form-button"
+                                type="submit"
+                                disabled={this.state.isInvalid}>
+                                Continuar
+                        </FormButton>
                         </div>
 
-                        <FormButton
-                            className="escolha__form-button"
-                            type="submit"
-                            disabled={this.state.isInvalid}>
-                            Continuar
-                        </FormButton>
                     </Form>
                 </ContainerBox>
             </Main>

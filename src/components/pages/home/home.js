@@ -14,15 +14,15 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
-        // this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    // handleSubmit(event) {
-    //     event.preventDefault()
+    handleSubmit(event) {
+        event.preventDefault()
 
-    //     this.props.history.push('/addTurma')
-    //     
-    // }
+        this.props.history.push('/addTurma')
+
+    }
 
     render() {
 
@@ -34,22 +34,51 @@ class Home extends React.Component {
                 < Redirect to="/login" />
 
             ) : (
-                    <Main>
-                        <ContainerBox>
-                            <h1 className="login__title">Bem-vindo(a)!</h1>
 
-                            <FormButton
-                                className="card-button"
-                                type="submit"
-                            >
-                                <Card>
+                    user.type === 'professor' ? (
+                        <Main>
+                            <ContainerBox>
+                                <h1 className="login__title">Bem-vindo(a)!</h1>
 
-                                </Card>
-                            </FormButton>
+                                <FormButton
+                                    className="card-button"
+                                    type="submit">
+
+                                    {/* CRIAR NEW CARD  */}
+                                    <Card className="">
+                                        {/* Card de seleciona escolas */}
+                                        {escola}
+
+                                    </Card>
+                                </FormButton>
 
 
-                        </ContainerBox>
-                    </Main>
+                            </ContainerBox>
+                        </Main>
+                    ) : (
+                            <Main>
+                                <ContainerBox>
+                                    <h1 className="login__title">Olá Fulana!</h1>
+                                    {/* <h1 className="login__title">Olá {user.nome}!</h1> */}
+
+                                    <h3>Você tem:</h3>
+                                    <h2>23 pts</h2>
+                                    {/* <h2>{user.points} pts</h2>1 */}
+
+                                    <FormButton
+                                        className="card-button"
+                                        type="submit">
+
+                                        <Card className="">
+                                            {/* Card de desafios */}
+                                            {desafio}
+                                        </Card>
+                                    </FormButton>
+
+
+                                </ContainerBox>
+                            </Main>
+                        )
                 )
         )
     }

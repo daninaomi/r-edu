@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
+
 import Navbar from '../navbar'
 // import Home from '../pages/home'
 import Login from '../pages/login'
@@ -7,6 +8,7 @@ import Cadastro from '../pages/cadastro'
 import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
 import LandingPage from '../pages/landingPage';
+
 
 const App = () => (
     <React.Fragment>
