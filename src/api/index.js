@@ -21,3 +21,13 @@ export function editUser(user) {
     const url = user.type === 'professor' ? '/professor' : '/aluno'
     return instance.put(url, { user })
 }
+
+export function getCards(lista, user) {
+    const url = user.type === 'professor' ? '/professor' : '/aluno'
+    return instance.get(url, { lista })
+}
+
+export function postCard(nomeCard, user) {
+    const url = user.type === 'professor' ? '/professor' : '/aluno'
+    return instance.put(url, { nomeCard })
+}
