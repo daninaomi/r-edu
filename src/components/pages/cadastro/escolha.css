@@ -14,8 +14,6 @@
 }
 
 .escolha__container {
-    /* width: 100%;
-    margin: 10% auto; */
     display: flex;
     flex-direction: column;
 	justify-content: center;
@@ -25,6 +23,7 @@
 
 .escolha-option {
     flex: 0 0 22rem;
+    padding: 0;
     list-style-type: none;
 }
 

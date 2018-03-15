@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
+
 import { selecionarUserType, cadastraUser } from '../../../actions'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
@@ -17,12 +18,17 @@ class FormAluno extends React.Component {
         this.state = { isInvalid: false }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this._onFocus = this._onFocus.bind(this)
     }
 
 
     handleChange(name, value, isInvalid) {
         this[name] = value;
         this.setState({ isInvalid })
+    }
+
+    _onFocus(e) {
+        e.currentTarget.type = "date";
     }
 
     handleSubmit(event) {
@@ -50,7 +56,7 @@ class FormAluno extends React.Component {
 
     render() {
 
-        const { user, cadastraUser, selecionarUserType, userType } = this.props
+        const { user, cadastraUser, selecionarUserType } = this.props
 
         return (
 
@@ -63,23 +69,51 @@ class FormAluno extends React.Component {
                             className="cadastro__form-input cadastro__form-input--1"
                             type="text"
                             name="apelido"
-                            placeholder="apelido"
+                            placeholder="Username"
                             onChange={this.handleChange}
                             required />
                         <FormInput
                             className="cadastro__form-input"
                             type="text"
                             name="nome"
-                            placeholder="nome"
+                            placeholder="Nome"
                             onChange={this.handleChange}
                             required />
                         <FormInput
                             className="cadastro__form-input"
                             type="text"
                             name="sobrenome"
-                            placeholder="sobrenome"
+                            placeholder="Sobrenome"
                             onChange={this.handleChange}
                             required />
+                            
+                        <FormInput
+                            className="cadastro__form-input cadastro__form-input--1"
+                            type="email"
+                            name="email"
+                            placeholder="E-mail"
+                            autoComplete="email"
+                            aria-label="email"
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="password"
+                            name="password"
+                            placeholder="Senha"
+                            autoComplete="current-password"
+                            aria-label="senha"
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="password"
+                            name="password"
+                            placeholder="Confirme senha"
+                            autoComplete="current-password"
+                            aria-label="senha"
+                            required
+                            onChange={this.handleChange} />
 
                         <div className="cadastro__container-radio">
                             <div className="cadastro__form-radio">
@@ -112,49 +146,29 @@ class FormAluno extends React.Component {
                             </div>
                         </div>
 
-                        <FormInput
-                            className="cadastro__form-input cadastro__form-input--1"
-                            type="email"
-                            name="email"
-                            placeholder="E-mail"
-                            autoComplete="email"
-                            aria-label="email"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="password"
-                            name="password"
-                            placeholder="Senha"
-                            autoComplete="current-password"
-                            aria-label="senha"
-                            required
-                            onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="password"
-                            name="password"
-                            placeholder="Confirme senha"
-                            autoComplete="current-password"
-                            aria-label="senha"
-                            required
-                            onChange={this.handleChange} />
-
-                        <Select name="cidade" className="cadastro__form-input cadastro__form-select">
-                            <option value="cidade1">Cidade</option>
-                            <option value="cidade2">Cidade</option>
-                            <option value="cidade3">Cidade</option>
+                        <Select
+                            className="cadastro__form-select"
+                            name="cidade"
+                            required>
+                            <option value="" disabled selected>Cidade</option>
+                            <option value="cidade1">São Paulo</option>
+                            <option value="cidade2">Rio de Janeiro</option>
+                            <option value="cidade3">Brasília</option>
                         </Select>
 
-                        <Select name="estado" className="cadastro__form-input cadastro__form-select">
-                            <option value="estado1">Estado</option>
-                            <option value="estado2">Estado</option>
-                            <option value="estado3">Estado</option>
+                        <Select
+                            className="cadastro__form-select"
+                            name="estado"
+                            required>
+                            <option value="" disabled selected>Estado</option>
+                            <option value="estado1">SP</option>
+                            <option value="estado2">RJ</option>
+                            <option value="estado3">DF</option>
                         </Select>
 
                         <FormInput
                             className="cadastro__form-input"
-                            type="tel"
+                            type="number"
                             name="telefone"
                             placeholder="Telefone"
                             aria-label="telefone"
@@ -162,15 +176,16 @@ class FormAluno extends React.Component {
                             onChange={this.handleChange} />
                         <FormInput
                             className="cadastro__form-input"
-                            type="date"
+                            type="text"
                             name="dataNascimento"
                             placeholder="Data de nascimento"
                             aria-label="dataNascimento"
+                            onFocus={this._onFocus}
+                            id="date"
                             required
                             onChange={this.handleChange} />
                         <FormInput
                             className="cadastro__form-input cadastro__form-input--1"
-                            type="number"
                             name="cpf"
                             placeholder="CPF"
                             aria-label="cpf"
@@ -192,7 +207,7 @@ class FormAluno extends React.Component {
 
 
 const mapStateToProps = state => ({
-    userType: state.user.type
+    user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
