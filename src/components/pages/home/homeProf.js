@@ -15,7 +15,11 @@ function HomeProf(props) {
     return (
         <Main className="home__main">
 
-            <h1 className="home__title">Escolas</h1>
+            {/* <h1 className="home__title">Escolas</h1> */}
+            
+            {/* <h1 className="home__title">Olá {user.name} !</h1> */}
+            <h1 className="home__title">Olá professor(a) !</h1>
+            <h2 className="home__subtitle">Selecione sua escola</h2>
 
             <ContainerBox className="home__container">
 
@@ -38,7 +42,8 @@ function HomeProf(props) {
 
 
 const mapStateToProps = state => ({
-    escolas: state.escolas
+    escolas: state.escolas,
+    // user: state.user
 })
 
 // const mapDispatchToProps = dispatch => ({
