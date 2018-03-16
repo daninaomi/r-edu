@@ -21,6 +21,7 @@ const NavProf = ({ user, deslogaUser }) => (
         <label htmlFor="menu-burger" className="icon-menu--logado">
             <IconMenu />
         </label>
+
         <ul className="nav-menu-list--logado">
             <li className="nav-menu-list__item--logado">
                 <h1 className="nav-menu-list__tipo-user">professor</h1>
@@ -56,6 +57,7 @@ const NavProf = ({ user, deslogaUser }) => (
                     Sair </Link>
             </li>
         </ul>
+        
     </nav>
 )
 

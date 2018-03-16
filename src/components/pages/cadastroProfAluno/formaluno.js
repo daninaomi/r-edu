@@ -59,10 +59,7 @@ class FormAluno extends React.Component {
 
     render() {
 
-
         const { user, cadastraUser, selecionarUserType } = this.props
-
-
 
         return (
 
@@ -206,9 +203,10 @@ class FormAluno extends React.Component {
                             onChange={this.handleChange}
                             required />
                         <Select name="escola" className="cadastro__form-select cadastro__form-input--1">
-                            <option value="escola1">Escola</option>
-                            <option value="escola2">Escola</option>
-                            <option value="escola3">Escola</option>
+                            <option value="" disabled selected>Escolas</option>
+                            <option value="escola1">Escola 1</option>
+                            <option value="escola2">Escola 2</option>
+                            <option value="escola3">Escola 3</option>
                         </Select>
 
                         <FormButton

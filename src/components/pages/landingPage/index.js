@@ -44,7 +44,7 @@ const LandingPage = () => (
 
             <section className="section-features">
                 <div className="home-container section-features__container">
-                    <div className="card">
+                    <div className="feature-card">
                         <FaConnectdevelop className="feature-icon" />
                         <h4 className="title card-title">Inter</h4>
                         <h6 className="subtitle card-subtitle">disciplinaridade</h6>
@@ -52,7 +52,7 @@ const LandingPage = () => (
                             Porque, na prática, nenhuma matéria é isolada da outra.
                                             </p>
                     </div>
-                    <div className="card">
+                    <div className="feature-card">
                         <FaGroup className="feature-icon" />
                         <h4 className="title card-title">Inte</h4>
                         <h6 className="subtitle card-subtitle">gração</h6>
@@ -60,7 +60,7 @@ const LandingPage = () => (
                             Entre alunos, alunos e professores, e entre professores.
                                             </p>
                     </div>
-                    <div className="card">
+                    <div className="feature-card">
                         <FaGamepad className="feature-icon" />
                         <h4 className="title card-title">Lúdico</h4>
                         <h6 className="subtitle card-subtitle">e gamificado</h6>

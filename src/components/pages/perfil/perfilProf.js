@@ -17,6 +17,7 @@ class PerfilProf extends React.Component {
         this.state = { isInvalid: false }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this._onFocus = this._onFocus.bind(this)
     }
 
 
@@ -24,6 +25,11 @@ class PerfilProf extends React.Component {
         this[name] = value;
         this.setState({ isInvalid })
     }
+
+    _onFocus(e) {
+        e.currentTarget.type = "date";
+    }
+
 
     handleSubmit(event) {
         event.preventDefault()
@@ -52,7 +58,6 @@ class PerfilProf extends React.Component {
 
     render() {
 
-        // const { user, alteraUser } = this.props
         const { user } = this.props
 
         return (
@@ -72,121 +77,148 @@ class PerfilProf extends React.Component {
                 <Main >
                     <ContainerBox className="perfil__container">
                         <Form className="perfil__form" onSubmit={this.handleSubmit}>
-                            <FormInput
-                                className="perfil__form-input perfil__form-input--1"
-                                type="text"
-                                name="apelido"
-                                placeholder="apelido"
-                                onChange={this.handleChange}
-                                required />
-                            <FormInput
-                                className="perfil__form-input"
-                                type="text"
-                                name="nome"
-                                placeholder="nome"
-                                onChange={this.handleChange}
-                                required />
-                            <FormInput
-                                className="perfil__form-input"
-                                type="text"
-                                name="sobrenome"
-                                placeholder="sobrenome"
-                                onChange={this.handleChange}
-                                required />
-                            <div className="perfil__container-radio">
-                                <div className="perfil__form-radio">
-                                    <FormInput
-                                        className="perfil__form-radio-button"
-                                        type="radio"
-                                        name="sexo"
-                                        id="sexo-feminino"
-                                        onChange={this.handleChange}
-                                        required />
-                                    <label
-                                        htmlFor="sexo-feminino"
-                                        className="perfil__form-radio-label">
-                                        Feminino
+                        <FormInput
+                            className="cadastro__form-input cadastro__form-input--1"
+                            type="text"
+                            name="apelido"
+                            placeholder="Username"
+                            onChange={this.handleChange}
+                            // value={user.apelido}
+                            required />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="text"
+                            name="nome"
+                            placeholder="Nome"
+                            onChange={this.handleChange}
+                            // value={user.nome}
+                            required />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="text"
+                            name="sobrenome"
+                            placeholder="Sobrenome"
+                            onChange={this.handleChange}
+                            // value={user.sobrenome}
+                            required />
+
+                        <FormInput
+                            className="cadastro__form-input cadastro__form-input--1"
+                            type="email"
+                            name="email"
+                            placeholder="E-mail"
+                            autoComplete="email"
+                            aria-label="email"
+                            // value={user.email}
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="password"
+                            name="password"
+                            placeholder="Senha"
+                            autoComplete="current-password"
+                            aria-label="senha"
+                            // value={user.password}
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="password"
+                            name="password"
+                            placeholder="Confirme senha"
+                            autoComplete="current-password"
+                            aria-label="senha"
+                            // value={user.password}
+                            required
+                            onChange={this.handleChange} />
+
+                        <div className="cadastro__container-radio">
+                            <div className="cadastro__form-radio">
+                                <FormInput
+                                    className="cadastro__form-radio-button"
+                                    type="radio"
+                                    name="sexo"
+                                    id="sexo-feminino"
+                                    value="professor"
+                                    onChange={this.handleChange}
+                                    // value={user.sexo}
+                                    required />
+                                <label
+                                    htmlFor="sexo-feminino"
+                                    className="cadastro__form-radio-label">
+                                    Feminino
                                 </label>
-                                </div>
-                                <div className="perfil__form-radio">
-                                    <FormInput
-                                        className="perfil__form-radio-button"
-                                        type="radio"
-                                        name="sexo"
-                                        id="sexo-masculino"
-                                        onChange={this.handleChange}
-                                        required />
-                                    <label
-                                        htmlFor="sexo-masculino"
-                                        className="perfil__form-radio-label">
-                                        Masculino
-                                </label>
-                                </div>
                             </div>
+                            <div className="cadastro__form-radio">
+                                <FormInput
+                                    className="cadastro__form-radio-button"
+                                    type="radio"
+                                    name="sexo"
+                                    id="sexo-masculino"
+                                    value="aluno"
+                                    onChange={this.handleChange}
+                                    // value={user.sexo}
+                                    required />
+                                <label
+                                    htmlFor="sexo-masculino"
+                                    className="cadastro__form-radio-label">
+                                    Masculino
+                                </label>
+                            </div>
+                        </div>
 
-                            <FormInput
-                                className="perfil__form-input perfil__form-input--1"
-                                type="email"
-                                name="email"
-                                placeholder="E-mail"
-                                autoComplete="email"
-                                aria-label="email"
-                                required
-                                onChange={this.handleChange} />
-                            <FormInput
-                                className="perfil__form-input"
-                                type="password"
-                                name="password"
-                                placeholder="Senha"
-                                autoComplete="current-password"
-                                aria-label="senha"
-                                required
-                                onChange={this.handleChange} />
-                            <FormInput
-                                className="perfil__form-input"
-                                type="password"
-                                name="password"
-                                placeholder="Confirme senha"
-                                autoComplete="current-password"
-                                aria-label="senha"
-                                required
-                                onChange={this.handleChange} />
+                        <Select
+                            className="cadastro__form-select"
+                            name="cidade"
+                            // value={user.cidade}
+                            required>
+                            <option value="" disabled selected>Cidade</option>
+                            <option value="cidade1">São Paulo</option>
+                            <option value="cidade2">Rio de Janeiro</option>
+                            <option value="cidade3">Brasília</option>
+                        </Select>
 
-                            <Select name="cidade" className="perfil__form-select">
-                                <option value="cidade1">Cidade</option>
-                                <option value="cidade2">Cidade</option>
-                                <option value="cidade3">Cidade</option>
-                            </Select>
+                        <Select
+                            className="cadastro__form-select"
+                            name="estado"
+                            // value={user.estado}
+                            required>
+                            <option value="" disabled selected>Estado</option>
+                            <option value="estado1">SP</option>
+                            <option value="estado2">RJ</option>
+                            <option value="estado3">DF</option>
+                        </Select>
 
-                            <Select name="estado" className="perfil__form-select">
-                                <option value="estado1">Estado</option>
-                                <option value="estado2">Estado</option>
-                                <option value="estado3">Estado</option>
-                            </Select>
-
-                            <FormInput
-                                className="perfil__form-input"
-                                type="tel"
-                                name="telefone"
-                                placeholder="Telefone"
-                                aria-label="telefone"
-                                required
-                                onChange={this.handleChange} />
-                            <FormInput
-                                className="perfil__form-input"
-                                type="date"
-                                name="dataNascimento"
-                                placeholder="Data de nascimento"
-                                aria-label="dataNascimento"
-                                required
-                                onChange={this.handleChange} />
-                            <FormInput
-                                className="perfil__form-input perfil__form-input--1"
-                                type="number"
-                                name="cpf"
-                                placeholder="CPF"
-                                aria-label="cpf"
-                                onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="number"
+                            name="telefone"
+                            placeholder="Telefone"
+                            aria-label="telefone"
+                            // value={user.telefone}
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="text"
+                            name="dataNascimento"
+                            placeholder="Data de nascimento"
+                            aria-label="dataNascimento"
+                            onFocus={this._onFocus}
+                            id="date"
+                            // value={user.dataNascimento}
+                            required
+                            onChange={this.handleChange} />
+                        <FormInput
+                            className="cadastro__form-input"
+                            name="cpf"
+                            placeholder="CPF"
+                            aria-label="cpf"
+                            onChange={this.handleChange}
+                            required 
+                            // value={user.cpf}
+                            />
 
                             <FormButton
                                 className="perfil__form-button"

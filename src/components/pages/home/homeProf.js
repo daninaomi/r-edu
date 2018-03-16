@@ -6,51 +6,48 @@ import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import FormButton from '../../compSimples/form/formButton'
 import Card from '../../card'
+import './homeProf.css'
 
+// import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
-function HomeProf(cardAtual) {
-
-
-    let cardCopiado = new Card(cardAtual.posicao, cardAtual.nomeCard)
+function HomeProf(props) {
 
     return (
-        <Main>
-            <ContainerBox>
-                <h1 className="login__title">Bem-vindo(a)!</h1>
+        <Main className="home__main">
 
-                <FormButton
-                    className="card-button"
-                    type="submit">
+            <h1 className="home__title">Escolas</h1>
 
-                    {/* <Card className="">
-                            Card de seleciona escolas *
-                            {escola}
-                        </Card> */}
+            <ContainerBox className="home__container">
 
-                    {cardCopiado}
-
-                </FormButton>
-
+                {props.escolas.map(escola => (
+                    <Link
+                        className="home__card"
+                        to={`/salas/${escola.id}`}>
+                        <Card >
+                            <h2 className="home__card-title">
+                                {escola.nome}
+                            </h2>
+                        </Card>
+                    </Link>
+                ))}
 
             </ContainerBox>
         </Main>
     )
 }
 
-}
-
 
 const mapStateToProps = state => ({
-    card: state.card
+    escolas: state.escolas
 })
 
-const mapDispatchToProps = dispatch => ({
-    listaCards: (event, card) => {
-        event.preventDefault()
-        dispatch(listaCards(card))
-    }
-})
+// const mapDispatchToProps = dispatch => ({
+//     listaCards: (event, card) => {
+//         event.preventDefault()
+//         dispatch(listaCards(card))
+//     }
+// })
 
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeProf))
+export default withRouter(connect(mapStateToProps)(HomeProf))

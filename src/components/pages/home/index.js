@@ -4,9 +4,9 @@ import { Redirect, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 import HomeProf from './homeProf'
-import HomeAluno from './homeAluno'
+// import HomeAluno from './homeAluno'
 import { deslogaUser } from '../../../actions'
-import './login.css'
+// import './login.css'
 
 
 class Home extends React.Component {
@@ -35,7 +35,7 @@ class Home extends React.Component {
             ) : (
 
                     // user.type === 'professor' ? (
-                        // <HomeProf />
+                        <HomeProf />
                     // ) : (
                     //     <HomeAluno />
                     // )
