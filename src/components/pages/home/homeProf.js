@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
-import FormButton from '../../compSimples/form/formButton'
 import Card from '../../card'
 import './homeProf.css'
-
-// import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 function HomeProf(props) {
 
@@ -16,7 +13,7 @@ function HomeProf(props) {
         <Main className="home__main">
 
             {/* <h1 className="home__title">Escolas</h1> */}
-            
+
             {/* <h1 className="home__title">Olá {user.name} !</h1> */}
             <h1 className="home__title">Olá professor(a) !</h1>
             <h2 className="home__subtitle">Selecione sua escola</h2>
@@ -26,7 +23,7 @@ function HomeProf(props) {
                 {props.escolas.map(escola => (
                     <Link
                         className="home__card"
-                        to={`/salas/${escola.id}`}>
+                        to={`/escolas/${escola.id}`}>
                         <Card >
                             <h2 className="home__card-title">
                                 {escola.nome}
@@ -42,16 +39,10 @@ function HomeProf(props) {
 
 
 const mapStateToProps = state => ({
-    escolas: state.escolas,
-    // user: state.user
+    escolas: Object.keys(state.escolas).map(key => {
+        return state.escolas[key]
+    })
 })
-
-// const mapDispatchToProps = dispatch => ({
-//     listaCards: (event, card) => {
-//         event.preventDefault()
-//         dispatch(listaCards(card))
-//     }
-// })
 
 
 

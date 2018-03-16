@@ -8,7 +8,7 @@ import Cadastro from '../pages/cadastro'
 import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
 import LandingPage from '../pages/landingPage';
-import Escola from '../pages/salas';
+import Escola from '../pages/escola';
 
 
 const App = () => (

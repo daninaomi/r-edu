@@ -1,0 +1,90 @@
+.escolas__main {
+    height: 100%;
+    background: white;
+}
+
+.escolas__title {
+    margin: 10px 0 0 0;
+    padding: 8% 5% 0 5%;
+    color: #4a148c;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.escolas__subtitle {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0 5%;
+    font-size: 1rem;
+}
+
+.escolas__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: white;
+    padding: 8% 5%;
+    min-height: 0;
+}
+
+.escolas__card {
+    width: 47%;
+    height: 170px;
+    margin: 10px 0;
+    background: white;
+    text-decoration: none;
+    background-image: url("card-escola.png");
+    background-size: cover;
+}
+
+.escolas__card-title {
+    margin: 0;
+    padding: 10% 10% 0 10%;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.escolas__card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.escolas__icon {
+    color: white;
+    font-size: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+
+    .escolas__title {
+        /* float: left; */
+        margin: 0;
+    }
+
+    .escolas__container {
+        /* width: 75%; */
+        padding: 3% 5%;
+    }
+
+    .escolas__card {
+        width: 30%;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    
+    .escolas__container {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .escolas__card {
+        width: 23%;
+        margin: 0 1%;
+        height: 200px;
+    }
+}
