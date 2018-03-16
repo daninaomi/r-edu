@@ -32,6 +32,6 @@ export function editUser(user) {
 //     return instance.post(url, { nomeCard })
 // }
 
-export function postSala(escola, ano, denominacao) {
-    return instance.post('/', { escola, ano, denominacao })
+export function postSala(sala) {
+    return instance.post('/', { sala })
 }

@@ -11,9 +11,7 @@ export function logaUser(user) {
     return dispatch => {
         postLogin(user)
             .then(response => dispatch({
-                
                 type: LOGA_USER
-                
             }))
             .catch((response, error) => {
                 if (error.response.code === 400) {

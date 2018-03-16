@@ -9,6 +9,8 @@ import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
 import LandingPage from '../pages/landingPage';
 import Escola from '../pages/escola';
+import AddSala from '../pages/escola/addSala';
+import AddAlunos from '../pages/escola/addAlunos';
 
 
 const App = () => (
@@ -22,6 +24,8 @@ const App = () => (
             <Route path="/perfil" component={Perfil} />
             <Route path="/home" component={Home} />
             <Route path="/escolas/:id" component={Escola} />
+            <Route path="/addSala" component={AddSala} />
+            <Route path="/addAlunos" component={AddAlunos} />
 
         </Switch>
     </React.Fragment>
