@@ -30,7 +30,7 @@ class AddAlunos extends React.Component {
 
         if (!this.state.isInvalid) {
             const sala = {
-                // escola: this.escola,
+                escola: this.props.match.params.id,
                 ano: this.ano,
                 denominacao: this.denominacao
             }
@@ -41,6 +41,10 @@ class AddAlunos extends React.Component {
         }
     }
 
+    handleSearch() {
+        
+    }
+
     render() {
 
         const { sala, cadastraSala, cadastraAlunos } = this.props
@@ -48,8 +52,9 @@ class AddAlunos extends React.Component {
         return (
             <Main>
                 <ContainerBox >
-                    <h1 className="escolha__title">Sala Nova:</h1>
-                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
+                    <h1 className="escolha__title">Adicione alunos:</h1>
+
+                    <Form className="escolha__form" onSubmit={this.handleSearch}>
 
                         <FormInput
                             className="cadastro__form-input cadastro__form-input--1"
