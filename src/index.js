@@ -16,13 +16,14 @@ import './index.css';
 
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 
+const history = createHistory()
+
 const store = createStore(redutor, composeEnhancers(
     applyMiddleware(thunk),
     applyMiddleware(routerMiddleware(history))
 )
 )
 
-const history = createHistory()
 
 ReactDOM.render(
     <Provider store={store}>

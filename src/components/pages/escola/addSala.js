@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import Select from '../../compSimples/form/select'
 import FormButton from '../../compSimples/form/formButton'
-import { addSala } from '../../../actions'
+import { cadastraSala } from '../../../actions'
 // import './escolha.css'
 
 
@@ -19,9 +19,15 @@ class AddSala extends React.Component {
     }
 
 
-    handleChange(name, value, isInvalid) {
+    handleChange(event) {
+        const name = event.target.name
+        const value = event.target.value
+        
+        if (value === '') {
+            this.setState({ isInvalid: true })
+        }
+
         this[name] = value;
-        this.setState({ isInvalid })
     }
 
     handleSubmit(event) {
@@ -29,22 +35,22 @@ class AddSala extends React.Component {
 
         if (!this.state.isInvalid) {
             const sala = {
-                // escola: this.escola,
+                escola: this.props.match.params.id,
                 ano: this.ano,
                 denominacao: this.denominacao
             }
 
-            this.props.addSala(sala)
+            this.props.cadastraSala(sala)
 
-            this.props.history.push('/addAlunos')
         }
     }
 
     render() {
 
-        const { sala, addSala } = this.props
+        const { sala, cadastraSala } = this.props
 
         return (
+
             <Main>
                 <ContainerBox >
                     <h1 className="escolha__title">Sala Nova:</h1>
@@ -53,6 +59,7 @@ class AddSala extends React.Component {
                         <Select
                             className="cadastro__form-select"
                             name="ano"
+                            onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Ano</option>
                             <option value="ano1">6º ano</option>
@@ -63,6 +70,7 @@ class AddSala extends React.Component {
                         <Select
                             className="cadastro__form-select"
                             name="denominacao"
+                            onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Denominação</option>
                             <option value="denominacao1">A</option>
@@ -87,8 +95,8 @@ class AddSala extends React.Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    addSala: (sala) => {
-        dispatch(addSala(sala))
+    cadastraSala: (sala) => {
+        dispatch(cadastraSala(sala))
     }
 })
 

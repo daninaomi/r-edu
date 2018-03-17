@@ -23,9 +23,9 @@ const App = () => (
             <Route path="/cadastro-prof-aluno" component={CadastroProfAluno} />
             <Route path="/perfil" component={Perfil} />
             <Route path="/home" component={Home} />
-            <Route path="/escolas/:id" component={Escola} />
-            <Route path="/addSala" component={AddSala} />
-            <Route path="/addAlunos" component={AddAlunos} />
+            <Route exact path="/escolas/:id" component={Escola} />
+            <Route path="/escolas/:id/cadastro-salas" component={AddSala} />
+            <Route path="/salas/:id/cadastro-alunos" component={AddAlunos} />
 
         </Switch>
     </React.Fragment>

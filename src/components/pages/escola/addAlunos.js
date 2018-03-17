@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
-import { addSala, cadastraSala } from '../../../actions'
+import { cadastraSala, cadastraAlunos } from '../../../actions'
 // import './escolha.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
@@ -43,7 +43,7 @@ class AddAlunos extends React.Component {
 
     render() {
 
-        const { sala, addSala, cadastraSala } = this.props
+        const { sala, cadastraSala, cadastraAlunos } = this.props
 
         return (
             <Main>
@@ -58,25 +58,41 @@ class AddAlunos extends React.Component {
                             placeholder="Pesquise alunos por nome ou e-mail"
                             onChange={this.handleChange}
                             required />
-                        
+
 
                         <FormButton
                             className="escolha__form-button"
                             type="submit"
                             disabled={this.state.isInvalid}>
 
-                            <FaSearch/>
+                            <FaSearch />
 
                         </FormButton>
 
+                        {/* onsubmit do filtro pega lista de alunos e joga na store, pegar lista da store no mapStateToProps */}
+
                     </Form>
 
-                    <FormButton
+                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
+
+                    {/* criar if para mostrar só quando listaAlunos.lenght > 0 */}
+
+                        <FormInput
+                            className="cadastro__form-input cadastro__form-input--1"
+                            type="checkbox"
+                            name="search-bar"
+                            placeholder="Pesquise alunos por nome ou e-mail"
+                            onChange={this.handleChange}
+                            required />
+
+                        <FormButton
                             className="escolha__form-button"
                             type="submit"
                             disabled={this.state.isInvalid}>
                             Cadastrar
                         </FormButton>
+                    </Form>
+
                 </ContainerBox>
             </Main>
         )
@@ -88,7 +104,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    cadastraSala: (sala) => {
+    cadastraAlunos: (sala) => {
         dispatch(cadastraSala(sala))
     }
 })

@@ -37,7 +37,7 @@ class Escola extends React.Component {
                         </Link>
                     ))}
 
-                    <Link className="escolas__card escolas__card-icon" to='/addSala'>
+                    <Link className="escolas__card escolas__card-icon" to={`/escolas/${this.props.escola.id}/cadastro-salas`}>
                         <Card>
                             <FaPlusCircle className="escolas__icon" />
                         </Card>
@@ -56,6 +56,7 @@ const mapStateToProps = (state, props) => {
     const salas = escola.salas // const salas = [0, 1]
 
     return {
+        escola,
         salas: salas.map(sala => { // sala = 1 [{...}, {....}]
             return state.salas[sala];
         })
