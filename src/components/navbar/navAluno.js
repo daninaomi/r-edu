@@ -46,7 +46,7 @@ const NavAluno = ({ user, deslogaUser }) => (
                     <FaQuestionCircle className="navbar-pages-link-icon" />
                     ajuda </Link>
             </li>
-            <li className="nav-menu-list__item--logado nav-menu-list__item--sair">
+            <li className="nav-menu-list__item--sair">
                 <Link to='/' className="nav-menu-list__link" onClick={deslogaUser}>
                     <IconSair className="navbar-pages-link-icon" />
                     Sair </Link>

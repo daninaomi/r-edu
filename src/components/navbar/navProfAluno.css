@@ -78,20 +78,38 @@
 @media screen and (min-width: 768px) {
 
     .navbar--logado {
-        padding: 1% 5%;
+        padding: 1% 30px;
     }
 
     .nav-menu-list--logado {
-        left: -50%;
-        width: 50%;
+        left: -40%;
+        width: 40%;
         top: 50px;
     }
 
     .nav-menu-list__item--logado {
-        margin: 5% 10%;
+        margin: 5% 30px;
     }
     
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
+
+    .navbar--logado {
+        padding: 1% 40px;
+    }
+
+    .nav-menu-list--logado {
+        left: -30%;
+        width: 30%;
+    }
+
+    .nav-menu-list__item--logado {
+        margin: 5% 40px;
+    }
+
+    .nav-menu-list__tipo-user {
+        margin-top: 6rem;
+    }
+
 }
