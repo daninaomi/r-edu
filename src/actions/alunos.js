@@ -1,0 +1,44 @@
+// import { push } from 'react-router-redux'
+import { postSala } from '../api'
+
+export const PEGA_LISTA = 'PEGA_LISTA'
+export const CADASTRA_ALUNOS = 'CADASTRA_ALUNOS'
+
+
+export function pegaListaAlunos(alunos) {
+    return {
+        type: PEGA_LISTA,
+        sala,
+        alunos: {
+            ...alunos,
+            id: 0
+        }
+    }
+}
+
+export function cadastraAlunos(alunos) {
+    return dispatch => {
+        dispatch({
+            type: CADASTRA_ALUNOS,
+            // alunos: {
+            //     ...alunos
+                // ,id: 0
+            // }
+        })
+
+        // postSala(alunos)
+        //     .then(response => {
+        //         dispatch({
+        //             type: CADASTRA_ALUNOS,
+        //             alunos: {
+        //                 ...alunos,
+        //                 id: response.data.id
+        //             }
+        //         })
+        //         dispatch(push(`/salas/${response.data.id}`))
+        //     })
+        //     .catch(error => {
+        //         console.log('Ocorreu um erro', error)
+        //     })
+    }
+}

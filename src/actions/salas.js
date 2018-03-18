@@ -1,18 +1,8 @@
 import { push } from 'react-router-redux'
 
-import { postSala } from '../api'
-
 export const CADASTRA_SALA = 'CADASTRA_SALA'
-// export const ADD_SALA = "ADD_SALA"
 // export const EDIT_SALA = 'EDIT_SALA'
 
-
-// export function addSala(sala) {
-//     return {
-//         type: ADD_SALA,
-//         sala
-//     }
-// }
 
 export function cadastraSala(sala) {
     return dispatch => {
@@ -20,11 +10,11 @@ export function cadastraSala(sala) {
             type: CADASTRA_SALA,
             sala: {
                 ...sala,
-                id: 5
+                id: 6
             }
         })
 
-        dispatch(push(`/salas/5/cadastro-alunos`))
+        dispatch(push(`/salas/6/cadastro-alunos`))
 
         // postSala(sala)
         //     .then(response => {
@@ -49,9 +39,3 @@ export function cadastraSala(sala) {
 //         posicao
 //     }
 // }
-
-
-
-
-
-// alunos: response.data
