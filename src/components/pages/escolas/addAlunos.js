@@ -102,6 +102,7 @@ class AddAlunos extends React.Component {
                     <Form className="escolha__form" onSubmit={this.handleSubmit}>
 
                         {this.props.listaAlunos.map(aluno => (
+                            
                             <FormInput
                                 className="cadastro__form-input cadastro__form-input--1"
                                 type="checkbox"

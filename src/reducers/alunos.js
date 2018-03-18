@@ -31,7 +31,13 @@ export function alunos(estadoAtual = estadoInicial, acao) {
         case PEGA_LISTA:
             return {
                 ...estadoAtual,
-                [acao.sala.alunos.id]: listaAlunos
+                // [acao.sala.alunos.id]: listaAlunos
+                [acao.estadoInicial]: listaAlunos,
+                [listaAlunos.id]: aluno,
+
+                [aluno.nome]: nome,
+                [aluno.sobrenome]: sobrenome,
+                [aluno.cpf]: cpf
             }
         
         case FILTRA_LISTA:
@@ -39,13 +45,15 @@ export function alunos(estadoAtual = estadoInicial, acao) {
             const sala = acao.sala[id]
             const listaAlunos = acao.sala.alunos
 
-            return {
-                ...estadoAtual,
-                sala,
-                listaAlunos: listaAlunos.map(aluno => {
-                    return state.listaAlunos[aluno];
-                })
-            }
+
+            if ([acao.nome] === [state.nome] || [acao.sobrenome] === [state.sobrenome] || [acao.cpf] === [state.cpf]) {
+                return {
+                    ...estadoAtual,
+                    listaAlunos: listaAlunos.map(aluno => {
+                        return state.listaAlunos[aluno];
+                    })
+                }
+            }            
 
         case CADASTRA_ALUNOS:
             return {
