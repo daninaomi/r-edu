@@ -1,7 +1,8 @@
 
 import { 
     CADASTRA_ALUNOS, 
-    PEGA_LISTA 
+    PEGA_LISTA,
+    FILTRA_LISTA 
 } from "../actions";
 
 
@@ -30,8 +31,20 @@ export function alunos(estadoAtual = estadoInicial, acao) {
         case PEGA_LISTA:
             return {
                 ...estadoAtual,
-                // ...acao.alunos
-                [acao.alunos.id]: listaAlunos
+                [acao.sala.alunos.id]: listaAlunos
+            }
+        
+        case FILTRA_LISTA:
+            const id = acao.props.match.params.id
+            const sala = acao.sala[id]
+            const listaAlunos = acao.sala.alunos
+
+            return {
+                ...estadoAtual,
+                sala,
+                listaAlunos: listaAlunos.map(aluno => {
+                    return state.listaAlunos[aluno];
+                })
             }
 
         case CADASTRA_ALUNOS:

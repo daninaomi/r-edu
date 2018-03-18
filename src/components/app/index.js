@@ -8,9 +8,10 @@ import Cadastro from '../pages/cadastro'
 import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
 import LandingPage from '../pages/landingPage';
-import Escola from '../pages/escola';
-import AddSala from '../pages/escola/addSala';
-import AddAlunos from '../pages/escola/addAlunos';
+import Escolas from '../pages/escolas';
+import AddSala from '../pages/escolas/addSala';
+import AddAlunos from '../pages/escolas/addAlunos';
+import Salas from '../pages/escolas/salas';
 
 
 const App = () => (
@@ -23,9 +24,10 @@ const App = () => (
             <Route path="/cadastro-prof-aluno" component={CadastroProfAluno} />
             <Route path="/perfil" component={Perfil} />
             <Route path="/home" component={Home} />
-            <Route exact path="/escolas/:id" component={Escola} />
+            <Route exact path="/escolas/:id" component={Escolas} />
             <Route path="/escolas/:id/cadastro-salas" component={AddSala} />
             <Route path="/salas/:id/cadastro-alunos" component={AddAlunos} />
+            <Route exact path="/salas/:id" component={Salas} />
 
         </Switch>
     </React.Fragment>

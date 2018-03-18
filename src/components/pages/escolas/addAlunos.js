@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
-import { cadastraSala, cadastraAlunos, pegaListaAlunos } from '../../../actions'
+import { cadastraSala, cadastraAlunos, pegaListaAlunos, filtroAlunos } from '../../../actions'
 // import './escolha.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
@@ -15,6 +15,8 @@ class AddAlunos extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
+        this.handleChangeSearch = this.handleChangeSearch.bind(this)
+        this.onSearch = this.onSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -95,7 +97,7 @@ class AddAlunos extends React.Component {
 
                     {/* criar if para mostrar só quando listaAlunos.lenght > 0 */}
 
-                    {this.props.listaAlunos.lenght > 0} ? (
+                    {/* {this.props.listaAlunos.lenght > 0} ? ( */}
 
                     <Form className="escolha__form" onSubmit={this.handleSubmit}>
 
@@ -119,7 +121,7 @@ class AddAlunos extends React.Component {
                         </FormButton>
                     </Form>
 
-                    )
+                    {/* ) */}
 
                 </ContainerBox>
             </Main>
@@ -127,20 +129,26 @@ class AddAlunos extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => {
+// const mapStateToProps = (state, props) => {
 
-    const id = props.match.params.id
-    // const sala = state.sala[id]
-    // const listaAlunos = sala.alunos
-    const listaAlunos = alunos
+//     const id = props.match.params.id
+//     const sala = state.sala[id]
+//     const listaAlunos = sala.alunos
 
-    return {
-        // sala,
-        listaAlunos: listaAlunos.map(aluno => {
-            return state.listaAlunos[aluno];
-        })
-    }
-}
+//     return {
+//         // sala,
+//         listaAlunos: listaAlunos.map(aluno => {
+//             return state.listaAlunos[aluno];
+//         })
+//     }
+// }
+
+const mapStateToProps = state => ({
+
+    listaAlunos: state.listaAlunos,
+    filtroAlunos
+
+})
 
 const mapDispatchToProps = dispatch => ({
     cadastraAlunos: (sala) => {

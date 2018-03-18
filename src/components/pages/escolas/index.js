@@ -5,7 +5,6 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
-import { addturma } from '../../../actions'
 import './escola.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 

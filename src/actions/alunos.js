@@ -2,6 +2,7 @@
 import { postSala } from '../api'
 
 export const PEGA_LISTA = 'PEGA_LISTA'
+export const FILTRA_LISTA = 'FILTRA_LISTA'
 export const CADASTRA_ALUNOS = 'CADASTRA_ALUNOS'
 
 
@@ -9,10 +10,14 @@ export function pegaListaAlunos(alunos) {
     return {
         type: PEGA_LISTA,
         sala,
-        alunos: {
-            ...alunos,
-            id: 0
-        }
+        listaAlunos: listaAlunos[aluno]
+    }
+}
+
+export function filtraAlunos(alunos) {
+    return {
+        type: FILTRA_LISTA,
+        alunos
     }
 }
 
