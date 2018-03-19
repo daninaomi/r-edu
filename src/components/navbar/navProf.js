@@ -14,7 +14,7 @@ import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 import './navProfAluno.css'
 
 
-const NavProf = ({ user, deslogaUser }) => (
+const NavProf = ({ user, deslogaUser, page }) => (
 
     <nav className="navbar--logado">
         <input id="menu-burger" className="nav-menu-button--logado" type="checkbox" hidden />
@@ -62,13 +62,16 @@ const NavProf = ({ user, deslogaUser }) => (
                     Sair </Link>
             </li>
         </ul>
+
+        <h1 className="navbar__title">Essa é a página {page}</h1>
         
     </nav>
 )
 
 
-const mapStateToProps = state => ({
-    user: state.user
+const mapStateToProps = (state, props) => ({
+    user: state.user,
+    page: state.page
 })
 
 const mapDispatchToProps = dispatch => ({

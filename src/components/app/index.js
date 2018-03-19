@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
+import { connect } from 'react-redux'
 
 import Navbar from '../navbar'
 import Home from '../pages/home'
@@ -14,9 +15,9 @@ import AddAlunos from '../pages/escolas/addAlunos';
 import Salas from '../pages/escolas/salas';
 
 
-const App = () => (
+const App = ({ page }) => (
     <React.Fragment>
-        <Navbar />
+        <Navbar page={page} />
         <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/login" component={Login} />
@@ -33,4 +34,8 @@ const App = () => (
     </React.Fragment>
 )
 
-export default App
+const mapStateToProps = state => ({
+    page: state.page
+})
+
+export default connect(mapStateToProps, null)(App)

@@ -49,7 +49,7 @@ export function alunos(estadoAtual = estadoInicial, acao) {
             if ([acao.nome] === [state.nome] || [acao.sobrenome] === [state.sobrenome] || [acao.cpf] === [state.cpf]) {
                 return {
                     ...estadoAtual,
-                    listaAlunos: listaAlunos.map(aluno => {
+                    listaAlunos: listaAlunos.filter(aluno => {
                         return state.listaAlunos[aluno];
                     })
                 }

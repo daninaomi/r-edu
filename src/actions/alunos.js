@@ -6,11 +6,11 @@ export const FILTRA_LISTA = 'FILTRA_LISTA'
 export const CADASTRA_ALUNOS = 'CADASTRA_ALUNOS'
 
 
-export function pegaListaAlunos(alunos) {
+export function pegaListaAlunos({alunos, sala, listaAlunos}) {
     return {
         type: PEGA_LISTA,
         sala,
-        listaAlunos: listaAlunos[aluno]
+        listaAlunos: listaAlunos[alunos]
     }
 }
 

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
+import { pushPage } from '../../../actions'
 import './escola.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
@@ -13,6 +14,10 @@ import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 class Escola extends React.Component {
     constructor(props) {
         super(props)
+    }
+
+    componentDidMount() {
+        this.props.dispatchPushPage("Escolas")
     }
 
     render() {
@@ -49,7 +54,7 @@ class Escola extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-    
+
     const id = props.match.params.id // const id = 0
     const escola = state.escolas[id]
     const salas = escola.salas // const salas = [0, 1]
@@ -62,5 +67,11 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Escola))
+const mapDispatchToProps = dispatch => ({
+    dispatchPushPage: page => {
+        dispatch(pushPage(page))
+    }
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Escola))
 

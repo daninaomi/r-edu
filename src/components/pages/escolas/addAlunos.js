@@ -147,7 +147,7 @@ class AddAlunos extends React.Component {
 const mapStateToProps = state => ({
 
     listaAlunos: state.listaAlunos,
-    filtroAlunos
+    filtraAlunos: state.filtraAlunos
 
 })
 
