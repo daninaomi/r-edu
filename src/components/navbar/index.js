@@ -56,9 +56,10 @@ const Navbar = ({ user, deslogaUser }) => (
 )
 
 const mapStateToProps = state => {
-    console.log(state)
+    // console.log('pagina:', state)
     return {
-        user: state.user
+        user: state.user,
+        page: state.page
     }
 }
 

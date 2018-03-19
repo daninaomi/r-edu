@@ -63,7 +63,7 @@ const NavProf = ({ user, deslogaUser, page }) => (
             </li>
         </ul>
 
-        <h1 className="navbar__title">Essa é a página {page}</h1>
+        <h1 className="navbar__title">{page}</h1>
         
     </nav>
 )

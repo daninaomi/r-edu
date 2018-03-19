@@ -15,9 +15,9 @@ import AddAlunos from '../pages/escolas/addAlunos';
 import Salas from '../pages/escolas/salas';
 
 
-const App = ({ page }) => (
+const App = () => (
     <React.Fragment>
-        <Navbar page={page} />
+        <Navbar />
         <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/login" component={Login} />
@@ -34,8 +34,4 @@ const App = ({ page }) => (
     </React.Fragment>
 )
 
-const mapStateToProps = state => ({
-    page: state.page
-})
-
-export default connect(mapStateToProps, null)(App)
+export default App

@@ -17,7 +17,7 @@ class Escola extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatchPushPage("Escolas")
+        this.props.dispatchPushPage(this.props.escola.nome)
     }
 
     render() {
@@ -72,6 +72,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(pushPage(page))
     }
 })
+
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Escola))
 

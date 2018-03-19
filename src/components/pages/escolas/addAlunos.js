@@ -130,6 +130,24 @@ class AddAlunos extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    console.log("state do addAlunos", state)
+    return {
+        listaAlunos: state.listaAlunos,
+        filtraAlunos: state.filtraAlunos
+    }  
+}
+
+const mapDispatchToProps = dispatch => ({
+    cadastraAlunos: (sala) => {
+        dispatch(cadastraSala(sala))
+    }
+})
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddAlunos))
+
+
 // const mapStateToProps = (state, props) => {
 
 //     const id = props.match.params.id
@@ -143,23 +161,3 @@ class AddAlunos extends React.Component {
 //         })
 //     }
 // }
-
-const mapStateToProps = state => ({
-
-    listaAlunos: state.listaAlunos,
-    filtraAlunos: state.filtraAlunos
-
-})
-
-const mapDispatchToProps = dispatch => ({
-    cadastraAlunos: (sala) => {
-        dispatch(cadastraSala(sala))
-    }
-})
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddAlunos))
-
-// const mapStateToProps = state => ({
-//     userType: state.userType
-// })

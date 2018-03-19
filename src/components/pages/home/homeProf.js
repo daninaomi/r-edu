@@ -5,36 +5,48 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
+import { pushPage } from '../../../actions'
 import './homeProf.css'
 
-function HomeProf(props) {
 
-    return (
-        <Main className="home__main">
+class HomeProf extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
-            {/* <h1 className="home__title">Escolas</h1> */}
+    componentDidMount() {
+        this.props.dispatchPushPage("Escolas")
+    }
 
-            {/* <h1 className="home__title">Olá {user.name} !</h1> */}
-            <h1 className="home__title">Olá professor(a) !</h1>
-            <h2 className="home__subtitle">Selecione sua escola</h2>
+    render() {
 
-            <ContainerBox className="home__container">
+        return (
+            <Main className="home__main">
 
-                {props.escolas.map(escola => (
-                    <Link
-                        className="home__card"
-                        to={`/escolas/${escola.id}`}>
-                        <Card >
-                            <h2 className="home__card-title">
-                                {escola.nome}
-                            </h2>
-                        </Card>
-                    </Link>
-                ))}
+                {/* <h1 className="home__title">Escolas</h1> */}
 
-            </ContainerBox>
-        </Main>
-    )
+                {/* <h1 className="home__title">Olá {user.name} !</h1> */}
+                <h1 className="home__title">Olá professor(a) !</h1>
+                <h2 className="home__subtitle">Selecione sua escola</h2>
+
+                <ContainerBox className="home__container">
+
+                    {this.props.escolas.map(escola => (
+                        <Link
+                            className="home__card"
+                            to={`/escolas/${escola.id}`}>
+                            <Card >
+                                <h2 className="home__card-title">
+                                    {escola.nome}
+                                </h2>
+                            </Card>
+                        </Link>
+                    ))}
+
+                </ContainerBox>
+            </Main>
+        )
+    }
 }
 
 
@@ -44,6 +56,11 @@ const mapStateToProps = state => ({
     })
 })
 
+const mapDispatchToProps = dispatch => ({
+    dispatchPushPage: page => {
+        dispatch(pushPage(page))
+    }
+})
 
 
-export default withRouter(connect(mapStateToProps)(HomeProf))
+export default withRouter(connect(mapStateToProps , mapDispatchToProps)(HomeProf))
