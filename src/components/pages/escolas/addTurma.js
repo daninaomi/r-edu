@@ -35,7 +35,9 @@ class AddTurma extends React.Component {
 
         if (!this.state.isInvalid) {
             const turma = {
-                escola: this.props.match.params.id,
+                escola: {
+                    id: this.props.match.params.id
+                },
                 sala: this.sala
             }
 
@@ -93,6 +95,16 @@ class AddTurma extends React.Component {
     }
 }
 
+const mapStateToProps = (state, props) => {
+
+    const id = props.match.params.id // const id = 0
+    const escola = state.escolas[id]
+
+    return {
+        escola
+    }
+}
+
 
 const mapDispatchToProps = dispatch => ({
     cadastraTurma: (turma) => {
@@ -101,7 +113,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default withRouter(connect(null, mapDispatchToProps)(AddTurma))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddTurma))
 
 // const mapStateToProps = state => ({
 //     userType: state.userType

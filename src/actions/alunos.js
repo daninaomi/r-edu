@@ -4,17 +4,17 @@ import { postTurma } from '../api'
 export const CADASTRA_ALUNOS = 'CADASTRA_ALUNOS'
 
 
-export function cadastraAlunos(alunos) {
+export function cadastraAlunos(alunos, turma) {
     return dispatch => {
         dispatch({
             type: CADASTRA_ALUNOS,
             alunos: {
                 ...alunos
-            ,id: 0
-            }
+            },
+            turma
         })
 
-        dispatch(push(`/escolas/${escola.id}`))
+        dispatch(push(`/escolas/${turma.escola.id}`))
 
         // postTurma(alunos)
         //     .then(response => {

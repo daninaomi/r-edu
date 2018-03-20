@@ -1,7 +1,6 @@
 import { push } from 'react-router-redux'
 
 export const CADASTRA_TURMA = 'CADASTRA_TURMA'
-// export const EDIT_TURMA = 'EDIT_TURMA'
 
 
 export function cadastraTurma(turma) {
@@ -10,11 +9,11 @@ export function cadastraTurma(turma) {
             type: CADASTRA_TURMA,
             turma: {
                 ...turma,
-                id: 6
+                id: 2
             }
         })
 
-        dispatch(push(`/turmas/6/cadastro-alunos`))
+        dispatch(push(`/escolas/${turma.escola.id}/cadastro-alunos`))
 
         // postTurma(turma)
         //     .then(response => {

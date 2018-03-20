@@ -22,16 +22,10 @@ export function editUser(user) {
     return instance.put(url, { user })
 }
 
-// export function getCards(lista, user) {
-//     const url = user.type === 'professor' ? '/professor' : '/aluno'
-//     return instance.get(url, { lista })
-// }
-
-// export function postCard(nomeCard, user) {
-//     const url = user.type === 'professor' ? '/professor' : '/aluno'
-//     return instance.post(url, { nomeCard })
-// }
-
 export function postSala(sala) {
     return instance.post('/', { sala })
+}
+
+export function getDesafio(desafio) {
+    return instance.get('/', { desafio })
 }

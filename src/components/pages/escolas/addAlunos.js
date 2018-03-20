@@ -18,16 +18,11 @@ class AddAlunos extends React.Component {
             isInvalid: false,
             alunosFiltrados: [...props.alunos]
         }
-        // this.handleChangeSearch = this.handleChangeSearch.bind(this)
         this.onSearch = this.onSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    // handleChangeSearch(name, value, isInvalid) {
-    //     this[name] = value;
-    //     this.setState({ isInvalid })
-    // }
 
     onSearch(name, value, isInvalid) {
         // pegar o valor do campo de pesquisa
@@ -47,31 +42,36 @@ class AddAlunos extends React.Component {
     handleChange(name, value, isInvalid) {
         this[name] = value;
         this.setState({ isInvalid })
-
-        // this.refs.alunosCadastrados.checked
     }
 
     handleSubmit(event) {
+
         event.preventDefault()
+        const escola = this.state.escola
 
         if (!this.state.isInvalid) {
             const alunos = {
-                escola: this.props.match.params.id,
-                sala: this.sala,
                 nome: this.nome,
                 sobrenome: this.sobrenome,
                 cpf: this.cpf
             }
 
-            this.props.cadastraAlunos(alunos)
+            const turma = {
+                escola: {
+                    id: this.props.match.params.id
+                },
+                sala: {
+                    id: this.sala
+                }
+            }
+            this.props.cadastraAlunos(alunos, turma)
         }
     }
 
     render() {
 
         const { alunos, cadastraAlunos } = this.props
-        console.log('alunos e props', alunos, this.props)
-
+        
         return (
             <Main>
                 <ContainerBox >
@@ -119,8 +119,11 @@ class AddAlunos extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
+    // const id = props.match.params.id
+    // const escola = state.escolas[id]
 
     return {
+        // escola,
         alunos: Object.keys(state.alunos).map(key => {
             return state.alunos[key]
         })
@@ -128,8 +131,8 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    cadastraAlunos: (turma) => {
-        dispatch(cadastraAlunos(turma))
+    cadastraAlunos: (alunos, escola) => {
+        dispatch(cadastraAlunos(alunos, escola))
     }
 })
 

@@ -5,7 +5,7 @@
 // import Main from '../../../compSimples/main'
 // import ContainerBox from '../../../compSimples/container-box'
 // import Card from '../../../card'
-// // import { addDesafio } from '../../../../actions'
+// import { addDesafio } from '../../../../actions'
 // // import './escola.css'
 // import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
@@ -24,7 +24,7 @@
 //                         <h2>Desafios</h2>
 //                     </Link>
 
-//                     <Link className="turma__title" to={`/turma/${turmas.id}/alunos`}>
+//                     <Link className="turma__title" to={`/turmas/${this.props.turmas.id}/alunos`}>
 //                         <h2>Alunos</h2>
 //                     </Link>
 //                     {/* <Link className="turma__title" to={`/turma/${turmas.id}/grupos`}>
@@ -36,14 +36,11 @@
 
 //                     <ContainerBox className="turma__container">
 
-//                         {this.props.turmas.map(turma => (
-//                             <Link className="turma__card" to={`/desafios/${desafios.id}`}>
+//                         {this.props.desafios.map(turma => (
+//                             <Link className="turma__card" to={`/desafios/${this.props.desafios.id}`}>
 //                                 <Card >
 //                                     <h2 className="turma__card-title">
-//                                         {turma.ano}
-//                                     </h2>
-//                                     <h2 className="turma__card-title">
-//                                         {turma.denominacao}
+//                                         {this.props.desafios.nome}
 //                                     </h2>
 //                                 </Card>
 //                             </Link>
@@ -65,8 +62,8 @@
 // const mapStateToProps = (state, props) => {
 
 //     const id = props.match.params.id
-//     const turma = state.turmas[id]
-//     const desafios = turma.desafios
+//     const turmas = state.turmas[id]
+//     const desafios = state.turmas.desafios
 
 //     return {
 //         turmas,
