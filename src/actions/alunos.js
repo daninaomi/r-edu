@@ -6,18 +6,28 @@ export const FILTRA_LISTA = 'FILTRA_LISTA'
 export const CADASTRA_ALUNOS = 'CADASTRA_ALUNOS'
 
 
-export function pegaListaAlunos({alunos, sala, listaAlunos}) {
-    return {
-        type: PEGA_LISTA,
-        sala,
-        listaAlunos: listaAlunos[alunos]
+// export function pegaListaAlunos({ alunos, sala, listaAlunos }) {
+//     return {
+//         type: PEGA_LISTA,
+//         sala,
+//         listaAlunos: listaAlunos[alunos]
+//     }
+// }
+
+export function pegaListaAlunos(alunos) {
+    return dispatch => {
+        dispatch({
+            type: PEGA_LISTA
+        })
     }
 }
 
-export function filtraAlunos(alunos) {
-    return {
-        type: FILTRA_LISTA,
-        alunos
+export function filtraAlunos(listaAlunos) {
+    return dispatch => {
+        dispatch({
+            type: FILTRA_LISTA,
+            listaAlunos
+        })
     }
 }
 
@@ -27,7 +37,7 @@ export function cadastraAlunos(alunos) {
             type: CADASTRA_ALUNOS,
             // alunos: {
             //     ...alunos
-                // ,id: 0
+            // ,id: 0
             // }
         })
 

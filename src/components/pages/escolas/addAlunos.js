@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
-import { cadastraSala, cadastraAlunos, pegaListaAlunos, filtroAlunos } from '../../../actions'
+import { cadastraSala, cadastraAlunos, pegaListaAlunos, filtraAlunos } from '../../../actions'
 // import './escolha.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
@@ -15,19 +15,18 @@ class AddAlunos extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
-        this.handleChangeSearch = this.handleChangeSearch.bind(this)
+        // this.handleChangeSearch = this.handleChangeSearch.bind(this)
         this.onSearch = this.onSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChangeSearch(name, value, isInvalid) {
-        this[name] = value;
-        this.setState({ isInvalid })
-    }
+    // handleChangeSearch(name, value, isInvalid) {
+    //     this[name] = value;
+    //     this.setState({ isInvalid })
+    // }
 
     onSearch(event) {
-        // this.refs.filterTextInput.value
         event.preventDefault()
 
         if (!this.state.isInvalid) {
@@ -76,33 +75,25 @@ class AddAlunos extends React.Component {
                 <ContainerBox >
                     <h1 className="escolha__title">Adicione alunos:</h1>
 
-                    {/* onsubmit do filtro pega lista de alunos e joga na store, pegar lista da store no mapStateToProps */}
-                    <Form className="escolha__form" onSubmit={this.onSearch}>
-                        <FormInput
-                            className="cadastro__form-input cadastro__form-input--1"
-                            type="text"
-                            name="search-bar"
-                            placeholder="Pesquise alunos por nome ou e-mail"
-                            onChange={this.handleChangeSearch}
-                            // ref="filterTextInput"
-                            required />
+                    {/* <Form className="escolha__form" onSubmit={this.onSearch}> */}
+                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
 
-                        <FormButton
-                            className="escolha__form-button"
-                            type="submit"
-                            disabled={this.state.isInvalid}>
-                            <FaSearch />
-                        </FormButton>
-                    </Form>
+                    <FormInput
+                        className="cadastro__form-input cadastro__form-input--1"
+                        type="text"
+                        name="search-bar"
+                        placeholder="Pesquise alunos por nome ou e-mail"
+                        // onChange={this.handleChangeSearch}
+                        onChange={this.onSearch}
+                    // required
+                    />
 
                     {/* criar if para mostrar só quando listaAlunos.lenght > 0 */}
 
-                    {/* {this.props.listaAlunos.lenght > 0} ? ( */}
-
-                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
+                    {this.props.listaAlunos.lenght > 0} ? (
 
                         {this.props.listaAlunos.map(aluno => (
-                            
+
                             <FormInput
                                 className="cadastro__form-input cadastro__form-input--1"
                                 type="checkbox"
@@ -111,7 +102,7 @@ class AddAlunos extends React.Component {
                                 onChange={this.handleChange}
                                 value={this.state.filtroAlunos}
                                 // checked={this.props.alunosCadastrados}
-                                required />
+                                 />
                         ))}
 
                         <FormButton
@@ -135,10 +126,16 @@ const mapStateToProps = state => {
     return {
         listaAlunos: state.listaAlunos,
         filtraAlunos: state.filtraAlunos
-    }  
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
+    pegaListaAlunos: (alunos) => {
+        dispatch(pegaListaAlunos(alunos))
+    },
+    filtraAlunos: (listaAlunos) => {
+        dispatch(filtraAlunos(listaAlunos))
+    },
     cadastraAlunos: (sala) => {
         dispatch(cadastraSala(sala))
     }

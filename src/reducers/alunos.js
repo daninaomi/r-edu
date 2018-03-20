@@ -6,7 +6,7 @@ import {
 } from "../actions";
 
 
-const estadoInicial = alunos[ {
+const estadoInicial = {
     0: {
         id: 0,
         nome: 'Danielle',
@@ -21,22 +21,23 @@ const estadoInicial = alunos[ {
         cpf: '21337676543'
 
     }
-} ]
+} 
 
 export function alunos(estadoAtual = estadoInicial, acao) {
 
     switch (acao.type) {
 
         case PEGA_LISTA:
-            return {
-                ...estadoAtual,
-                [acao.estadoInicial]: listaAlunos,
+            return acao.estadoInicial[listaAlunos]
+            // {
+            //     ...estadoAtual,
+            //     [acao.estadoInicial]: listaAlunos,
                 // [listaAlunos.id]: aluno,
 
                 // [aluno.nome]: nome,
                 // [aluno.sobrenome]: sobrenome,
                 // [aluno.cpf]: cpf
-            }
+            // }
 
         case FILTRA_LISTA:
             const id = acao.props.match.params.id
