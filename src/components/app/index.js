@@ -10,9 +10,9 @@ import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
 import LandingPage from '../pages/landingPage';
 import Escolas from '../pages/escolas';
-import AddSala from '../pages/escolas/addSala';
+import AddTurma from '../pages/escolas/addTurma';
 import AddAlunos from '../pages/escolas/addAlunos';
-import Salas from '../pages/escolas/salas';
+import Turmas from '../pages/escolas/turmas';
 
 
 const App = () => (
@@ -26,9 +26,9 @@ const App = () => (
             <Route path="/perfil" component={Perfil} />
             <Route path="/home" component={Home} />
             <Route exact path="/escolas/:id" component={Escolas} />
-            <Route path="/escolas/:id/cadastro-salas" component={AddSala} />
-            <Route path="/salas/:id/cadastro-alunos" component={AddAlunos} />
-            <Route exact path="/salas/:id" component={Salas} />
+            <Route path="/escolas/:id/cadastro-turmas" component={AddTurma} />
+            <Route path="/turmas/:id/cadastro-alunos" component={AddAlunos} />
+            <Route exact path="/turmas/:id" component={Turmas} />
 
         </Switch>
     </React.Fragment>

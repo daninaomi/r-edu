@@ -28,20 +28,17 @@ class Escola extends React.Component {
 
                 <ContainerBox className="escolas__container">
 
-                    {this.props.salas.map(sala => (
-                        <Link className="escolas__card" to={`/salas/${sala.id}`}>
+                    {this.props.turmas.map(turma => (
+                        <Link className="escolas__card" to={`/turmas/${turma.id}`}>
                             <Card >
                                 <h2 className="escolas__card-title">
-                                    {sala.ano}
-                                </h2>
-                                <h2 className="escolas__card-title">
-                                    {sala.denominacao}
+                                    {turma.sala}
                                 </h2>
                             </Card>
                         </Link>
                     ))}
 
-                    <Link className="escolas__card escolas__card-icon" to={`/escolas/${this.props.escola.id}/cadastro-salas`}>
+                    <Link className="escolas__card escolas__card-icon" to={`/escolas/${this.props.escola.id}/cadastro-turmas`}>
                         <Card>
                             <FaPlusCircle className="escolas__icon" />
                         </Card>
@@ -57,12 +54,12 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id // const id = 0
     const escola = state.escolas[id]
-    const salas = escola.salas // const salas = [0, 1]
+    const turmas = escola.turmas // const turmas = [0, 1]
 
     return {
         escola,
-        salas: salas.map(sala => { // sala = 1 [{...}, {....}]
-            return state.salas[sala];
+        turmas: turmas.map(turma => { // turma = 1 [{...}, {....}]
+            return state.turmas[turma];
         })
     }
 }

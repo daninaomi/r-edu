@@ -6,11 +6,11 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import Select from '../../compSimples/form/select'
 import FormButton from '../../compSimples/form/formButton'
-import { cadastraSala } from '../../../actions'
+import { cadastraTurma } from '../../../actions'
 // import './escolha.css'
 
 
-class AddSala extends React.Component {
+class AddTurma extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
@@ -34,26 +34,25 @@ class AddSala extends React.Component {
         event.preventDefault()
 
         if (!this.state.isInvalid) {
-            const sala = {
+            const turma = {
                 escola: this.props.match.params.id,
-                ano: this.ano,
-                denominacao: this.denominacao
+                sala: this.sala
             }
 
-            this.props.cadastraSala(sala)
+            this.props.cadastraTurma(turma)
 
         }
     }
 
     render() {
 
-        const { sala, cadastraSala } = this.props
+        const { turma, cadastraTurma } = this.props
 
         return (
 
             <Main>
                 <ContainerBox >
-                    <h1 className="escolha__title">Sala Nova:</h1>
+                    <h1 className="escolha__title">Turma Nova:</h1>
                     <Form className="escolha__form" onSubmit={this.handleSubmit}>
 
                         <Select
@@ -61,22 +60,23 @@ class AddSala extends React.Component {
                             name="ano"
                             onChange={this.handleChange}
                             required>
-                            <option value="" disabled selected>Ano</option>
-                            <option value="ano1">6º ano</option>
-                            <option value="ano2">7º ano</option>
-                            <option value="ano3">8º ano</option>
-                            <option value="ano4">9º ano</option>
-                        </Select>
-                        <Select
-                            className="cadastro__form-select"
-                            name="denominacao"
-                            onChange={this.handleChange}
-                            required>
-                            <option value="" disabled selected>Denominação</option>
-                            <option value="denominacao1">A</option>
-                            <option value="denominacao2">B</option>
-                            <option value="denominacao3">C</option>
-                            <option value="denominacao3">D</option>
+                            <option value="" disabled selected>Turma</option>
+                            <option value="ano1">6º A</option>
+                            <option value="ano1">6º B</option>
+                            <option value="ano1">6º C</option>
+                            <option value="ano1">6º D</option>
+                            <option value="ano2">7º A</option>
+                            <option value="ano2">7º B</option>
+                            <option value="ano2">7º C</option>
+                            <option value="ano2">7º D</option>
+                            <option value="ano3">8º A</option>
+                            <option value="ano3">8º B</option>
+                            <option value="ano3">8º C</option>
+                            <option value="ano3">8º D</option>
+                            <option value="ano4">9º A</option>
+                            <option value="ano4">9º B</option>
+                            <option value="ano4">9º C</option>
+                            <option value="ano4">9º D</option>
                         </Select>
 
                         <FormButton
@@ -95,13 +95,13 @@ class AddSala extends React.Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    cadastraSala: (sala) => {
-        dispatch(cadastraSala(sala))
+    cadastraTurma: (turma) => {
+        dispatch(cadastraTurma(turma))
     }
 })
 
 
-export default withRouter(connect(null, mapDispatchToProps)(AddSala))
+export default withRouter(connect(null, mapDispatchToProps)(AddTurma))
 
 // const mapStateToProps = state => ({
 //     userType: state.userType

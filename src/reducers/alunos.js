@@ -1,8 +1,6 @@
 
 import {
-    CADASTRA_ALUNOS,
-    PEGA_LISTA,
-    FILTRA_LISTA
+    CADASTRA_ALUNOS
 } from "../actions";
 
 
@@ -21,43 +19,16 @@ const estadoInicial = {
         cpf: '21337676543'
 
     }
-} 
+}
 
 export function alunos(estadoAtual = estadoInicial, acao) {
 
     switch (acao.type) {
 
-        case PEGA_LISTA:
-            return acao.estadoInicial[listaAlunos]
-            // {
-            //     ...estadoAtual,
-            //     [acao.estadoInicial]: listaAlunos,
-                // [listaAlunos.id]: aluno,
-
-                // [aluno.nome]: nome,
-                // [aluno.sobrenome]: sobrenome,
-                // [aluno.cpf]: cpf
-            // }
-
-        case FILTRA_LISTA:
-            const id = acao.props.match.params.id
-            const sala = acao.sala[id]
-            const listaAlunos = acao.sala.alunos
-
-
-            if ([acao.nome] === [estadoAtual.nome] || [acao.sobrenome] === [estadoAtual.sobrenome] || [acao.cpf] === [estadoAtual.cpf]) {
-                return {
-                    ...estadoAtual,
-                    listaAlunos: listaAlunos.filter(aluno => {
-                        return estadoAtual.listaAlunos[aluno];
-                    })
-                }
-            }
-
         case CADASTRA_ALUNOS:
             return {
                 ...estadoAtual,
-                [acao.aluno.id]: acao.aluno
+                [acao.alunos]: alunos
             }
         default:
             return estadoAtual

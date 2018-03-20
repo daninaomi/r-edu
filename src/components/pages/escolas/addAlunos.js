@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
-import { cadastraSala, cadastraAlunos, pegaListaAlunos, filtraAlunos } from '../../../actions'
+import { cadastraAlunos } from '../../../actions'
 // import './escolha.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
@@ -14,7 +14,10 @@ import FaSearch from 'react-icons/lib/fa/search'
 class AddAlunos extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: false }
+        this.state = {
+            isInvalid: false,
+            alunosFiltrados: [...props.alunos]
+        }
         // this.handleChangeSearch = this.handleChangeSearch.bind(this)
         this.onSearch = this.onSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -26,20 +29,18 @@ class AddAlunos extends React.Component {
     //     this.setState({ isInvalid })
     // }
 
-    onSearch(event) {
-        event.preventDefault()
+    onSearch(name, value, isInvalid) {
+        // pegar o valor do campo de pesquisa
+        if (!isInvalid) {
+            // percorrer a lista de alunos e verificar se tem alguem com nome ou email = valor de cima
+            const alunosFiltrados = this.props.alunos.filter(aluno => {
+                return aluno.nome.toLowerCase() === value.toLowerCase() || aluno.sobrenome.toLowerCase() === value.toLowerCase() || aluno.cpf.toLowerCase() === value.toLowerCase()
+            })
 
-        if (!this.state.isInvalid) {
-            const alunos = {
-                escola: this.props.match.params.id,
-                ano: this.ano,
-                denominacao: this.denominacao,
-                nome: this.nome,
-                sobrenome: this.sobrenome,
-                cpf: this.cpf
-            }
-
-            this.props.pegaListaAlunos(alunos)
+            // setar no state a lista de alunos filtrados
+            this.setState({ alunosFiltrados })
+        } else {
+            this.setState({alunosFiltrados: this.props.alunos})
         }
     }
 
@@ -56,53 +57,50 @@ class AddAlunos extends React.Component {
         if (!this.state.isInvalid) {
             const alunos = {
                 escola: this.props.match.params.id,
-                ano: this.ano,
-                denominacao: this.denominacao
+                sala: this.sala,
+                nome: this.nome,
+                sobrenome: this.sobrenome,
+                cpf: this.cpf
             }
 
             this.props.cadastraAlunos(alunos)
-
-            // this.props.history.push(`/escolas/${escola.id}`)
         }
     }
 
     render() {
 
-        const { sala, alunos, cadastraSala, cadastraAlunos } = this.props
+        const { alunos, cadastraAlunos } = this.props
+        console.log('alunos e props', alunos, this.props)
 
         return (
             <Main>
                 <ContainerBox >
                     <h1 className="escolha__title">Adicione alunos:</h1>
 
-                    {/* <Form className="escolha__form" onSubmit={this.onSearch}> */}
                     <Form className="escolha__form" onSubmit={this.handleSubmit}>
 
-                    <FormInput
-                        className="cadastro__form-input cadastro__form-input--1"
-                        type="text"
-                        name="search-bar"
-                        placeholder="Pesquise alunos por nome ou e-mail"
-                        // onChange={this.handleChangeSearch}
-                        onChange={this.onSearch}
-                    // required
-                    />
+                        <FormInput
+                            className="cadastro__form-input cadastro__form-input--1"
+                            type="text"
+                            name="search-bar"
+                            placeholder="Pesquise alunos por nome ou e-mail"
+                            onChange={this.onSearch}
+                            // required
+                        />
 
-                    {/* criar if para mostrar só quando listaAlunos.lenght > 0 */}
+                        {this.state.alunosFiltrados.map(aluno => (
 
-                    {this.props.listaAlunos.lenght > 0} ? (
-
-                        {this.props.listaAlunos.map(aluno => (
-
-                            <FormInput
-                                className="cadastro__form-input cadastro__form-input--1"
-                                type="checkbox"
-                                name="search-bar"
-                                placeholder="Pesquise alunos por nome ou e-mail"
-                                onChange={this.handleChange}
-                                value={this.state.filtroAlunos}
-                                // checked={this.props.alunosCadastrados}
-                                 />
+                            <label>
+                                <FormInput
+                                    className="cadastro__form-input cadastro__form-input--1"
+                                    type="checkbox"
+                                    name="search-bar"
+                                    placeholder="Pesquise alunos por nome ou e-mail"
+                                    onChange={this.handleChange}
+                                    // value={this.state.filtroAlunos}
+                                    
+                                /> {`${aluno.nome} ${aluno.sobrenome}`}
+                            </label>
                         ))}
 
                         <FormButton
@@ -113,31 +111,25 @@ class AddAlunos extends React.Component {
                         </FormButton>
                     </Form>
 
-                    {/* ) */}
-
                 </ContainerBox>
             </Main>
         )
     }
 }
 
-const mapStateToProps = state => {
-    console.log("state do addAlunos", state)
+const mapStateToProps = (state, props) => {
+
+
     return {
-        listaAlunos: state.listaAlunos,
-        filtraAlunos: state.filtraAlunos
+        alunos: Object.keys(state.alunos).map(key => {
+            return state.alunos[key]
+        })
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    pegaListaAlunos: (alunos) => {
-        dispatch(pegaListaAlunos(alunos))
-    },
-    filtraAlunos: (listaAlunos) => {
-        dispatch(filtraAlunos(listaAlunos))
-    },
-    cadastraAlunos: (sala) => {
-        dispatch(cadastraSala(sala))
+    cadastraAlunos: (turma) => {
+        dispatch(cadastraAlunos(turma))
     }
 })
 
@@ -148,13 +140,13 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddAlunos
 // const mapStateToProps = (state, props) => {
 
 //     const id = props.match.params.id
-//     const sala = state.sala[id]
-//     const listaAlunos = sala.alunos
+//     const turma = state.turma[id]
+//     const alunos = turma.alunos
 
 //     return {
-//         // sala,
-//         listaAlunos: listaAlunos.map(aluno => {
-//             return state.listaAlunos[aluno];
+//         // turma,
+//         alunos: alunos.map(aluno => {
+//             return state.alunos[aluno];
 //         })
 //     }
 // }
