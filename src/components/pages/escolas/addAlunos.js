@@ -7,7 +7,7 @@ import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
 import { cadastraAlunos } from '../../../actions'
-// import './escolha.css'
+import './cadastro-turma.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
 
@@ -29,13 +29,13 @@ class AddAlunos extends React.Component {
         if (!isInvalid) {
             // percorrer a lista de alunos e verificar se tem alguem com nome ou email = valor de cima
             const alunosFiltrados = this.props.alunos.filter(aluno => {
-                return aluno.nome.toLowerCase() === value.toLowerCase() || aluno.sobrenome.toLowerCase() === value.toLowerCase() || aluno.cpf.toLowerCase() === value.toLowerCase()
+                return aluno.nome.toLowerCase() === value.toLowerCase() || aluno.sobrenome.toLowerCase() === value.toLowerCase() || aluno.email.toLowerCase() === value.toLowerCase()
             })
 
             // setar no state a lista de alunos filtrados
             this.setState({ alunosFiltrados })
         } else {
-            this.setState({alunosFiltrados: this.props.alunos})
+            this.setState({ alunosFiltrados: this.props.alunos })
         }
     }
 
@@ -53,17 +53,14 @@ class AddAlunos extends React.Component {
             const alunos = {
                 nome: this.nome,
                 sobrenome: this.sobrenome,
-                cpf: this.cpf
+                email: this.email
             }
 
             const turma = {
-                escola: {
-                    id: this.props.match.params.id
-                },
-                sala: {
-                    id: this.sala
-                }
+                idEscola: this.props.match.params.id,
+                idSala: this.sala
             }
+
             this.props.cadastraAlunos(alunos, turma)
         }
     }
@@ -71,40 +68,43 @@ class AddAlunos extends React.Component {
     render() {
 
         const { alunos, cadastraAlunos } = this.props
-        
+
         return (
             <Main>
                 <ContainerBox >
-                    <h1 className="escolha__title">Adicione alunos:</h1>
+                    <h1 className="cadastro__title">Adicione alunos</h1>
 
-                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
+                    <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
 
                         <FormInput
-                            className="cadastro__form-input cadastro__form-input--1"
+                            className="cadastro-turma__form-input"
                             type="text"
                             name="search-bar"
                             placeholder="Pesquise alunos por nome ou e-mail"
                             onChange={this.onSearch}
-                            // required
+                        // required
                         />
 
                         {this.state.alunosFiltrados.map(aluno => (
 
-                            <label>
+                            <label className="cadastro-turma__checkbox">
                                 <FormInput
-                                    className="cadastro__form-input cadastro__form-input--1"
+                                    className="cadastro-turma__checkbox-input"
                                     type="checkbox"
                                     name="search-bar"
                                     placeholder="Pesquise alunos por nome ou e-mail"
                                     onChange={this.handleChange}
-                                    // value={this.state.filtroAlunos}
-                                    
-                                /> {`${aluno.nome} ${aluno.sobrenome}`}
+                                // value={this.state.novoAluno}
+                                />
+                                <span class="cadastro-turma__checkbox-box"></span> 
+                                <div className="cadastro-turma__checkbox-names">
+                                {`${aluno.nome} ${aluno.sobrenome}`}
+                                </div>
                             </label>
                         ))}
 
                         <FormButton
-                            className="escolha__form-button"
+                            className="cadastro-turma__form-button"
                             type="submit"
                             disabled={this.state.isInvalid}>
                             Cadastrar

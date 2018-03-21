@@ -7,7 +7,7 @@ import Form from '../../compSimples/form'
 import Select from '../../compSimples/form/select'
 import FormButton from '../../compSimples/form/formButton'
 import { cadastraTurma } from '../../../actions'
-// import './escolha.css'
+import './cadastro-turma.css'
 
 
 class AddTurma extends React.Component {
@@ -35,10 +35,8 @@ class AddTurma extends React.Component {
 
         if (!this.state.isInvalid) {
             const turma = {
-                escola: {
-                    id: this.props.match.params.id
-                },
-                sala: this.sala
+                idEscola: this.props.match.params.id,
+                idSala: this.sala
             }
 
             this.props.cadastraTurma(turma)
@@ -54,11 +52,11 @@ class AddTurma extends React.Component {
 
             <Main>
                 <ContainerBox >
-                    <h1 className="escolha__title">Turma Nova:</h1>
-                    <Form className="escolha__form" onSubmit={this.handleSubmit}>
+                    <h1 className="cadastro__title">Turma Nova</h1>
+                    <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
 
                         <Select
-                            className="cadastro__form-select"
+                            className="cadastro-turma__form-select"
                             name="ano"
                             onChange={this.handleChange}
                             required>
@@ -82,7 +80,7 @@ class AddTurma extends React.Component {
                         </Select>
 
                         <FormButton
-                            className="escolha__form-button"
+                            className="cadastro-turma__form-button"
                             type="submit"
                             disabled={this.state.isInvalid}>
                             Continuar

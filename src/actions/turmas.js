@@ -13,7 +13,7 @@ export function cadastraTurma(turma) {
             }
         })
 
-        dispatch(push(`/escolas/${turma.escola.id}/cadastro-alunos`))
+        dispatch(push(`/escolas/${turma.idEscola}/cadastro-alunos`))
 
         // postTurma(turma)
         //     .then(response => {

@@ -14,7 +14,7 @@ export function cadastraAlunos(alunos, turma) {
             turma
         })
 
-        dispatch(push(`/escolas/${turma.escola.id}`))
+        dispatch(push(`/escolas/${turma.idEscola}`))
 
         // postTurma(alunos)
         //     .then(response => {

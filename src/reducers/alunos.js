@@ -9,14 +9,14 @@ const estadoInicial = {
         id: 0,
         nome: 'Danielle',
         sobrenome: 'Nakatsu',
-        cpf: '38387676543'
+        email: 'daninaomi93@gmail.com'
 
     },
     1: {
         id: 1,
         nome: 'Camila',
         sobrenome: 'Belo',
-        cpf: '21337676543'
+        email: 'camilabelo@gmail.com'
 
     }
 }

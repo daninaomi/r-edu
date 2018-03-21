@@ -37,19 +37,21 @@ class FormAluno extends React.Component {
 
         if (!this.state.isInvalid) {
             const user = {
-                apelido: this.apelido,
-                nome: this.nome,
-                sobrenome: this.sobrenome,
+                userAluno: [{
+                    apelido: this.apelido,
+                    nome: this.nome,
+                    sobrenome: this.sobrenome,
+                    email: this.email,
+                    senha: this.senha
+                }],
                 sexo: this.sexo,
-                email: this.email,
-                senha: this.senha,
                 cidade: this.cidade,
                 estado: this.estado,
                 telefone: this.telefone,
                 dataNascimento: this.dataNascimento,
                 cpf: this.cpf,
                 nomeResponsavel: this.nomeResponsavel,
-                escola: this.escola
+                idEscola: this.idEscola
             }
             this.props.cadastraUser(event, user)
 
@@ -202,7 +204,7 @@ class FormAluno extends React.Component {
                             placeholder="Nome do Responsável"
                             onChange={this.handleChange}
                             required />
-                        <Select name="escola" className="cadastro__form-select cadastro__form-input--1">
+                        <Select name="idEscola" className="cadastro__form-select cadastro__form-input--1">
                             <option value="" disabled selected>Escolas</option>
                             <option value="escola1">Escola 1</option>
                             <option value="escola2">Escola 2</option>
