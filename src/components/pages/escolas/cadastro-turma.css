@@ -6,7 +6,7 @@
 
 .cadastro-turma__form-select {
     width: 100%;
-    margin: 3rem 0;
+    margin: 1rem 0;
 }
 
 .cadastro-turma__form-input {
@@ -15,7 +15,7 @@
 
 .cadastro-turma__checkbox {
     position: relative;
-    margin: 1.1rem 0;
+    margin: 1.1rem 1rem;
     cursor: pointer;
     color: white;
 }
@@ -35,7 +35,8 @@
 }
 
 .cadastro-turma__checkbox-input:checked ~ .cadastro-turma__checkbox-box {
-    background: white;
+    background: #26a69a;
+    border: 2px solid white;
 }
 
 .cadastro-turma__checkbox-names {
@@ -46,4 +47,20 @@
 .cadastro-turma__form-button {
     width: 80%;
     margin: 5rem auto;
+}
+
+@media screen and (min-width: 768px) {
+    
+    .cadastro-turma__checkbox {
+        margin: 1.1rem 5rem;
+        color: #4a148c;
+    }
+
+    .cadastro-turma__checkbox-box {
+        border-color: #4a148c;
+    }
+
+    .cadastro-turma__checkbox-input:checked ~ .cadastro-turma__checkbox-box {
+        border-color: #4a148c;
+    }
 }

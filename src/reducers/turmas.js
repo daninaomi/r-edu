@@ -4,11 +4,13 @@ import { CADASTRA_TURMA } from "../actions";
 const estadoInicial = {
     0: {
         id: 0,
-        sala: '6º A'
+        nome: '6º A',
+        desafios: [0,1]
     },
     1: {
         id: 1,
-        sala: '6º B'
+        nome: '6º B',
+        desafios: [0]
     }
     
 }

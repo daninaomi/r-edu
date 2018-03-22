@@ -33,7 +33,7 @@ class Cadastro extends React.Component {
             }
             this.props.selecionaUserType(user)
 
-            this.props.history.push('/cadastroProfAluno')
+            this.props.history.push('/cadastro-prof-aluno')
         }
     }
 

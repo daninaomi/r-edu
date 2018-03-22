@@ -32,7 +32,7 @@ class Escola extends React.Component {
                         <Link className="escolas__card" to={`/turmas/${turma.id}`}>
                             <Card >
                                 <h2 className="escolas__card-title">
-                                    {turma.sala}
+                                    {turma.nome}
                                 </h2>
                             </Card>
                         </Link>

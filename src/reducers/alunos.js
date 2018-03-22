@@ -2,6 +2,7 @@
 import {
     CADASTRA_ALUNOS
 } from "../actions";
+import Card from '../components/card'
 
 
 const estadoInicial = {
@@ -26,9 +27,11 @@ export function alunos(estadoAtual = estadoInicial, acao) {
     switch (acao.type) {
 
         case CADASTRA_ALUNOS:
+            const novaTurma = new Card(acao.posicao, acao.nome)
             return {
-                ...estadoAtual,
-                [acao.alunos]: alunos
+                // ...estadoAtual,
+                [acao.alunos]: alunos,
+                ...estadoAtual.concat(novaTurma)
             }
         default:
             return estadoAtual

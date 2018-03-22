@@ -13,7 +13,7 @@ export function logaUser(user) {
             .then(response => dispatch({
                 type: LOGA_USER
             }))
-            .catch((response, error) => {
+            .catch((error) => {
                 if (error.response.code === 400) {
                     error: error.response.mensagem
                 } else if (error.response.code === 500) {
@@ -43,7 +43,7 @@ export function cadastraUser(user) {
                 type: CADASTRA_USER_SUCCESS,
                 user: response.data
             }))
-            .catch((response, error) => {
+            .catch((error) => {
                 if (error.response.code === 400) {
                     error: error.response.mensagem
                 } else if (error.response.code === 500) {
@@ -62,7 +62,7 @@ export function alteraUser(user) {
                 type: ALTERA_USER,
                 user: response.data
             }))
-            .catch((response, error) => {
+            .catch((error) => {
                 if (error.response.code === 400) {
                     error: error.response.mensagem
                 } else if (error.response.code === 500) {

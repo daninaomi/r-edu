@@ -37,13 +37,14 @@ class FormAluno extends React.Component {
 
         if (!this.state.isInvalid) {
             const user = {
-                userAluno: [{
-                    apelido: this.apelido,
+                // aluno
+                usuario: {
                     nome: this.nome,
                     sobrenome: this.sobrenome,
                     email: this.email,
-                    senha: this.senha
-                }],
+                    senha: this.senha,
+                    tipoUsuario: 2
+                },
                 sexo: this.sexo,
                 cidade: this.cidade,
                 estado: this.estado,
@@ -70,13 +71,7 @@ class FormAluno extends React.Component {
                     <h1 className="cadastro__title">Cadastro</h1>
 
                     <Form className="cadastro__form" onSubmit={this.handleSubmit}>
-                        <FormInput
-                            className="cadastro__form-input cadastro__form-input--1"
-                            type="text"
-                            name="apelido"
-                            placeholder="Username"
-                            onChange={this.handleChange}
-                            required />
+
                         <FormInput
                             className="cadastro__form-input"
                             type="text"
@@ -152,16 +147,12 @@ class FormAluno extends React.Component {
                                 </label>
                             </div>
                         </div>
-
-                        <Select
-                            className="cadastro__form-select"
-                            name="cidade"
-                            required>
-                            <option value="" disabled selected>Cidade</option>
-                            <option value="cidade1">São Paulo</option>
-                            <option value="cidade2">Rio de Janeiro</option>
-                            <option value="cidade3">Brasília</option>
-                        </Select>
+                        <FormInput
+                            className="cadastro__form-input"
+                            name="cpf"
+                            placeholder="CPF"
+                            aria-label="cpf"
+                            onChange={this.handleChange} />
 
                         <Select
                             className="cadastro__form-select"
@@ -171,6 +162,15 @@ class FormAluno extends React.Component {
                             <option value="estado1">SP</option>
                             <option value="estado2">RJ</option>
                             <option value="estado3">DF</option>
+                        </Select>
+                        <Select
+                            className="cadastro__form-select"
+                            name="cidade"
+                            required>
+                            <option value="" disabled selected>Cidade</option>
+                            <option value="cidade1">São Paulo</option>
+                            <option value="cidade2">Rio de Janeiro</option>
+                            <option value="cidade3">Brasília</option>
                         </Select>
 
                         <FormInput
@@ -191,12 +191,7 @@ class FormAluno extends React.Component {
                             id="date"
                             required
                             onChange={this.handleChange} />
-                        <FormInput
-                            className="cadastro__form-input"
-                            name="cpf"
-                            placeholder="CPF"
-                            aria-label="cpf"
-                            onChange={this.handleChange} />
+                        
                         <FormInput
                             className="cadastro__form-input"
                             type="text"
@@ -205,7 +200,7 @@ class FormAluno extends React.Component {
                             onChange={this.handleChange}
                             required />
                         <Select name="idEscola" className="cadastro__form-select cadastro__form-input--1">
-                            <option value="" disabled selected>Escolas</option>
+                            <option value="" disabled selected>Escola</option>
                             <option value="escola1">Escola 1</option>
                             <option value="escola2">Escola 2</option>
                             <option value="escola3">Escola 3</option>
@@ -235,7 +230,5 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(FormAluno))
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(FormAluno)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormAluno))

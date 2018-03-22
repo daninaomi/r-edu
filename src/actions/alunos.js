@@ -23,7 +23,9 @@ export function cadastraAlunos(alunos, turma) {
         //             alunos: {
         //                 ...alunos,
         //                 id: response.data.id
-        //             }
+        //             },
+                        // turma,
+                        // posicao: response.data.posicao
         //         })
         //         dispatch(push(`/turmas/${response.data.id}`))
         //     })

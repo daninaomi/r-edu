@@ -6,6 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import Select from '../../compSimples/form/select'
 import FormButton from '../../compSimples/form/formButton'
+import FormInput from '../../compSimples/form/formInput'
 import { cadastraTurma } from '../../../actions'
 import './cadastro-turma.css'
 
@@ -22,7 +23,7 @@ class AddTurma extends React.Component {
     handleChange(event) {
         const name = event.target.name
         const value = event.target.value
-        
+
         if (value === '') {
             this.setState({ isInvalid: true })
         }
@@ -36,7 +37,10 @@ class AddTurma extends React.Component {
         if (!this.state.isInvalid) {
             const turma = {
                 idEscola: this.props.match.params.id,
-                idSala: this.sala
+                // nome: this.nome,
+                ano: this.ano,
+                serie: this.serie,
+                descricao: this.descricao,
             }
 
             this.props.cadastraTurma(turma)
@@ -60,24 +64,30 @@ class AddTurma extends React.Component {
                             name="ano"
                             onChange={this.handleChange}
                             required>
-                            <option value="" disabled selected>Turma</option>
-                            <option value="ano1">6º A</option>
-                            <option value="ano1">6º B</option>
-                            <option value="ano1">6º C</option>
-                            <option value="ano1">6º D</option>
-                            <option value="ano2">7º A</option>
-                            <option value="ano2">7º B</option>
-                            <option value="ano2">7º C</option>
-                            <option value="ano2">7º D</option>
-                            <option value="ano3">8º A</option>
-                            <option value="ano3">8º B</option>
-                            <option value="ano3">8º C</option>
-                            <option value="ano3">8º D</option>
-                            <option value="ano4">9º A</option>
-                            <option value="ano4">9º B</option>
-                            <option value="ano4">9º C</option>
-                            <option value="ano4">9º D</option>
+                            <option value="" disabled selected>Ano</option>
+                            <option value="ano1">2017</option>
+                            <option value="ano2">2018</option>
+                            <option value="ano3">2019</option>
                         </Select>
+                        <Select
+                            className="cadastro-turma__form-select"
+                            name="serie"
+                            onChange={this.handleChange}
+                            required>
+                            <option value="" disabled selected>Ano escolar</option>
+                            <option value="anoEscolar1">6º</option>
+                            <option value="anoEscolar2">7º</option>
+                            <option value="anoEscolar3">8º</option>
+                            <option value="anoEscolar4">9º</option>
+                        </Select>
+                        <FormInput
+                            className="cadastro-turma__form-select"
+                            type="text"
+                            name="descricao"
+                            placeholder="Descrição (ex: Turma A) "
+                            onChange={this.handleChange}
+                            required />
+
 
                         <FormButton
                             className="cadastro-turma__form-button"

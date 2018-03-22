@@ -1,0 +1,66 @@
+.turmas__nav {
+    background: #26a69a;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.turmas__title {
+    width: 50%;
+    text-decoration: none;
+    text-align: center;
+    font-size: .7rem;
+    color: #ccc;
+}
+
+.turmas__title--active {
+    color: white;
+    border-bottom: 5px solid #1de9b6;
+}
+
+.turmas__card {
+    width: 47%;
+    height: 170px;
+    margin: 10px 0;
+    background: white;
+    text-decoration: none;
+    background-image: url("../img/card-desafio-foguete.png");
+    background-size: cover;
+}
+
+.turmas__card-title {
+    margin: 0;
+    padding: 10% 10% 0 10%;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width: 768px) {
+
+    .turmas__title {
+        font-size: .8rem;
+    }
+
+    .turmas__card {
+        width: 30%;
+        height: 200px;
+    }
+
+    .turmas__card-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    .turmas__card {
+        width: 23%;
+        margin: 0 1%;
+        height: 200px;
+    }
+
+    .turmas__card-title {
+        font-size: 1.5rem;
+    }
+}

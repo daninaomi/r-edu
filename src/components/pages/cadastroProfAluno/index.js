@@ -24,19 +24,21 @@ class Cadastro extends React.Component {
 
         if (!this.state.isInvalid) {
             const user = {
-                apelido: this.apelido,
-                nome: this.nome,
-                sobrenome: this.sobrenome,
+                usuario: {
+                    nome: this.nome,
+                    sobrenome: this.sobrenome,
+                    email: this.email,
+                    senha: this.senha,
+                    tipoUsuario: this.tipoUsuario
+                },
                 sexo: this.sexo,
-                email: this.email,
-                senha: this.senha,
                 cidade: this.cidade,
                 estado: this.estado,
                 telefone: this.telefone,
                 dataNascimento: this.dataNascimento,
                 cpf: this.cpf,
                 nomeResponsavel: this.nomeResponsavel,
-                escola: this.escola
+                idEscola: this.idEscola
             }
             this.props.cadastraUser(user)
 
@@ -47,6 +49,8 @@ class Cadastro extends React.Component {
     render() {
 
         const { user, cadastraUser, selecionarUserType } = this.props
+
+        console.log('user', user)
 
         return (
             user.type === 'professor' ? (

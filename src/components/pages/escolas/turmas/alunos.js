@@ -22,11 +22,11 @@ class TurmaDesafios extends React.Component {
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-                    <Link className="turmas__title turmas__title--active" to='#'>
+                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}>
                         <h2>Desafios</h2>
                     </Link>
 
-                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                    <Link className="turmas__title turmas__title--active" to="#">
                         <h2>Alunos</h2>
                     </Link>
                     {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
@@ -39,20 +39,13 @@ class TurmaDesafios extends React.Component {
                     <ContainerBox className="escolas__container">
 
                         {this.props.desafios.map(desafio => (
-                            <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
-                                <Card >
+                            
+                                <Card className="">
                                     <h2 className="turmas__card-title">
                                         {desafio.nome}
                                     </h2>
                                 </Card>
-                            </Link>
                         ))}
-
-                        <Link className="turmas__card escolas__card-icon" to={`/turma/${this.props.turma.id}/cadastro-desafios`}>
-                            <Card>
-                                <FaPlusCircle className="escolas__icon" />
-                            </Card>
-                        </Link>
 
                     </ContainerBox>
                 </Main>

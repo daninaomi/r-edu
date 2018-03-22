@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 import TurmaDesafios from './desafios'
-// import TurmaAlunos from './alunos'
+import TurmaAlunos from './alunos'
 // import TurmaGrupos from './grupos'
 
 import { addDesafio, pushPage } from '../../../../actions'
@@ -19,6 +19,7 @@ class Turma extends React.Component {
     }
 
     componentDidMount() {
+        console.log('props', this.props.turma)
         this.props.dispatchPushPage(this.props.turma.nome)
     }
 
@@ -28,7 +29,7 @@ class Turma extends React.Component {
             <React.Fragment>
                 
                 <TurmaDesafios/>
-                {/* <TurmaAlunos/> */}
+                <TurmaAlunos/>
                 {/* <TurmaGrupos/> */}
 
             </React.Fragment>
@@ -36,6 +37,15 @@ class Turma extends React.Component {
     }
 }
 
+const mapStateToProps = (state, props) => {
+
+    const id = props.match.params.id
+    const turma = state.turmas[id]
+
+    return {
+        turma
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     dispatchPushPage: page => {
@@ -44,5 +54,5 @@ const mapDispatchToProps = dispatch => ({
     
 })
 
-export default withRouter(connect(mapDispatchToProps)(Turma))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Turma))
 
