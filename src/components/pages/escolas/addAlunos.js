@@ -42,7 +42,6 @@ class AddAlunos extends React.Component {
 
     handleChange(name, value, isInvalid) {
         this.listaAlunos[value].checked = !this.listaAlunos[value].checked
-        console.log('lista de alunos', this.listaAlunos)
     }
 
     handleSubmit(event) {

@@ -5,24 +5,24 @@ import { withRouter } from 'react-router'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
 import Card from '../../../card'
-import { addDesafio } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 
-class TurmaDesafios extends React.Component {
+class TurmaAlunos extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render() {
 
-        const { turma, desafio, addDesafio } = this.props
+        const { turma, alunos } = this.props
+        console.log('chegou no alunos', alunos)
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}>
+                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/desafios`}>
                         <h2>Desafios</h2>
                     </Link>
 
@@ -38,13 +38,12 @@ class TurmaDesafios extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.desafios.map(desafio => (
-                            
-                                <Card className="">
-                                    <h2 className="turmas__card-title">
-                                        {desafio.nome}
-                                    </h2>
-                                </Card>
+                        {this.props.alunos.map(aluno => (
+                            <Card className="turmas__card-aluno">
+                                <h2 className="turmas__card-title">
+                                    {`${aluno.nome} ${aluno.sobrenome}`}
+                                </h2>
+                            </Card>
                         ))}
 
                     </ContainerBox>
@@ -58,15 +57,15 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const desafios = turma.desafios
 
     return {
         turma,
-        desafios: desafios.map(desafio => {
-            return state.desafios[desafio];
+        alunos: Object.keys(state.alunos).map(key => {
+            return state.alunos[key]
         })
     }
 }
 
-export default withRouter(connect(mapStateToProps)(TurmaDesafios))
+
+export default withRouter(connect(mapStateToProps)(TurmaAlunos))
 

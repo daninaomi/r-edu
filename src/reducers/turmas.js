@@ -5,12 +5,14 @@ const estadoInicial = {
     0: {
         id: 0,
         nome: '6º A',
-        desafios: [0,1]
+        desafios: [0,1],
+        alunos: [0,1]
     },
     1: {
         id: 1,
         nome: '6º B',
-        desafios: [0]
+        desafios: [0],
+        alunos: [0]
     }
     
 }
