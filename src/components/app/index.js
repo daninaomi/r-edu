@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Navbar from '../navbar'
 import Home from '../pages/home'
 import Login from '../pages/login'
+import EsqueciSenha from '../pages/login/esqueciSenha'
 import Cadastro from '../pages/cadastro'
 import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
@@ -23,6 +24,7 @@ const App = () => (
         <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/login" component={Login} />
+            <Route path="/esqueci-senha" component={EsqueciSenha} />
             <Route path="/cadastro" component={Cadastro} />
             <Route path="/cadastro-prof-aluno" component={CadastroProfAluno} />
             <Route path="/perfil" component={Perfil} />

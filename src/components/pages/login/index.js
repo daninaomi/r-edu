@@ -21,7 +21,6 @@ class Login extends React.Component {
     }
 
     handleChange(name, value, isInvalid) {
-        // this[name] = this.name
         this[name] = value
         this.setState({ isInvalid })
     }
@@ -73,7 +72,7 @@ class Login extends React.Component {
                             aria-label="senha"
                             required
                             onChange={this.handleChange} />
-                        <Link to='/' className="login__form-link">
+                        <Link to='/esqueci-senha' className="login__form-link">
                             Esqueci minha senha
                                 </Link>
                         <FormButton
