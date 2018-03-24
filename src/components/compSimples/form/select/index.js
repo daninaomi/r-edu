@@ -3,10 +3,34 @@ import classnames from 'classnames'
 import './select.css'
 
 
-const Select = ({ className, children, ...props }) => (
-    <select className={classnames("form-select", className)} {...props}>
-        {children}
-    </select>
-)
+class Select extends React.Component {
+    constructor(props) {
+        super(props)
+        this.validate = this.validate.bind(this)
+    }
+
+    validate(event) {
+        console.log('chamou o validate')
+        const value = event.target.value
+        const name = event.target.name
+
+        this.props.onChange(name, value, false)
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <select
+                    {...this.props}
+                    className={classnames("form-select", this.props.className)}
+                    onChange={this.validate}>
+                    {this.props.children}
+                </select >
+
+            </React.Fragment>
+
+        )
+    }
+}
 
 export default Select

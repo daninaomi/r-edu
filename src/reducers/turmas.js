@@ -21,8 +21,7 @@ export function turmas(estadoAtual = estadoInicial, acao) {
         case CADASTRA_TURMA:
             return {
                 ...estadoAtual,
-                ...acao.turma
-                // [acao.escola.id]: acao.escola
+                [acao.turma.id]: acao.turma
             }
         default:
             return estadoAtual

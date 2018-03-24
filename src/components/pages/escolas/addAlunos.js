@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
-import { cadastraAlunos } from '../../../actions'
+import { cadastraTurmaAluno } from '../../../actions'
 import './cadastro-turma.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
@@ -18,6 +18,7 @@ class AddAlunos extends React.Component {
             isInvalid: false,
             alunosFiltrados: [...props.alunos]
         }
+        this.listaAlunos = [...props.alunos]
         this.onSearch = this.onSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -40,29 +41,17 @@ class AddAlunos extends React.Component {
     }
 
     handleChange(name, value, isInvalid) {
-        this[name] = value;
-        this.setState({ isInvalid })
+        this.listaAlunos[value].checked = !this.listaAlunos[value].checked
+        console.log('lista de alunos', this.listaAlunos)
     }
 
     handleSubmit(event) {
 
         event.preventDefault()
-        const escola = this.state.escola
 
-        if (!this.state.isInvalid) {
-            const alunos = {
-                nome: this.nome,
-                sobrenome: this.sobrenome,
-                email: this.email
-            }
+        const alunos = this.listaAlunos.filter( aluno => aluno.checked)
+        this.props.cadastraTurmaAluno(alunos, this.props.turma)
 
-            const turma = {
-                idEscola: this.props.match.params.id,
-                idSala: this.sala
-            }
-
-            this.props.cadastraAlunos(alunos, turma)
-        }
     }
 
     render() {
@@ -85,7 +74,7 @@ class AddAlunos extends React.Component {
                         // required
                         />
 
-                        {this.state.alunosFiltrados.map(aluno => (
+                        {this.state.alunosFiltrados.map((aluno, index) => (
 
                             <label className="cadastro-turma__checkbox">
                                 <FormInput
@@ -94,11 +83,11 @@ class AddAlunos extends React.Component {
                                     name="search-bar"
                                     placeholder="Pesquise alunos por nome ou e-mail"
                                     onChange={this.handleChange}
-                                // value={this.state.novoAluno}
+                                    value={index}
                                 />
-                                <span class="cadastro-turma__checkbox-box"></span> 
+                                <span class="cadastro-turma__checkbox-box"></span>
                                 <div className="cadastro-turma__checkbox-names">
-                                {`${aluno.nome} ${aluno.sobrenome}`}
+                                    {`${aluno.nome} ${aluno.sobrenome}`}
                                 </div>
                             </label>
                         ))}
@@ -119,11 +108,11 @@ class AddAlunos extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    // const id = props.match.params.id
-    // const escola = state.escolas[id]
+    const id = props.match.params.id
+    const turma = state.turmas[id]
 
     return {
-        // escola,
+        turma,
         alunos: Object.keys(state.alunos).map(key => {
             return state.alunos[key]
         })
@@ -131,8 +120,8 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    cadastraAlunos: (alunos, escola) => {
-        dispatch(cadastraAlunos(alunos, escola))
+    cadastraTurmaAluno: (alunos, escola) => {
+        dispatch(cadastraTurmaAluno(alunos, escola))
     }
 })
 

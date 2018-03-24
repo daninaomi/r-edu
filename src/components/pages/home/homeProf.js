@@ -26,7 +26,7 @@ class HomeProf extends React.Component {
                 {/* <h1 className="home__title">Escolas</h1> */}
 
                 {/* <h1 className="home__title">Olá {user.name} !</h1> */}
-                <h1 className="home__title">Olá professor(a) !</h1>
+                <h1 className="home__title">Olá professor(a) {this.props.nome}!</h1>
                 <h2 className="home__subtitle">Selecione sua escola</h2>
 
                 <ContainerBox className="home__container">
@@ -51,6 +51,7 @@ class HomeProf extends React.Component {
 
 
 const mapStateToProps = state => ({
+    nome: state.user.usuario ? state.user.usuario.nome : '',
     escolas: Object.keys(state.escolas).map(key => {
         return state.escolas[key]
     })

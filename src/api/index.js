@@ -13,10 +13,7 @@ export function getLogin(user) {
 }
 
 export function postNewUser(user) {
-    
     const url = user.usuario.tipoUsuario === 1 ? '/professor' : '/aluno'
-
-    console.log('api user', user)
 
     return instance.post(url, { ...user })
 }
@@ -26,8 +23,14 @@ export function editUser(user) {
     return instance.put(url, { ...user })
 }
 
-export function postSala(sala) {
-    return instance.post('/', { sala })
+export function postTurma(turma) {
+    return instance.post('/turma', { ...turma })
+}
+
+export function postTurmaAluno(alunos, turma) {
+    return axios.all(alunos.map(aluno => {
+        return instance.post('/turmaaluno', { idTurma: turma.id, idAluno: aluno.id })
+    }))
 }
 
 export function getDesafio(desafio) {

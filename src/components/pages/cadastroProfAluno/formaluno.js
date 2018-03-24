@@ -54,7 +54,7 @@ class FormAluno extends React.Component {
                 nomeResponsavel: this.nomeResponsavel,
                 idEscola: this.idEscola
             }
-            this.props.cadastraUser(event, user)
+            this.props.cadastraUser(user)
 
             this.props.history.push('/login')
         }
@@ -99,7 +99,7 @@ class FormAluno extends React.Component {
                         <FormInput
                             className="cadastro__form-input"
                             type="password"
-                            name="password"
+                            name="senha"
                             placeholder="Senha"
                             autoComplete="current-password"
                             aria-label="senha"
@@ -108,7 +108,7 @@ class FormAluno extends React.Component {
                         <FormInput
                             className="cadastro__form-input"
                             type="password"
-                            name="password"
+                            name="confirma-senha"
                             placeholder="Confirme senha"
                             autoComplete="current-password"
                             aria-label="senha"
@@ -157,6 +157,7 @@ class FormAluno extends React.Component {
                         <Select
                             className="cadastro__form-select"
                             name="estado"
+                            onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Estado</option>
                             <option value="estado1">SP</option>
@@ -166,6 +167,7 @@ class FormAluno extends React.Component {
                         <Select
                             className="cadastro__form-select"
                             name="cidade"
+                            onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Cidade</option>
                             <option value="cidade1">São Paulo</option>
@@ -191,7 +193,7 @@ class FormAluno extends React.Component {
                             id="date"
                             required
                             onChange={this.handleChange} />
-                        
+
                         <FormInput
                             className="cadastro__form-input"
                             type="text"
@@ -199,11 +201,14 @@ class FormAluno extends React.Component {
                             placeholder="Nome do Responsável"
                             onChange={this.handleChange}
                             required />
-                        <Select name="idEscola" className="cadastro__form-select cadastro__form-input--1">
+                        <Select
+                            name="idEscola"
+                            className="cadastro__form-select cadastro__form-input--1"
+                            onChange={this.handleChange}>
                             <option value="" disabled selected>Escola</option>
-                            <option value="escola1">Escola 1</option>
-                            <option value="escola2">Escola 2</option>
-                            <option value="escola3">Escola 3</option>
+                            <option value="1">Escola 1</option>
+                            <option value="2">Escola 2</option>
+                            <option value="3">Escola 3</option>
                         </Select>
 
                         <FormButton

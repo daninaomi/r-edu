@@ -96,7 +96,7 @@ class FormProf extends React.Component {
                         <FormInput
                             className="cadastro__form-input"
                             type="password"
-                            name="password"
+                            name="senha"
                             placeholder="Senha"
                             autoComplete="current-password"
                             aria-label="senha"
@@ -105,7 +105,7 @@ class FormProf extends React.Component {
                         <FormInput
                             className="cadastro__form-input"
                             type="password"
-                            name="password"
+                            name="senhaConfirmada"
                             placeholder="Confirme senha"
                             autoComplete="current-password"
                             aria-label="senha"
@@ -154,6 +154,7 @@ class FormProf extends React.Component {
                         <Select
                             className="cadastro__form-select"
                             name="estado"
+                            onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Estado</option>
                             <option value="estado1">SP</option>
@@ -163,6 +164,7 @@ class FormProf extends React.Component {
                         <Select
                             className="cadastro__form-select"
                             name="cidade"
+                            onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Cidade</option>
                             <option value="cidade1">São Paulo</option>
@@ -189,7 +191,10 @@ class FormProf extends React.Component {
                             required
                             onChange={this.handleChange} />
                         
-                        <Select name="idEscola" className="cadastro__form-select cadastro__form-input--1">
+                        <Select 
+                        name="idEscola"
+                         className="cadastro__form-select cadastro__form-input--1"
+                         onChange={this.handleChange}>
                             <option value="" disabled selected>Escola</option>
                             <option value="escola1">Escola 1</option>
                             <option value="escola2">Escola 2</option>

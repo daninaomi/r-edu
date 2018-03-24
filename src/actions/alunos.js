@@ -1,36 +1,35 @@
 import { push } from 'react-router-redux'
-import { postTurma } from '../api'
+import { postTurmaAluno } from '../api'
 
-export const CADASTRA_ALUNOS = 'CADASTRA_ALUNOS'
+export const CADASTRA_TURMA_ALUNO = 'CADASTRA_TURMA_ALUNO'
 
 
-export function cadastraAlunos(alunos, turma) {
+export function cadastraTurmaAluno(alunos, turma) {
     return dispatch => {
-        dispatch({
-            type: CADASTRA_ALUNOS,
-            alunos: {
-                ...alunos
-            },
-            turma
-        })
+        // dispatch({
+        //     type: CADASTRA_ALUNOS,
+        //     alunos: {
+        //         ...alunos
+        //     },
+        //     turma
+        // })
 
-        dispatch(push(`/escolas/${turma.idEscola}`))
+        // dispatch(push(`/escolas/${turmas.idEscola}`))
 
-        // postTurma(alunos)
-        //     .then(response => {
-        //         dispatch({
-        //             type: CADASTRA_ALUNOS,
-        //             alunos: {
-        //                 ...alunos,
-        //                 id: response.data.id
-        //             },
-                        // turma,
-                        // posicao: response.data.posicao
-        //         })
-        //         dispatch(push(`/turmas/${response.data.id}`))
-        //     })
-        //     .catch(error => {
-        //         console.log('Ocorreu um erro', error)
-        //     })
+        postTurmaAluno(alunos, turma)
+        
+            .then(response => {
+                console.log('response', response)
+                dispatch({
+                    type: CADASTRA_TURMA_ALUNO,
+                    turmaAluno: response.data
+                })
+                dispatch(push(`/escolas/${turma.idEscola}`))
+            })
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
+            })
+
+
     }
 }

@@ -20,9 +20,7 @@ class AddTurma extends React.Component {
     }
 
 
-    handleChange(event) {
-        const name = event.target.name
-        const value = event.target.value
+    handleChange(name, value, isInvalid) {
 
         if (value === '') {
             this.setState({ isInvalid: true })
@@ -36,10 +34,12 @@ class AddTurma extends React.Component {
 
         if (!this.state.isInvalid) {
             const turma = {
-                idEscola: this.props.match.params.id,
-                // nome: this.nome,
+                // idEscola: this.props.match.params.id,
+                idEscola: 1,
+                nome: 'turma legal',
                 ano: this.ano,
                 serie: this.serie,
+                statusTurma: 1,
                 descricao: this.descricao,
             }
 
@@ -65,9 +65,9 @@ class AddTurma extends React.Component {
                             onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Ano</option>
-                            <option value="ano1">2017</option>
-                            <option value="ano2">2018</option>
-                            <option value="ano3">2019</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
                         </Select>
                         <Select
                             className="cadastro-turma__form-select"
@@ -75,10 +75,10 @@ class AddTurma extends React.Component {
                             onChange={this.handleChange}
                             required>
                             <option value="" disabled selected>Ano escolar</option>
-                            <option value="anoEscolar1">6º</option>
-                            <option value="anoEscolar2">7º</option>
-                            <option value="anoEscolar3">8º</option>
-                            <option value="anoEscolar4">9º</option>
+                            <option value="6º">6º</option>
+                            <option value="7º">7º</option>
+                            <option value="8º">8º</option>
+                            <option value="9º">9º</option>
                         </Select>
                         <FormInput
                             className="cadastro-turma__form-select"
