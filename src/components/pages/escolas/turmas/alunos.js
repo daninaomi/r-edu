@@ -38,9 +38,9 @@ class TurmaAlunos extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.alunos.map((aluno, index) => (
+                        {this.props.alunos.map((aluno) => (
                             <Card className="turmas__card-aluno">
-                                <h2 className="turmas__card-title">
+                                <h2 className="turmas__card-aluno-title">
                                     {`${aluno.nome} ${aluno.sobrenome}`}
                                 </h2>
                             </Card>

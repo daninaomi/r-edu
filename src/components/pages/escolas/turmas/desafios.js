@@ -9,6 +9,10 @@ import { addDesafio } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
+import bgFoguete from '../img/card-desafio-foguete.png'
+import bgVulcao from '../img/card-desafio-vulcao.png'
+import bgCamera from '../img/card-desafio-camera.png'
+import bgJardim from '../img/card-desafio-jardim.png'
 
 class TurmaDesafios extends React.Component {
     constructor(props) {
@@ -18,6 +22,21 @@ class TurmaDesafios extends React.Component {
     render() {
 
         const { turma, desafio, addDesafio } = this.props
+
+        var imgUrl = this.props.nome === 'Foguete' ?
+            imgUrl = bgFoguete :
+            this.props.nome === 'Vulcão' ?
+                imgUrl = bgVulcao :
+                this.props.nome === 'Vulcão' ?
+                    imgUrl = bgVulcao :
+                    this.props.nome === 'Camera' ?
+                        imgUrl = bgCamera :
+                        imgUrl = bgJardim
+
+        var divStyle = {
+            backgroundImage: `url(' + ${imgUrl} + ')';`,
+            backgroundSize: `cover;`
+        }
 
         return (
             <React.Fragment>
@@ -40,7 +59,7 @@ class TurmaDesafios extends React.Component {
 
                         {this.props.desafios.map(desafio => (
                             <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
-                                <Card >
+                                <Card style={divStyle} >
                                     <h2 className="turmas__card-title">
                                         {desafio.nome}
                                     </h2>

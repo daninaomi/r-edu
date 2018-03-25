@@ -8,7 +8,6 @@ import TurmaAlunos from './alunos'
 // import TurmaGrupos from './grupos'
 
 import { addDesafio, pushPage } from '../../../../actions'
-// import './escola.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 

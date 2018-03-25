@@ -36,6 +36,20 @@
     font-size: 1.2rem;
 }
 
+.turmas__card-aluno {
+    width: 100%;
+    border: 2px solid #4a148c;
+    border-radius: 10px;
+    margin: .2rem 0;
+    padding: 0;
+}
+
+.turmas__card-aluno-title {
+    color: #4a148c;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
 @media screen and (min-width: 768px) {
 
     .turmas__title {
