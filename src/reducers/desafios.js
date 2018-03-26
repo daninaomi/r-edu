@@ -8,7 +8,16 @@ const estadoInicial = {
     1: {
         id: 1,
         nome: 'Vulcão'
+    },
+    3: {
+        id: 3,
+        nome: 'Jardim'
     }
+    // },
+    // 4: {
+    //     id: 4,
+    //     nome: 'Camera'
+    // }
 }
 
 export function desafios(estadoAtual = estadoInicial, acao) {

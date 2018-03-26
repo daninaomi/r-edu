@@ -18,7 +18,6 @@ class Turma extends React.Component {
     }
 
     componentDidMount() {
-        console.log('props', this.props.turma)
         this.props.dispatchPushPage(this.props.turma.nome)
     }
 

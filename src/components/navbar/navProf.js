@@ -31,11 +31,11 @@ const NavProf = ({ user, deslogaUser, page }) => (
                 <h2 className="nav-menu-list__sobrenome">Sobrenome</h2>
             </li>
 
-            {/* <li className="nav-menu-list__item--logado">
-                <Link to='/' className="nav-menu-list__link">
+            <li className="nav-menu-list__item--logado">
+                <Link to='/desafios' className="nav-menu-list__link">
                     <FaTrophy className="navbar-pages-link-icon" />
                     desafios</Link>
-            </li> */}
+            </li>
             <li className="nav-menu-list__item--logado">
                 <Link to='/home' className="nav-menu-list__link">
                     <FaGroup className="navbar-pages-link-icon" />
