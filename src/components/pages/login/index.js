@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import Main from '../../main'
-import ContainerBox from '../../container-box'
-import Form from '../../form'
-import FormInput from '../../form/formInput'
-import FormButton from '../../form/formButton'
-import LinkButton from '../../linkButton'
+import Main from '../../compSimples/main'
+import ContainerBox from '../../compSimples/container-box'
+import Form from '../../compSimples/form'
+import FormInput from '../../compSimples/form/formInput'
+import FormButton from '../../compSimples/form/formButton'
+import LinkButton from '../../compSimples/linkButton'
 import { logaUser } from '../../../actions'
 import './login.css'
 
@@ -21,7 +21,6 @@ class Login extends React.Component {
     }
 
     handleChange(name, value, isInvalid) {
-        // this[name] = this.name
         this[name] = value
         this.setState({ isInvalid })
     }
@@ -46,10 +45,9 @@ class Login extends React.Component {
 
         return (
             user.logado ? (
-                
 
                 < Redirect to = "/home" />
-                
+
             ) : (
             <Main>
                 <ContainerBox>
@@ -74,7 +72,7 @@ class Login extends React.Component {
                             aria-label="senha"
                             required
                             onChange={this.handleChange} />
-                        <Link to='/' className="login__form-link">
+                        <Link to='/esqueci-senha' className="login__form-link">
                             Esqueci minha senha
                                 </Link>
                         <FormButton
@@ -111,7 +109,6 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-withRouter(connect(mapDispatchToProps)(FormButton))
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

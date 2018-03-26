@@ -1,11 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import Main from '../../main'
-import ContainerBox from '../../container-box'
-import Form from '../../form'
-import FormInput from '../../form/formInput'
-import FormButton from '../../form/formButton'
+import Main from '../../compSimples/main'
+import ContainerBox from '../../compSimples/container-box'
+import Form from '../../compSimples/form'
+import FormInput from '../../compSimples/form/formInput'
+import FormButton from '../../compSimples/form/formButton'
 import { selecionaUserType } from '../../../actions'
 import './escolha.css'
 
@@ -33,54 +33,59 @@ class Cadastro extends React.Component {
             }
             this.props.selecionaUserType(user)
 
-            this.props.history.push('/cadastroProfAluno')
+            this.props.history.push('/cadastro-prof-aluno')
         }
     }
 
     render() {
 
-        const { user, selecionarUserType } = this.props
+        const { user, selecionaUserType } = this.props
 
         return (
             <Main>
                 <ContainerBox >
                     <h1 className="escolha__title">Você é:</h1>
                     <Form className="escolha__form" onSubmit={this.handleSubmit}>
-                        <div className="escolha__container-radio">
-                            <FormInput
-                                className="escolha__form-radio-button"
-                                type="radio"
-                                name="userType"
-                                id="type-professor"
-                                value="professor"
-                                onChange={this.handleChange}
-                                required />
-                            <label
-                                className="escolha__form-radio-label"
-                                htmlFor="type-professor">
-                                Professor(a) </label>
-                        </div>
-                        <div className="escolha__container-radio">
-                            <FormInput
-                                className="escolha__form-radio-button"
-                                type="radio"
-                                name="userType"
-                                id="type-aluno"
-                                value="aluno"
-                                onChange={this.handleChange}
-                                required />
-                            <label
-                                className="escolha__form-radio-label"
-                                htmlFor="type-aluno">
-                                Aluno(a) </label>
+                        <div className="escolha__container">
+                            <ul class="escolha-option">
+                                <li class="escolha-option__item">
+                                    <FormInput
+                                        className="escolha-radio-btn"
+                                        type="radio"
+                                        name="userType"
+                                        id="type-professor"
+                                        value="professor"
+                                        onChange={this.handleChange}
+                                        required />
+                                    <label
+                                        className="escolha-radio-label"
+                                        htmlFor="type-professor">
+                                        Professor(a) </label>
+                                </li>
+                                <li class="escolha-option__item">
+                                    <FormInput
+                                        className="escolha-radio-btn"
+                                        type="radio"
+                                        name="userType"
+                                        id="type-aluno"
+                                        value="aluno"
+                                        onChange={this.handleChange}
+                                        required />
+                                    <label
+                                        className="escolha-radio-label"
+                                        htmlFor="type-aluno">
+                                        Aluno(a) </label>
+                                </li>
+                            </ul>
+                            
+                            <FormButton
+                                className="escolha__form-button"
+                                type="submit"
+                                disabled={this.state.isInvalid}>
+                                Continuar
+                        </FormButton>
                         </div>
 
-                        <FormButton
-                            className="escolha__form-button"
-                            type="submit"
-                            disabled={this.state.isInvalid}>
-                            Continuar
-                        </FormButton>
                     </Form>
                 </ContainerBox>
             </Main>
@@ -95,9 +100,14 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
+<<<<<<< HEAD
 
 
 export default withRouter(connect( null , mapDispatchToProps)(Cadastro))
+=======
+
+export default withRouter(connect(null, mapDispatchToProps)(Cadastro))
+>>>>>>> remotes/origin/master
 
 // const mapStateToProps = state => ({
 //     userType: state.userType

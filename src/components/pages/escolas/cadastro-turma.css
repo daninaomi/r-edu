@@ -1,0 +1,66 @@
+
+.cadastro-turma__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastro-turma__form-select {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.cadastro-turma__form-input {
+    margin-bottom: 1rem;
+}
+
+.cadastro-turma__checkbox {
+    position: relative;
+    margin: 1.1rem 1rem;
+    cursor: pointer;
+    color: white;
+}
+
+.cadastro-turma__checkbox-input {
+    position: absolute;
+    opacity: 0;
+}
+
+.cadastro-turma__checkbox-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid white;
+}
+
+.cadastro-turma__checkbox-input:checked ~ .cadastro-turma__checkbox-box {
+    background: #26a69a;
+    border: 2px solid white;
+}
+
+.cadastro-turma__checkbox-names {
+    position: absolute;
+    left: 40px;
+}
+
+.cadastro-turma__form-button {
+    width: 80%;
+    margin: 5rem auto;
+}
+
+@media screen and (min-width: 768px) {
+    
+    .cadastro-turma__checkbox {
+        margin: 1.1rem 5rem;
+        color: #4a148c;
+    }
+
+    .cadastro-turma__checkbox-box {
+        border-color: #4a148c;
+    }
+
+    .cadastro-turma__checkbox-input:checked ~ .cadastro-turma__checkbox-box {
+        border-color: #4a148c;
+    }
+}

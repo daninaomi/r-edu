@@ -1,26 +1,37 @@
 import React from 'react';
+import registerServiceWorker from './registerServiceWorker';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { Router, browserHistory } from 'react-router'
+import { routerReducer, ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
+import createHistory from 'history/createBrowserHistory'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 
 import redutor from './reducers'
-import './index.css';
 import App from './components/app';
-// import registerServiceWorker from './registerServiceWorker';
-console.log(redutor)
+import './index.css';
+
+
 
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
-const store = createStore(redutor, composeEnhancers(applyMiddleware(thunk)))
+
+const history = createHistory()
+
+const store = createStore(redutor, composeEnhancers(
+    applyMiddleware(thunk),
+    applyMiddleware(routerMiddleware(history))
+)
+)
+
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <App />
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 );
 
-// registerServiceWorker();
+registerServiceWorker();

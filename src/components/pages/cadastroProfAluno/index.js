@@ -24,21 +24,23 @@ class Cadastro extends React.Component {
 
         if (!this.state.isInvalid) {
             const user = {
-                apelido: this.apelido,
-                nome: this.nome,
-                sobrenome: this.sobrenome,
+                usuario: {
+                    nome: this.nome,
+                    sobrenome: this.sobrenome,
+                    email: this.email,
+                    senha: this.senha,
+                    tipoUsuario: this.tipoUsuario
+                },
                 sexo: this.sexo,
-                email: this.email,
-                senha: this.senha,
                 cidade: this.cidade,
                 estado: this.estado,
                 telefone: this.telefone,
                 dataNascimento: this.dataNascimento,
                 cpf: this.cpf,
                 nomeResponsavel: this.nomeResponsavel,
-                escola: this.escola
+                idEscola: this.idEscola
             }
-            this.props.cadastraUser(event, user)
+            this.props.cadastraUser(user)
 
             this.props.history.push('/login')
         }
@@ -48,7 +50,6 @@ class Cadastro extends React.Component {
 
         const { user, cadastraUser, selecionarUserType } = this.props
 
-        console.log(user)
         return (
             user.type === 'professor' ? (
                 <FormProf />
@@ -71,4 +72,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default withRouter(connect( mapStateToProps , mapDispatchToProps)(Cadastro))
+export default withRouter(connect( mapStateToProps, mapDispatchToProps)(Cadastro))

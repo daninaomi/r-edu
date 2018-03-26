@@ -1,21 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import classnames from 'classnames'
+
 import { deslogaUser } from '../../actions'
+import NavProf from './navProf'
+import NavAluno from './navAluno'
+
 import IconMenu from 'react-icons/lib/fa/bars'
-import IconSair from 'react-icons/lib/fa/power-off'
 import './navbar.css'
 import logo from './logo-icon.png'
 
+
 const Navbar = ({ user, deslogaUser }) => (
-    <nav className="navbar">
-        <Link to="/">
-            <img className="navbar__logo" src={logo} alt="logo" />
-        </Link>
+    
+    <React.Fragment>
 
         {!user.logado && (
-            <React.Fragment>
+            
+            <nav className="navbar">
+                <Link to="/">
+                    <img className="navbar__logo" src={logo} alt="logo" />
+                </Link>
+
                 <input id="menu-burger" className="nav-menu-button" type="checkbox" hidden />
                 <label htmlFor="menu-burger" className="icon-menu">
                     <IconMenu />
@@ -31,28 +37,31 @@ const Navbar = ({ user, deslogaUser }) => (
                         <Link to='/login' className="nav-menu-list__link">Entrar</Link>
                     </li>
                 </ul>
-            </React.Fragment>
-         )}
+                </nav>
+        )}
         {user.logado && (
-
-            // criar if versão prof ou aluno
 
             // react router match url ou path
 
-            <li className="nav-menu-list__item">
-                <a className="nav-menu-list__link nav-menu-list__item--sair" onClick={deslogaUser}>
-                    <IconSair className="navbar-pages-link-icon" /> Sair
-                </a>
-            </li>
-        )} 
-    </nav>
+            user.type === 'professor' ? (
+                <NavProf />
+            ) : (
+                <NavAluno />
+            )
+
+
+        )}
+    
+    </React.Fragment>
 )
 
-const mapStateToProps = state => (
-    {
-        user: state.user
+const mapStateToProps = state => {
+    // console.log('pagina:', state)
+    return {
+        user: state.user,
+        page: state.page
     }
-)
+}
 
 const mapDispatchToProps = dispatch => (
     {

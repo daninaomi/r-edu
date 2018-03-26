@@ -1,0 +1,71 @@
+.home__main {
+    height: 100%;
+    background: white;
+}
+
+.home__title {
+    margin: 10px 0 0 0;
+    padding: 8% 5% 0 5%;
+    color: #4a148c;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.home__subtitle {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0 5%;
+    font-size: 1rem;
+}
+
+.home__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: white;
+    padding: 8% 5%;
+    min-height: 0;
+}
+
+.home__card {
+    width: 47%;
+    height: 170px;
+    margin: 10px 0;
+    background: white;
+    text-decoration: none;
+    background-image: url("card-escola.png");
+    background-size: cover;
+}
+
+.home__card-title {
+    margin: 0;
+    padding: 10%;
+    color: white;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+
+    .home__title {
+        /* float: left; */
+        margin: 0;
+    }
+
+    .home__container {
+        /* width: 75%; */
+        padding: 3% 5%;
+    }
+
+    .home__card {
+        width: 30%;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    
+    .home__container {
+        width: 100%;
+    }
+}

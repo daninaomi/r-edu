@@ -1,23 +1,53 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Redirect, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
-class LandingPage extends React.Component {
+import HomeProf from './homeProf'
+// import HomeAluno from './homeAluno'
+import { deslogaUser } from '../../../actions'
+// import './login.css'
+
+
+class Home extends React.Component {
     constructor(props) {
         super(props)
+        this.state = { isInvalid: false }
     }
-    
+
     render() {
 
-        return (
-            <React.Fragment>
-                <header>
-                    <h1>R.Edu</h1>
-                </header>
+        const { user, logaUser } = this.props
 
-                <main></main>
-            </React.Fragment>
+        return (
+            !user.logado ? (
+
+                < Redirect to="/login" />
+
+            ) : (
+
+                    // user.type === 'professor' ? (
+                        <HomeProf />
+                    // ) : (
+                    //     <HomeAluno />
+                    // )
+                )
         )
     }
+
 }
 
-export default LandingPage
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({
+    deslogaUser: (event, user) => {
+        event.preventDefault()
+        dispatch(deslogaUser(user))
+    }
+})
+
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))

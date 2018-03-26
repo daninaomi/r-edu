@@ -1,17 +1,41 @@
 
 .perfil__banner {
     width: 100%;
-    height: 100%;
+    height: 150px;
     position: relative;
     background-image: url("background-mobile.png");
+    background-position: center;
+    background-size: cover;
 }
 
 .perfil__title {
     position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     text-align: center;
-    font-size: 1.5rem;
     font-weight: 700;
+}
+
+.perfil__title--nome {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+.perfil__title--sobrenome {
+    font-size: 2rem;
+    bottom: -9%;
+}
+
+.perfil__subtitle {
+    width: 100%;
+    padding: 2%;
+    margin: 0;
+    background: #26a69a;
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 .perfil__form {
@@ -69,14 +93,23 @@
 
 .perfil__form-button {
     width: 80%;
-    margin: 110px 0;
+    margin: 40px 0;
 }
 
 
 @media screen and (min-width: 768px) {
 
-    .perfil__title {
-        color: #4a148c;
+    .perfil__banner {
+        background-image: url("background.png");
+    }
+
+    .perfil__subtitle {
+        padding: 1%;
+    }
+
+    .perfil__container {
+        padding: 5% 20%;
+        background: white;
     }
 
     .perfil__form {
@@ -101,4 +134,11 @@
         color: #4a148c;
     }
 
+}
+
+@media screen and (min-width: 992px) {
+
+    .perfil__container {
+        padding: 5% 5%;
+    }
 }

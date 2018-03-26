@@ -1,0 +1,121 @@
+.navbar--logado {
+    width: 100%;
+    padding: 2% 5%;
+    background: #4a148c;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-menu--logado:hover, .icon-menu--logado:focus {
+    cursor: pointer;
+}
+
+.nav-menu-button--logado:checked ~ .nav-menu-list--logado {
+    position: absolute; 
+    left: 0;
+    text-align: left;
+}
+
+.icon-menu--logado {
+    color: white;
+    font-size: 1.8rem;
+}
+
+.nav-menu-list--logado {
+    position: absolute;
+    left: -70%;
+    width: 70%;
+    min-height: 100vh;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    top: 40px;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+    background: #4a148c;
+}
+
+.nav-menu-list__item--logado {
+    list-style-type: none; 
+    margin: 10% 10%;
+}
+
+.nav-menu-list__tipo-user {
+    margin-top: 60px;
+    color: white;
+    font-size: 1rem;
+}
+
+.nav-menu-list__nome {
+    margin-bottom: 5px;
+    color: #1de9b6;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.nav-menu-list__sobrenome {
+    margin-top: 0;
+    color: #1de9b6;
+    font-weight: 700;
+}
+
+.navbar-pages-link-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.nav-menu-list__item--sair {
+    list-style-type: none;
+    margin: 90% 0 0 15%; 
+}
+
+.navbar__title {
+    margin: 7px 0;
+    font-size: 1.2rem;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+
+    .navbar--logado {
+        padding: 1% 30px;
+    }
+
+    .nav-menu-list--logado {
+        left: -40%;
+        width: 40%;
+        top: 50px;
+    }
+
+    .nav-menu-list__item--logado {
+        margin: 5% 30px;
+    }
+    
+}
+
+@media screen and (min-width: 992px) {
+
+    .navbar--logado {
+        padding: 1% 40px;
+    }
+
+    .nav-menu-list--logado {
+        left: -30%;
+        width: 30%;
+    }
+
+    .nav-menu-list__item--logado {
+        margin: 5% 40px;
+    }
+
+    .nav-menu-list__tipo-user {
+        margin-top: 6rem;
+    }
+
+}
