@@ -100,8 +100,14 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
+<<<<<<< HEAD
+
+
+export default withRouter(connect( null , mapDispatchToProps)(Cadastro))
+=======
 
 export default withRouter(connect(null, mapDispatchToProps)(Cadastro))
+>>>>>>> remotes/origin/master
 
 // const mapStateToProps = state => ({
 //     userType: state.userType
