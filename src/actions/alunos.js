@@ -10,7 +10,7 @@ export function listaAlunos(alunos) {
         getAlunos(alunos)
             .then(response => dispatch({
                 type: LISTA_ALUNOS, 
-                alunos: response.data.usuario.id
+                alunos: response.data
             }))
             .catch(error => {
                 console.log('Ocorreu um erro', error)

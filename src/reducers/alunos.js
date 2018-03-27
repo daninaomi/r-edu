@@ -25,12 +25,16 @@ import { LISTA_ALUNOS } from "../actions";
 //     }
 // }
 
-export function alunos(estadoAtual = [], acao) {
+export function alunos(estadoAtual = {}, acao) {
     switch (acao.type) {
         case LISTA_ALUNOS:
-            return acao.alunos.map(aluno => {
-                return acao.alunos
-            })
+            let novoEstado = {};
+
+            acao.alunos.forEach(aluno => (
+                novoEstado[aluno.id] = aluno
+            ))
+
+            return novoEstado
         default:
             return estadoAtual
     }
