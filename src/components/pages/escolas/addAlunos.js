@@ -112,9 +112,10 @@ const mapStateToProps = (state, props) => {
 
     return {
         turma,
-        alunos: Object.keys(state.alunos).map(key => {
-            return state.alunos[key]
-        })
+        // alunos: Object.keys(state.alunos).map(key => {
+        //     return state.alunos[key]
+        // })
+        alunos: state.alunos
     }
 }
 

@@ -23,8 +23,16 @@ export function editUser(user) {
     return instance.put(url, { ...user })
 }
 
+export function getTurma(turma) {
+    return instance.get('/turma', { ...turma })
+}
+
 export function postTurma(turma) {
     return instance.post('/turma', { ...turma })
+}
+
+export function getAlunos(alunos) {
+    return instance.get('/aluno', { ...alunos })
 }
 
 export function postTurmaAluno(alunos, turma) {

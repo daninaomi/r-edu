@@ -6,13 +6,13 @@ const estadoInicial = {
         id: 0,
         nome: '6º A',
         desafios: [0,1],
-        alunos: [0,1]
+        alunos: []
     },
     1: {
         id: 1,
         nome: '6º B',
         desafios: [0],
-        alunos: [0]
+        alunos: []
     }
     
 }

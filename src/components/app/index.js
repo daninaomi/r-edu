@@ -11,6 +11,7 @@ import CadastroProfAluno from '../pages/cadastroProfAluno'
 import Perfil from '../pages/perfil'
 import LandingPage from '../pages/landingPage';
 import Escolas from '../pages/escolas';
+import Desafios from '../pages/desafios';
 import AddTurma from '../pages/escolas/addTurma';
 import AddAlunos from '../pages/escolas/addAlunos';
 import Turmas from '../pages/escolas/turmas';
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/cadastro-prof-aluno" component={CadastroProfAluno} />
             <Route path="/perfil" component={Perfil} />
             <Route path="/home" component={Home} />
+            <Route exact path="/desafios" component={Desafios} />
             <Route exact path="/escolas/:id" component={Escolas} />
             <Route path="/escolas/:id/cadastro-turmas" component={AddTurma} />
             <Route path="/turmas/:id/cadastro-alunos" component={AddAlunos} />
