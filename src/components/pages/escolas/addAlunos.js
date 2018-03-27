@@ -6,7 +6,7 @@ import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
-import { cadastraTurmaAluno } from '../../../actions'
+import { cadastraTurmaAluno, listaAlunos } from '../../../actions'
 import './cadastro-turma.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
@@ -24,6 +24,9 @@ class AddAlunos extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    componentDidMount() {
+        this.props.dispatchListaAlunos(this.props.alunos)
+    }
 
     onSearch(name, value, isInvalid) {
         // pegar o valor do campo de pesquisa
@@ -32,7 +35,6 @@ class AddAlunos extends React.Component {
             const alunosFiltrados = this.props.alunos.filter(aluno => {
                 return aluno.nome.toLowerCase() === value.toLowerCase() || aluno.sobrenome.toLowerCase() === value.toLowerCase() || aluno.email.toLowerCase() === value.toLowerCase()
             })
-
             // setar no state a lista de alunos filtrados
             this.setState({ alunosFiltrados })
         } else {
@@ -45,12 +47,10 @@ class AddAlunos extends React.Component {
     }
 
     handleSubmit(event) {
-
         event.preventDefault()
 
         const alunos = this.listaAlunos.filter( aluno => aluno.checked)
         this.props.cadastraTurmaAluno(alunos, this.props.turma)
-
     }
 
     render() {
@@ -86,7 +86,7 @@ class AddAlunos extends React.Component {
                                 />
                                 <span class="cadastro-turma__checkbox-box"></span>
                                 <div className="cadastro-turma__checkbox-names">
-                                    {`${aluno.nome} ${aluno.sobrenome}`}
+                                    {`${alunos.key.usuario.nome} ${alunos.key.usuario.sobrenome}`}
                                 </div>
                             </label>
                         ))}
@@ -112,14 +112,17 @@ const mapStateToProps = (state, props) => {
 
     return {
         turma,
-        // alunos: Object.keys(state.alunos).map(key => {
-        //     return state.alunos[key]
-        // })
-        alunos: state.alunos
+        alunos: Object.keys(state.alunos).map(key => {
+            return state.alunos[key]
+        })
+        // alunos: state.alunos
     }
 }
 
 const mapDispatchToProps = dispatch => ({
+    dispatchListaAlunos: alunos => {
+        dispatch(listaAlunos(alunos))
+    },
     cadastraTurmaAluno: (alunos, escola) => {
         dispatch(cadastraTurmaAluno(alunos, escola))
     }
