@@ -50,8 +50,6 @@ class Cadastro extends React.Component {
 
         const { user, cadastraUser, selecionarUserType } = this.props
 
-        console.log('user', user)
-
         return (
             user.type === 'professor' ? (
                 <FormProf />
