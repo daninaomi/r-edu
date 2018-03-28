@@ -24,19 +24,31 @@ class TurmaDesafios extends React.Component {
         const { turma, desafio, addDesafio } = this.props
 
         //SWITCH CASE
-        
-        // var imgUrl = (this.props.nome === 'Foguete') ?
-        //     imgUrl = bgFoguete :
-        //     (this.props.nome === 'Vulcão') ?
-        //         imgUrl = bgVulcao :
-        //         (this.props.nome === 'Jardim') ?
-        //             imgUrl = bgJardim :
-        //                 imgUrl = bgCamera 
-                        
-        // var divStyle = {
-        //     backgroundImage: `url(' + ${imgUrl} + ')';`,
-        //     backgroundSize: `cover;`
-        // }
+        let imgUrl = this.props.nome
+
+        switch (imgUrl) {
+          case 'Foguete':
+            // imgUrl = 'Foguete'
+            return bgFoguete
+            break;
+          case 'Vulcao':
+              // imgUrl = 'Vulcao'
+              return bgVulcao
+              break;
+          case 'Jardim':
+              // imgUrl = 'Jardim'
+              return bgJardim
+              break;
+          case 'Camera':
+              // imgUrl = 'Camera'
+              return bgCamera
+              break;
+          default: bgFoguete
+        }
+
+        const divStyle = {
+            backgroundImage: `url(' + ${this.imgUrl} + ')';`
+        }
 
         return (
             <React.Fragment>
@@ -49,7 +61,7 @@ class TurmaDesafios extends React.Component {
                         <h2>Alunos</h2>
                     </Link>
                     {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
-                    <h2>Grupos</h2> 
+                    <h2>Grupos</h2>
                     </Link>*/}
                 </nav>
 
@@ -59,8 +71,8 @@ class TurmaDesafios extends React.Component {
 
                         {this.props.desafios.map(desafio => (
                             <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
-                                {/* <Card style={divStyle} > */}
-                                <Card >
+
+                                <Card style={divStyle} >
                                     <h2 className="turmas__card-title">
                                         {desafio.nome}
                                     </h2>
@@ -96,4 +108,3 @@ const mapStateToProps = (state, props) => {
 }
 
 export default withRouter(connect(mapStateToProps)(TurmaDesafios))
-

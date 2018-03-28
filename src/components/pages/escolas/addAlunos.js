@@ -73,7 +73,7 @@ class AddAlunos extends React.Component {
                         // required
                         />
 
-                        {this.state.alunosFiltrados.map((aluno, index) => (
+                        {this.state.alunosFiltrados.map((aluno) => (
 
                             <label className="cadastro-turma__checkbox">
                                 <FormInput
@@ -82,7 +82,7 @@ class AddAlunos extends React.Component {
                                     name="search-bar"
                                     placeholder="Pesquise alunos por nome ou e-mail"
                                     onChange={this.handleChange}
-                                    value={index}
+                                    value={aluno.key}
                                 />
                                 <span class="cadastro-turma__checkbox-box"></span>
                                 <div className="cadastro-turma__checkbox-names">
