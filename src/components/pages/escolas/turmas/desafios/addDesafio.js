@@ -1,12 +1,14 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Main from '../../compSimples/main'
-import ContainerBox from '../../compSimples/container-box'
-import Form from '../../compSimples/form'
-import FormButton from '../../compSimples/form/formButton'
-// import { cadastraDesafio } from '../../../actions'
-import './cadastro-turma.css'
+import Main from '../../../../compSimples/main'
+import ContainerBox from '../../../../compSimples/container-box'
+import Card from '../../../../card'
+import Form from '../../../../compSimples/form'
+import FormButton from '../../../../compSimples/form/formButton'
+// import { cadastraDesafio } from '../../../../actions'
+// import './cadastro-desafio.css'
 import FaUserPlus from 'react-icons/lib/fa/user-plus'
 
 
@@ -82,6 +84,7 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id // const id = 0
     const turma = state.turmas[id]
+    const desafios = turma.desafios
 
     return {
         turma,
@@ -92,11 +95,11 @@ const mapStateToProps = (state, props) => {
 }
 
 
-const mapDispatchToProps = dispatch => ({
-    cadastraDesafio: (desafio) => {
-        dispatch(cadastraDesafio(desafio))
-    }
-})
+// const mapDispatchToProps = dispatch => ({
+//     cadastraDesafio: (desafio) => {
+//         dispatch(cadastraDesafio(desafio))
+//     }
+// })
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddDesafio))
+export default withRouter(connect(mapStateToProps)(AddDesafio))

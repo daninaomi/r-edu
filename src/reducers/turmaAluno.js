@@ -5,7 +5,7 @@ import {
 
 
 export function turmaAluno(estadoAtual = {} , acao) {
-    console.log('action turma aluno', acao)
+    // console.log('action turma aluno', acao)
     switch (acao.type) {
 
         case CADASTRA_TURMA_ALUNO:

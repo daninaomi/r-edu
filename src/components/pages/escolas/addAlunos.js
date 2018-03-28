@@ -25,7 +25,7 @@ class AddAlunos extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatchListaAlunos(this.props.alunos)
+        this.props.dispatchListaAlunos()
     }
 
     onSearch(name, value, isInvalid) {
@@ -33,7 +33,7 @@ class AddAlunos extends React.Component {
         if (!isInvalid) {
             // percorrer a lista de alunos e verificar se tem alguem com nome ou email = valor de cima
             const alunosFiltrados = this.props.alunos.filter(aluno => {
-                return aluno.nome.toLowerCase() === value.toLowerCase() || aluno.sobrenome.toLowerCase() === value.toLowerCase() || aluno.email.toLowerCase() === value.toLowerCase()
+                return aluno.usuario.nome.toLowerCase() === value.toLowerCase() || aluno.usuario.sobrenome.toLowerCase() === value.toLowerCase() || aluno.usuario.email.toLowerCase() === value.toLowerCase()
             })
             // setar no state a lista de alunos filtrados
             this.setState({ alunosFiltrados })
@@ -86,7 +86,7 @@ class AddAlunos extends React.Component {
                                 />
                                 <span class="cadastro-turma__checkbox-box"></span>
                                 <div className="cadastro-turma__checkbox-names">
-                                    {`${alunos.key.usuario.nome} ${alunos.key.usuario.sobrenome}`}
+                                    {`${aluno.usuario.nome} ${aluno.usuario.sobrenome}`}
                                 </div>
                             </label>
                         ))}
@@ -120,8 +120,8 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    dispatchListaAlunos: alunos => {
-        dispatch(listaAlunos(alunos))
+    dispatchListaAlunos: () => {
+        dispatch(listaAlunos())
     },
     cadastraTurmaAluno: (alunos, escola) => {
         dispatch(cadastraTurmaAluno(alunos, escola))

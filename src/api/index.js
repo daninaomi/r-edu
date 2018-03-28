@@ -28,19 +28,27 @@ export function getTurma(turma) {
 }
 
 export function postTurma(turma) {
-    return instance.post('/turma', { ...turma })
+    return instance.post('/turma/cadastrar', { ...turma })
 }
 
 export function getAlunos(alunos) {
-    return instance.get('/aluno', { ...alunos })
+    return instance.get('/aluno/listar', { ...alunos })
 }
 
 export function postTurmaAluno(alunos, turma) {
     return axios.all(alunos.map(aluno => {
-        return instance.post('/turmaaluno', { idTurma: turma.id, idAluno: aluno.id })
+        return instance.post('/turmaaluno/cadastrar', { idTurma: turma.id, idAluno: aluno.id })
     }))
 }
 
 export function getDesafio(desafio) {
-    return instance.get('/', { desafio })
+    return instance.get('/desafio/listar', { desafio })
+}
+
+export function postDesafio(desafio) {
+    return instance.get('/desafio/cadastrar', { desafio })
+}
+
+export function postAula(aula) {
+    return instance.get('/aula/listar', { aula })
 }

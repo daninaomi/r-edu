@@ -5,9 +5,9 @@ export const CADASTRA_TURMA_ALUNO = 'CADASTRA_TURMA_ALUNO'
 export const LISTA_ALUNOS = 'LISTA_ALUNOS'
 
 
-export function listaAlunos(alunos) {
+export function listaAlunos() {
     return dispatch => {
-        getAlunos(alunos)
+        getAlunos()
             .then(response => dispatch({
                 type: LISTA_ALUNOS, 
                 alunos: response.data
@@ -33,7 +33,6 @@ export function cadastraTurmaAluno(alunos, turma) {
         postTurmaAluno(alunos, turma)
         
             .then(response => {
-                console.log('response', response)
                 dispatch({
                     type: CADASTRA_TURMA_ALUNO,
                     turmaAluno: response.data

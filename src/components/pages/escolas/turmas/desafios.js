@@ -23,20 +23,20 @@ class TurmaDesafios extends React.Component {
 
         const { turma, desafio, addDesafio } = this.props
 
-        var imgUrl = this.props.nome === 'Foguete' ?
-            imgUrl = bgFoguete :
-            this.props.nome === 'Vulcão' ?
-                imgUrl = bgVulcao :
-                this.props.nome === 'Vulcão' ?
-                    imgUrl = bgVulcao :
-                    this.props.nome === 'Camera' ?
-                        imgUrl = bgCamera :
-                        imgUrl = bgJardim
-
-        var divStyle = {
-            backgroundImage: `url(' + ${imgUrl} + ')';`,
-            backgroundSize: `cover;`
-        }
+        //SWITCH CASE
+        
+        // var imgUrl = (this.props.nome === 'Foguete') ?
+        //     imgUrl = bgFoguete :
+        //     (this.props.nome === 'Vulcão') ?
+        //         imgUrl = bgVulcao :
+        //         (this.props.nome === 'Jardim') ?
+        //             imgUrl = bgJardim :
+        //                 imgUrl = bgCamera 
+                        
+        // var divStyle = {
+        //     backgroundImage: `url(' + ${imgUrl} + ')';`,
+        //     backgroundSize: `cover;`
+        // }
 
         return (
             <React.Fragment>
@@ -59,7 +59,8 @@ class TurmaDesafios extends React.Component {
 
                         {this.props.desafios.map(desafio => (
                             <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
-                                <Card style={divStyle} >
+                                {/* <Card style={divStyle} > */}
+                                <Card >
                                     <h2 className="turmas__card-title">
                                         {desafio.nome}
                                     </h2>

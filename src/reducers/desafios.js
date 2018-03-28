@@ -3,15 +3,18 @@ import { ADD_DESAFIO } from "../actions";
 const estadoInicial = {
     0: {
         id: 0,
-        nome: 'Foguete'
+        nome: 'Foguete',
+        disciplinas: [0,1]
     },
     1: {
         id: 1,
-        nome: 'Vulcão'
+        nome: 'Vulcão',
+        disciplinas: []
     },
     3: {
         id: 3,
-        nome: 'Jardim'
+        nome: 'Jardim',
+        disciplinas: []
     }
     // },
     // 4: {
