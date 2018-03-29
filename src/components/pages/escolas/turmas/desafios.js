@@ -5,50 +5,24 @@ import { withRouter } from 'react-router'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
 import Card from '../../../card'
-import { addDesafio } from '../../../../actions'
+import { listaDesafios, listaTurmas } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
-import bgFoguete from '../img/card-desafio-foguete.png'
-import bgVulcao from '../img/card-desafio-vulcao.png'
-import bgCamera from '../img/card-desafio-camera.png'
-import bgJardim from '../img/card-desafio-jardim.png'
 
 class TurmaDesafios extends React.Component {
     constructor(props) {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.dispatchListaTurmas()
+        this.props.dispatchListaDesafios()
+    }
+
     render() {
 
-        const { turma, desafio, addDesafio } = this.props
-
-        //SWITCH CASE
-        let imgUrl = this.props.nome
-
-        switch (imgUrl) {
-          case 'Foguete':
-            // imgUrl = 'Foguete'
-            return bgFoguete
-            break;
-          case 'Vulcao':
-              // imgUrl = 'Vulcao'
-              return bgVulcao
-              break;
-          case 'Jardim':
-              // imgUrl = 'Jardim'
-              return bgJardim
-              break;
-          case 'Camera':
-              // imgUrl = 'Camera'
-              return bgCamera
-              break;
-          default: bgFoguete
-        }
-
-        const divStyle = {
-            backgroundImage: `url(' + ${this.imgUrl} + ')';`
-        }
+        const { turma, desafio, listaDesafios } = this.props
 
         return (
             <React.Fragment>
@@ -57,9 +31,11 @@ class TurmaDesafios extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
-                        <h2>Alunos</h2>
-                    </Link>
+                    {this.props.turma && 
+                        <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                            <h2>Alunos</h2>
+                        </Link>
+                    }
                     {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
                     <h2>Grupos</h2>
                     </Link>*/}
@@ -69,10 +45,10 @@ class TurmaDesafios extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.desafios.map(desafio => (
+                        {this.props.desafios && this.props.desafios.map(desafio => (
                             <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
 
-                                <Card style={divStyle} >
+                                <Card >
                                     <h2 className="turmas__card-title">
                                         {desafio.nome}
                                     </h2>
@@ -80,11 +56,13 @@ class TurmaDesafios extends React.Component {
                             </Link>
                         ))}
 
-                        <Link className="turmas__card escolas__card-icon" to={`/turma/${this.props.turma.id}/cadastro-desafios`}>
+                        {this.props.turma && 
+                        <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios-1`}>
                             <Card>
                                 <FaPlusCircle className="escolas__icon" />
                             </Card>
                         </Link>
+                        }
 
                     </ContainerBox>
                 </Main>
@@ -97,14 +75,59 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const desafios = turma.desafios
+    const desafios = turma && turma.desafios || []
 
     return {
         turma,
         desafios: desafios.map(desafio => {
-            return state.desafios[desafio];
+            return props.desafios[desafio];
         })
     }
 }
 
-export default withRouter(connect(mapStateToProps)(TurmaDesafios))
+const mapDispatchToProps = dispatch => ({
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
+    dispatchListaDesafios: () => {
+        dispatch(listaDesafios())
+    }
+})
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TurmaDesafios))
+
+
+// import bgFoguete from '../img/card-desafio-foguete.png'
+// import bgVulcao from '../img/card-desafio-vulcao.png'
+// import bgCamera from '../img/card-desafio-camera.png'
+// import bgJardim from '../img/card-desafio-jardim.png'
+
+// //SWITCH CASE
+// let imgUrl = this.props.nome
+
+// switch (imgUrl) {
+//   case 'Foguete':
+//     // imgUrl = 'Foguete'
+//     return bgFoguete
+//     break;
+//   case 'Vulcao':
+//       // imgUrl = 'Vulcao'
+//       return bgVulcao
+//       break;
+//   case 'Jardim':
+//       // imgUrl = 'Jardim'
+//       return bgJardim
+//       break;
+//   case 'Camera':
+//       // imgUrl = 'Camera'
+//       return bgCamera
+//       break;
+//   default: bgFoguete
+// }
+
+// const divStyle = {
+//     backgroundImage: `url(' + ${this.imgUrl} + ')';`
+// }
+
+{/* <Card style={divStyle} > */}

@@ -21,11 +21,9 @@ class AddTurma extends React.Component {
 
 
     handleChange(name, value, isInvalid) {
-
         if (value === '') {
             this.setState({ isInvalid: true })
         }
-
         this[name] = value;
     }
 
@@ -36,15 +34,14 @@ class AddTurma extends React.Component {
             const turma = {
                 // idEscola: this.props.match.params.id,
                 idEscola: 1,
-                nome: 'turma legal',
                 ano: this.ano,
                 serie: this.serie,
                 statusTurma: 1,
                 descricao: this.descricao,
+                nome: `${this.serie} ${this.descricao}`
             }
 
             this.props.cadastraTurma(turma)
-
         }
     }
 

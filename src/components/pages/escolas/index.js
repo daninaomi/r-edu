@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
-import { pushPage } from '../../../actions'
+import { pushPage, listaTurmas } from '../../../actions'
 import './escola.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
@@ -17,10 +17,11 @@ class Escola extends React.Component {
     }
 
     componentDidMount() {
+        this.props.dispatchListaTurmas()
         this.props.dispatchPushPage(this.props.escola.nome)
     }
 
-    render() {
+    render() {       
 
         return (
 
@@ -28,7 +29,7 @@ class Escola extends React.Component {
 
                 <ContainerBox className="escolas__container">
 
-                    {this.props.turmas.map(turma => (
+                    {this.props.turmas && this.props.turmas.map(turma => (
                         <Link className="escolas__card" to={`/turmas/${turma.id}`}>
                             <Card >
                                 <h2 className="escolas__card-title">
@@ -58,13 +59,16 @@ const mapStateToProps = (state, props) => {
 
     return {
         escola,
-        turmas: turmas.map(turma => { // turma = 1 [{...}, {....}]
-            return state.turmas[turma];
+        turmas: Object.keys(state.turmas).map(key => {
+            return state.turmas[key]
         })
     }
 }
 
 const mapDispatchToProps = dispatch => ({
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
     dispatchPushPage: page => {
         dispatch(pushPage(page))
     }

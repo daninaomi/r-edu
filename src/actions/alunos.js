@@ -20,22 +20,13 @@ export function listaAlunos() {
 
 export function cadastraTurmaAluno(alunos, turma) {
     return dispatch => {
-        // dispatch({
-        //     type: CADASTRA_ALUNOS,
-        //     alunos: {
-        //         ...alunos
-        //     },
-        //     turma
-        // })
-
-        // dispatch(push(`/escolas/${turmas.idEscola}`))
 
         postTurmaAluno(alunos, turma)
         
             .then(response => {
                 dispatch({
                     type: CADASTRA_TURMA_ALUNO,
-                    turmaAluno: response.data
+                    turmaAluno: response
                 })
                 dispatch(push(`/escolas/${turma.idEscola}`))
             })

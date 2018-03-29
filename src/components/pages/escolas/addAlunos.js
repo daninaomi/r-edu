@@ -28,6 +28,11 @@ class AddAlunos extends React.Component {
         this.props.dispatchListaAlunos()
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.listaAlunos = [...nextProps.alunos]
+        this.setState({ alunosFiltrados: [...nextProps.alunos] })
+    }
+
     onSearch(name, value, isInvalid) {
         // pegar o valor do campo de pesquisa
         if (!isInvalid) {
@@ -73,7 +78,7 @@ class AddAlunos extends React.Component {
                         // required
                         />
 
-                        {this.state.alunosFiltrados.map((aluno) => (
+                        {this.state.alunosFiltrados.map((aluno, index) => (
 
                             <label className="cadastro-turma__checkbox">
                                 <FormInput
@@ -82,7 +87,7 @@ class AddAlunos extends React.Component {
                                     name="search-bar"
                                     placeholder="Pesquise alunos por nome ou e-mail"
                                     onChange={this.handleChange}
-                                    value={aluno.key}
+                                    value={index}
                                 />
                                 <span class="cadastro-turma__checkbox-box"></span>
                                 <div className="cadastro-turma__checkbox-names">

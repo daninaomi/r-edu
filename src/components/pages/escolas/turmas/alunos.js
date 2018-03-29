@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import { listaAlunos, listaTurmas } from '../../../../actions'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
 import Card from '../../../card'
@@ -14,17 +15,23 @@ class TurmaAlunos extends React.Component {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.dispatchListaTurmas()
+        this.props.dispatchListaAlunos()
+    }
+
     render() {
 
         const { turma, alunos } = this.props
-        console.log('chegou no alunos', alunos)
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
+                {this.props.turma && 
                     <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/desafios`}>
                         <h2>Desafios</h2>
                     </Link>
+                }
 
                     <Link className="turmas__title turmas__title--active" to="#">
                         <h2>Alunos</h2>
@@ -66,6 +73,15 @@ const mapStateToProps = (state, props) => {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
+    dispatchListaAlunos: () => {
+        dispatch(listaAlunos())
+    }
+})
 
-export default withRouter(connect(mapStateToProps)(TurmaAlunos))
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TurmaAlunos))
 
