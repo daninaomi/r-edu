@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux'
-import { getTurmas, postTurma} from '../api'
+import { getTurmas, postTurma } from '../api'
 
 export const CADASTRA_TURMA = 'CADASTRA_TURMA'
 export const LISTA_TURMAS = 'LISTA_TURMAS'
@@ -9,7 +9,7 @@ export function listaTurmas() {
     return dispatch => {
         getTurmas()
             .then(response => dispatch({
-                type: LISTA_TURMAS, 
+                type: LISTA_TURMAS,
                 turmas: response.data
             }))
             .catch(error => {

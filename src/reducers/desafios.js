@@ -4,7 +4,7 @@ import { CADASTRA_DESAFIO, LISTA_DESAFIOS } from "../actions";
 export function desafios(estadoAtual = {}, acao) {
     switch (acao.type) {
         case LISTA_DESAFIOS:
-        console.log('acao de desafios', acao)
+        
             let novoEstado = {};
             acao.desafios.forEach(desafio => (
                 novoEstado[desafio.id] = desafio

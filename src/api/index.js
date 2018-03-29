@@ -5,12 +5,16 @@ const instance = axios.create({
 })
 
 export function postLogin(user) {
-    return instance.post('/', { ...user })
+    return instance.post('/usuario/cadastrar', { ...user })
 }
 
 export function getLogin(user) {
-    return instance.get('/', { ...user })
+    return instance.get('/usuario/buscarporid/{id}', { ...user })
 }
+
+// export function getLogin(user) {
+//     return instance.get('/usuario/login', { ...user })
+// }
 
 export function postNewUser(user) {
     const url = user.usuario.tipoUsuario === 1 ? '/professor' : '/aluno'
@@ -56,6 +60,14 @@ export function postDesafio(desafio) {
     return instance.get('/desafio/cadastrar', { desafio })
 }
 
+export function getDisciplina() {
+    return instance.get('/disciplina/listar')
+}
+
+export function getAulas() {
+    return instance.get('/aula/listar')
+}
+
 export function postAula(aula) {
-    return instance.get('/aula/listar', { aula })
+    return instance.post('/aula/cadastrar', { aula })
 }

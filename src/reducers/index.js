@@ -8,6 +8,7 @@ import { page } from './navPages'
 import { desafios } from './desafios'
 import { turmaAluno } from './turmaAluno'
 import { disciplinas } from './disciplinas'
+import { aulas } from './aulas'
 
 const reducer = combineReducers({
     user,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
     desafios,
     turmaAluno,
     disciplinas,
+    aulas,
     routing: routerReducer
 })
 

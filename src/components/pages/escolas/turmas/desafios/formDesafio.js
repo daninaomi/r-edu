@@ -7,7 +7,7 @@ import ContainerBox from '../../../../compSimples/container-box'
 import Card from '../../../../card'
 import Form from '../../../../compSimples/form'
 import FormButton from '../../../../compSimples/form/formButton'
-// import { cadastraDesafio } from '../../../../actions'
+import { listaDisciplinas, cadastraAula, listaDesafios, listaTurmas } from '../../../../../actions'
 // import './cadastro-desafio.css'
 import FaUserPlus from 'react-icons/lib/fa/user-plus'
 
@@ -18,6 +18,12 @@ class CadastraDesafio extends React.Component {
         this.state = { isInvalid: false }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    componentDidMount() {
+      this.props.dispatchListaTurmas()
+      this.props.dispatchListaDesafios()
+      this.props.dispatchListaDisciplinas()
     }
 
     handleChange(name, value, isInvalid) {
@@ -39,23 +45,25 @@ class CadastraDesafio extends React.Component {
                 // "idDesafio": 2
             }
 
-            this.props.cadastraDesafio(aula)
+            // this.props.cadastraAula(aula)
 
         }
     }
 
     render() {
 
-        const { desafio, cadastraDesafio } = this.props
+        const { disciplinas } = this.props
 
         return (
 
             <Main>
                 <ContainerBox >
+                {this.props.desafios &&
                     <h1 className="cadastro__title">{this.props.desafio.nome}</h1>
+                  }
                     <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
 
-                        {this.props.disciplinas.map(disciplina => (
+                        {this.props.disciplinas && this.props.disciplinas.map(disciplina => (
                             <Card className="desafios__card" >
                                 <h2 className="desafios__card-title">{disciplina.nome}</h2>
                                 <Link to={`/cadastra-desafio`}>
@@ -89,18 +97,27 @@ const mapStateToProps = (state, props) => {
 
     return {
         turma,
-        disciplinas: disciplinas.map(desafio => { // desafio = 1 [{...}, {....}]
-            return state.disciplinas[desafio];
+        disciplinas: Object.keys(state.disciplinas).map(key => {
+            return state.disciplinas[key]
         })
     }
 }
 
 
-// const mapDispatchToProps = dispatch => ({
-//     cadastraDesafio: (desafio) => {
-//         dispatch(cadastraDesafio(desafio))
-//     }
-// })
+const mapDispatchToProps = dispatch => ({
+    cadastraAula: (aula) => {
+        dispatch(cadastraAula(aula))
+    },
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
+    dispatchListaDesafios: () => {
+        dispatch(listaDesafios())
+    },
+    dispatchListaDisciplinas: () => {
+        dispatch(listaDisciplinas())
+    }
+})
 
 
-export default withRouter(connect(mapStateToProps)(CadastraDesafio))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CadastraDesafio))

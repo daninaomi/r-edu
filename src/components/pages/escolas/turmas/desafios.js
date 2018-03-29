@@ -31,7 +31,7 @@ class TurmaDesafios extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                    {this.props.turma && 
+                    {this.props.turma &&
                         <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
                             <h2>Alunos</h2>
                         </Link>
@@ -56,7 +56,7 @@ class TurmaDesafios extends React.Component {
                             </Link>
                         ))}
 
-                        {this.props.turma && 
+                        {this.props.turma &&
                         <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios-1`}>
                             <Card>
                                 <FaPlusCircle className="escolas__icon" />

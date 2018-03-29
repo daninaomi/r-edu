@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Main from '../../../../compSimples/main'
 import ContainerBox from '../../../../compSimples/container-box'
 import Card from '../../../../card'
-import { listaDesafios } from '../../../../actions'
+import { listaDesafios, listaTurmas } from '../../../../../actions'
 // import './cadastro-desafio.css'
 import FaUserPlus from 'react-icons/lib/fa/user-plus'
 
@@ -16,22 +16,24 @@ class AddDesafio extends React.Component {
         this.state = { isInvalid: false }
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.props.dispatchListaDesafios()
+    componentDidMount() {
+      this.props.dispatchListaTurmas()
+      this.props.dispatchListaDesafios()
     }
 
     render() {
 
-        const { desafio, cadastraDesafio } = this.props
+        const { desafios } = this.props
 
         return (
             <Main>
                 <ContainerBox >
-                    <h1 className="cadastro__title">{this.props.desafio.nome}</h1>
 
-                        {this.props.desafios.map(desafio => (
+                      <h1 className="cadastro__title">Escolha um desafio</h1>
+
+                        {this.props.desafios && this.props.desafios.map(desafio => (
                             <Card className="desafios__card" >
-                                <h2 className="desafios__card-title">{desafio.nome}</h2>
+                                <h2 className="desafios__card-title">{desafios.nome}</h2>
                                 <Link to={`/cadastra-desafio-2`}>
                                         <FaUserPlus />
                                 </Link>
@@ -46,12 +48,12 @@ class AddDesafio extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    const id = props.match.params.id // const id = 0
-    const turma = state.turmas[id]
-    const desafios = turma.desafios
+    // const id = props.match.params.id
+    // const turmas = state.turmas[id]
+    // const desafios = turmas.desafios
 
     return {
-        turma,
+        // turmas,
         desafios: Object.keys(state.desafios).map(key => {
             return state.desafios[key]
         })
@@ -60,10 +62,13 @@ const mapStateToProps = (state, props) => {
 
 
 const mapDispatchToProps = dispatch => ({
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
     dispatchListaDesafios: () => {
         dispatch(listaDesafios())
     }
 })
 
 
-export default withRouter(connect(mapStateToProps)(AddDesafio))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddDesafio))
