@@ -243,6 +243,10 @@ const mapDispatchToProps = dispatch => ({
     alteraUser: (user) => {
         dispatch(alteraUser(user))
     }
+    // ,
+    // dispatchListaTurmas: () => {
+    //     dispatch(listaTurmas())
+    // }
 })
 
 

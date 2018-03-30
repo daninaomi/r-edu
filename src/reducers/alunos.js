@@ -1,5 +1,22 @@
 import { LISTA_ALUNOS } from "../actions";
 
+
+export function alunos(estadoAtual = {}, acao) {
+    switch (acao.type) {
+        case LISTA_ALUNOS:
+            let novoEstado = {};
+
+            acao.alunos.forEach(aluno => (
+                novoEstado[aluno.id] = aluno
+            ))
+
+            return novoEstado
+        default:
+            return estadoAtual
+    }
+}
+
+
 // const estadoInicial = {
 //     1: {
 //         id: 1,
@@ -24,18 +41,3 @@ import { LISTA_ALUNOS } from "../actions";
 //             return estadoAtual
 //     }
 // }
-
-export function alunos(estadoAtual = {}, acao) {
-    switch (acao.type) {
-        case LISTA_ALUNOS:
-            let novoEstado = {};
-
-            acao.alunos.forEach(aluno => (
-                novoEstado[aluno.id] = aluno
-            ))
-
-            return novoEstado
-        default:
-            return estadoAtual
-    }
-}

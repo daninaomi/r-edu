@@ -4,17 +4,17 @@ import { getDisciplina } from '../api'
 export const LISTA_DISCIPLINAS = 'LISTA_DISCIPLINAS'
 
 
-export function listaDisciplinas(disciplina) {
+export function listaDisciplinas() {
     return dispatch => {
-
-        getDisciplina(disciplina)
+        getDisciplina()
             .then(response => {
                 dispatch({
                     type: LISTA_DISCIPLINAS,
-                    disciplina: {
-                        ...disciplina,
-                        id: response.data.id
-                    }
+                    disciplinas: response.data
+                    // {
+                    //     ...disciplinas,
+                    //     id: response.data.id
+                    // }
                 })
             })
             .catch(error => {

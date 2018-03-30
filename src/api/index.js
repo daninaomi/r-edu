@@ -5,11 +5,11 @@ const instance = axios.create({
 })
 
 export function postLogin(user) {
-    return instance.post('/usuario/cadastrar', { ...user })
+    return instance.post('/usuario/login', { ...user })
 }
 
 export function getLogin(user) {
-    return instance.get('/usuario/buscarporid/{id}', { ...user })
+    return instance.get(`/usuario/buscarporid/${user.id}`, { ...user })
 }
 
 // export function getLogin(user) {
@@ -17,14 +17,18 @@ export function getLogin(user) {
 // }
 
 export function postNewUser(user) {
-    const url = user.usuario.tipoUsuario === 1 ? '/professor' : '/aluno'
+    const url = user.usuario.tipoUsuario === 1 ? '/professor/cadastrar' : '/aluno/cadastrar'
 
     return instance.post(url, { ...user })
 }
 
 export function editUser(user) {
-    const url = user.type === 'professor' ? '/professor' : '/aluno'
+    const url = user.type === 'professor' ? `/professor/atualizar/${user.id}` : `/aluno/atualizar/${user.id}`
     return instance.put(url, { ...user })
+}
+
+export function getEscolas() {
+    return instance.get('/escola/listar')
 }
 
 export function getTurmas() {

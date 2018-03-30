@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
 import Card from '../../../card'
-import { listaDesafios, listaTurmas } from '../../../../actions'
+import { listaAulas, listaTurmas } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
@@ -17,12 +17,12 @@ class TurmaDesafios extends React.Component {
 
     componentDidMount() {
         this.props.dispatchListaTurmas()
-        this.props.dispatchListaDesafios()
+        this.props.dispatchListaAulas()
     }
 
     render() {
 
-        const { turma, desafio, listaDesafios } = this.props
+        const { turma, desafio } = this.props
 
         return (
             <React.Fragment>
@@ -45,12 +45,11 @@ class TurmaDesafios extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.desafios && this.props.desafios.map(desafio => (
-                            <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
-
+                        {this.props.aulas && this.props.aulas.map(aula => (
+                            <Link className="turmas__card" to={`/aulas/${this.props.aulas.id}`}>
                                 <Card >
                                     <h2 className="turmas__card-title">
-                                        {desafio.nome}
+                                        {aula.nome}
                                     </h2>
                                 </Card>
                             </Link>
@@ -75,12 +74,12 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const desafios = turma && turma.desafios || []
+    const aulas = turma && turma.aulas || []
 
     return {
         turma,
-        desafios: desafios.map(desafio => {
-            return props.desafios[desafio];
+        aulas: aulas.map(aula => {
+            return props.aulas[aula];
         })
     }
 }
@@ -89,8 +88,8 @@ const mapDispatchToProps = dispatch => ({
     dispatchListaTurmas: () => {
         dispatch(listaTurmas())
     },
-    dispatchListaDesafios: () => {
-        dispatch(listaDesafios())
+    dispatchListaAulas: () => {
+        dispatch(listaAulas())
     }
 })
 

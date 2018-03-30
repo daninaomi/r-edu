@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
-import { pushPage } from '../../../actions'
+import { pushPage, listaEscolas } from '../../../actions'
 import './homeProf.css'
 
 
@@ -16,6 +16,7 @@ class HomeProf extends React.Component {
 
     componentDidMount() {
         this.props.dispatchPushPage("Escolas")
+        this.props.dispatchListaEscolas()
     }
 
     render() {
@@ -60,6 +61,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     dispatchPushPage: page => {
         dispatch(pushPage(page))
+    },
+    dispatchListaEscolas: () => {
+        dispatch(listaEscolas())
     }
 })
 

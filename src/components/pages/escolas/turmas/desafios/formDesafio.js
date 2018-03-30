@@ -46,19 +46,19 @@ class CadastraDesafio extends React.Component {
             }
 
             // this.props.cadastraAula(aula)
-
         }
     }
 
     render() {
 
-        const { disciplinas } = this.props
+        const { disciplinas, desafio } = this.props
+        console.log('nome desafio', desafio)
 
         return (
 
             <Main>
                 <ContainerBox >
-                {this.props.desafios &&
+                {this.props.desafio &&
                     <h1 className="cadastro__title">{this.props.desafio.nome}</h1>
                   }
                     <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
@@ -73,6 +73,9 @@ class CadastraDesafio extends React.Component {
                                 </Link>
                             </Card>
                         ))}
+                    </Form>
+
+                    <Form>
 
                         <FormButton
                             className="cadastro-turma__form-button"
@@ -80,8 +83,8 @@ class CadastraDesafio extends React.Component {
                             disabled={this.state.isInvalid}>
                             Continuar
                         </FormButton>
-
                     </Form>
+                    
                 </ContainerBox>
             </Main>
         )
@@ -90,13 +93,14 @@ class CadastraDesafio extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    const id = props.match.params.id // const id = 0
+    const id = props.match.params.id
     const turma = state.turmas[id]
-    const desafios = turma.desafios[id]
-    const disciplinas = desafios.disciplinas
+    const desafio = state.desafios
+    const disciplinas = state.disciplinas
 
     return {
         turma,
+        desafio,
         disciplinas: Object.keys(state.disciplinas).map(key => {
             return state.disciplinas[key]
         })

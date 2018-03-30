@@ -36,12 +36,11 @@ const App = () => (
             <Route exact path="/escolas/:id" component={Escolas} />
             <Route path="/escolas/:id/cadastro-turmas" component={AddTurma} />
             <Route path="/escolas/:id/cadastro-alunos" component={AddAlunos} />
-            <Route path="/turmas/:id/cadastro-desafios-1" component={AddDesafios} />
-            <Route path="/turmas/:id/cadastro-desafios-2" component={CadastroDesafios} />
             <Route exact path="/turmas/:id" component={Turmas} />
             <Route exact path="/turmas/:id/desafios" component={TurmasDesafios} />
             <Route exact path="/turmas/:id/alunos" component={TurmasAlunos} />
-
+            <Route path="/turmas/:id/cadastro-desafios-1" component={AddDesafios} />
+            <Route path="/turmas/:id/cadastro-desafios-2" component={CadastroDesafios} />
         </Switch>
     </React.Fragment>
 )
