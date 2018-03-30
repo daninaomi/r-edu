@@ -1,77 +1,71 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Main from '../../compSimples/main'
-import ContainerBox from '../../compSimples/container-box'
-import Form from '../../compSimples/form'
-import FormButton from '../../compSimples/form/formButton'
-// import { cadastraDesafio } from '../../../actions'
-import './cadastro-turma.css'
-import FaUserPlus from 'react-icons/lib/fa/user-plus'
+import Main from '../../../../compSimples/main'
+import ContainerBox from '../../../../compSimples/container-box'
+import Form from '../../../../compSimples/form'
+import Card from '../../../../card'
+import { listaDesafios, listaTurmas, selecionaDesafio } from '../../../../../actions'
+import './desafio.css'
+import bgFoguete from '../../img/card-desafio-foguete.png'
+import bgVulcao from '../../img/card-desafio-vulcao.png'
+import bgCamera from '../../img/card-desafio-camera.png'
+import bgJardim from '../../img/card-desafio-jardim.png'
 
 
 class AddDesafio extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
-        this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange(name, value, isInvalid) {
-        // if (value === '' || !this.addProf[value].checked) {
-        if (value === '' ) {
-            this.setState({ isInvalid: true })
-        }
-        this[name] = value;
+    componentDidMount() {
+        this.props.dispatchListaTurmas()
+        this.props.dispatchListaDesafios()
     }
 
     handleSubmit(event) {
         event.preventDefault()
 
-        if (!this.state.isInvalid) {
-            const aula = {
-                // "idProfessor": 2,
-                // "idTurma": 2,
-                // "idDisciplina": 2,
-                // "idDesafio": 2
-            }
-
-            this.props.cadastraDesafio(aula)
-
+        const desafio = {
+            id: this.desafioType,
         }
+        this.props.selecionaDesafio(desafio)
+
+        this.props.history.push(`/turmas/${this.props.turma.id}/cadastro-desafios-2`)
     }
 
     render() {
+        const backgrounds = {
+            'Foguete': bgFoguete,
+            'Vulcão': bgVulcao,
+            'Jardim': bgJardim,
+            'Camera': bgCamera,
+        }
 
-        const { desafio, cadastraDesafio } = this.props
+        const { desafios } = this.props
 
         return (
+            <Main className="escolas__main">
+                <ContainerBox className="escolas__container">
 
-            <Main>
-                <ContainerBox >
-                    <h1 className="cadastro__title">{this.props.desafio.nome}</h1>
-                    <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
+                    <h1 className="home __title desafios__title">Escolha um desafio</h1>
 
-                        {this.props.disciplinas.map(disciplina => (
-                            <Card className="desafios__card" >
-                                <h2 className="desafios__card-title">{disciplina.nome}</h2>
-                                <Link to={`/addProf`}>
-                                    <FormButton onChange={this.handleChange}>
-                                        <FaUserPlus />
-                                    </FormButton>
-                                </Link>
-                            </Card>
-                        ))}
+                    {this.props.desafios && this.props.turma && this.props.desafios.map(desafio => (
+                        <Card
+                            className="home__card desafio-card"
+                            onClick={this.handleSubmit}
+                            style={{
+                                backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
+                            }} >
+                            {/* <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios-2`} className="desafio-card" > */}
+                            <h2 className="home__card-title">{desafio.nome}</h2>
+                            {/* </Link> */}
+                        </Card>
+                    ))}
 
-                        <FormButton
-                            className="cadastro-turma__form-button"
-                            type="submit"
-                            disabled={this.state.isInvalid}>
-                            Continuar
-                        </FormButton>
-
-                    </Form>
                 </ContainerBox>
             </Main>
         )
@@ -85,16 +79,22 @@ const mapStateToProps = (state, props) => {
 
     return {
         turma,
-        desafios: desafios.map(desafio => { // desafio = 1 [{...}, {....}]
-            return state.desafios[desafio];
+        desafios: Object.keys(state.desafios).map(key => {
+            return state.desafios[key]
         })
     }
 }
 
 
 const mapDispatchToProps = dispatch => ({
-    cadastraDesafio: (desafio) => {
-        dispatch(cadastraDesafio(desafio))
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
+    dispatchListaDesafios: () => {
+        dispatch(listaDesafios())
+    },
+    selecionaDesafio: (desafio) => {
+        dispatch(selecionaDesafio(desafio))
     }
 })
 

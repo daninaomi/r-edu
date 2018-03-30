@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { addDesafio, pushPage } from '../../../actions'
+import { listaDesafios } from '../../../actions'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
@@ -18,46 +18,41 @@ class Desafios extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatchPushPage(this.props.turma.nome)
+        this.props.dispatchListaDesafios()
     }
 
     render() {
 
-        const { turma, desafio, addDesafio } = this.props
+        const { turma, desafios } = this.props
 
-        var imgUrl = this.props.nome === 'Foguete' ?
-            imgUrl = bgFoguete :
-            this.props.nome === 'Vulcão' ?
-                imgUrl = bgVulcao :
-                this.props.nome === 'Vulcão' ?
-                    imgUrl = bgVulcao :
-                    this.props.nome === 'Camera' ?
-                        imgUrl = bgCamera :
-                        imgUrl = bgJardim
-
-        var divStyle = {
-            backgroundImage: `url(' + ${imgUrl} + ')';`,
-            backgroundSize: `cover;`
+        const backgrounds = {
+            'Foguete': bgFoguete,
+            'Vulcão': bgVulcao,
+            'Jardim': bgJardim,
+            'Camera': bgCamera,
         }
 
         return (
 
-                <Main className="escolas__main">
+            <Main className="escolas__main">
 
-                    <ContainerBox className="escolas__container">
+                <ContainerBox className="escolas__container">
 
-                        {this.props.desafios.map(desafio => (
-                            <Link className="turmas__card" to={`/desafios/${this.props.desafios.id}`}>
-                                <Card style={divStyle} >
-                                    <h2 className="turmas__card-title">
-                                        {desafio.nome}
-                                    </h2>
-                                </Card>
+                    {this.props.desafios && this.props.desafios.map(desafio => (
+
+                        <Card className="home__card" style={{
+                            backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
+                        }} >
+                            <Link to={`/`} className="desafio-card">
+                                <h2 className="turmas__card-title">
+                                    {desafio.nome}
+                                </h2>
                             </Link>
-                        ))}
+                        </Card>
+                    ))}
 
-                    </ContainerBox>
-                </Main>
+                </ContainerBox>
+            </Main>
         )
     }
 }
@@ -66,21 +61,20 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const desafios = desafios
+    const desafios = state.desafios
 
     return {
         turma,
-        desafios: desafios.map(desafio => {
-            return state.desafios[desafio];
+        desafios: Object.keys(state.desafios).map(key => {
+            return state.desafios[key]
         })
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    dispatchPushPage: page => {
-        dispatch(pushPage(page))
+    dispatchListaDesafios: () => {
+        dispatch(listaDesafios())
     }
-    
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Desafios))

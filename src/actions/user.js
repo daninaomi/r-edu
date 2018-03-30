@@ -13,12 +13,8 @@ export function logaUser(user) {
             .then(response => dispatch({
                 type: LOGA_USER
             }))
-            .catch((error) => {
-                if ( error.response && error.response.code === 400) {
-                    console.log(error.response.data)
-                } else if (error.response.code === 500) {
-                    console.log("Ocorreu um erro inesperado") 
-                }
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
             })
     }
 }
@@ -43,17 +39,11 @@ export function cadastraUser(user) {
                 type: CADASTRA_USER_SUCCESS,
                 user: response.data
             }))
-            .catch((error) => {
-                if (error.response.code === 400) {
-                    error: error.response.mensagem
-                } else if (error.response.code === 500) {
-                    error: "Ocorreu um erro inesperado"
-                }
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
             })
     }
 }
-
-
 
 export function alteraUser(user) {
     return dispatch => {
@@ -62,12 +52,16 @@ export function alteraUser(user) {
                 type: ALTERA_USER,
                 user: response.data
             }))
-            .catch((error) => {
-                if (error.response.code === 400) {
-                    error: error.response.mensagem
-                } else if (error.response.code === 500) {
-                    error: "Ocorreu um erro inesperado"
-                }
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
             })
     }
 }
+
+// .catch((error) => {
+//     if (error.response.code === 400) {
+//         error: error.response.mensagem
+//     } else if (error.response.code === 500) {
+//         error: "Ocorreu um erro inesperado"
+//     }
+// })

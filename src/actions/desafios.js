@@ -1,20 +1,42 @@
-import { getDesafio } from '../api'
+import { getDesafio, postDesafio } from '../api'
 
-export const ADD_DESAFIO = 'ADD_DESAFIO'
+export const LISTA_DESAFIOS = 'LISTA_DESAFIOS'
+export const CADASTRA_DESAFIO = 'CADASTRA_DESAFIO'
+export const SELECIONA_DESAFIO = 'SELECIONA_DESAFIO'
 
-export function addDesafio() {
+
+export function selecionaDesafio(desafio) {
+    return {
+        type: SELECIONA_DESAFIO,
+        desafio
+    }
+}
+
+export function listaDesafios() {
     return dispatch => {
         getDesafio()
+            .then(response => { 
+                dispatch({
+                type: LISTA_DESAFIOS,
+                desafios: response.data
+            })
+        })
+        
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
+            })
+    }
+}
+
+export function cadastraDesafio(desafio) {
+    return dispatch => {
+        postDesafio(desafio)
             .then(response => dispatch({
-                type: ADD_DESAFIO
-                // desafio: response.data
+                type: CADASTRA_DESAFIO,
+                desafio: response.data
             }))
-            .catch((response, error) => {
-                if (error.response.code === 400) {
-                    error: error.response.mensagem
-                } else if (error.response.code === 500) {
-                    error: "Ocorreu um erro inesperado"
-                }
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
             })
     }
 }
