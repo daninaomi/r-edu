@@ -11,7 +11,6 @@ import { addDesafio, pushPage } from '../../../../actions'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 
-
 class Turma extends React.Component {
     constructor(props) {
         super(props)

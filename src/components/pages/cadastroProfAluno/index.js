@@ -13,7 +13,6 @@ class Cadastro extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-
     handleChange(name, value, isInvalid) {
         this[name] = value;
         this.setState({ isInvalid })

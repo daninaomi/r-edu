@@ -2,6 +2,15 @@ import { getDesafio, postDesafio } from '../api'
 
 export const LISTA_DESAFIOS = 'LISTA_DESAFIOS'
 export const CADASTRA_DESAFIO = 'CADASTRA_DESAFIO'
+export const SELECIONA_DESAFIO = 'SELECIONA_DESAFIO'
+
+
+export function selecionaDesafio(desafio) {
+    return {
+        type: SELECIONA_DESAFIO,
+        desafio
+    }
+}
 
 export function listaDesafios() {
     return dispatch => {

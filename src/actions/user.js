@@ -45,8 +45,6 @@ export function cadastraUser(user) {
     }
 }
 
-
-
 export function alteraUser(user) {
     return dispatch => {
         editUser(user)
@@ -59,6 +57,7 @@ export function alteraUser(user) {
             })
     }
 }
+
 // .catch((error) => {
 //     if (error.response.code === 400) {
 //         error: error.response.mensagem

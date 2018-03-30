@@ -7,7 +7,13 @@ import ContainerBox from '../../../../compSimples/container-box'
 import Card from '../../../../card'
 import Form from '../../../../compSimples/form'
 import FormButton from '../../../../compSimples/form/formButton'
-import { listaDisciplinas, cadastraAula, listaDesafios, listaTurmas } from '../../../../../actions'
+import { 
+    listaDisciplinas, 
+    cadastraAula, 
+    listaDesafios, 
+    listaTurmas,
+    selecionaDesafio 
+} from '../../../../../actions'
 // import './cadastro-desafio.css'
 import FaUserPlus from 'react-icons/lib/fa/user-plus'
 
@@ -21,8 +27,8 @@ class CadastraDesafio extends React.Component {
     }
 
     componentDidMount() {
-      this.props.dispatchListaTurmas()
-      this.props.dispatchListaDesafios()
+    //   this.props.dispatchListaTurmas()
+    //   this.props.dispatchListaDesafios()
       this.props.dispatchListaDisciplinas()
     }
 
@@ -40,18 +46,17 @@ class CadastraDesafio extends React.Component {
         if (!this.state.isInvalid) {
             const aula = {
                 // "idProfessor": 2,
-                // "idTurma": 2,
-                // "idDisciplina": 2,
-                // "idDesafio": 2
+                // "idTurma": this.turma.id,
+                // "idDisciplina": this.disciplina.id,
+                // "idDesafio": this.desafio.id
             }
-
             // this.props.cadastraAula(aula)
         }
     }
 
     render() {
 
-        const { disciplinas, desafio } = this.props
+        const { disciplinas, desafio, selecionaDesafio } = this.props
         console.log('nome desafio', desafio)
 
         return (
@@ -95,7 +100,7 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const desafio = state.desafios
+    const desafio = state.desafio
     const disciplinas = state.disciplinas
 
     return {
@@ -112,12 +117,12 @@ const mapDispatchToProps = dispatch => ({
     cadastraAula: (aula) => {
         dispatch(cadastraAula(aula))
     },
-    dispatchListaTurmas: () => {
-        dispatch(listaTurmas())
-    },
-    dispatchListaDesafios: () => {
-        dispatch(listaDesafios())
-    },
+    // dispatchListaTurmas: () => {
+    //     dispatch(listaTurmas())
+    // },
+    // dispatchListaDesafios: () => {
+    //     dispatch(listaDesafios())
+    // },
     dispatchListaDisciplinas: () => {
         dispatch(listaDisciplinas())
     }

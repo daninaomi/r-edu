@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Main from '../../../../compSimples/main'
 import ContainerBox from '../../../../compSimples/container-box'
+import Form from '../../../../compSimples/form'
 import Card from '../../../../card'
-import { listaDesafios, listaTurmas } from '../../../../../actions'
+import { listaDesafios, listaTurmas, selecionaDesafio } from '../../../../../actions'
 import './desafio.css'
 import bgFoguete from '../../img/card-desafio-foguete.png'
 import bgVulcao from '../../img/card-desafio-vulcao.png'
@@ -17,11 +18,23 @@ class AddDesafio extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
         this.props.dispatchListaTurmas()
         this.props.dispatchListaDesafios()
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+
+        const desafio = {
+            id: this.desafioType,
+        }
+        this.props.selecionaDesafio(desafio)
+
+        this.props.history.push(`/turmas/${this.props.turma.id}/cadastro-desafios-2`)
     }
 
     render() {
@@ -38,20 +51,19 @@ class AddDesafio extends React.Component {
             <Main className="escolas__main">
                 <ContainerBox className="escolas__container">
 
-                    <h1 className="home__title">Escolha um desafio</h1>
+                    <h1 className="home __title desafios__title">Escolha um desafio</h1>
 
                     {this.props.desafios && this.props.turma && this.props.desafios.map(desafio => (
-
-                        <Card className="home__card desafio-card" style={{
-                            backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
-                        }} >
-                        
-                            <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios-2`}>
-                                <h2 className="home__card-title">{desafio.nome}</h2>
-                            </Link>
-                        
+                        <Card
+                            className="home__card desafio-card"
+                            onClick={this.handleSubmit}
+                            style={{
+                                backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
+                            }} >
+                            {/* <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios-2`} className="desafio-card" > */}
+                            <h2 className="home__card-title">{desafio.nome}</h2>
+                            {/* </Link> */}
                         </Card>
-
                     ))}
 
                 </ContainerBox>
@@ -61,10 +73,10 @@ class AddDesafio extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-    
+
     const id = props.match.params.id // const id = 0
     const turma = state.turmas[id]
-    
+
     return {
         turma,
         desafios: Object.keys(state.desafios).map(key => {
@@ -80,6 +92,9 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchListaDesafios: () => {
         dispatch(listaDesafios())
+    },
+    selecionaDesafio: (desafio) => {
+        dispatch(selecionaDesafio(desafio))
     }
 })
 

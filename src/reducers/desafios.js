@@ -1,8 +1,19 @@
-import { CADASTRA_DESAFIO, LISTA_DESAFIOS } from "../actions";
+import { 
+    CADASTRA_DESAFIO, 
+    LISTA_DESAFIOS,
+    SELECIONA_DESAFIO 
+} from "../actions";
 
 
 export function desafios(estadoAtual = {}, acao) {
     switch (acao.type) {
+
+        case SELECIONA_DESAFIO:
+            return {
+                ...estadoAtual,
+                ...acao.desafio
+            }
+
         case LISTA_DESAFIOS:
         
             let novoEstado = {};
