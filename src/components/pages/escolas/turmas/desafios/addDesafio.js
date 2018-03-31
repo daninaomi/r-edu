@@ -29,10 +29,10 @@ class CadastraDesafio extends React.Component {
         super(props)
         this.state = {
             isInvalid: false,
-            disciplinasFiltradas: [...props.disciplinas]
+            // disciplinasFiltradas: [...props.disciplinas]
         }
-        this.listaDisciplinas = [...props.disciplinas]
-        this.disciplinasFiltradas = this.disciplinasFiltradas.bind(this)
+        // this.listaDisciplinas = [...props.disciplinas]
+        // this.disciplinasFiltradas = this.disciplinasFiltradas.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -43,29 +43,34 @@ class CadastraDesafio extends React.Component {
         this.props.dispatchListaDisciplinas()
     }
 
-    disciplinasFiltradas() {
-        switch (this.props.desafio.nome) {
-            case 'Foguete':
-                return ['Matemática', 'Física', 'Química', 'História']
-            case 'Vulcão':
-                return ['Geografia', 'Química', 'Biologia', 'Matemática']
-            case 'Camera':
-                return ['Física', 'Filosofia', 'História', 'Português']
-            case 'Jardim':
-                return ['Biologia', 'Português', 'Geografia', 'Química']
-            default:
-                return this.props.disciplinas
-        }
-    }
+    // disciplinasFiltradas() {
+    //     switch (this.props.desafio.nome) {
+    //         case 'Foguete':
+    //             return ['Matemática', 'Física', 'Química', 'História']
+    //         case 'Vulcão':
+    //             return ['Geografia', 'Química', 'Biologia', 'Matemática']
+    //         case 'Camera':
+    //             return ['Física', 'Filosofia', 'História', 'Português']
+    //         case 'Jardim':
+    //             return ['Biologia', 'Português', 'Geografia', 'Química']
+    //         default:
+    //             return this.props.disciplinas
+    //     }
+    // }
 
     componentWillReceiveProps(nextProps) {
         this.listaDisciplinas = [...nextProps.disciplinas]
         this.setState({ disciplinasFiltradas: [...nextProps.disciplinas] })
     }
 
-    handleChange(name, value, isInvalid, disciplina) {
-        console.log('disciplina cheganu', this.disciplina)
-        this.setState(selectionDesafio[value].selected = this.disciplinasFiltradas[disciplina.nome])
+    handleChange(name, value, isInvalid, desafio) {
+        this[name] = value;
+        this.setState({ isInvalid })
+
+    //     console.log('lista disc value', this.listaDisciplinas[value])
+    //     console.log('desafio cheganu', this.props.desafio)
+    //     this.props.desafio.nome = this.setState(this.listaDisciplinas[value].selected)
+    //     this.disciplinasFiltradas(this.props.desafio.nome)
     }
 
     handleSubmit(event) {
@@ -73,14 +78,14 @@ class CadastraDesafio extends React.Component {
 
         if (!this.state.isInvalid) {
             const aula = {
-                // "idProfessor": this.professor.id,
-                // "idTurma": this.turma.id,
-                // "idDisciplina": this.disciplina.id,
-                // "idDesafio": this.desafio.id
+                "idProfessor": this.state.user.id,
+                "idTurma": this.turma.id,
+                "idDisciplina": this.disciplina.id,
+                "idDesafio": this.desafio.id
             }
-            // this.props.cadastraAula(aula)
+            this.props.cadastraAula(aula)
 
-            // this.props.history.push(`/turmas/${this.props.turma.id}`)
+            this.props.history.push(`/turmas/${this.props.turma.id}`)
         }
     }
 
@@ -150,7 +155,7 @@ class CadastraDesafio extends React.Component {
                         {this.state.disciplinasFiltradas && this.state.disciplinasFiltradas.map(disciplina => (
                             <React.Fragment>
                                 <FormInput
-                                    className="disciplina__form-input-radio"
+                                    className="disciplinas__form-input-radio"
                                     type="radio"
                                     name="selection-disciplina"
                                     placeholder={disciplina.nome}

@@ -32,8 +32,19 @@
     cursor: pointer;
 }
 
-.disciplinas-form input[type="radio"] {
-    display: none;
+.disciplinas-form-input-radio {
+    opacity: 0;
+	width: 0;
+    height: 0;
+}
+
+.disciplinas-form-input-radio:active ~ .disciplinas__card {
+    opacity: 1;
+}
+
+.disciplinas-form-input-radio:checked ~ .disciplinas__card {
+    opacity: 1;
+    border: 3px solid rgba(0,0,0, .1);
 }
 
 .disciplinas__card {
@@ -46,9 +57,6 @@
     cursor: pointer;
 }
 
-.disciplinas__card:hover {
-    border: 3px solid rgba(0,0,0, .1);
-}
 
 .disciplinas__card-title {
     display: flex;

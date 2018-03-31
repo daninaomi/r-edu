@@ -71,3 +71,10 @@ export function getAulas() {
 export function postAula(aula) {
     return instance.post('/aula/cadastrar', { aula })
 }
+
+export function getTurmasDesafios() {
+    return instance.get('/turma/listar/desafios')
+}
+export function getTurmasAlunos() {
+    return instance.get('/turma/listar/alunos')
+}

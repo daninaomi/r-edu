@@ -5,7 +5,12 @@ import { withRouter } from 'react-router'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
 import Card from '../../../card'
-import { listaAulas, listaTurmas } from '../../../../actions'
+import { 
+    listaAulas, 
+    listaTurmas, 
+    listaDesafios, 
+    listaTurmasDesafios 
+} from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 import bgFoguete from '../img/card-desafio-foguete.png'
@@ -20,8 +25,10 @@ class TurmaDesafios extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatchListaTurmas()
         this.props.dispatchListaAulas()
+        this.props.dispatchListaTurmas()
+        this.props.dispatchListaDesafios()
+        this.props.dispatchlistaTurmasDesafios()
     }
 
     render() {
@@ -33,7 +40,7 @@ class TurmaDesafios extends React.Component {
             'Camera': bgCamera,
         }
 
-        const { turma, desafio } = this.props
+        const { turma, desafio, aulas } = this.props
 
         return (
             <React.Fragment>
@@ -56,10 +63,10 @@ class TurmaDesafios extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.aulas && this.props.aulas.map(aula => (
+                        {this.props.aulas && this.props.desafio && this.props.aulas.map(aula => (
                             <Link className="turmas__card" to={`/aulas/${this.props.aulas.id}`}>
                                 <Card style={{
-                                        backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
+                                        backgroundImage: `url('${backgrounds[this.props.desafio.nome] || backgrounds['Foguete']}')`
                                     }}>
                                     <h2 className="turmas__card-title">
                                         {aula.desafio.nome}
@@ -69,7 +76,7 @@ class TurmaDesafios extends React.Component {
                         ))}
 
                         {this.props.turma &&
-                        <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios-1`}>
+                        <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
                             <Card>
                                 <FaPlusCircle className="escolas__icon" />
                             </Card>
@@ -87,19 +94,27 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
+    const desafio = state.desafio
     const aulas = turma && turma.aulas || []
 
     return {
         turma,
-        aulas: aulas.map(aula => {
-            return props.aulas[aula];
+        desafio,
+        aulas: Object.keys(state.aulas).map(key => {
+            return state.aulas[key]
         })
     }
 }
 
 const mapDispatchToProps = dispatch => ({
+    dispatchlistaTurmasDesafios: () => {
+        dispatch(listaTurmasDesafios())
+    },
     dispatchListaTurmas: () => {
         dispatch(listaTurmas())
+    },
+    dispatchListaDesafios: () => {
+        dispatch(listaDesafios())
     },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
