@@ -12,10 +12,6 @@ export function getLogin(user) {
     return instance.get(`/usuario/buscarporid/${user.id}`, { ...user })
 }
 
-// export function getLogin(user) {
-//     return instance.get('/usuario/login', { ...user })
-// }
-
 export function postNewUser(user) {
     const url = user.usuario.tipoUsuario === 1 ? '/professor/cadastrar' : '/aluno/cadastrar'
 

@@ -12,8 +12,7 @@ import {
     listaDisciplinas,
     cadastraAula,
     listaDesafios,
-    listaTurmas,
-    selecionaDesafio
+    listaTurmas
 } from '../../../../../actions'
 // import './cadastro-desafio.css'
 import FaUserPlus from 'react-icons/lib/fa/user-plus'

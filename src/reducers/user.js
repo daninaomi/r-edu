@@ -9,6 +9,7 @@ import {
 
 export function user (estadoAtual = 
     {
+        ///////////////// PRECISA TIRAR
     logado: true, type: 'professor'
     }, acao) {
 

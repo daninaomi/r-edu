@@ -8,6 +8,10 @@ import Card from '../../../card'
 import { listaAulas, listaTurmas } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
+import bgFoguete from '../img/card-desafio-foguete.png'
+import bgVulcao from '../img/card-desafio-vulcao.png'
+import bgCamera from '../img/card-desafio-camera.png'
+import bgJardim from '../img/card-desafio-jardim.png'
 
 
 class TurmaDesafios extends React.Component {
@@ -21,6 +25,13 @@ class TurmaDesafios extends React.Component {
     }
 
     render() {
+
+        const backgrounds = {
+            'Foguete': bgFoguete,
+            'Vulcão': bgVulcao,
+            'Jardim': bgJardim,
+            'Camera': bgCamera,
+        }
 
         const { turma, desafio } = this.props
 
@@ -47,9 +58,11 @@ class TurmaDesafios extends React.Component {
 
                         {this.props.aulas && this.props.aulas.map(aula => (
                             <Link className="turmas__card" to={`/aulas/${this.props.aulas.id}`}>
-                                <Card >
+                                <Card style={{
+                                        backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
+                                    }}>
                                     <h2 className="turmas__card-title">
-                                        {aula.nome}
+                                        {aula.desafio.nome}
                                     </h2>
                                 </Card>
                             </Link>

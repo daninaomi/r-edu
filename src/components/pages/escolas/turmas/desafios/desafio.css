@@ -1,8 +1,30 @@
 
+.desafios__container {
+    background: white;
+}
+
 .desafios__title, .disciplinas__title {
     width: 100%;
     margin: 15px 0;
     color: #4a148c;
+}
+
+.desafios__select {
+    overflow: hidden;
+    margin-bottom: 5%;
+}
+
+.desafios__select select {
+    width: 100%;
+    padding: 5%;
+    -webkit-appearance: none;
+    background-image: url("../../img/card-desafio-foguete.png");
+    color: white;
+    text-transform: uppercase;
+}
+
+.desafios__card, .desafio__card-title {
+    width: 100%;
 }
 
 .desafio-link {
@@ -10,11 +32,12 @@
     cursor: pointer;
 }
 
-.disciplinas__container {
-    background: white;
+.disciplinas-form input[type="radio"] {
+    display: none;
 }
 
 .disciplinas__card {
+    display: block;
     width: 100%;
     padding: 6%;
     margin: 5% 0;
