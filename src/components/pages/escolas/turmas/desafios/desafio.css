@@ -1,10 +1,131 @@
 
-.desafios__title {
+.desafios__title, .disciplinas__title {
     width: 100%;
     margin: 15px 0;
+    color: #4a148c;
 }
 
-.desafio-card {
+.desafio-link {
     text-decoration: none;
     cursor: pointer;
+}
+
+.disciplinas__container {
+    background: white;
+}
+
+.disciplinas__card {
+    width: 100%;
+    padding: 6%;
+    margin: 5% 0;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.disciplinas__card:hover {
+    border: 3px solid rgba(0,0,0, .1);
+}
+
+.disciplinas__card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.disciplinas__card-title h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.disciplinas__button-add-prof {
+    background: white;
+    padding: 2% 6%;
+}
+
+.disciplinas__button-icon {
+    font-size: 1.6rem;
+}
+
+.disciplinas__card-resumo {
+    font-size: 1rem;
+}
+
+.fases-card-title {
+    margin: 15px 0;
+    padding: 5%;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 5px;
+}
+
+.fases-card {
+    display: flex;
+    flex-direction: column; 
+    min-height: 50px;
+    margin-top: 5px;
+    padding: 8% 7%;
+    border-radius: 5px;
+    background-color: white;
+    color: grey;
+    font-size: .9rem;
+}
+
+.fases-button {
+    width: 100%;
+    margin-top: 9%;
+    padding: 2%;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.cadastra-desafio-form__button {
+    width: 100%;
+    margin-top: 20px;
+    background: #4a148c;
+    color: white;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .disciplinas__container {
+        padding: 10%;
+    }
+
+    .disciplinas-form {
+        display: flex;
+    }
+
+    .disciplinas__card {
+        margin: 5% 1%;
+        padding: 4%;
+    }
+
+    .disciplinas__button-add-prof {
+        padding: 2% 8%;
+    }
+
+    .cadastra-desafio-form {
+        display: block;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+
+    .disciplinas__container {
+        width: 100%;
+    }
+
+    .cadastra-desafio-form {
+        width: 50%;
+    }
 }

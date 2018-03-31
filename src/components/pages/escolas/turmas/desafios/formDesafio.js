@@ -4,40 +4,33 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Main from '../../../../compSimples/main'
 import ContainerBox from '../../../../compSimples/container-box'
+import LinkButton from '../../../../compSimples/linkButton'
 import Card from '../../../../card'
 import Form from '../../../../compSimples/form'
 import FormButton from '../../../../compSimples/form/formButton'
-import { 
-    listaDisciplinas, 
-    cadastraAula, 
-    listaDesafios, 
+import {
+    listaDisciplinas,
+    cadastraAula,
+    listaDesafios,
     listaTurmas,
-    selecionaDesafio 
+    selecionaDesafio
 } from '../../../../../actions'
 // import './cadastro-desafio.css'
 import FaUserPlus from 'react-icons/lib/fa/user-plus'
+import { Accordion, AccordionItem } from 'react-sanfona';
 
 
 class CadastraDesafio extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false }
-        this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
-    //   this.props.dispatchListaTurmas()
-    //   this.props.dispatchListaDesafios()
-      this.props.dispatchListaDisciplinas()
-    }
-
-    handleChange(name, value, isInvalid) {
-        // if (value === '' || !this.addProf[value].checked) {
-        if (value === '' ) {
-            this.setState({ isInvalid: true })
-        }
-        this[name] = value;
+        //   this.props.dispatchListaTurmas()
+        //   this.props.dispatchListaDesafios()
+        this.props.dispatchListaDisciplinas()
     }
 
     handleSubmit(event) {
@@ -45,7 +38,7 @@ class CadastraDesafio extends React.Component {
 
         if (!this.state.isInvalid) {
             const aula = {
-                // "idProfessor": 2,
+                // "idProfessor": this.professor.id,
                 // "idTurma": this.turma.id,
                 // "idDisciplina": this.disciplina.id,
                 // "idDesafio": this.desafio.id
@@ -59,37 +52,83 @@ class CadastraDesafio extends React.Component {
         const { disciplinas, desafio, selecionaDesafio } = this.props
         console.log('nome desafio', desafio)
 
+        const bgColor = {
+            'Matemática': '#FF8A80',
+            'Português': '#9CCC65'
+        }
+
         return (
 
-            <Main>
-                <ContainerBox >
-                {this.props.desafio &&
-                    <h1 className="cadastro__title">{this.props.desafio.nome}</h1>
-                  }
-                    <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
+            <Main className="escolas__main">
+                <ContainerBox className="disciplinas__container">
+                    {this.props.desafio &&
+                        <h1 className="disciplinas__title">{this.props.desafio.nome}</h1>
+                    }
+                    <Form onSubmit={this.handleSubmit} className="disciplinas-form">
 
                         {this.props.disciplinas && this.props.disciplinas.map(disciplina => (
-                            <Card className="desafios__card" >
-                                <h2 className="desafios__card-title">{disciplina.nome}</h2>
-                                <Link to={`/cadastra-desafio`}>
-                                    <FormButton onChange={this.handleChange}>
-                                        <FaUserPlus />
-                                    </FormButton>
-                                </Link>
+                            <Card
+                                className="disciplinas__card"
+                                style={{
+                                    background: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+                                }}>
+                                <Accordion className="react-sanfona" allowMultiple>
+
+                                    <div className="disciplinas__card-title">
+                                        <h2>{disciplina.nome}</h2>
+                                        <LinkButton to='/addProf' className="disciplinas__button-add-prof">
+                                            <FaUserPlus
+                                                className="disciplinas__button-icon"
+                                                style={{
+                                                    color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+                                                }} />
+                                        </LinkButton>
+                                    </div>
+                                    <p className="disciplinas__card-resumo">
+                                        Lorem ipsum dolor sit amet
+                                    </p>
+
+                                    <AccordionItem className="react-sanfona-item fases-card-title" title={'1ª fase'}>
+                                        <div className="fases-card">
+                                            {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel fringilla turpis.'}
+                                            <LinkButton
+                                                to='/exercicios'
+                                                className="fases-button"
+                                                style={{
+                                                    borderColor: `${bgColor[disciplina.nome] || bgColor['Matemática']}`,
+                                                    color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+                                                }}>
+                                                Exercícios
+                                        </LinkButton>
+                                        </div>
+                                    </AccordionItem>
+
+                                    <AccordionItem className="react-sanfona-item fases-card-title" title={'2ª fase'}>
+                                        <div className="fases-card">
+                                            {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel fringilla turpis.'}
+                                            <LinkButton
+                                                to='/exercicios'
+                                                className="fases-button"
+                                                style={{
+                                                    borderColor: `${bgColor[disciplina.nome] || bgColor['Matemática']}`,
+                                                    color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+                                                }}>
+                                                Exercícios
+                                        </LinkButton>
+                                        </div>
+                                    </AccordionItem>
+                                </Accordion>
                             </Card>
                         ))}
                     </Form>
-
-                    <Form>
-
+                    <Form className="cadastra-desafio-form">
                         <FormButton
-                            className="cadastro-turma__form-button"
+                            className="cadastra-desafio-form__button"
                             type="submit"
                             disabled={this.state.isInvalid}>
-                            Continuar
+                            Cadastrar
                         </FormButton>
                     </Form>
-                    
                 </ContainerBox>
             </Main>
         )
@@ -112,7 +151,6 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-
 const mapDispatchToProps = dispatch => ({
     cadastraAula: (aula) => {
         dispatch(cadastraAula(aula))
@@ -128,5 +166,17 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CadastraDesafio))
+
+
+
+    // togglCard(event) {
+    //     event.preventDefault()
+    //     this.toggle("active");
+    //     const panel = this.nextElementSibling;
+    //     if (panel.style.maxHeight) {
+    //         panel.style.maxHeight = null;
+    //     } else {
+    //         panel.style.maxHeight = panel.scrollHeight + "px";
+    //     } 
+    // }

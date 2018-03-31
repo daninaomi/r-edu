@@ -55,17 +55,14 @@ class AddDesafio extends React.Component {
 
                     {this.props.desafios && this.props.turma && this.props.desafios.map(desafio => (
                         <Card
-                            className="home__card desafio-card"
+                            className="home__card desafio-link"
                             onClick={this.handleSubmit}
                             style={{
                                 backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
                             }} >
-                            {/* <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios-2`} className="desafio-card" > */}
-                            <h2 className="home__card-title">{desafio.nome}</h2>
-                            {/* </Link> */}
+                                <h2 className="home__card-title">{desafio.nome}</h2>
                         </Card>
                     ))}
-
                 </ContainerBox>
             </Main>
         )
