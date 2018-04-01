@@ -29,10 +29,11 @@ class CadastraDesafio extends React.Component {
         super(props)
         this.state = {
             isInvalid: false,
-            // disciplinasFiltradas: [...props.disciplinas]
+            desafioEscolhido: [...props.desafios],
+            disciplinasFiltradas: [...props.disciplinas]
         }
-        // this.listaDisciplinas = [...props.disciplinas]
-        // this.disciplinasFiltradas = this.disciplinasFiltradas.bind(this)
+        this.listaDisciplinas = [...props.disciplinas]
+        this.disciplinasFiltradas = this.disciplinasFiltradas.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -43,34 +44,35 @@ class CadastraDesafio extends React.Component {
         this.props.dispatchListaDisciplinas()
     }
 
-    // disciplinasFiltradas() {
-    //     switch (this.props.desafio.nome) {
-    //         case 'Foguete':
-    //             return ['Matemática', 'Física', 'Química', 'História']
-    //         case 'Vulcão':
-    //             return ['Geografia', 'Química', 'Biologia', 'Matemática']
-    //         case 'Camera':
-    //             return ['Física', 'Filosofia', 'História', 'Português']
-    //         case 'Jardim':
-    //             return ['Biologia', 'Português', 'Geografia', 'Química']
-    //         default:
-    //             return this.props.disciplinas
-    //     }
-    // }
+    disciplinasFiltradas(desafioEscolhido) {
+        switch (desafioEscolhido) {
+            case 'Foguete':
+                return ['Matemática', 'Física', 'Química', 'História']
+            case 'Vulcão':
+                return ['Geografia', 'Química', 'Biologia', 'Matemática']
+            case 'Camera':
+                return ['Física', 'Filosofia', 'História', 'Português']
+            case 'Jardim':
+                return ['Biologia', 'Português', 'Geografia', 'Química']
+            default:
+                return this.props.listaDisciplinas
+        }
+    }
 
     componentWillReceiveProps(nextProps) {
         this.listaDisciplinas = [...nextProps.disciplinas]
         this.setState({ disciplinasFiltradas: [...nextProps.disciplinas] })
     }
 
-    handleChange(name, value, isInvalid, desafio) {
-        this[name] = value;
+    handleChange(name, value, isInvalid, desafios) {
+        // this[name] = value;
         this.setState({ isInvalid })
+        const desafioEscolhido = this.props.desafios.id
 
-    //     console.log('lista disc value', this.listaDisciplinas[value])
-    //     console.log('desafio cheganu', this.props.desafio)
-    //     this.props.desafio.nome = this.setState(this.listaDisciplinas[value].selected)
-    //     this.disciplinasFiltradas(this.props.desafio.nome)
+        // this.props.desafio.nome = this.setState(this.props.desafio.nome[value].selected)
+        desafioEscolhido: value.selected
+
+        this.disciplinasFiltradas(desafioEscolhido)
     }
 
     handleSubmit(event) {
@@ -110,132 +112,127 @@ class CadastraDesafio extends React.Component {
             'Ciências': '#FFD42F'
         }
 
+        const montaCardDisciplina = (disciplinasFiltradas) => {
+            return (
+                <Accordion className="react-sanfona" allowMultiple>
+
+                    <div className="disciplinas__card-title">
+                        <h2>{disciplinasFiltradas.nome}</h2>
+                    </div>
+                    <p className="disciplinas__card-resumo">
+                        Veja abaixo os detalhes de tarefas dessa disciplina
+                                                </p>
+
+                    <AccordionItem className="react-sanfona-item fases-card-title" title={'1ª fase'}>
+                        <div className="fases-card">
+                            {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel fringilla turpis.'}
+                            <LinkButton
+                                to='/exercicios'
+                                className="fases-button"
+                                style={{
+                                    borderColor: `${bgColor[disciplinasFiltradas.nome] || bgColor['Matemática']}`,
+                                    color: `${bgColor[disciplinasFiltradas.nome] || bgColor['Matemática']}`
+                                }}>
+                                Exercícios
+                                                        </LinkButton>
+                        </div>
+                    </AccordionItem>
+
+                    <AccordionItem className="react-sanfona-item fases-card-title" title={'2ª fase'}>
+                        <div className="fases-card">
+                            {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel fringilla turpis.'}
+                            <LinkButton
+                                to='/exercicios'
+                                className="fases-button"
+                                style={{
+                                    borderColor: `${bgColor[disciplinasFiltradas.nome] || bgColor['Matemática']}`,
+                                    color: `${bgColor[disciplinasFiltradas.nome] || bgColor['Matemática']}`
+                                }}>
+                                Exercícios
+                        </LinkButton>
+                        </div>
+                    </AccordionItem>
+                </Accordion>
+            )
+        }
+
         const { desafios, disciplinas } = this.props
+
 
         return (
             <Main className="escolas__main">
                 <ContainerBox className="desafios__container">
-
-                    <h1 className="home __title desafios__title">Escolha um desafio</h1>
-
-                    {/* <div className="desafios__select">
-                        <select> */}
-                    {this.props.desafios && this.props.desafios.map(desafio => (
-                        <Card className="desafio__card desafio-link">
-                            <FormInput
-                                className="cadastro-turma__form-input"
-                                type="radio"
-                                name="selectionDesafio"
-                                placeholder={desafio.nome}
-                                value={desafio.nome}
-                                onChange={this.handleChange}
-                                style={{
-                                    backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
-                                }}
-                                required
-                            />
-                            <label
-                                className="desafio__card-title"
-                                htmlFor="selectionDesafio">
-                                {desafio.nome}
-                            </label>
-                        </Card>
-                    ))}
-                    {/* </select>
-                    </div> */}
-
-                    {this.props.desafio &&
-                        <h1 className="disciplinas__title">{this.props.desafio.nome}</h1>
-                    }
-
-                    <h1 className="desafios__title">Selecione a disciplina que irá aplicar</h1>
-
-                    <Form onSubmit={this.handleSubmit} className="disciplinas-form">
-
-                        {this.state.disciplinasFiltradas && this.state.disciplinasFiltradas.map(disciplina => (
-                            <React.Fragment>
-                                <FormInput
-                                    className="disciplinas__form-input-radio"
-                                    type="radio"
-                                    name="selection-disciplina"
-                                    placeholder={disciplina.nome}
-                                    value={disciplina.nome}
-                                    onChange={this.handleChange}
-                                    style={{
-                                        backgroundImage: `url('${backgrounds[disciplina.nome] || backgrounds['Foguete']}')`
-                                    }}
-                                    required
-                                />
-                                <label
-                                    className="disciplinas__card"
-                                    htmlFor="selection-disciplina"
-                                    style={{
-                                        background: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
-                                    }}>
-
-                                    {/* <Card
-                                    className="disciplinas__card"
-                                    style={{
-                                        background: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
-                                    }}> */}
-                                    <Accordion className="react-sanfona" allowMultiple>
-
-                                        <div className="disciplinas__card-title">
-                                            <h2>{disciplina.nome}</h2>
-                                            {/* <LinkButton to='/addProf' className="disciplinas__button-add-prof">
-                                            <FaUserPlus
-                                                className="disciplinas__button-icon"
-                                                style={{
-                                                    color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
-                                                }} />
-                                        </LinkButton> */}
-                                        </div>
-                                        <p className="disciplinas__card-resumo">
-                                            Veja abaixo os detalhes de tarefas dessa disciplina
-                                    </p>
-
-                                        <AccordionItem className="react-sanfona-item fases-card-title" title={'1ª fase'}>
-                                            <div className="fases-card">
-                                                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel fringilla turpis.'}
-                                                <LinkButton
-                                                    to='/exercicios'
-                                                    className="fases-button"
-                                                    style={{
-                                                        borderColor: `${bgColor[disciplina.nome] || bgColor['Matemática']}`,
-                                                        color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
-                                                    }}>
-                                                    Exercícios
-                                        </LinkButton>
-                                            </div>
-                                        </AccordionItem>
-
-                                        <AccordionItem className="react-sanfona-item fases-card-title" title={'2ª fase'}>
-                                            <div className="fases-card">
-                                                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel fringilla turpis.'}
-                                                <LinkButton
-                                                    to='/exercicios'
-                                                    className="fases-button"
-                                                    style={{
-                                                        borderColor: `${bgColor[disciplina.nome] || bgColor['Matemática']}`,
-                                                        color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
-                                                    }}>
-                                                    Exercícios
-                                        </LinkButton>
-                                            </div>
-                                        </AccordionItem>
-                                    </Accordion>
-                                    {/* </Card> */}
-                                </label>
-                            </React.Fragment>
-                        ))}
-                    </Form>
                     <Form className="cadastra-desafio-form">
-                        <FormButton
-                            className="cadastra-desafio-form__button"
-                            type="submit"
-                            disabled={this.state.isInvalid}>
-                            Cadastrar
-                        </FormButton>
+
+                        <h1 className="home __title desafios__title">Escolha um desafio</h1>
+
+                        <ul className="desafios__types">
+
+                            {this.props.desafios && this.props.desafios.map(desafio => (
+                                <li className="desafios__card desafios-link">
+                                    <FormInput
+                                        className="desafios-card__input-radio"
+                                        type="radio"
+                                        name="selectionDesafio"
+                                        placeholder={desafio.nome}
+                                        value={desafio.nome}
+                                        onChange={this.handleChange}
+                                        style={{
+                                            backgroundImage: `url('${backgrounds[desafio.nome] || backgrounds['Foguete']}')`
+                                        }}
+                                        required
+                                    />
+                                    <label
+                                        className="desafios-card__label"
+                                        htmlFor="selectionDesafio">
+                                        {desafio.nome}
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {this.state.disciplinasFiltradas &&
+
+                        <ContainerBox className="disciplinas__container">
+                            <h1 className="desafios__title">Selecione a disciplina que irá aplicar</h1>
+
+                            <Form onSubmit={this.handleSubmit} className="disciplinas-form">
+
+                                {this.state.disciplinasFiltradas && this.state.disciplinasFiltradas.map(disciplina => (
+                                    <Card className="disciplina-form__item">
+                                        <FormInput
+                                            className="disciplinas-form-input-radio"
+                                            type="radio"
+                                            name="selection-disciplina"
+                                            placeholder={disciplina.nome}
+                                            value={disciplina.nome}
+                                            onChange={this.handleChange}
+                                            style={{
+                                                backgroundImage: `url('${backgrounds[disciplina.nome] || backgrounds['Foguete']}')`
+                                            }}
+                                            required
+                                        />
+                                        <label
+                                            className="disciplinas__card"
+                                            htmlFor="selection-disciplina"
+                                            style={{
+                                                background: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+                                            }}>
+
+                                            {montaCardDisciplina(disciplinas)}
+                                        </label>
+                                    </Card>
+                                ))}
+                            </Form>
+                            <FormButton
+                                className="cadastra-desafio-form__button"
+                                type="submit"
+                                disabled={this.state.isInvalid}>
+                                Cadastrar
+                            </FormButton>
+                        </ContainerBox>
+
+                        }
                     </Form>
                 </ContainerBox>
             </Main>
@@ -247,7 +244,7 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id // const id = 0
     const turma = state.turmas[id]
-    const desafio = state.desafio
+    const desafios = state.desafios
     const disciplinas = state.disciplinas
 
     return {
@@ -305,3 +302,11 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CadastraD
 //         this.setState({ disciplinasFiltradas: this.props.disciplinas })
 //     }
 // }
+
+{/* < LinkButton to = '/addProf' className = "disciplinas__button-add-prof" >
+    <FaUserPlus
+        className="disciplinas__button-icon"
+        style={{
+            color: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+        }} />
+</LinkButton > */}

@@ -13,11 +13,24 @@ import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 class TurmaAlunos extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            alunosFiltrados: [...props.alunos]
+        }
+        this.listaAlunos = [...props.alunos]
+    }
+
+    componentWillMount() {
+        
     }
 
     componentDidMount() {
         this.props.dispatchListaTurmas()
         this.props.dispatchListaAlunos()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.listaAlunos = [...nextProps.alunos]
+        this.setState({ alunosFiltrados: [...nextProps.alunos] })
     }
 
     render() {
@@ -28,7 +41,7 @@ class TurmaAlunos extends React.Component {
             <React.Fragment>
                 <nav className="turmas__nav">
                 {this.props.turma && 
-                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/desafios`}>
+                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}>
                         <h2>Desafios</h2>
                     </Link>
                 }
@@ -45,10 +58,10 @@ class TurmaAlunos extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.alunos.map((aluno) => (
+                        {this.props.alunos && this.props.alunos.map((aluno) => (
                             <Card className="turmas__card-aluno">
                                 <h2 className="turmas__card-aluno-title">
-                                    {`${aluno.nome} ${aluno.sobrenome}`}
+                                    {`${aluno.usuario.nome} ${aluno.usuario.sobrenome}`}
                                 </h2>
                             </Card>
                         ))}
