@@ -70,10 +70,10 @@ class Turma extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.aulas && this.props.aulas.map(aula => (
+                        {this.props.aulas && this.props.turma &&this.props.aulas.map(aula => (
                             <Link
                                 className="turmas__card"
-                                to={`/aulas/${aula.id}`}
+                                to={`/turmas/${this.props.turma.id}/aula/${aula.id}`}
                                 style={{
                                     backgroundImage: `url('${backgrounds[aula.desafio.nome] || backgrounds['Foguete']}')`
                                 }}>

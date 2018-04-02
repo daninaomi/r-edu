@@ -1,8 +1,16 @@
 import axios from 'axios'
 
-const instance = axios.create({
+const config = {
     baseURL: 'http://backredu-001-site1.btempurl.com/api/'
-})
+}
+
+const usuario = JSON.parse(localStorage.getItem('usuario')) || {}
+
+if (usuario.accessToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${usuario.accessToken}`
+}
+
+const instance = axios.create(config)
 
 export function postLogin(user) {
     return instance.post('/usuario/login', { ...user })

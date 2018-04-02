@@ -40,7 +40,7 @@ const App = () => (
             <Route exact path="/turmas/:id/desafios" component={TurmaDesafios} />
             <Route exact path="/turmas/:id/alunos" component={TurmaAlunos} />
             <Route path="/turmas/:id/cadastro-desafios" component={AddDesafios} />
-            <Route exact path="/turmas/:id/aulas/:id" component={TurmaAula} />
+            <Route exact path="/turmas/:id/aula/:idAula" component={TurmaAula} />
         </Switch>
     </React.Fragment>
 )

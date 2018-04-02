@@ -27,11 +27,11 @@ class TurmaAula extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps() {
-        if (this.props.aula && this.props.aula.desafio.nome) {
-            this.props.dispatchPushPage(this.props.aula.desafio.nome)
-        }
-    }
+    // componentWillReceiveProps() {
+    //     if (this.props.aulas && this.props.aulas.desafio.nome) {
+    //         this.props.dispatchPushPage(this.props.aulas.desafio.nome)
+    //     }
+    // }
 
     componentDidMount() {
         this.props.dispatchListaAulas()
@@ -80,13 +80,13 @@ class TurmaAula extends React.Component {
                             </Card>
                         ))}
 
-                        {this.props.turma &&
+                        {/* {this.props.turma &&
                             <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
                                 <Card>
                                     <FaPlusCircle className="escolas__icon" />
                                 </Card>
                             </Link>
-                        }
+                        } */}
 
                     </ContainerBox>
                 </Main>
@@ -97,16 +97,16 @@ class TurmaAula extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    // const id = props.match.params.id
-    const turma = state.turmasAlunos.idTurma
-    const alunos = state.turmasAlunos
+    const id = props.match.params.id
+    const turma = state.turmas[id]
+    const alunos = state.alunos
     const aulas = turma && turma.aulas || []
 
     return {
         turma,
         aulas,
-        alunos: Object.keys(state.turmasAlunos).map(key => {
-            return state.turmasAlunos[key]
+        alunos: Object.keys(state.alunos).map(key => {
+            return state.alunos[key]
         })
     }
 }

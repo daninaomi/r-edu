@@ -8,7 +8,7 @@ import Form from '../../compSimples/form'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
 import LinkButton from '../../compSimples/linkButton'
-import { logaUser } from '../../../actions'
+import { logaUser, pesquisaUser } from '../../../actions'
 import './login.css'
 
 
@@ -28,12 +28,16 @@ class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
 
+        // this.props.pesquisaUser()
+
         if (!this.state.isInvalid) {
             const user = {
                 email: this.email,
                 senha: this.senha
             }
             // this.props.logaUser(event, user)
+            console.log('user', user)
+            
             this.props.logaUser(user)
 
             this.props.history.push('/home')
@@ -42,7 +46,7 @@ class Login extends React.Component {
 
     render() {
 
-        const { user, logaUser } = this.props
+        const { user, logaUser, pesquisaUser } = this.props
 
         return (
             user.logado ? (
@@ -67,7 +71,7 @@ class Login extends React.Component {
                         <FormInput
                             className="login__form-input"
                             type="password"
-                            name="password"
+                            name="senha"
                             placeholder="Senha"
                             autoComplete="current-password"
                             aria-label="senha"
@@ -104,9 +108,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    // pesquisaUser: () => {
+    //       dispatch(pesquisaUser())
+    //   },
     logaUser: (user) => {
-      // logaUser: (event, user) => {
-        // event.preventDefault()
         dispatch(logaUser(user))
     }
 })

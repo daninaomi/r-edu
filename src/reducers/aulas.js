@@ -12,9 +12,10 @@ export function aulas(estadoAtual = {}, acao) {
             return novoEstado
 
         case CADASTRA_AULA:
+        console.log('aula', acao)
             return {
                 ...estadoAtual,
-                ...acao.aula
+                [acao.id]: acao.aula
             }
         default:
             return estadoAtual

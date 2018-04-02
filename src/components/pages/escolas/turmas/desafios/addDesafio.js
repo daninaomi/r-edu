@@ -29,7 +29,7 @@ class CadastraDesafio extends React.Component {
         super(props)
         this.state = {
             isInvalid: false,
-            desafioEscolhido: [...props.desafios],
+            desafioEscolhido: {},
             disciplinasFiltradas: [...props.disciplinas]
         }
         this.listaDisciplinas = [...props.disciplinas]
@@ -80,7 +80,11 @@ class CadastraDesafio extends React.Component {
     
         const desafiosFiltrados = this.props.desafios.filter(desafio => desafio.id == value)
 
-        this.setState({ isInvalid, disciplinasFiltradas: this.disciplinasFiltradas(desafiosFiltrados[0].nome)})
+        this.setState({ 
+            isInvalid, 
+            desafioEscolhido: desafiosFiltrados[0],
+            disciplinasFiltradas: this.disciplinasFiltradas(desafiosFiltrados[0].nome)})
+
     }
 
     handleChangeDisciplina(name, value, isInvalid, disciplinas) {
@@ -93,10 +97,10 @@ class CadastraDesafio extends React.Component {
 
         if (!this.state.isInvalid) {
             const aula = {
-                "idProfessor": this.user.id,
-                "idTurma": this.turma.id,
-                "idDisciplina": this.disciplina.id,
-                "idDesafio": this.desafioEscolhido.id
+                "idProfessor": this.props.user.id,
+                "idTurma": this.props.turma.id,
+                "idDisciplina": parseInt(this.disciplina),
+                "idDesafio": this.state.desafioEscolhido.id
             }
             this.props.cadastraAula(aula)
 
@@ -173,10 +177,10 @@ class CadastraDesafio extends React.Component {
                                         <FormInput
                                             className="disciplinas-form-input-radio"
                                             type="radio"
-                                            name="selectionDisciplina"
+                                            name="disciplina"
                                             id={`selectionDisciplina-${index}`}
                                             placeholder={disciplina.nome}
-                                            value={disciplina.nome}
+                                            value={disciplina.id}
                                             onChange={this.handleChangeDisciplina}
                                             style={{
                                                 backgroundImage: `url('${backgrounds[disciplina.nome] || backgrounds['Foguete']}')`
@@ -255,13 +259,14 @@ const mapStateToProps = (state, props) => {
     const turma = state.turmas[id]
     const desafios = state.desafios
     const disciplinas = state.disciplinas
-    const user = state.user
+    const user = state.user.usuario
 
     return {
         turma,
-        user: Object.keys(state.user).map(key => {
-            return state.user[key]
-        }),
+        user,
+        // user: Object.keys(state.user).map(key => {
+        //     return state.user[key]
+        // }),
         desafios: Object.keys(state.desafios).map(key => {
             return state.desafios[key]
         }),
