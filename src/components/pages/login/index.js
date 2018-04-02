@@ -33,7 +33,8 @@ class Login extends React.Component {
                 email: this.email,
                 senha: this.senha
             }
-            this.props.logaUser(event, user)
+            // this.props.logaUser(event, user)
+            this.props.logaUser(user)
 
             this.props.history.push('/home')
         }
@@ -103,8 +104,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    logaUser: (event, user) => {
-        event.preventDefault()
+    logaUser: (user) => {
+      // logaUser: (event, user) => {
+        // event.preventDefault()
         dispatch(logaUser(user))
     }
 })

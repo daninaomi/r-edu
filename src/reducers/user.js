@@ -8,7 +8,7 @@ import {
     LISTA_USERS
 } from '../actions'
 
-export function user (estadoAtual = 
+export function user (estadoAtual =
     {
         ///////////////// PRECISA TIRAR
         logado: true, type: 'professor', id: 1
@@ -55,7 +55,3 @@ export function user (estadoAtual =
             return estadoAtual
     }
 }
-
-
-
-
