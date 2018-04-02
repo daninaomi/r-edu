@@ -4,13 +4,14 @@ import {
     DESLOGA_USER,
     SELECIONA_USERTYPE,
     CADASTRA_USER_SUCCESS,
-    ALTERA_USER
+    ALTERA_USER,
+    LISTA_USERS
 } from '../actions'
 
 export function user (estadoAtual = 
     {
         ///////////////// PRECISA TIRAR
-    logado: true, type: 'professor'
+        logado: true, type: 'professor', id: 1
     }, acao) {
 
     switch (acao.type) {
@@ -41,6 +42,15 @@ export function user (estadoAtual =
                 ...estadoAtual,
                 ...acao.user
             }
+        case LISTA_USERS:
+            let novoEstado = {};
+
+            acao.users.forEach(user => (
+                novoEstado[user.id] = user
+            ))
+
+            return novoEstado
+
         default:
             return estadoAtual
     }

@@ -34,8 +34,6 @@ export function cadastraTurmaAluno(alunos, turma) {
             .catch(error => {
                 console.log('Ocorreu um erro', error)
             })
-
-
     }
 }
 
@@ -46,7 +44,10 @@ export function listaTurmasAlunos() {
                 type: LISTA_TURMAS_ALUNOS,
                 // turmas: response.data,
                 // alunos: response.data,
-                turmasAlunos: response.data
+                turmasAlunos: {
+                    idTurma: response.data,
+                    idAluno: response.data
+                }
             }))
             .catch(error => {
                 console.log('Ocorreu um erro', error)

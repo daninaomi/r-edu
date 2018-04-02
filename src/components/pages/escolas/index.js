@@ -16,9 +16,14 @@ class Escola extends React.Component {
         super(props)
     }
 
+    componentWillReceiveProps() {
+        if (this.props.escola && this.props.escola.nome) {
+            this.props.dispatchPushPage(this.props.escola.nome)
+        }
+    }
+
     componentDidMount() {
         this.props.dispatchListaTurmas()
-        this.props.dispatchPushPage(this.props.escola.nome)
     }
 
     render() {

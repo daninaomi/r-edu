@@ -12,9 +12,9 @@ export function listaTurmas() {
                 type: LISTA_TURMAS,
                 turmas: response.data
             }))
-            .catch(error => {
-                console.log('Ocorreu um erro', error)
-            })
+        .catch(error => {
+            console.log('Ocorreu um erro', error)
+        })
     }
 }
 

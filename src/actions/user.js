@@ -1,11 +1,24 @@
-import { postLogin, postNewUser, editUser } from '../api'
+import { postLogin, postNewUser, editUser, getUsers } from '../api'
 
 export const LOGA_USER = 'LOGA_USER'
 export const DESLOGA_USER = 'DESLOGA_USER'
 export const SELECIONA_USERTYPE = 'SELECIONA_USERTYPE'
 export const CADASTRA_USER_SUCCESS = 'CADASTRA_USER_SUCCESS'
 export const ALTERA_USER = 'ALTERA_USER'
+export const LISTA_USERS = 'LISTA_USERS'
 
+export function listaUsers() {
+    return dispatch => {
+        getUsers()
+            .then(response => dispatch({
+                type: LISTA_USERS,
+                users: response.data
+            }))
+        .catch(error => {
+            console.log('Ocorreu um erro', error)
+        })
+    }
+}
 
 export function logaUser(user) {
     return dispatch => {
