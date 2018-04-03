@@ -75,3 +75,7 @@ export function getAulas() {
 export function postAula(aula) {
     return instance.post('/aula/cadastrar', { aula })
 }
+
+export function getPerguntas(perguntas) {
+    return instance.get('/', { perguntas })
+}
