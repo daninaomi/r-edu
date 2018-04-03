@@ -1,0 +1,18 @@
+.form-input-mask {
+    padding: 4% 5%;
+    border-radius: 10px;
+    background: #b39ddb;
+    color: white;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.form-input-mask--error {
+    border: 2px solid lightcoral !important;
+}
+
+.form-input-mask__helper {
+    margin: 5px;
+    font-size: 0.9rem;
+    color: lightcoral;
+}
