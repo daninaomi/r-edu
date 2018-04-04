@@ -79,3 +79,12 @@ export function postAula(aula) {
 export function getPerguntas(perguntas) {
     return instance.get('/', { perguntas })
 }
+// // fazer o for para mandar uma resposta de cada vez antes de chamar o axios
+// // {
+//     "opcao": "a",
+//     "idpergunta": 1,
+//     "idaluno": 1,
+//  }
+export function postResposta(resposta) {
+    return instance.post('/api/resposta/cadastrar', { resposta })
+}
