@@ -3,9 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import './questionario.css'
-// o botao abrir o questionario ja vai ter o numerodaPergunta ...o get da pergunta que vai carregar o questionario.
-// 
-
+import {mandaRespostas} from '../../actions'
 import Main from '../compSimples/main'
 import ContainerBox from '../compSimples/container-box'
 import FormButton from '../compSimples/form/formButton'
@@ -72,18 +70,10 @@ class Questionario extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
 
-        if (!this.state.isInvalid) {
-            const resposta = {
-
-                // opcao: ?opcaoA,
-                // idpergunta:this.pergunta.id,
-                // idaluno: this.aluno.id,
-
-            }
-            this.props(resposta)
-
-            // this.props.history.push('/desafio..')
-        }
+            
+            this.props.mandaRespostas(this.respostas)
+        
+               
     }
 
 
@@ -94,6 +84,7 @@ class Questionario extends React.Component {
         return (
             <Main>
                 <ContainerBox>
+                <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
                     <h1 className="cadastro__title">Questionario Atividade 1</h1>
                     <div onChange={this.setResposta.bind(this)}>
                         <table>
@@ -111,7 +102,7 @@ class Questionario extends React.Component {
                                                 type="radio"
 
                                                 name={pergunta.id}
-                                                value="opcaoA"
+                                                value="A"
                                             /> A) {pergunta.opcaoA}
                                         </td>
                                     </tr>
@@ -121,7 +112,7 @@ class Questionario extends React.Component {
                                                 type="radio"
 
                                                 name={pergunta.id}
-                                                value="opcaoB"
+                                                value="B"
                                             />B) {pergunta.opcaoB}
                                         </td>
                                     </tr>
@@ -131,7 +122,7 @@ class Questionario extends React.Component {
                                                 type="radio"
 
                                                 name={pergunta.id}
-                                                value="opcaoC"
+                                                value="C"
                                             />C{pergunta.opcaoC}
                                         </td>
                                     </tr>
@@ -141,7 +132,7 @@ class Questionario extends React.Component {
 
 
                                                 name={pergunta.id}
-                                                value="opcaoD"
+                                                value="D"
                                             />D{pergunta.opcaoD}
                                         </td>
                                     </tr>
@@ -150,7 +141,7 @@ class Questionario extends React.Component {
                                             <input type="radio"
 
                                                 name={pergunta.id}
-                                                value="opcaoE"
+                                                value="E"
                                             />E{pergunta.opcaoE}
                                         </td>
                                     </tr>
@@ -166,6 +157,7 @@ class Questionario extends React.Component {
                         disabled={this.state.isInvalid}>
                         Enviar Respostas
             </FormButton>
+            </Form>
                 </ContainerBox >
             </Main >
         )

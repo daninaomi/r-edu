@@ -85,6 +85,19 @@ export function getPerguntas(perguntas) {
 //     "idpergunta": 1,
 //     "idaluno": 1,
 //  }
-export function postResposta(resposta) {
-    return instance.post('/api/resposta/cadastrar', { resposta })
+// export function postResposta(alunos, turma) {
+//     const turmaAluno = {}
+
+//     return axios.all(alunos.map(aluno => (
+//         instance.post('/turmaaluno/cadastrar', { idTurma: turma.id, idAluno: aluno.id })
+//     )))
+//         .then(axios.spread((...responses) => (
+//             responses.map(response => (
+//                 turmapergAluno[response.data.id] = response.data
+//             ))
+//         )))
+// }
+debugger;
+export function postRespostas(respostas) {
+    return instance.post('/api/resposta/cadastrar', { respostas })
 }
