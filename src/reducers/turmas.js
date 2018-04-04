@@ -1,4 +1,8 @@
-import { CADASTRA_TURMA, LISTA_TURMAS} from "../actions";
+import { 
+    CADASTRA_TURMA, 
+    LISTA_TURMAS,
+    LISTA_TURMAS_DESAFIOS
+} from "../actions";
 
 
 export function turmas(estadoAtual = {}, acao) {
@@ -17,6 +21,15 @@ export function turmas(estadoAtual = {}, acao) {
             ))
 
             return novoEstado
+
+        case LISTA_TURMAS_DESAFIOS:
+            let novoEstadoNovo = {};
+
+            acao.turmas.forEach(turma => (
+                novoEstadoNovo[turma.id] = turma
+            ))
+
+            return novoEstadoNovo
 
         default:
             return estadoAtual

@@ -43,12 +43,11 @@ const Navbar = ({ user, deslogaUser }) => (
 
             // react router match url ou path
 
-            user.type === 'professor' ? (
+            user.tipousuario === 'professor' ? (
                 <NavProf />
             ) : (
                 <NavAluno />
             )
-
 
         )}
     

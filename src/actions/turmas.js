@@ -37,13 +37,13 @@ export function cadastraTurma(turma) {
     }
 }
 
-export function listaTurmasDesafios() {
+export function listaTurmasDesafios(turma) {
     return dispatch => {
-        getTurmasDesafios()
+        getTurmasDesafios(turma)
             .then(response => dispatch({
-                type: LISTA_TURMAS_DESAFIOS,
+                type: LISTA_TURMAS,
                 turmas: response.data,
-                desafios: response.data,
+                desafios: response.data.desafios,
                 // turmasDesafios: response.data
             }))
             .catch(error => {

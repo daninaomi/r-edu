@@ -64,10 +64,6 @@ export function postTurmaAluno(alunos, turma) {
         )))
 }
 
-export function getTurmasAlunos() {
-    return instance.get('/turmaaluno/listar')
-}
-
 export function getDesafio() {
     return instance.get('/desafio/listar')
 }
@@ -88,8 +84,16 @@ export function postAula(aula) {
     return instance.post('/aula/cadastrar', { aula })
 }
 
-export function getTurmasDesafios() {
-    return instance.get('/turma/listar/desafios')
+export function getTurmasDesafios(turma) {
+    return instance.get(`/turma/buscarporid/${turma.id}/desafios`)
+}
+
+export function getTurmasAlunos() {
+    return instance.get('/turma/buscarporid/listar/alunos')
+}
+
+export function getPerguntas() {
+    return instance.get('/pergunta/listar')
 }
 
 // export function getTurmasAlunos() {

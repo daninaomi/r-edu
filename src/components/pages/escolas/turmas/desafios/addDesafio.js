@@ -104,7 +104,7 @@ class CadastraDesafio extends React.Component {
             }
             this.props.cadastraAula(aula)
 
-            this.props.history.push(`/turmas/${this.props.turma.id}`)
+            // this.props.history.push(`/turmas/${this.props.turma.id}`)
         }
     }
 
@@ -200,7 +200,7 @@ class CadastraDesafio extends React.Component {
                                                     <h2>{this.state.disciplinasFiltradas[index].nome}</h2>
                                                 </div>
                                                 <p className="disciplinas__card-resumo">
-                                                    Veja abaixo os detalhes de tarefas dessa disciplina
+                                                    Veja abaixo os detalhes de tarefas dessa disciplina 
                                                 </p>
 
                                                 <AccordionItem className="react-sanfona-item fases-card-title" title={'1ª fase'}>

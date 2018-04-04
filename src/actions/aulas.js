@@ -21,13 +21,13 @@ export function cadastraAula(aula) {
     return dispatch => {
         postAula(aula)
             .then(response => {
-                // dispatch({
-                //     type: CADASTRA_AULA,
-                //     aula: {
-                //         ...aula,
-                //         id: response.data.id
-                //     }
-                // }) 
+                dispatch({
+                    type: CADASTRA_AULA,
+                    aula: {
+                        ...aula,
+                        id: response.data.id
+                    }
+                }) 
                 dispatch(push(`/turmas/${response.data.idTurma}/aula/${response.data.id}`))
             })
             .catch(error => {

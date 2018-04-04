@@ -19,10 +19,6 @@ class TurmaAlunos extends React.Component {
         this.listaAlunos = [...props.alunos]
     }
 
-    componentWillMount() {
-        
-    }
-
     componentDidMount() {
         this.props.dispatchListaTurmas()
         this.props.dispatchListaAlunos()

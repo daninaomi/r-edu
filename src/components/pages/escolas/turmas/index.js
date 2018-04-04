@@ -34,7 +34,7 @@ class Turma extends React.Component {
     componentDidMount() {
         this.props.dispatchListaAulas()
         this.props.dispatchListaTurmas()
-        this.props.dispatchListaDesafios()
+        // this.props.dispatchListaDesafios()
         this.props.dispatchlistaTurmasDesafios()
     }
 
@@ -105,9 +105,13 @@ const mapStateToProps = (state, props) => {
     const id = props.match.params.id
     const turma = state.turmas[id]
     const aulas = turma && turma.aulas || []
+    const desafios = state.turma.desafios
 
     return {
         turma,
+        desafios: Object.keys(state.desafios).map(key => {
+            return state.desafios[key]
+        }),
         aulas: Object.keys(state.aulas).map(key => {
             return state.aulas[key]
         })
@@ -121,12 +125,12 @@ const mapDispatchToProps = dispatch => ({
     dispatchlistaTurmasDesafios: () => {
         dispatch(listaTurmasDesafios())
     },
-    dispatchListaTurmas: () => {
-        dispatch(listaTurmas())
-    },
-    dispatchListaDesafios: () => {
-        dispatch(listaDesafios())
-    },
+    // dispatchListaTurmas: () => {
+    //     dispatch(listaTurmas())
+    // },
+    // dispatchListaDesafios: () => {
+    //     dispatch(listaDesafios())
+    // },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
     }
