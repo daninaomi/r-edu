@@ -1,8 +1,12 @@
+.exercicio {
+  margin: 20px 0;
+}
+
 .pergunta-number {
     display: inline-block;
     width: 30px;
     line-height: 30px;
-    margin-right: 10px;
+    margin-right: 15px;
     background: #26a69a;
     text-align: center;
     color: white;
@@ -13,5 +17,9 @@
 }
 
 .respostas-options {
-    margin: 20px 0 0 20px;
+    margin: 20px 0 0 45px;
+}
+
+.resposta {
+  margin-left: 10px;
 }

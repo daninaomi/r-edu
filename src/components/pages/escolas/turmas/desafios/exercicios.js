@@ -33,10 +33,13 @@ class Exercicios extends React.Component {
             <Main className="escolas__main">
 
                 <ContainerBox className="escolas__container">
+
+                  <h1 className="desafios__title">Lista de exercícios</h1>
+
                     <table>
 
                     {this.props.perguntas && this.props.perguntas.map((pergunta) => (
-                            <React.Fragment>
+                            <div className="exercicio">
                                 <tr>
                                     <td>
                                         <div className="pergunta-number">{pergunta.id}</div>
@@ -49,7 +52,7 @@ class Exercicios extends React.Component {
                                             type="radio"
                                             name={pergunta.id}
                                             value="opcaoA"
-                                        /> 
+                                        />
                                         <div className="resposta"> a) {pergunta.opcaoA} </div>
                                     </td>
                                 </tr>
@@ -91,7 +94,7 @@ class Exercicios extends React.Component {
                                         <div className="resposta"> e) {pergunta.opcaoE}</div>
                                     </td>
                                 </tr>
-                            </React.Fragment>
+                            </div>
                         ))}
                     </table>
                 </ContainerBox>
@@ -124,4 +127,3 @@ const mapDispatchToProps = dispatch => ({
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Exercicios))
-
