@@ -1,11 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-
 import { selecionarUserType, cadastraUser } from '../../../actions'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
+import FormInputMask from '../../compSimples/form/formInputMask'
 import FormInput from '../../compSimples/form/formInput'
 import FormButton from '../../compSimples/form/formButton'
 import Select from '../../compSimples/form/select'
@@ -108,8 +108,8 @@ class FormAluno extends React.Component {
                         <FormInput
                             className="cadastro__form-input"
                             type="password"
-                            name="confirma-senha"
-                            placeholder="Confirme senha"
+                            name="confirmeSenha"
+                            placeholder="Confirme a senha"
                             autoComplete="current-password"
                             aria-label="senha"
                             required
@@ -147,13 +147,17 @@ class FormAluno extends React.Component {
                                 </label>
                             </div>
                         </div>
-                        <FormInput
-                            className="cadastro__form-input"
+                        <FormInputMask
+                            className="cadastro__form-input cadastro__form-input--1"
+                            type="text"
                             name="cpf"
+                            mask="111.111.111-11"
+                            size="14"
                             placeholder="CPF"
                             aria-label="cpf"
-                            onChange={this.handleChange} />
+                            required
 
+                            onChange={this.handleChange} />
                         <Select
                             className="cadastro__form-select"
                             name="estado"
@@ -175,22 +179,24 @@ class FormAluno extends React.Component {
                             <option value="cidade3">Brasília</option>
                         </Select>
 
-                        <FormInput
-                            className="cadastro__form-input"
-                            type="number"
+
+                        <FormInputMask
+                            className="form-input cadastro__form-input"
+                            type="text"
                             name="telefone"
                             placeholder="Telefone"
                             aria-label="telefone"
+                            mask="(11)11111-1111"
+                            size="14"
                             required
                             onChange={this.handleChange} />
-                        <FormInput
+                        <FormInputMask
                             className="cadastro__form-input"
                             type="text"
                             name="dataNascimento"
-                            placeholder="Data de nascimento"
+                            placeholder="Data de Nascimento"
                             aria-label="dataNascimento"
-                            onFocus={this._onFocus}
-                            id="date"
+                            mask="11/11/1111"
                             required
                             onChange={this.handleChange} />
 

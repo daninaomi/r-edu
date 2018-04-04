@@ -79,12 +79,26 @@ export function postAula(aula) {
 export function getPerguntas(perguntas) {
     return instance.get('/', { perguntas })
 }
-// // fazer o for para mandar uma resposta de cada vez antes de chamar o axios
-// // {
-//     "opcao": "a",
-//     "idpergunta": 1,
-//     "idaluno": 1,
-//  }
-export function postResposta(resposta) {
-    return instance.post('/api/resposta/cadastrar', { resposta })
+
+
+
+
+export function postRespostas(respostas) {
+    
+    const respostaAluno = {}
+
+    return axios.all(respostas.map(r => (
+        instance.post('/resposta/cadastrar', {opcao:r.opcao, idpergunta:r.idpergunta, idaluno:r.idaluno})
+    )))
+        .then(axios.spread((...responses) => (
+            responses.map(response => (
+                respostaAluno[response.data.id] = response.data
+            ))
+        )))
 }
+
+
+
+// export function postRespostas(respostas) {
+//     return instance.post('/resposta/cadastrar', respostas[0] )
+// }
