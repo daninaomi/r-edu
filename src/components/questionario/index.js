@@ -9,23 +9,24 @@ import ContainerBox from '../compSimples/container-box'
 import FormButton from '../compSimples/form/formButton'
 import Form from '../compSimples/form'
 
-
 class Questionario extends React.Component {
 
     constructor(props) {
         super(props)
-        //this.resposta = this.resposta.bind(this)
+        this.state = {
+            isInvalid: false,            
+        }
         this.validate = this.validate.bind(this)
-        //this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.setResposta = this.setResposta.bind(this)
-        // metodos gerais do form 
+      
         this.respostas = [];
         this.state = {
             isInvalid: false,
             perguntas:
                 [{
 
-                    id: 0,
+                    id: 20,
                     titulo: "Quem descobriu o Brasil",
                     opcaoA: "Joãozinho",
                     opcaoB: "Jonatas",
@@ -36,7 +37,7 @@ class Questionario extends React.Component {
                 },
                 {
 
-                    id: 1,
+                    id: 21,
                     titulo: "Quem descobriu o Brasil",
                     opcaoA: "Joãozinho",
                     opcaoB: "Jonatas",
@@ -62,7 +63,7 @@ class Questionario extends React.Component {
         const resposta = {
             opcao: event.target.value,
             idpergunta: event.target.name,
-            idaluno: 12121212
+            idaluno: 2
         }
 
         this.respostas = this.respostas.filter(item => item.idpergunta !== event.target.name).concat(resposta)
@@ -71,9 +72,9 @@ class Questionario extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
 
-            
-            this.props.mandaRespostas(this.respostas)
-        
+            debugger;
+           // this.props.mandaRespostas
+      this.props.mandaRespostas(this.respostas) 
                
     }
 
@@ -81,7 +82,7 @@ class Questionario extends React.Component {
 
 
     render() {
-        const { user, gravarResposta, selecionarUsuario } = this.props
+        const { mandaRespostas } = this.props
         return (
             <Main>
                 <ContainerBox>
@@ -103,7 +104,7 @@ class Questionario extends React.Component {
                                                 type="radio"
 
                                                 name={pergunta.id}
-                                                value="A"
+                                                value="a"
                                             /> A) {pergunta.opcaoA}
                                         </td>
                                     </tr>
@@ -113,7 +114,7 @@ class Questionario extends React.Component {
                                                 type="radio"
 
                                                 name={pergunta.id}
-                                                value="B"
+                                                value="b"
                                             />B) {pergunta.opcaoB}
                                         </td>
                                     </tr>
@@ -123,8 +124,8 @@ class Questionario extends React.Component {
                                                 type="radio"
 
                                                 name={pergunta.id}
-                                                value="C"
-                                            />C{pergunta.opcaoC}
+                                                value="c"
+                                            />C){pergunta.opcaoC}
                                         </td>
                                     </tr>
                                     <tr>
@@ -133,7 +134,7 @@ class Questionario extends React.Component {
 
 
                                                 name={pergunta.id}
-                                                value="D"
+                                                value="d"
                                             />D{pergunta.opcaoD}
                                         </td>
                                     </tr>
@@ -142,8 +143,8 @@ class Questionario extends React.Component {
                                             <input type="radio"
 
                                                 name={pergunta.id}
-                                                value="E"
-                                            />E{pergunta.opcaoE}
+                                                value="e"
+                                            />E){pergunta.opcaoE}
                                         </td>
                                     </tr>
                                 </React.Fragment>
@@ -165,7 +166,38 @@ class Questionario extends React.Component {
     }
 }
 
+const mapStateToProps = (state, props) => {
+
+    const id = props.match.params.id // const id = 0
+    const perguntas = state.perguntas[id]
+
+    return {
+        perguntas
+    }
+}
 
 
 
-export default (Questionario)
+const mapDispatchToProps = dispatch => ({
+    mandaRespostas: (resposta) => {
+        dispatch(mandaRespostas(resposta))
+    }
+})
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Questionario))
+
+
+// const mapStateToProps = (state, props) => {
+
+//     const id = props.match.params.id
+//     const turma = state.turma[id]
+//     const alunos = turma.alunos
+
+//     return {
+//         // turma,
+//         alunos: alunos.map(aluno => {
+//             return state.alunos[aluno];
+//         })
+//     }
+// }
