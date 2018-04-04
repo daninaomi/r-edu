@@ -7,6 +7,7 @@ import {mandaRespostas} from '../../actions'
 import Main from '../compSimples/main'
 import ContainerBox from '../compSimples/container-box'
 import FormButton from '../compSimples/form/formButton'
+import Form from '../compSimples/form'
 
 
 class Questionario extends React.Component {
