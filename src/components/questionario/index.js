@@ -72,7 +72,7 @@ class Questionario extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
 
-            debugger;
+             
            // this.props.mandaRespostas
       this.props.mandaRespostas(this.respostas) 
                
@@ -187,17 +187,3 @@ const mapDispatchToProps = dispatch => ({
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Questionario))
 
-
-// const mapStateToProps = (state, props) => {
-
-//     const id = props.match.params.id
-//     const turma = state.turma[id]
-//     const alunos = turma.alunos
-
-//     return {
-//         // turma,
-//         alunos: alunos.map(aluno => {
-//             return state.alunos[aluno];
-//         })
-//     }
-// }

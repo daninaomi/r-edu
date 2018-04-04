@@ -84,11 +84,11 @@ export function getPerguntas(perguntas) {
 
 
 export function postRespostas(respostas) {
-    debugger;
+    
     const respostaAluno = {}
 
-    return axios.all(respostas.map(resposta => (
-        instance.post('/resposta/cadastrar', {opcao:resposta.opcao, idpergunta:resposta.idpergunta, idaluno:resposta.idaluno})
+    return axios.all(respostas.map(r => (
+        instance.post('/resposta/cadastrar', {opcao:r.opcao, idpergunta:r.idpergunta, idaluno:r.idaluno})
     )))
         .then(axios.spread((...responses) => (
             responses.map(response => (
