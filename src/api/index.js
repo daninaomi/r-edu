@@ -88,9 +88,9 @@ export function postAula(aula) {
 //     return instance.get(`/turma/buscarporid/${turma.id}/desafios`)
 // }
 
-// export function getTurmasAlunos() {
-//     return instance.get('/turma/buscarporid/listar/alunos')
-// }
+export function getTurmasAlunos() {
+    return instance.get('/turma/buscarporid/listar/alunos')
+}
 
 export function getPerguntas() {
     return instance.get('/pergunta/listar')

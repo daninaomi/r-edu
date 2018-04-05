@@ -49,17 +49,24 @@ class TurmaAula extends React.Component {
             'Camera': bgCamera,
         }
 
-        const { turma, desafio, aulas, alunos } = this.props
+        const { turma, desafio, aula, alunos } = this.props
 
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-                    {/* <Link className="turmas__title turmas__title--active" to={`/aulas/${this.props.aulas.id}/fases`}>
+                  {/* <div className="aula-header" style={{
+                      width: '100%;',
+                      {this.props.aula &&
+                      backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`]
+                      }
+                  }}>>
+                  </div>
+                    <Link className="turmas__title turmas__title--active" to={`/aulas/${this.props.aulas.id}/fases`}>
                         <h2>Fases</h2>
                     </Link> */}
 
-                    {this.props.aulas &&
+                    {this.props.aula &&
                         <Link className="turmas__title" to='#'>
                             <h2>Alunos</h2>
                         </Link>
@@ -102,7 +109,9 @@ const mapStateToProps = (state, props) => {
 
     return {
         turma,
-        aulas,
+        aula: aulas.filter(aula => {
+            return aulas.idTurma == id
+        }),
         alunos: Object.keys(state.alunos).map(key => {
             return state.alunos[key]
         })
