@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { 
-    listaAlunos, 
-    listaTurmas 
+import {
+    pushPage,
+    listaAlunos,
+    listaTurmas,
+    listaTurmasAlunos
 } from '../../../../actions'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
@@ -23,7 +25,8 @@ class TurmaAlunos extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.dispatchListaTurmas()
+        this.props.dispatchListaTurmas()
+        this.props.dispatchListaTurmasAlunos()
         this.props.dispatchListaAlunos()
     }
 
@@ -35,24 +38,23 @@ class TurmaAlunos extends React.Component {
 
     render() {
 
-        // const { turma, alunos } = this.props
-        const { alunos } = this.props
+        const { turma, alunos } = this.props
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-                {this.props.turma && 
-                    <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}>
-                        <h2>Desafios</h2>
-                    </Link>
-                }
+
+                  <div className="turmas__title">
+                    <h2>Desafios</h2>
+                    {this.props.turma &&
+                      <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}></Link>
+                    }
+                  </div>
 
                     <Link className="turmas__title turmas__title--active" to="#">
                         <h2>Alunos</h2>
                     </Link>
-                    {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
-                    <h2>Grupos</h2> 
-                    </Link>*/}
+
                 </nav>
 
                 <Main className="escolas__main">
@@ -81,21 +83,36 @@ const mapStateToProps = (state, props) => {
     const alunos = Object.keys(state.alunos).map(key => {
         return state.alunos[key]
     })
+    const turmaAlunos = Object.keys(state.turmaAluno).map(key => {
+        return state.turmaAluno[key]
+    })
+    {/* const alunoDoTurmaAlunos = Object.keys(state.turmaAluno.alunos).map(key => {
+      return state.turmaAluno.alunos[key]
+    }) */}
+
+    {/* ALUNOS TEM Q VIR DE TURMAALUNO*/}
 
     return {
         turma,
-        alunos: alunos.filter(alunos => {
-            console.log(alunos.turmasAlunos.length)
-            console.log(alunos.turmasAlunos[0].idTurma)
-            return alunos.turmasAlunos.length > 0 && alunos.turmasAlunos[0].idTurma === id
+        turmaAlunos,
+        alunos: alunos.filter((aluno, turmaAlunos) => {
+          console.log('id aluno de alunos', alunos.id)
+            console.log('id aluno de turmaAlunos', turmaAlunos.idAluno)
+            return turmaAlunos.idAluno === alunos.id
         })
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    // dispatchListaTurmas: () => {
-    //     dispatch(listaTurmas())
-    // },
+    dispatchPushPage: page => {
+        dispatch(pushPage(page))
+    },
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
+    },
+    dispatchListaTurmasAlunos: () => {
+        dispatch(listaTurmasAlunos())
+    },
     dispatchListaAlunos: () => {
         dispatch(listaAlunos())
     }
@@ -104,3 +121,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TurmaAlunos))
 
+{/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
+<h2>Grupos</h2>
+</Link>*/}

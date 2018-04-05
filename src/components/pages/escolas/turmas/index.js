@@ -32,7 +32,7 @@ class Turma extends React.Component {
 
     componentDidMount() {
         this.props.dispatchListaAulas()
-        // this.props.dispatchListaTurmas()
+        this.props.dispatchListaTurmas()
         // this.props.dispatchListaDesafios()
     }
 
@@ -45,24 +45,24 @@ class Turma extends React.Component {
             'Camera': bgCamera
         }
 
-        const {  desafio, aulas } = this.props
-
+        const {  desafio, aulas, turma } = this.props
+        console.log('turma', turma)
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
+
                     <Link className="turmas__title turmas__title--active" to='#'>
                         <h2>Desafios</h2>
                     </Link>
 
-                    {this.props.aulas.length > 0 && 
-                        <Link className="turmas__title" to={`/turmas/${this.props.aulas[0].idTurma}/alunos`}>
-                            <h2>Alunos</h2>
-                        </Link>
+                  <div className="turmas__title">
+                    <h2>Alunos</h2>
+                    {this.props.turma &&
+                        <Link to={`/turmas/${this.props.turma.id}/alunos`}></Link>
                     }
-                    {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
-                    <h2>Grupos</h2>
-                    </Link>*/}
+                  </div>
+
                 </nav>
 
                 <Main className="escolas__main">
@@ -84,13 +84,16 @@ class Turma extends React.Component {
                             </Link>
                         ))}
 
-                        {this.props.aulas.length > 0 &&
-                            <Link className="turmas__card escolas__card-icon" to={`/turmas/${aulas[0].idTurma}/cadastro-desafios`}>
-                                <Card>
-                                    <FaPlusCircle className="escolas__icon" />
-                                </Card>
-                            </Link>
-                        }
+
+                            <Card className="turmas__card escolas__card-icon">
+                                <FaPlusCircle className="escolas__icon" />
+                                {this.props.turma &&
+                                  <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
+                                  </Link>
+                                    }
+                            </Card>
+
+
 
                     </ContainerBox>
                 </Main>
@@ -102,15 +105,16 @@ class Turma extends React.Component {
 const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
-    
+    const turma = state.turmas[id]
     const aulas = Object.keys(state.aulas).map(key => {
         return state.aulas[key]
     })
 
     return {
-        aulas: aulas.filter(aulas => {
-            return aulas.idTurma == id
-        })
+      turma,
+      aulas: aulas.filter(aulas => {
+          return aulas.idTurma == id
+      })
     }
 }
 
@@ -120,6 +124,9 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
+    },
+    dispatchListaTurmas: () => {
+        dispatch(listaTurmas())
     }
 })
 
@@ -127,36 +134,6 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Turma))
 
 
-// import bgFoguete from '../img/card-desafio-foguete.png'
-// import bgVulcao from '../img/card-desafio-vulcao.png'
-// import bgCamera from '../img/card-desafio-camera.png'
-// import bgJardim from '../img/card-desafio-jardim.png'
-
-// //SWITCH CASE
-// let imgUrl = this.props.nome
-
-// switch (imgUrl) {
-//   case 'Foguete':
-//     // imgUrl = 'Foguete'
-//     return bgFoguete
-//     break;
-//   case 'Vulcao':
-//       // imgUrl = 'Vulcao'
-//       return bgVulcao
-//       break;
-//   case 'Jardim':
-//       // imgUrl = 'Jardim'
-//       return bgJardim
-//       break;
-//   case 'Camera':
-//       // imgUrl = 'Camera'
-//       return bgCamera
-//       break;
-//   default: bgFoguete
-// }
-
-// const divStyle = {
-//     backgroundImage: `url(' + ${this.imgUrl} + ')';`
-// }
-
-{/* <Card style={divStyle} > */ }
+{/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
+<h2>Grupos</h2>
+</Link>*/}
