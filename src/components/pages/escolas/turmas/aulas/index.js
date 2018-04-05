@@ -11,8 +11,7 @@ import {
     listaTurmas,
     listaDesafios,
     listaAlunos,
-    listaDisciplinas,
-    listaTurmasAlunos
+    listaDisciplinas
 } from '../../../../../actions'
 // import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
@@ -37,7 +36,6 @@ class TurmaAula extends React.Component {
         this.props.dispatchListaAulas()
         this.props.dispatchListaTurmas()
         // this.props.dispatchListaDesafios()
-        this.props.dispatchlistaTurmasAlunos()
         this.props.dispatchListaAlunos()
         this.props.dispatchListaDisciplinas()
     }
@@ -129,9 +127,6 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
-    },
-    dispatchlistaTurmasAlunos: () => {
-        dispatch(listaTurmasAlunos())
     }
 })
 

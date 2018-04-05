@@ -1,7 +1,7 @@
 
 import {
     CADASTRA_TURMA_ALUNO,
-    LISTA_TURMAS_ALUNOS
+    // LISTA_TURMAS_ALUNOS
 } from "../actions";
 
 
@@ -14,20 +14,15 @@ export function turmaAluno(estadoAtual = {} , acao) {
                 ...acao.turmaAluno
             }
         
-        case LISTA_TURMAS_ALUNOS:
-            let novoEstado = {};
+        // case LISTA_TURMAS_ALUNOS:
+        //     let novoEstado = {};
 
-            // acao.turmas.forEach(turma => (
-            //     novoEstado[turma.id] = turma
-            // ))
-            // acao.desafios.forEach(desafio => (
-            //     novoEstado[desafio.id] = desafio
-            // ))
-            acao.turmasAlunos.forEach((turmasAlunos) => (
-                novoEstado[turmasAlunos.id] = turmasAlunos
-            ))
+        //     acao.turmasAlunos.forEach((turmasAlunos) => (
+        //         novoEstado[turmasAlunos.id] = turmasAlunos
+        //     ))
 
-            return novoEstado
+        //     return novoEstado
+
         default:
             return estadoAtual
     }

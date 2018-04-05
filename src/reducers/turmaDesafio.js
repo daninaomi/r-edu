@@ -1,29 +1,29 @@
-import { LISTA_TURMAS_DESAFIOS } from "../actions";
+// import { LISTA_TURMAS_DESAFIOS } from "../actions";
 
 
-export function turmasDesafios(estadoAtual = {}, acao) {
+// export function turmasDesafios(estadoAtual = {}, acao) {
 
-    switch (acao.type) {
+//     switch (acao.type) {
 
-        case LISTA_TURMAS_DESAFIOS:
-            let novoEstado = {};
+//         case LISTA_TURMAS_DESAFIOS:
+//             let novoEstado = {};
 
-            // acao.turmas.forEach(turma => (
-            //     novoEstado[turma.id] = turma
-            // ))
-            // acao.desafios.forEach(desafio => (
-            //     novoEstado[desafio.id] = desafio
-            // ))
-            acao.turmasDesafios.forEach((turmas, desafios) => (
-                novoEstado= {
-                    [turmas.id]: turmas,
-                    [desafios.id]: desafios
-                }
-            ))
+//             // acao.turmas.forEach(turma => (
+//             //     novoEstado[turma.id] = turma
+//             // ))
+//             // acao.desafios.forEach(desafio => (
+//             //     novoEstado[desafio.id] = desafio
+//             // ))
+//             acao.turmasDesafios.forEach((turmas, desafios) => (
+//                 novoEstado= {
+//                     [turmas.id]: turmas,
+//                     [desafios.id]: desafios
+//                 }
+//             ))
 
-            return novoEstado
+//             return novoEstado
 
-        default:
-            return estadoAtual
-    }
-}
+//         default:
+//             return estadoAtual
+//     }
+// }
