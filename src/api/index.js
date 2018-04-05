@@ -84,18 +84,28 @@ export function postAula(aula) {
     return instance.post('/aula/cadastrar', aula )
 }
 
-export function getTurmasDesafios(turma) {
-    return instance.get(`/turma/buscarporid/${turma.id}/desafios`)
-}
+// export function getTurmasDesafios(turma) {
+//     return instance.get(`/turma/buscarporid/${turma.id}/desafios`)
+// }
 
-export function getTurmasAlunos() {
-    return instance.get('/turma/buscarporid/listar/alunos')
-}
+// export function getTurmasAlunos() {
+//     return instance.get('/turma/buscarporid/listar/alunos')
+// }
 
 export function getPerguntas() {
     return instance.get('/pergunta/listar')
 }
 
-// export function getTurmasAlunos() {
-//     return instance.get('/turma/listar/alunos')
-// }
+export function postRespostas(respostas) {
+
+    const respostaAluno = {}
+
+    return axios.all(respostas.map(r => (
+        instance.post('/resposta/cadastrar', { opcao: r.opcao, idpergunta: r.idpergunta, idaluno: r.idaluno })
+    )))
+        .then(axios.spread((...responses) => (
+            responses.map(response => (
+                respostaAluno[response.data.id] = response.data
+            ))
+        )))
+}

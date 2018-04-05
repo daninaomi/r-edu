@@ -1,4 +1,4 @@
-import { getPerguntas } from '../api'
+import { getPerguntas, postRespostas } from '../api'
 
 export const LISTA_PERGUNTAS = 'LISTA_PERGUNTAS'
 

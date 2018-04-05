@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-
+import HomeAluno from './homeAluno'
 import HomeProf from './homeProf'
 // import HomeAluno from './homeAluno'
 import { deslogaUser } from '../../../actions'
@@ -29,7 +29,7 @@ class Home extends React.Component {
                     // user.type === 'professor' ? (
                         <HomeProf />
                     // ) : (
-                    //     <HomeAluno />
+                       // <HomeAluno />
                     // )
                 )
         )
