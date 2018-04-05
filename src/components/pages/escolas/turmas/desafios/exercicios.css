@@ -23,3 +23,10 @@
 .resposta {
   margin-left: 10px;
 }
+
+.resposta--certa {
+    font-weight: bold;
+    color: #26a69a;
+    padding: 8px;
+    border: 1px solid #26a69a;
+}

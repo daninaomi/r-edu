@@ -2,7 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { listaAlunos, listaTurmas } from '../../../../actions'
+import { 
+    listaAlunos, 
+    listaTurmas 
+} from '../../../../actions'
 import Main from '../../../compSimples/main'
 import ContainerBox from '../../../compSimples/container-box'
 import Card from '../../../card'
@@ -13,25 +16,27 @@ import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 class TurmaAlunos extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            alunosFiltrados: [...props.alunos]
-        }
-        this.listaAlunos = [...props.alunos]
+        // this.state = {
+        //     alunosFiltrados: [...props.alunos]
+        // }
+        // this.listaAlunos = [...props.alunos]
     }
 
     componentDidMount() {
-        this.props.dispatchListaTurmas()
+        // this.props.dispatchListaTurmas()
         this.props.dispatchListaAlunos()
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.listaAlunos = [...nextProps.alunos]
-        this.setState({ alunosFiltrados: [...nextProps.alunos] })
+    componentWillReceiveProps() {
+        if (this.props.turma && this.props.turma.nome) {
+            this.props.dispatchPushPage(this.props.turma.nome)
+        }
     }
 
     render() {
 
-        const { turma, alunos } = this.props
+        // const { turma, alunos } = this.props
+        const { alunos } = this.props
 
         return (
             <React.Fragment>
@@ -73,19 +78,24 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
+    const alunos = Object.keys(state.alunos).map(key => {
+        return state.alunos[key]
+    })
 
     return {
         turma,
-        alunos: Object.keys(state.alunos).map(key => {
-            return state.alunos[key]
+        alunos: alunos.filter(alunos => {
+            console.log(alunos.turmasAlunos.length)
+            console.log(alunos.turmasAlunos[0].idTurma)
+            return alunos.turmasAlunos.length > 0 && alunos.turmasAlunos[0].idTurma === id
         })
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    dispatchListaTurmas: () => {
-        dispatch(listaTurmas())
-    },
+    // dispatchListaTurmas: () => {
+    //     dispatch(listaTurmas())
+    // },
     dispatchListaAlunos: () => {
         dispatch(listaAlunos())
     }

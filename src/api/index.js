@@ -81,7 +81,7 @@ export function getAulas() {
 }
 
 export function postAula(aula) {
-    return instance.post('/aula/cadastrar', { aula })
+    return instance.post('/aula/cadastrar', aula )
 }
 
 export function getTurmasDesafios(turma) {

@@ -84,7 +84,6 @@ class CadastraDesafio extends React.Component {
             isInvalid, 
             desafioEscolhido: desafiosFiltrados[0],
             disciplinasFiltradas: this.disciplinasFiltradas(desafiosFiltrados[0].nome)})
-
     }
 
     handleChangeDisciplina(name, value, isInvalid, disciplinas) {

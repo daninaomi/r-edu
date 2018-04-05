@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import classnames from 'classnames'
 import { listaPerguntas, listaTurmas } from '../../../../../actions'
 import Main from '../../../../compSimples/main'
 import ContainerBox from '../../../../compSimples/container-box'
@@ -21,6 +22,8 @@ class Exercicios extends React.Component {
         this.props.dispatchListaTurmas()
         this.props.dispatchListaPerguntas()
     }
+
+    
 
 
     render() {
@@ -51,9 +54,12 @@ class Exercicios extends React.Component {
                                         <input
                                             type="radio"
                                             name={pergunta.id}
-                                            value="opcaoA"
+                                            value="A"
                                         />
-                                        <div className="resposta"> a) {pergunta.opcaoA} </div>
+                                       
+
+                                        <div className={classnames('resposta', {'resposta--certa': pergunta.opcaoCorreta === "A"})}> a) {pergunta.opcaoA} </div> 
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -63,7 +69,7 @@ class Exercicios extends React.Component {
                                             name={pergunta.id}
                                             value="opcaoB"
                                         />
-                                        <div className="resposta"> b) {pergunta.opcaoB} </div>
+                                        <div className={classnames('resposta', {'resposta--certa': pergunta.opcaoCorreta === "B"})}> b) {pergunta.opcaoB} </div> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,7 +79,7 @@ class Exercicios extends React.Component {
                                             name={pergunta.id}
                                             value="opcaoC"
                                         />
-                                        <div className="resposta"> c) {pergunta.opcaoC} </div>
+                                        <div className={classnames('resposta', {'resposta--certa': pergunta.opcaoCorreta === "C"})}> c) {pergunta.opcaoC} </div> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -82,7 +88,8 @@ class Exercicios extends React.Component {
                                             name={pergunta.id}
                                             value="opcaoD"
                                         />
-                                        <div className="resposta"> d) {pergunta.opcaoD} </div>
+
+                                        <div className={classnames('resposta', {'resposta--certa': pergunta.opcaoCorreta === "D"})}> d) {pergunta.opcaoD} </div> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,7 +98,7 @@ class Exercicios extends React.Component {
                                             name={pergunta.id}
                                             value="opcaoE"
                                         />
-                                        <div className="resposta"> e) {pergunta.opcaoE}</div>
+                                        <div className={classnames('resposta', {'resposta--certa': pergunta.opcaoCorreta === "E"})}> e) {pergunta.opcaoE} </div> 
                                     </td>
                                 </tr>
                             </div>

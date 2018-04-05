@@ -9,8 +9,7 @@ import {
     pushPage,
     listaAulas,
     listaTurmas,
-    listaDesafios,
-    listaTurmasDesafios
+    listaDesafios
 } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
@@ -25,17 +24,16 @@ class Turma extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps() {
-        if (this.props.turma && this.props.turma.nome) {
-            this.props.dispatchPushPage(this.props.turma.nome)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.aulas.length > 0 && nextProps.aulas[0].turma.nome) {
+            this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
         }
     }
 
     componentDidMount() {
         this.props.dispatchListaAulas()
-        this.props.dispatchListaTurmas()
+        // this.props.dispatchListaTurmas()
         // this.props.dispatchListaDesafios()
-        this.props.dispatchlistaTurmasDesafios()
     }
 
     render() {
@@ -44,10 +42,11 @@ class Turma extends React.Component {
             'Foguete': bgFoguete,
             'Vulcão': bgVulcao,
             'Jardim': bgJardim,
-            'Camera': bgCamera,
+            'Camera': bgCamera
         }
 
-        const { turma, desafio, aulas } = this.props
+        const {  desafio, aulas } = this.props
+
 
         return (
             <React.Fragment>
@@ -56,8 +55,8 @@ class Turma extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                    {this.props.turma &&
-                        <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                    {this.props.aulas.length > 0 && 
+                        <Link className="turmas__title" to={`/turmas/${this.props.aulas[0].idTurma}/alunos`}>
                             <h2>Alunos</h2>
                         </Link>
                     }
@@ -70,10 +69,10 @@ class Turma extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.aulas && this.props.turma &&this.props.aulas.map(aula => (
+                        {this.props.aulas.length > 0 && this.props.aulas.map(aula => (
                             <Link
                                 className="turmas__card"
-                                to={`/turmas/${this.props.turma.id}/aula/${aula.id}`}
+                                to={`/turmas/${aula.idTurma}/aula/${aula.id}`}
                                 style={{
                                     backgroundImage: `url('${backgrounds[aula.desafio.nome] || backgrounds['Foguete']}')`
                                 }}>
@@ -85,8 +84,8 @@ class Turma extends React.Component {
                             </Link>
                         ))}
 
-                        {this.props.turma &&
-                            <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
+                        {this.props.aulas.length > 0 &&
+                            <Link className="turmas__card escolas__card-icon" to={`/turmas/${aulas[0].idTurma}/cadastro-desafios`}>
                                 <Card>
                                     <FaPlusCircle className="escolas__icon" />
                                 </Card>
@@ -103,17 +102,14 @@ class Turma extends React.Component {
 const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
-    const turma = state.turmas[id]
-    const aulas = turma && turma.aulas || []
-    const desafios = state.turma.desafios
+    
+    const aulas = Object.keys(state.aulas).map(key => {
+        return state.aulas[key]
+    })
 
     return {
-        turma,
-        desafios: Object.keys(state.desafios).map(key => {
-            return state.desafios[key]
-        }),
-        aulas: Object.keys(state.aulas).map(key => {
-            return state.aulas[key]
+        aulas: aulas.filter(aulas => {
+            return aulas.idTurma == id
         })
     }
 }
@@ -122,15 +118,6 @@ const mapDispatchToProps = dispatch => ({
     dispatchPushPage: page => {
         dispatch(pushPage(page))
     },
-    dispatchlistaTurmasDesafios: () => {
-        dispatch(listaTurmasDesafios())
-    },
-    // dispatchListaTurmas: () => {
-    //     dispatch(listaTurmas())
-    // },
-    // dispatchListaDesafios: () => {
-    //     dispatch(listaDesafios())
-    // },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
     }
