@@ -61,37 +61,48 @@ class TurmaAula extends React.Component {
                       backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`]
                       }
                   }}>>
-                  </div>
-                    <Link className="turmas__title turmas__title--active" to={`/aulas/${this.props.aulas.id}/fases`}>
-                        <h2>Fases</h2>
-                    </Link> */}
+                  </div> */}
 
-                    {this.props.aula &&
-                        <Link className="turmas__title" to='#'>
-                            <h2>Alunos</h2>
-                        </Link>
-                    }
+                    <Link className="turmas__title turmas__title--active" to='#'>
+                        <h2>Fases</h2>
+                    </Link>
+
+                    <div className="turmas__title">
+                        <h2>Alunos</h2>
+                        {this.props.aulas &&
+                            <Link to={`/aulas/${this.props.aulas.id}/aulaAlunos`}>
+                            </Link>
+                        }
+                    </div>
                 </nav>
 
                 <Main className="escolas__main">
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.alunos && this.props.alunos.map((aluno) => (
-                            <Card className="turmas__card-aluno">
-                                <h2 className="turmas__card-aluno-title">
-                                    {`${aluno.usuario.nome} ${aluno.usuario.sobrenome}`}
-                                </h2>
-                            </Card>
-                        ))}
+                        {/* {{this.state.disciplinasFiltradas && this.state.disciplinasFiltradas.map((disciplina, index) => ( */}
+                            <Card className="disciplina-form__item disciplinas__card"
+                              style={{
+                                  background: `${bgColor[disciplina.nome] || bgColor['Matemática']}`
+                              }}>
 
-                        {/* {this.props.turma &&
-                            <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
-                                <Card>
-                                    <FaPlusCircle className="escolas__icon" />
-                                </Card>
-                            </Link>
-                        } */}
+                                <div className="disciplinas__card-title">
+                                    <h2>{this.state.disciplinasFiltradas[index].nome}</h2>
+                                </div>
+
+                                <div className="fases-card fases-card-title">
+                                <h4>1ª fase</h4>
+
+                                </div>
+
+                                <div className="fases-card fases-card-title">
+                                <h4>2ª fase</h4>
+
+                                </div>
+
+                            </Card>
+                        {/* ))} */}
+
 
                     </ContainerBox>
                 </Main>

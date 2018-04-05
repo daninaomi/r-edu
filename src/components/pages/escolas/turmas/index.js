@@ -46,22 +46,21 @@ class Turma extends React.Component {
         }
 
         const {  desafio, aulas, turma } = this.props
-        console.log('turma', turma)
+
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-
                     <Link className="turmas__title turmas__title--active" to='#'>
                         <h2>Desafios</h2>
                     </Link>
 
-                  <div className="turmas__title">
-                    <h2>Alunos</h2>
-                    {this.props.turma &&
-                        <Link to={`/turmas/${this.props.turma.id}/alunos`}></Link>
-                    }
-                  </div>
+                    <div className="turmas__title">
+                        <h2>Alunos</h2>
+                      {this.props.turma &&
+                          <Link to={`/turmas/${this.props.turma.id}/alunos`}></Link>
+                      }
+                    </div>
 
                 </nav>
 
@@ -85,15 +84,12 @@ class Turma extends React.Component {
                         ))}
 
 
-                            <Card className="turmas__card escolas__card-icon">
-                                <FaPlusCircle className="escolas__icon" />
-                                {this.props.turma &&
-                                  <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
-                                  </Link>
-                                    }
-                            </Card>
-
-
+                        <Card className="turmas__card escolas__card-icon">
+                            <FaPlusCircle className="escolas__icon" />
+                            {this.props.turma &&
+                                <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}></Link>
+                            }
+                        </Card>
 
                     </ContainerBox>
                 </Main>
@@ -112,9 +108,9 @@ const mapStateToProps = (state, props) => {
 
     return {
       turma,
-      aulas: aulas.filter(aulas => {
-          return aulas.idTurma == id
-      })
+        aulas: aulas.filter(aulas => {
+            return aulas.idTurma == id
+        })
     }
 }
 
@@ -132,7 +128,6 @@ const mapDispatchToProps = dispatch => ({
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Turma))
-
 
 {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
 <h2>Grupos</h2>
