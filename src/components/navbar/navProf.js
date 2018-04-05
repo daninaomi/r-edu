@@ -37,7 +37,7 @@ const NavProf = ({ user, deslogaUser, page }) => (
                     desafios</Link>
             </li>
             <li className="nav-menu-list__item--logado">
-                <Link to='/home' className="nav-menu-list__link">
+                <Link to='/home'  className="nav-menu-list__link">
                     <FaGroup className="navbar-pages-link-icon" />
                     escolas</Link>
             </li>
