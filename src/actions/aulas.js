@@ -27,8 +27,8 @@ export function cadastraAula(aula) {
                         ...aula,
                         id: response.data.id
                     }
-                })
-                dispatch(push(`/turmas/${response.data.id}/aula`))
+                }) 
+                dispatch(push(`/turmas/${response.data.idTurma}/aula/${response.data.id}`))
             })
             .catch(error => {
                 console.log('Ocorreu um erro', error)

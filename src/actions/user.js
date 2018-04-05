@@ -1,17 +1,33 @@
-import { postLogin, postNewUser, editUser } from '../api'
+import { postLogin, postNewUser, editUser, getUsers, getLogin } from '../api'
 
 export const LOGA_USER = 'LOGA_USER'
 export const DESLOGA_USER = 'DESLOGA_USER'
 export const SELECIONA_USERTYPE = 'SELECIONA_USERTYPE'
 export const CADASTRA_USER_SUCCESS = 'CADASTRA_USER_SUCCESS'
 export const ALTERA_USER = 'ALTERA_USER'
+// export const PESQUISA_USERS = 'PESQUISA_USERS'
+export const LISTA_USERS = 'LISTA_USERS'
 
+
+// export function pesquisaUser(user) {
+//     return dispatch => {
+//         getLogin(user)
+//           .then(response => dispatch({
+//                 type: PESQUISA_USERS,
+//                 user: response.data
+//             }))
+//             .catch(error => {
+//                 console.log('Ocorreu um erro', error)
+//             })
+//     }
+// }
 
 export function logaUser(user) {
     return dispatch => {
         postLogin(user)
             .then(response => dispatch({
-                type: LOGA_USER
+                type: LOGA_USER,
+                user: response.data
             }))
             .catch(error => {
                 console.log('Ocorreu um erro', error)
@@ -21,7 +37,7 @@ export function logaUser(user) {
 
 export function deslogaUser() {
     return {
-        type: DESLOGA_USER,
+        type: DESLOGA_USER
     }
 }
 
@@ -37,7 +53,10 @@ export function cadastraUser(user) {
         postNewUser(user)
             .then(response => dispatch({
                 type: CADASTRA_USER_SUCCESS,
-                user: response.data
+                user: {
+                    ...user,
+                    id: response.data.id
+                }
             }))
             .catch(error => {
                 console.log('Ocorreu um erro', error)
@@ -57,6 +76,19 @@ export function alteraUser(user) {
             })
     }
 }
+
+// export function listaUsers() {
+//     return dispatch => {
+//         getUsers()
+//             .then(response => dispatch({
+//                 type: LISTA_USERS,
+//                 users: response.data
+//             }))
+//             .catch(error => {
+//                 console.log('Ocorreu um erro', error)
+//             })
+//     }
+// }
 
 // .catch((error) => {
 //     if (error.response.code === 400) {

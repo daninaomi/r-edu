@@ -1,9 +1,9 @@
 import { push } from 'react-router-redux'
-import { getTurmas, postTurma } from '../api'
+import { getTurmas, postTurma, getTurmasDesafios } from '../api'
 
 export const CADASTRA_TURMA = 'CADASTRA_TURMA'
 export const LISTA_TURMAS = 'LISTA_TURMAS'
-
+export const LISTA_TURMAS_DESAFIOS = 'LISTA_TURMAS_DESAFIOS'
 
 export function listaTurmas() {
     return dispatch => {
@@ -12,9 +12,9 @@ export function listaTurmas() {
                 type: LISTA_TURMAS,
                 turmas: response.data
             }))
-            .catch(error => {
-                console.log('Ocorreu um erro', error)
-            })
+        .catch(error => {
+            console.log('Ocorreu um erro', error)
+        })
     }
 }
 
@@ -31,6 +31,21 @@ export function cadastraTurma(turma) {
                 })
                 dispatch(push(`/escolas/${response.data.id}/cadastro-alunos`))
             })
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
+            })
+    }
+}
+
+export function listaTurmasDesafios(turma) {
+    return dispatch => {
+        getTurmasDesafios(turma)
+            .then(response => dispatch({
+                type: LISTA_TURMAS,
+                turmas: response.data,
+                desafios: response.data.desafios,
+                // turmasDesafios: response.data
+            }))
             .catch(error => {
                 console.log('Ocorreu um erro', error)
             })

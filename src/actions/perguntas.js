@@ -1,20 +1,16 @@
 import { getPerguntas, postRespostas } from '../api'
 
-export const ADD_PERGUNTAS = 'ADD_PERGUNTAS'
+export const LISTA_PERGUNTAS = 'LISTA_PERGUNTAS'
 
-export function addPerguntas() {
+export function listaPerguntas() {
     return dispatch => {
         getPerguntas()
             .then(response => dispatch({
-                type: ADD_PERGUNTAS
-                // desafio: response.data
+                type: LISTA_PERGUNTAS,
+                perguntas: response.data
             }))
-            .catch((response, error) => {
-                if (error.response.code === 400) {
-                    error: error.response.mensagem
-                } else if (error.response.code === 500) {
-                    error: "Ocorreu um erro inesperado"
-                }
+            .catch(error => {
+                console.log('Ocorreu um erro', error)
             })
     }
 }

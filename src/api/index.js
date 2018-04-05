@@ -1,20 +1,28 @@
 import axios from 'axios'
 
-const instance = axios.create({
+const config = {
     baseURL: 'http://backredu-001-site1.btempurl.com/api/'
-})
+}
+
+const usuario = JSON.parse(localStorage.getItem('usuario')) || {}
+
+if (usuario.accessToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${usuario.accessToken}`
+}
+
+const instance = axios.create(config)
 
 export function postLogin(user) {
     return instance.post('/usuario/login', { ...user })
 }
 
 export function getLogin(user) {
-    return instance.get(`/usuario/buscarporid/${user.id}`, { ...user })
+    return instance.get(`/usuario/buscarporid/${user.id}`)
 }
 
-// export function getLogin(user) {
-//     return instance.get('/usuario/login', { ...user })
-// }
+export function getUsers() {
+    return instance.get(`/usuario/listar`)
+}
 
 export function postNewUser(user) {
     const url = user.usuario.tipoUsuario === 1 ? '/professor/cadastrar' : '/aluno/cadastrar'
@@ -73,22 +81,27 @@ export function getAulas() {
 }
 
 export function postAula(aula) {
-    return instance.post('/aula/cadastrar', { aula })
+    return instance.post('/aula/cadastrar', aula )
 }
 
-export function getPerguntas(perguntas) {
-    return instance.get('/', { perguntas })
+// export function getTurmasDesafios(turma) {
+//     return instance.get(`/turma/buscarporid/${turma.id}/desafios`)
+// }
+
+// export function getTurmasAlunos() {
+//     return instance.get('/turma/buscarporid/listar/alunos')
+// }
+
+export function getPerguntas() {
+    return instance.get('/pergunta/listar')
 }
-
-
-
 
 export function postRespostas(respostas) {
-    
+
     const respostaAluno = {}
 
     return axios.all(respostas.map(r => (
-        instance.post('/resposta/cadastrar', {opcao:r.opcao, idpergunta:r.idpergunta, idaluno:r.idaluno})
+        instance.post('/resposta/cadastrar', { opcao: r.opcao, idpergunta: r.idpergunta, idaluno: r.idaluno })
     )))
         .then(axios.spread((...responses) => (
             responses.map(response => (
@@ -96,9 +109,3 @@ export function postRespostas(respostas) {
             ))
         )))
 }
-
-
-
-// export function postRespostas(respostas) {
-//     return instance.post('/resposta/cadastrar', respostas[0] )
-// }
