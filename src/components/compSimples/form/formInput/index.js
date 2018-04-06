@@ -62,10 +62,10 @@ class FormInput extends React.Component {
                 })}
                 onChange={this.validate} />
 
-                {this.state.error && 
-                <p className="form-input__helper">
-                {this.state.error}
-                </p>}
+                {/* // {this.state.error && 
+                // <p className="form-input__helper">
+                // {this.state.error}
+                // </p>} */}
             </React.Fragment>
         )
     }

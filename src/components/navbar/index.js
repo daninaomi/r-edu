@@ -12,11 +12,11 @@ import logo from './logo-icon.png'
 
 
 const Navbar = ({ user, deslogaUser }) => (
-    
+
     <React.Fragment>
 
         {!user.logado && (
-            
+
             <nav className="navbar">
                 <Link to="/">
                     <img className="navbar__logo" src={logo} alt="logo" />
@@ -41,17 +41,15 @@ const Navbar = ({ user, deslogaUser }) => (
         )}
         {user.logado && (
 
-            // react router match url ou path
+          user.tipousuario === "Professor" ? (
 
-            user.type === 'professor' ? (
                 <NavProf />
             ) : (
                 <NavAluno />
             )
 
-
         )}
-    
+
     </React.Fragment>
 )
 

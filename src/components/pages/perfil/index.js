@@ -50,7 +50,7 @@ class Perfil extends React.Component {
         const { user, alteraUser } = this.props
 
         return (
-            user.type === 'professor' ? (
+            user.tipousuario === "Professor" ? (
                 <PerfilProf />
             ) : (
                 <PerfilAluno />

@@ -4,21 +4,28 @@ import {
     DESLOGA_USER,
     SELECIONA_USERTYPE,
     CADASTRA_USER_SUCCESS,
-    ALTERA_USER
+    ALTERA_USER,
+    PESQUISA_USERS,
+    LISTA_USERS
 } from '../actions'
 
-export function user (estadoAtual = 
-    {
-    logado: true, type: 'professor'
-    }, acao) {
+const estadoInicial = JSON.parse(localStorage.getItem('usuario')) || {}
+
+export function user(estadoAtual = estadoInicial, acao) {
 
     switch (acao.type) {
         case LOGA_USER:
-            return {
+            const usuario = {
                 ...estadoAtual,
-               logado: true
+                ...acao.user,
+                logado: true
             }
+
+            localStorage.setItem('usuario', JSON.stringify(usuario))
+
+            return usuario
         case DESLOGA_USER:
+            localStorage.removeItem('usuario')
             return {
                 ...estadoAtual,
                 logado: false
@@ -40,11 +47,26 @@ export function user (estadoAtual =
                 ...estadoAtual,
                 ...acao.user
             }
+
+        // case PESQUISA_USERS:
+        //     let novoEstado = {};
+
+        //     acao.users.forEach(user => (
+        //         novoEstado[user.id] = user
+        //     ))
+
+        //     return novoEstado
+
+        // case LISTA_USERS:
+        //     let novoEstado = {};
+
+        //     acao.users.forEach(user => (
+        //         novoEstado[user.id] = user
+        //     ))
+
+        //     return novoEstado
+
         default:
             return estadoAtual
     }
 }
-
-
-
-

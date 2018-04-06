@@ -15,8 +15,13 @@ import Desafios from '../pages/desafios';
 import AddTurma from '../pages/escolas/addTurma';
 import AddAlunos from '../pages/escolas/addAlunos';
 import Turmas from '../pages/escolas/turmas';
-import TurmasDesafios from '../pages/escolas/turmas/desafios';
-import TurmasAlunos from '../pages/escolas/turmas/alunos';
+import TurmaDesafios from '../pages/escolas/turmas/desafios';
+import TurmaAlunos from '../pages/escolas/turmas/alunos';
+import AddDesafios from '../pages/escolas/turmas/desafios/addDesafio';
+import Questionario from '../questionario'
+import Aula from '../pages/escolas/turmas/aulas';
+import AulaAlunos from '../pages/escolas/turmas/aulas/aulaAlunos';
+import Exercicios from '../pages/escolas/turmas/desafios/exercicios';
 
 
 const App = () => (
@@ -33,11 +38,15 @@ const App = () => (
             <Route exact path="/desafios" component={Desafios} />
             <Route exact path="/escolas/:id" component={Escolas} />
             <Route path="/escolas/:id/cadastro-turmas" component={AddTurma} />
-            <Route path="/turmas/:id/cadastro-alunos" component={AddAlunos} />
+            <Route path="/escolas/:id/cadastro-alunos" component={AddAlunos} />
             <Route exact path="/turmas/:id" component={Turmas} />
-            <Route exact path="/turmas/:id/desafios" component={TurmasDesafios} />
-            <Route exact path="/turmas/:id/alunos" component={TurmasAlunos} />
-
+            <Route exact path="/turmas/:id/desafios" component={TurmaDesafios} />
+            <Route exact path="/turmas/:id/alunos" component={TurmaAlunos} />
+            <Route path="/turmas/:id/cadastro-desafios" component={AddDesafios} />
+            <Route exact path="/turmas/:id/aula/:idAula" component={Aula} />
+            <Route exact path="/turmas/:id/aula/:idAula/alunos" component={AulaAlunos} />
+            <Route exact path="/exercicios" component={Exercicios} />
+            <Route path="/questionario" component={Questionario} />
         </Switch>
     </React.Fragment>
 )

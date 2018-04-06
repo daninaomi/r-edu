@@ -11,7 +11,7 @@
 }
 
 .nav-menu-button--logado:checked ~ .nav-menu-list--logado {
-    position: absolute; 
+    position: absolute;
     left: 0;
     text-align: left;
 }
@@ -41,7 +41,7 @@
 }
 
 .nav-menu-list__item--logado {
-    list-style-type: none; 
+    list-style-type: none;
     margin: 10% 10%;
 }
 
@@ -72,7 +72,7 @@
 
 .nav-menu-list__item--sair {
     list-style-type: none;
-    margin: 90% 0 0 15%; 
+    margin: 50% 0 0 10%;
 }
 
 .navbar__title {
@@ -96,7 +96,7 @@
     .nav-menu-list__item--logado {
         margin: 5% 30px;
     }
-    
+
 }
 
 @media screen and (min-width: 992px) {
@@ -115,7 +115,18 @@
     }
 
     .nav-menu-list__tipo-user {
-        margin-top: 6rem;
+        margin-top: 5rem;
     }
 
+    .nav-menu-list__item--sair {
+        margin-top: 40%;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+  .nav-menu-list__item--sair {
+      margin-top: 30%;
+  }
 }

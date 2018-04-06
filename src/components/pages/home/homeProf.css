@@ -53,13 +53,14 @@
     }
 
     .home__container {
-        /* width: 75%; */
+        justify-content: flex-start;
         padding: 3% 5%;
     }
 
     .home__card {
         width: 30%;
         height: 200px;
+        margin-right: 10px;
     }
 }
 
