@@ -109,3 +109,8 @@ export function postRespostas(respostas) {
             ))
         )))
 }
+
+export function getPontuacao(aluno) {
+    debugger;
+    return instance.get(`/aluno/buscarporid/${aluno.idaluno}/pontuacao`)
+}

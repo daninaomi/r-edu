@@ -19,6 +19,7 @@ import TurmaDesafios from '../pages/escolas/turmas/desafios';
 import TurmaAlunos from '../pages/escolas/turmas/alunos';
 import AddDesafios from '../pages/escolas/turmas/desafios/addDesafio';
 import Questionario from '../questionario'
+import Pontuacao from '../pages/pontuacao'
 import TurmaAula from '../pages/escolas/turmas/aulas';
 import Exercicios from '../pages/escolas/turmas/desafios/exercicios';
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route exact path="/turmas/:id/aula/:idAula" component={TurmaAula} />
             <Route exact path="/exercicios" component={Exercicios} />
             <Route path="/questionario" component={Questionario} />
+            <Route path="/pontuacao" component={Pontuacao} />
         </Switch>
     </React.Fragment>
 )
