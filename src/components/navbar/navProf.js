@@ -14,14 +14,18 @@ import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 import './navProfAluno.css'
 
 
-const NavProf = ({ user, deslogaUser, page }) => (
+const NavProf = ({ user, deslogaUser, page, shouldHide }) => { 
+    function closeMenu(){
+        document.getElementsByClassName("icon-menu--logado")[0].click()
+    }
 
+    return (
     <nav className="navbar--logado">
         <input id="menu-burger" className="nav-menu-button--logado" type="checkbox" hidden />
         <label htmlFor="menu-burger" className="icon-menu--logado">
             <IconMenu />
         </label>
-        {/* <div className={this.props.shouldHide ? 'hidden' : ''}> */}
+         {/* <div className={shouldHide ? 'hidden' : ''}>  */}
             <ul className="nav-menu-list--logado">
                 <li className="nav-menu-list__item--logado">
                     <h1 className="nav-menu-list__tipo-user">professor</h1>
@@ -32,12 +36,12 @@ const NavProf = ({ user, deslogaUser, page }) => (
                 </li>
 
                 <li className="nav-menu-list__item--logado">
-                    <Link to='/desafios' className="nav-menu-list__link">
+                    <Link to='/desafios' className="nav-menu-list__link" onClick={() => { closeMenu() }}>
                         <FaTrophy className="navbar-pages-link-icon" />
                         desafios</Link>
                 </li>
                 <li className="nav-menu-list__item--logado">
-                    <Link to='/home' className="nav-menu-list__link ">
+                    <Link to='/home' className="nav-menu-list__link " onClick={() => { closeMenu() }}>
                         <FaGroup className="navbar-pages-link-icon" />
                         escolas</Link>
                 </li>
@@ -47,13 +51,13 @@ const NavProf = ({ user, deslogaUser, page }) => (
                     turmas</Link>
             </li> */}
                 <li className="nav-menu-list__item--logado">
-                    <Link to='/perfil' className="nav-menu-list__link">
+                    <Link to='/perfil' className="nav-menu-list__link" onClick={() => { closeMenu() }}>
                         <FaUser className="navbar-pages-link-icon" />
                         meu perfil </Link>
                 </li>
                 <li className="nav-menu-list__item--logado">
-                    <Link to='/' className="nav-menu-list__link">
-                        <FaQuestionCircle className="navbar-pages-link-icon" />
+                    <Link to='/' className="nav-menu-list__link" onClick={() => { closeMenu() }} >
+                        <FaQuestionCircle className="navbar-pages-link-icon"  />
                         ajuda </Link>
                 </li>
                 <li className="nav-menu-list__item--sair">
@@ -66,9 +70,9 @@ const NavProf = ({ user, deslogaUser, page }) => (
 
         <h1 className="navbar__title">{page}</h1>
 
-    </nav>
+     </nav>
 
-)
+)}
 
 
 const mapStateToProps = (state, props) => ({

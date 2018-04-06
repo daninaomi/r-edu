@@ -14,6 +14,7 @@ class HomeProf extends React.Component {
         super(props)
     }
 
+    
     componentWillReceiveProps() {
         this.props.dispatchPushPage("Escolas")
     }
