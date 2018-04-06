@@ -29,9 +29,9 @@ class Turma extends React.Component {
     //         this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
     //     }
     // }
-    componentWillReceiveProps() {
-        if (this.props.turma && this.props.turma.nome) {
-            this.props.dispatchPushPage(this.props.turma.nome)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.turma && nextProps.turma.nome) {
+            this.props.dispatchPushPage(nextProps.turma.nome)
         }
     }
 

@@ -18,10 +18,6 @@ import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 class TurmaAlunos extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     alunosFiltrados: [...props.alunos]
-        // }
-        // this.listaAlunos = [...props.alunos]
     }
 
     componentDidMount() {
@@ -47,12 +43,11 @@ class TurmaAlunos extends React.Component {
             <React.Fragment>
                 <nav className="turmas__nav">
 
-                    <div className="turmas__title">
-                        <h2>Desafios</h2>
                         {this.props.turma &&
-                            <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}></Link>
+                            <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}>
+                            <h2>Desafios</h2>
+                            </Link>
                         }
-                    </div>
 
                     <Link className="turmas__title turmas__title--active" to="#">
                         <h2>Alunos</h2>
@@ -89,8 +84,7 @@ const mapStateToProps = (state, props) => {
 
     return {
         turma,
-        turmaAluno 
-
+        turmaAluno
     }
 }
 

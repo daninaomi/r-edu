@@ -9,9 +9,10 @@ import {
     pushPage,
     listaAulas,
     listaTurmas,
-    listaDesafios,
-    listaAlunos,
-    listaDisciplinas
+    // listaDesafios,
+    // listaAlunos,
+    // listaDisciplinas
+    listaTurmasAlunos
 } from '../../../../../actions'
 // import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
@@ -26,18 +27,21 @@ class AulaAlunos extends React.Component {
         super(props)
     }
 
-    // componentWillReceiveProps() {
-    //     if (this.props.aulas && this.props.aulas.desafio.nome) {
-    //         this.props.dispatchPushPage(this.props.aulas.desafio.nome)
-    //     }
-    // }
-
     componentDidMount() {
         this.props.dispatchListaAulas()
         this.props.dispatchListaTurmas()
-        // this.props.dispatchListaDesafios()
-        this.props.dispatchListaAlunos()
-        this.props.dispatchListaDisciplinas()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.aulas && nextProps.aulas.desafio.nome) {
+            this.props.dispatchPushPage(nextProps.aulas.desafio.nome)
+        }
+        if (nextProps.turma && nextProps.turma.nome && !nextProps.turmaAluno) {
+            this.props.dispatchListaTurmasAlunos(nextProps.turma)
+        }
+        if (nextProps.turma && nextProps.turma.nome && !nextProps.aula) {
+            this.props.dispatchListaAulas(nextProps.aulas)
+        }
     }
 
     render() {
@@ -49,29 +53,27 @@ class AulaAlunos extends React.Component {
             'Camera': bgCamera,
         }
 
-        const { turma, desafio, aula, alunos } = this.props
-
+        const { turma, aula, alunos } = this.props
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-                  {/* <div className="aula-header" style={{
-                      width: '100%;',
-                      {this.props.aula &&
-                      backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`]
-                      }
-                  }}>>
-                  </div> */}
 
-                  <div className="turmas__title">
-                      <h2>Fases</h2>
-                      {this.props.aulas &&
-                          <Link to={`/aulas/${this.props.aulas.id}`}>
-                          </Link>
-                      }
-                  </div>
+                  {this.props.aula &&
+                    <div className="aula-header" style={{
+                        backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
+                      }}
+                    >>
+                    </div>
+                  }}
 
-                    <div className="turmas__title">
+                    {this.props.aula &&
+                        <Link className="turmas__title" to={`/turmas/${this.props.aula.idTurma}/aula/${this.props.aula.id}`}>
+                          <h2>Fases</h2>
+                        </Link>
+                    }
+
+                    <div className="turmas__title turmas__title--active">
                         <h2>Alunos</h2>
                             <Link to='#'></Link>
                     </div>
@@ -81,10 +83,10 @@ class AulaAlunos extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.alunos && this.props.alunos.map((aluno) => (
+                        {this.props.turmaAluno && this.props.turmaAluno.alunos.map((aluno) => (
                             <Card className="turmas__card-aluno">
                                 <h2 className="turmas__card-aluno-title">
-                                    {`${aluno.usuario.nome} ${aluno.usuario.sobrenome}`}
+                                    {`${aluno.nomeAluno} ${aluno.sobrenomeAluno}`}
                                 </h2>
                             </Card>
                         ))}
@@ -101,17 +103,29 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const alunos = state.alunos
-    const aulas = turma && turma.aulas || []
+    const turmaAluno = state.turmaAluno[id]
+    const alunos = state.turmaAluno.alunos
+
+    const idAula = props.match.params.idAula
+    const aula = state.aulas[idAula]
+    // const aula = state.aulas.filter(aula => {
+    //     return state.aulas.id == idAula
+    // })
+
+    // const aula = state.aulas.id == idAula ? (state.aulas) : (null)
+
+    console.log('aula', aula)
 
     return {
         turma,
-        aula: aulas.filter(aula => {
-            return aulas.idTurma == id
-        }),
-        alunos: Object.keys(state.alunos).map(key => {
-            return state.alunos[key]
-        })
+        turmaAluno,
+        aula
+        // aula: Object.keys(state.aula).map(key => {
+        //     return state.aula[key]
+        // })
+        // aula: aulas.filter(aula => {
+        //     return aulas.idTurma == id
+        // })
     }
 }
 
@@ -119,20 +133,23 @@ const mapDispatchToProps = dispatch => ({
     dispatchPushPage: page => {
         dispatch(pushPage(page))
     },
+    dispatchListaAulas: () => {
+        dispatch(listaAulas())
+    },
     dispatchListaTurmas: () => {
         dispatch(listaTurmas())
     },
     // dispatchListaDesafios: () => {
     //     dispatch(listaDesafios())
     // },
-    dispatchListaAlunos: () => {
-        dispatch(listaAlunos())
-    },
-    dispatchListaDisciplinas: () => {
-        dispatch(listaDisciplinas())
-    },
-    dispatchListaAulas: () => {
-        dispatch(listaAulas())
+    // dispatchListaAlunos: () => {
+    //     dispatch(listaAlunos())
+    // },
+    // dispatchListaDisciplinas: () => {
+    //     dispatch(listaDisciplinas())
+    // },
+    dispatchListaTurmasAlunos: turma => {
+        dispatch(listaTurmasAlunos(turma))
     }
 })
 

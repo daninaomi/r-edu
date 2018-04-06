@@ -78,7 +78,7 @@ class AulaFases extends React.Component {
 
 
                     {this.props.aula &&
-                        <Link className="turmas__title" to={`/aulas/${this.props.aula.id}/aulaAlunos`}>
+                        <Link className="turmas__title" to={`/turmas/${this.props.aula.idTurma}/aula/${this.props.aula.id}/alunos`}>
                             <h2>Alunos</h2>
                         </Link>
                     }
@@ -122,8 +122,8 @@ class AulaFases extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    const id = props.match.params.idAula
-    const aula = state.aulas[id]
+    const idAula = props.match.params.idAula
+    const aula = state.aulas[idAula]
 
     return {
         // turma,
