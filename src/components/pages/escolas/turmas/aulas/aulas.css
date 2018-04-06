@@ -1,0 +1,23 @@
+.aula-header {
+  width: 100%;
+  height: 20vh;
+}
+
+.aula-header-title {
+  margin: 0;
+  padding-top: 50px;
+  color: white;
+  text-align: center;
+}
+
+
+@media screen and (min-width: 992px) {
+
+  .aula-header {
+    height: 15vh;
+  }
+
+  .aula-header-title {
+    padding-top: 30px;
+  }
+}

@@ -24,9 +24,14 @@ class Turma extends React.Component {
         super(props)
     }
 
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.aulas.length > 0 && nextProps.aulas[0].turma.nome) {
+    //         this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
+    //     }
+    // }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.aulas.length > 0 && nextProps.aulas[0].turma.nome) {
-            this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
+        if (nextProps.turma && nextProps.turma.nome) {
+            this.props.dispatchPushPage(nextProps.turma.nome)
         }
     }
 
@@ -55,12 +60,12 @@ class Turma extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                    <div className="turmas__title">
-                        <h2>Alunos</h2>
+                        
                       {this.props.turma &&
-                          <Link to={`/turmas/${this.props.turma.id}/alunos`}></Link>
+                          <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                          <h2>Alunos</h2>
+                          </Link>
                       }
-                    </div>
 
                 </nav>
 
@@ -107,7 +112,7 @@ const mapStateToProps = (state, props) => {
     })
 
     return {
-      turma,
+        turma,
         aulas: aulas.filter(aulas => {
             return aulas.idTurma == id
         })

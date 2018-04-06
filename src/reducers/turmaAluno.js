@@ -17,9 +17,7 @@ export function turmaAluno(estadoAtual = {} , acao) {
         case LISTA_TURMAS_ALUNOS:
             let novoEstado = {};
 
-            acao.turmasAlunos.forEach((turmasAlunos) => (
-                novoEstado[turmasAlunos.id] = turmasAlunos
-            ))
+            novoEstado[acao.turmasAlunos.id] = acao.turmasAlunos
 
             return novoEstado
 
