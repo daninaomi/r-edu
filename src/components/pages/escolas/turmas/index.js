@@ -61,13 +61,11 @@ class Turma extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                    {/* <div > */}
                     {this.props.turma &&
                         <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
                             <h2>Alunos</h2>
                         </Link>
                     }
-                    {/* </div> */}
 
                 </nav>
 

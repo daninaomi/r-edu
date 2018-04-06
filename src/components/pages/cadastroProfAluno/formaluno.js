@@ -55,6 +55,7 @@ class FormAluno extends React.Component {
                 idEscola: this.idEscola
             }
             this.props.cadastraUser(user)
+            alert('Cadastro efetuado com sucesso!')
 
             this.props.history.push('/login')
         }
