@@ -63,14 +63,15 @@ class AulaFases extends React.Component {
 
         return (
             <React.Fragment>
+
+              {this.props.aula &&
+                <div className="aula-header" style={{
+                    backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
+                  }}>
+                  <h1 className="aula-header-title">{this.props.aula.desafio.nome}</h1>
+                </div>
+              }
                 <nav className="turmas__nav">
-                    {/* <div className="aula-header" style={{
-                      width: '100%;',
-                      {this.props.aula &&
-                      backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`]
-                      }
-                  }}>>
-                  </div> */}
 
                     <Link className="turmas__title turmas__title--active" to='#'>
                         <h2>Fases</h2>

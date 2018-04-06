@@ -14,7 +14,7 @@ import {
     // listaDisciplinas
     listaTurmasAlunos
 } from '../../../../../actions'
-// import './turmas.css'
+import './aulas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 import bgFoguete from '../../img/card-desafio-foguete.png'
 import bgVulcao from '../../img/card-desafio-vulcao.png'
@@ -55,17 +55,19 @@ class AulaAlunos extends React.Component {
 
         const { turma, aula, alunos } = this.props
 
+            // console.log('aula', aula)
+
         return (
             <React.Fragment>
-                <nav className="turmas__nav">
+              {this.props.aula &&
+                <div className="aula-header" style={{
+                    backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
+                  }}>
+                  <h1 className="aula-header-title">{this.props.aula.desafio.nome}</h1>
+                </div>
+              }
 
-                  {this.props.aula &&
-                    <div className="aula-header" style={{
-                        backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
-                      }}
-                    >>
-                    </div>
-                  }}
+                <nav className="turmas__nav">
 
                     {this.props.aula &&
                         <Link className="turmas__title" to={`/turmas/${this.props.aula.idTurma}/aula/${this.props.aula.id}`}>
@@ -114,7 +116,6 @@ const mapStateToProps = (state, props) => {
 
     // const aula = state.aulas.id == idAula ? (state.aulas) : (null)
 
-    console.log('aula', aula)
 
     return {
         turma,
@@ -122,9 +123,6 @@ const mapStateToProps = (state, props) => {
         aula
         // aula: Object.keys(state.aula).map(key => {
         //     return state.aula[key]
-        // })
-        // aula: aulas.filter(aula => {
-        //     return aulas.idTurma == id
         // })
     }
 }
