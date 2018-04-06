@@ -3,7 +3,7 @@ import {
   getAlunos,
   postTurmaAluno,
   getTurmasAlunos
-} from '../api'
+} from '../api' 
 
 export const CADASTRA_TURMA_ALUNO = 'CADASTRA_TURMA_ALUNO'
 export const LISTA_ALUNOS = 'LISTA_ALUNOS'
