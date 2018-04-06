@@ -24,9 +24,14 @@ class Turma extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.aulas.length > 0 && nextProps.aulas[0].turma.nome) {
-            this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.aulas.length > 0 && nextProps.aulas[0].turma.nome) {
+    //         this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
+    //     }
+    // }
+    componentWillReceiveProps() {
+        if (this.props.turma && this.props.turma.nome) {
+            this.props.dispatchPushPage(this.props.turma.nome)
         }
     }
 
@@ -45,7 +50,7 @@ class Turma extends React.Component {
             'Camera': bgCamera
         }
 
-        const {  desafio, aulas, turma } = this.props
+        const { desafio, aulas, turma } = this.props
         console.log('turma', turma)
 
         return (
@@ -56,12 +61,13 @@ class Turma extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                  <div className="turmas__title">
-                    <h2>Alunos</h2>
+                    {/* <div > */}
                     {this.props.turma &&
-                        <Link to={`/turmas/${this.props.turma.id}/alunos`}></Link>
+                        <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                            <h2>Alunos</h2>
+                        </Link>
                     }
-                  </div>
+                    {/* </div> */}
 
                 </nav>
 
@@ -84,16 +90,13 @@ class Turma extends React.Component {
                             </Link>
                         ))}
 
-
-                            <Card className="turmas__card escolas__card-icon">
-                                <FaPlusCircle className="escolas__icon" />
-                                {this.props.turma &&
-                                  <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
-                                  </Link>
-                                    }
-                            </Card>
-
-
+                        {this.props.turma &&
+                            // <Card>
+                                <Link  className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
+                                    <FaPlusCircle className="escolas__icon" />
+                                </Link>
+                            // </Card>
+                        }
 
                     </ContainerBox>
                 </Main>
@@ -111,10 +114,10 @@ const mapStateToProps = (state, props) => {
     })
 
     return {
-      turma,
-      aulas: aulas.filter(aulas => {
-          return aulas.idTurma == id
-      })
+        turma,
+        aulas: aulas.filter(aulas => {
+            return aulas.idTurma == id
+        })
     }
 }
 

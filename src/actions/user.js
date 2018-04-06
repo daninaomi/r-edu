@@ -9,19 +9,6 @@ export const ALTERA_USER = 'ALTERA_USER'
 export const LISTA_USERS = 'LISTA_USERS'
 
 
-// export function pesquisaUser(user) {
-//     return dispatch => {
-//         getLogin(user)
-//           .then(response => dispatch({
-//                 type: PESQUISA_USERS,
-//                 user: response.data
-//             }))
-//             .catch(error => {
-//                 console.log('Ocorreu um erro', error)
-//             })
-//     }
-// }
-
 export function logaUser(user) {
     return dispatch => {
         postLogin(user)

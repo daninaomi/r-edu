@@ -26,13 +26,16 @@ class TurmaAlunos extends React.Component {
 
     componentDidMount() {
         this.props.dispatchListaTurmas()
-        this.props.dispatchListaTurmasAlunos()
-        this.props.dispatchListaAlunos()
     }
 
-    componentWillReceiveProps() {
-        if (this.props.turma && this.props.turma.nome) {
-            this.props.dispatchPushPage(this.props.turma.nome)
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.turma && nextProps.turma.nome) {
+            this.props.dispatchPushPage(nextProps.turma.nome)
+        }
+
+        if (nextProps.turma && nextProps.turma.nome && !nextProps.turmaAluno) {
+            this.props.dispatchListaTurmasAlunos(nextProps.turma)
         }
     }
 
@@ -44,12 +47,12 @@ class TurmaAlunos extends React.Component {
             <React.Fragment>
                 <nav className="turmas__nav">
 
-                  <div className="turmas__title">
-                    <h2>Desafios</h2>
-                    {this.props.turma &&
-                      <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}></Link>
-                    }
-                  </div>
+                    <div className="turmas__title">
+                        <h2>Desafios</h2>
+                        {this.props.turma &&
+                            <Link className="turmas__title" to={`/turmas/${this.props.turma.id}`}></Link>
+                        }
+                    </div>
 
                     <Link className="turmas__title turmas__title--active" to="#">
                         <h2>Alunos</h2>
@@ -61,10 +64,10 @@ class TurmaAlunos extends React.Component {
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.alunos && this.props.alunos.map((aluno) => (
+                        {this.props.turmaAluno && this.props.turmaAluno.alunos.map((aluno) => (
                             <Card className="turmas__card-aluno">
                                 <h2 className="turmas__card-aluno-title">
-                                    {`${aluno.usuario.nome} ${aluno.usuario.sobrenome}`}
+                                    {`${aluno.nomeAluno} ${aluno.sobrenomeAluno}`}
                                 </h2>
                             </Card>
                         ))}
@@ -80,26 +83,14 @@ const mapStateToProps = (state, props) => {
 
     const id = props.match.params.id
     const turma = state.turmas[id]
-    const alunos = Object.keys(state.alunos).map(key => {
-        return state.alunos[key]
-    })
-    const turmaAlunos = Object.keys(state.turmaAluno).map(key => {
-        return state.turmaAluno[key]
-    })
-    {/* const alunoDoTurmaAlunos = Object.keys(state.turmaAluno.alunos).map(key => {
-      return state.turmaAluno.alunos[key]
-    }) */}
 
-    {/* ALUNOS TEM Q VIR DE TURMAALUNO*/}
+    const turmaAluno = state.turmaAluno[id]
+    const alunos = state.turmaAluno.alunos
 
     return {
         turma,
-        turmaAlunos,
-        alunos: alunos.filter((aluno, turmaAlunos) => {
-          console.log('id aluno de alunos', alunos.id)
-            console.log('id aluno de turmaAlunos', turmaAlunos.idAluno)
-            return turmaAlunos.idAluno === alunos.id
-        })
+        turmaAluno 
+
     }
 }
 
@@ -110,12 +101,13 @@ const mapDispatchToProps = dispatch => ({
     dispatchListaTurmas: () => {
         dispatch(listaTurmas())
     },
-    dispatchListaTurmasAlunos: () => {
-        dispatch(listaTurmasAlunos())
-    },
-    dispatchListaAlunos: () => {
-        dispatch(listaAlunos())
+    dispatchListaTurmasAlunos: turma => {
+        dispatch(listaTurmasAlunos(turma))
     }
+    // ,
+    // dispatchListaAlunos: () => {
+    //     dispatch(listaAlunos())
+    // }
 })
 
 

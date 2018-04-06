@@ -263,9 +263,6 @@ const mapStateToProps = (state, props) => {
     return {
         turma,
         user,
-        // user: Object.keys(state.user).map(key => {
-        //     return state.user[key]
-        // }),
         desafios: Object.keys(state.desafios).map(key => {
             return state.desafios[key]
         }),

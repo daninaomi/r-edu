@@ -9,7 +9,7 @@ import {
     pushPage,
     listaAulas,
     listaTurmas,
-    listaDesafios,
+    // listaDesafios,
     listaAlunos,
     listaDisciplinas
 } from '../../../../../actions'
@@ -21,23 +21,19 @@ import bgCamera from '../../img/card-desafio-camera.png'
 import bgJardim from '../../img/card-desafio-jardim.png'
 
 
-class TurmaAula extends React.Component {
+class AulaFases extends React.Component {
     constructor(props) {
         super(props)
     }
 
-    // componentWillReceiveProps() {
-    //     if (this.props.aulas && this.props.aulas.desafio.nome) {
-    //         this.props.dispatchPushPage(this.props.aulas.desafio.nome)
-    //     }
-    // }
+    componentWillReceiveProps() {
+        if (this.props.aulas && this.props.aulas.desafio.nome) {
+            this.props.dispatchPushPage(this.props.aulas.desafio.nome)
+        }
+    }
 
     componentDidMount() {
         this.props.dispatchListaAulas()
-        this.props.dispatchListaTurmas()
-        // this.props.dispatchListaDesafios()
-        this.props.dispatchListaAlunos()
-        this.props.dispatchListaDisciplinas()
     }
 
     render() {
@@ -49,49 +45,73 @@ class TurmaAula extends React.Component {
             'Camera': bgCamera,
         }
 
-        const { turma, desafio, aula, alunos } = this.props
+        const bgColor = {
+            'Matemática': '#9CCC65',
+            'Português': '#FFB74D',
+            'Física': '#82B1FF',
+            'Química': '#FF8A80',
+            'Filosofia': '#FFD42F',
+            'Geografia': '#9CCC65',
+            'História': '#FFB74D',
+            'Biologia': '#82B1FF',
+            'Educação Física': '#FF8A80',
+            'Ciências': '#FFD42F'
+        }
+
+        const { aula } = this.props
 
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-                  {/* <div className="aula-header" style={{
+                    {/* <div className="aula-header" style={{
                       width: '100%;',
                       {this.props.aula &&
                       backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`]
                       }
                   }}>>
-                  </div>
-                    <Link className="turmas__title turmas__title--active" to={`/aulas/${this.props.aulas.id}/fases`}>
+                  </div> */}
+
+                    <Link className="turmas__title turmas__title--active" to='#'>
                         <h2>Fases</h2>
-                    </Link> */}
+                    </Link>
+
 
                     {this.props.aula &&
-                        <Link className="turmas__title" to='#'>
+                        <Link className="turmas__title" to={`/aulas/${this.props.aula.id}/aulaAlunos`}>
                             <h2>Alunos</h2>
                         </Link>
                     }
+
                 </nav>
 
                 <Main className="escolas__main">
 
                     <ContainerBox className="escolas__container">
 
-                        {this.props.alunos && this.props.alunos.map((aluno) => (
-                            <Card className="turmas__card-aluno">
-                                <h2 className="turmas__card-aluno-title">
-                                    {`${aluno.usuario.nome} ${aluno.usuario.sobrenome}`}
-                                </h2>
-                            </Card>
-                        ))}
+                        {this.props.aula &&
+                            <Card className="disciplina-form__item disciplinas__card"
+                                style={{
+                                    background: `${bgColor[this.props.aula.disciplina.nome] || bgColor['Matemática']}`
+                                }}>
 
-                        {/* {this.props.turma &&
-                            <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
-                                <Card>
-                                    <FaPlusCircle className="escolas__icon" />
-                                </Card>
-                            </Link>
-                        } */}
+                                <div className="disciplinas__card-title">
+                                    <h2>{this.props.aula.disciplina.nome}</h2>
+                                </div>
+
+                                <div className="fases-card fases-card-title">
+                                    <h4>1ª fase</h4>
+
+                                </div>
+
+                                <div className="fases-card fases-card-title">
+                                    <h4>2ª fase</h4>
+
+                                </div>
+
+                            </Card>
+                        }
+
 
                     </ContainerBox>
                 </Main>
@@ -102,19 +122,12 @@ class TurmaAula extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    const id = props.match.params.id
-    const turma = state.turmas[id]
-    const alunos = state.alunos
-    const aulas = turma && turma.aulas || []
+    const id = props.match.params.idAula
+    const aula = state.aulas[id]
 
     return {
-        turma,
-        aula: aulas.filter(aula => {
-            return aulas.idTurma == id
-        }),
-        alunos: Object.keys(state.alunos).map(key => {
-            return state.alunos[key]
-        })
+        // turma,
+        aula
     }
 }
 
@@ -128,9 +141,6 @@ const mapDispatchToProps = dispatch => ({
     // dispatchListaDesafios: () => {
     //     dispatch(listaDesafios())
     // },
-    dispatchListaAlunos: () => {
-        dispatch(listaAlunos())
-    },
     dispatchListaDisciplinas: () => {
         dispatch(listaDisciplinas())
     },
@@ -140,4 +150,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TurmaAula))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AulaFases))

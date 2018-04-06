@@ -41,9 +41,9 @@ export function cadastraTurmaAluno(alunos, turma) {
     }
 }
 
-export function listaTurmasAlunos() {
+export function listaTurmasAlunos(turma) {
     return dispatch => {
-        getTurmasAlunos()
+        getTurmasAlunos(turma)
             .then(response => dispatch({
                 type: LISTA_TURMAS_ALUNOS,
                 turmasAlunos: response.data
