@@ -109,3 +109,11 @@ export function postRespostas(respostas) {
             ))
         )))
 }
+
+export function getPontuacao(aluno) {   
+    return instance.get(`/aluno/buscarporid/${aluno.idaluno}/pontuacao`)
+}
+
+export function getProfessor(professor){
+    return instance.get(`/professor/buscarporid/${professor.idprofessor}`)
+}
