@@ -21,51 +21,53 @@ const NavProf = ({ user, deslogaUser, page }) => (
         <label htmlFor="menu-burger" className="icon-menu--logado">
             <IconMenu />
         </label>
-
-        <ul className="nav-menu-list--logado">
-            <li className="nav-menu-list__item--logado">
-                <h1 className="nav-menu-list__tipo-user">professor</h1>
-                {/* <h2 className="nav-menu-list__nome">{user.nome}</h2>
+        {/* <div className={this.props.shouldHide ? 'hidden' : ''}> */}
+            <ul className="nav-menu-list--logado">
+                <li className="nav-menu-list__item--logado">
+                    <h1 className="nav-menu-list__tipo-user">professor</h1>
+                    {/* <h2 className="nav-menu-list__nome">{user.nome}</h2>
                 <h2 className="nav-menu-list__sobrenome">{user.sobrenome}</h2> */}
-                <h2 className="nav-menu-list__nome">Nome</h2>
-                <h2 className="nav-menu-list__sobrenome">Sobrenome</h2>
-            </li>
+                    <h2 className="nav-menu-list__nome">Nome</h2>
+                    <h2 className="nav-menu-list__sobrenome">Sobrenome</h2>
+                </li>
 
-            <li className="nav-menu-list__item--logado">
-                <Link to='/desafios' className="nav-menu-list__link">
-                    <FaTrophy className="navbar-pages-link-icon" />
-                    desafios</Link>
-            </li>
-            <li className="nav-menu-list__item--logado">
-                <Link to='/home' className="nav-menu-list__link">
-                    <FaGroup className="navbar-pages-link-icon" />
-                    escolas</Link>
-            </li>
-            {/* <li className="nav-menu-list__item--logado">
+                <li className="nav-menu-list__item--logado">
+                    <Link to='/desafios' className="nav-menu-list__link">
+                        <FaTrophy className="navbar-pages-link-icon" />
+                        desafios</Link>
+                </li>
+                <li className="nav-menu-list__item--logado">
+                    <Link to='/home' className="nav-menu-list__link ">
+                        <FaGroup className="navbar-pages-link-icon" />
+                        escolas</Link>
+                </li>
+                {/* <li className="nav-menu-list__item--logado">
                 <Link to='/' className="nav-menu-list__link">
                     <FaGroup className="navbar-pages-link-icon" />
                     turmas</Link>
             </li> */}
-            <li className="nav-menu-list__item--logado">
-                <Link to='/perfil' className="nav-menu-list__link">
-                    <FaUser className="navbar-pages-link-icon" />
-                    meu perfil </Link>
-            </li>
-            <li className="nav-menu-list__item--logado">
-                <Link to='/' className="nav-menu-list__link">
-                    <FaQuestionCircle className="navbar-pages-link-icon" />
-                    ajuda </Link>
-            </li>
-            <li className="nav-menu-list__item--sair">
-                <Link to='/' className="nav-menu-list__link" onClick={deslogaUser}>
-                    <IconSair className="navbar-pages-link-icon" />
-                    Sair </Link>
-            </li>
-        </ul>
+                <li className="nav-menu-list__item--logado">
+                    <Link to='/perfil' className="nav-menu-list__link">
+                        <FaUser className="navbar-pages-link-icon" />
+                        meu perfil </Link>
+                </li>
+                <li className="nav-menu-list__item--logado">
+                    <Link to='/' className="nav-menu-list__link">
+                        <FaQuestionCircle className="navbar-pages-link-icon" />
+                        ajuda </Link>
+                </li>
+                <li className="nav-menu-list__item--sair">
+                    <Link to='/' className="nav-menu-list__link" onClick={deslogaUser}>
+                        <IconSair className="navbar-pages-link-icon" />
+                        Sair </Link>
+                </li>
+            </ul>
+        {/* </div> */}
 
         <h1 className="navbar__title">{page}</h1>
-        
+
     </nav>
+
 )
 
 

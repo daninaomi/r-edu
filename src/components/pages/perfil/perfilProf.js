@@ -15,7 +15,20 @@ import './perfil.css'
 class PerfilProf extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: false }
+        this.state = { isInvalid: false,
+        nome:"Leonardo",
+        sobrenome:"Couceiro",
+        email:"leo@leo.com.br",
+        senha:"123123",
+        confirmeSenha:"123123",
+        sexo:"masculino",
+        cpf:"34534534523",
+        estado:"estado1",
+        cidade:"cidade1",
+        telefone:"11934343434",
+        dataNascimento:"10/07/1985",
+        idEscola:"escola1"
+        }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this._onFocus = this._onFocus.bind(this)
@@ -52,8 +65,9 @@ class PerfilProf extends React.Component {
                 dataNascimento: this.dataNascimento,
                 cpf: this.cpf,
                 idEscola: 1
+
             }
-            this.props.cadastraUser(user)
+            this.props.alteraUser(user)
 
             // this.props.alteraUser(event, user)
 
@@ -88,6 +102,7 @@ class PerfilProf extends React.Component {
                            type="text"
                            name="nome"
                            placeholder="Nome"
+                           value={this.state.nome}
                            onChange={this.handleChange}
                            required />
                    
@@ -97,6 +112,7 @@ class PerfilProf extends React.Component {
                                type="text"
                                name="sobrenome"
                                placeholder="Sobrenome"
+                               value={this.state.sobrenome}
                                onChange={this.handleChange}
                                required />
                               
@@ -109,6 +125,7 @@ class PerfilProf extends React.Component {
                            autoComplete="email"
                            aria-label="email"
                            required
+                           value={this.state.email}
                            onChange={this.handleChange} />
                   
                        <FormInput
@@ -119,6 +136,7 @@ class PerfilProf extends React.Component {
                            autoComplete="current-password"
                            aria-label="senha"
                            required
+                           value={this.state.senha}
                            onChange={this.handleChange} />
                        <FormInput
                            className="perfil__form-input"
@@ -128,6 +146,7 @@ class PerfilProf extends React.Component {
                            autoComplete="current-password"
                            aria-label="senha"
                            required
+                           value={this.state.confirmeSenha}
                            onChange={this.handleChange} />
                 
                        <div className="perfil__container-radio">
@@ -136,13 +155,16 @@ class PerfilProf extends React.Component {
                                    className="perfil__form-input"
                                    type="radio"
                                    name="sexo"
-                                   id="sexo-feminino"
+                                   id="sexo-feminino"  
+                                   checked={(this.state.sexo==="feminino") ? true : false}                                                           
                                    onChange={this.handleChange}
                                    required />
                                <label
                                    htmlFor="sexo-feminino"
                                    className="perfil__form-radio-label">
                                    Feminino
+                                   
+                                   
                        </label>
                            </div>
 
@@ -152,6 +174,7 @@ class PerfilProf extends React.Component {
                                    type="radio"
                                    name="sexo"
                                    id="sexo-masculino"
+                                   checked={(this.state.sexo==="masculino") ? true : false}
                                    onChange={this.handleChange}
                                    required />
                                <label
@@ -171,7 +194,7 @@ class PerfilProf extends React.Component {
                            placeholder="CPF"
                            aria-label="cpf"
                            required
-
+                           value={this.state.cpf}
                            onChange={this.handleChange} />
                   
 
@@ -179,6 +202,7 @@ class PerfilProf extends React.Component {
                            className="perfil__form-select"
                            name="estado"
                            onChange={this.handleChange}
+                           value={this.state.estado}
                            required>
                            <option value="" disabled selected>Estado</option>
                            <option value="estado1">SP</option>
@@ -188,6 +212,7 @@ class PerfilProf extends React.Component {
                        <Select
                            className="perfil__form-select"
                            name="cidade"
+                           value={this.state.cidade}
                            onChange={this.handleChange}
                            required>
                            <option value="" disabled selected>Cidade</option>
@@ -206,6 +231,7 @@ class PerfilProf extends React.Component {
                            size="14"
 
                            required
+                           value={this.state.telefone}
                            onChange={this.handleChange} />
                        <FormInputMask
                            className="perfil__form-input"
@@ -213,15 +239,15 @@ class PerfilProf extends React.Component {
                            name="dataNascimento"
                            placeholder="Data de Nascimento"
                            aria-label="dataNascimento"
-                           mask="11/11/1111"
-
-
+                           mask="11/11/1111"                            
                            required
+                           value={this.state.dataNascimento}
                            onChange={this.handleChange} />
                   
                        <Select
                            name="idEscola"
                            className="perfil__form-select perfil__form-input--1"
+                           value={this.state.idEscola}
                            onChange={this.handleChange}>
                            <option value="" disabled selected>Escola</option>
                            <option value="escola1">Escola 1</option>

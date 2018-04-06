@@ -50,24 +50,22 @@ class Turma extends React.Component {
             'Camera': bgCamera
         }
 
-        const { desafio, aulas, turma } = this.props
-        console.log('turma', turma)
+        const {  desafio, aulas, turma } = this.props
+
 
         return (
             <React.Fragment>
                 <nav className="turmas__nav">
-
                     <Link className="turmas__title turmas__title--active" to='#'>
                         <h2>Desafios</h2>
                     </Link>
 
-                    {/* <div > */}
-                    {this.props.turma &&
-                        <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
-                            <h2>Alunos</h2>
-                        </Link>
-                    }
-                    {/* </div> */}
+                        
+                      {this.props.turma &&
+                          <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                          <h2>Alunos</h2>
+                          </Link>
+                      }
 
                 </nav>
 
@@ -90,13 +88,13 @@ class Turma extends React.Component {
                             </Link>
                         ))}
 
-                        {this.props.turma &&
-                            // <Card>
-                                <Link  className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
-                                    <FaPlusCircle className="escolas__icon" />
-                                </Link>
-                            // </Card>
-                        }
+
+                        <Card className="turmas__card escolas__card-icon">
+                            <FaPlusCircle className="escolas__icon" />
+                            {this.props.turma &&
+                                <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}></Link>
+                            }
+                        </Card>
 
                     </ContainerBox>
                 </Main>
@@ -135,7 +133,6 @@ const mapDispatchToProps = dispatch => ({
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Turma))
-
 
 {/* <Link className="turmas__title" to={`/turma/${turmas.id}/grupos`}>
 <h2>Grupos</h2>
