@@ -10,7 +10,7 @@ import { turmaAluno } from './turmaAluno'
 import { disciplinas } from './disciplinas'
 import { aulas } from './aulas'
 import { perguntas } from './perguntas'
-
+import { pontuacao } from './pontuacao'
 const reducer = combineReducers({
     user,
     escolas,
@@ -22,6 +22,7 @@ const reducer = combineReducers({
     disciplinas,
     aulas,
     perguntas,
+    pontuacao,
     routing: routerReducer
 })
 

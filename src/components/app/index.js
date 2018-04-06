@@ -21,6 +21,7 @@ import AddDesafios from '../pages/escolas/turmas/desafios/addDesafio';
 import Questionario from '../questionario'
 import Aula from '../pages/escolas/turmas/aulas';
 import AulaAlunos from '../pages/escolas/turmas/aulas/aulaAlunos';
+import Pontuacao from '../pages/pontuacao'
 import Exercicios from '../pages/escolas/turmas/desafios/exercicios';
 
 
@@ -47,6 +48,7 @@ const App = () => (
             <Route exact path="/turmas/:id/aula/:idAula/alunos" component={AulaAlunos} />
             <Route exact path="/exercicios" component={Exercicios} />
             <Route path="/questionario" component={Questionario} />
+            <Route path="/pontuacao" component={Pontuacao} />
         </Switch>
     </React.Fragment>
 )
