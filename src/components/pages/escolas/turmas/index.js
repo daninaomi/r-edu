@@ -79,13 +79,13 @@ class Turma extends React.Component {
                         {this.props.aulas.length > 0 && this.props.aulas.map(aula => (
                             <Link
                                 className="turmas__card"
-                                to={`/turmas/${aula.idTurma}/aula/${aula.id}`}
+                                to={`/turmas/${aula.turma.idTurma}/aula/${aula.id}`}
                                 style={{
-                                    backgroundImage: `url('${backgrounds[aula.desafio.nome] || backgrounds['Foguete']}')`
+                                    backgroundImage: `url('${backgrounds[aula.desafio.nomeDesafio] || backgrounds['Foguete']}')`
                                 }}>
                                 <Card>
                                     <h2 className="turmas__card-title">
-                                        {aula.desafio.nome}
+                                        {aula.desafio.nomeDesafio}
                                     </h2>
                                 </Card>
                             </Link>

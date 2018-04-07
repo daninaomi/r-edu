@@ -72,9 +72,9 @@ class AulaFases extends React.Component {
 
                 {this.props.aula &&
                     <div className="aula-header" style={{
-                        backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
+                        backgroundImage: `url('${backgrounds[this.props.aula.desafio.nomeDesafio] || backgrounds['Foguete']}')`
                     }}>
-                        <h1 className="aula-header-title">{this.props.aula.desafio.nome}</h1>
+                        <h1 className="aula-header-title">{this.props.aula.desafio.nomeDesafio}</h1>
                     </div>
                 }
                 <nav className="turmas__nav">
@@ -84,7 +84,7 @@ class AulaFases extends React.Component {
                     </Link>
 
                     {this.props.aula &&
-                        <Link className="turmas__title" to={`/turmas/${this.props.aula.idTurma}/aula/${this.props.aula.id}/alunos`}>
+                        <Link className="turmas__title" to={`/turmas/${this.props.aula.turma.idTurma}/aula/${this.props.aula.id}/alunos`}>
                             <h2>Alunos</h2>
                         </Link>
                     }
@@ -97,11 +97,11 @@ class AulaFases extends React.Component {
                         {this.props.aula &&
                             <Card className="aula-fases-card"
                                 style={{
-                                    background: `${bgColor[this.props.aula.disciplina.nome] || bgColor['Matemática']}`
+                                    background: `${bgColor[this.props.aula.disciplina.nomeDisciplina] || bgColor['Matemática']}`
                                 }}>
 
                                 <div className="fases-card-title">
-                                    <h2>{this.props.aula.disciplina.nome}</h2>
+                                    <h2>{this.props.aula.disciplina.nomeDisciplina}</h2>
                                 </div>
 
                                 <div className="fases-card-item">

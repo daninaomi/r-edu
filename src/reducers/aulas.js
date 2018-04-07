@@ -6,9 +6,9 @@ import {
 
 
 export function aulas(estadoAtual = {}, acao) {
+    console.log(`lista reducer`)
     switch (acao.type) {
         case LISTA_AULAS:
-
             let novoEstado = {};
             acao.aulas.forEach(aula => (
                 novoEstado[aula.id] = aula

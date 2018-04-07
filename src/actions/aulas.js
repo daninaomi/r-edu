@@ -7,6 +7,7 @@ export const BUSCA_AULA = 'BUSCA_AULA'
 
 export function listaAulas() {
     return dispatch => {
+        console.log(dispatch)
         getAulas()
             .then(response => dispatch({
                 type: LISTA_AULAS,
