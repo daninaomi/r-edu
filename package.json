@@ -17,6 +17,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-sanfona": "^1.1.0",
     "react-scripts": "1.1.1",
+    "react-toggle": "^4.0.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },

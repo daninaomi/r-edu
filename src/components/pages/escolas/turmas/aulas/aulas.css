@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.fases-card {
+.aula-fases-card {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -18,10 +18,44 @@
   margin: 5% 0;
   border-radius: 10px;
   color: white;
+  /* TIRAR */
+  background: tomato;
+}
+
+.fases-card-title {
+  border: none;
+  padding: 0;
+  margin: 0 0 15px 0 ;
+}
+
+.fases-card-title {
+  margin-top: 0;
 }
 
 .fases-card-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(255,255,255, .5);
+}
+
+.fases-card-item h4 {
   font-size: 1rem;
+}
+
+.fases-card-item .padlocks {
+  font-size: 1.6rem;
+  color: white;
+}
+
+.fases-card-item .padlocks svg {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.fases-card-item .padlocks .inactive {
+  color: rgba(255,255,255, .5);
 }
 
 @media screen and (min-width: 992px) {

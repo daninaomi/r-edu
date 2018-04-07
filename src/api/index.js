@@ -80,13 +80,13 @@ export function getAulas() {
     return instance.get('/aula/listar')
 }
 
+export function getBuscaAula(aula) {
+    return instance.get(`/aula/buscarporid/${aula.id}`)
+}
+
 export function postAula(aula) {
     return instance.post('/aula/cadastrar', {...aula} )
 }
-
-// export function getTurmasDesafios(turma) {
-//     return instance.get(`/turma/buscarporid/${turma.id}/desafios`)
-// }
 
 export function getTurmasAlunos(turma) {
     return instance.get(`/turma/buscarporid/${turma.id}/alunos`)
@@ -110,8 +110,8 @@ export function postRespostas(respostas) {
         )))
 }
 
-export function getPontuacao(aluno) {   
-    return instance.get(`/aluno/buscarporid/${aluno.idaluno}/pontuacao`)
+export function getPontuacao(user) {   
+    return instance.get(`/aluno/buscarporid/${user.usuario.aluno.id}/pontuacao`)
 }
 
 export function getProfessor(professor){

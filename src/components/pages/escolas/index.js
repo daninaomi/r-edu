@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
-import { pushPage, listaTurmas } from '../../../actions'
+import { pushPage, listaTurmas,listaAulas } from '../../../actions'
 import './escola.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
@@ -24,6 +24,7 @@ class Escola extends React.Component {
 
     componentDidMount() {
         this.props.dispatchListaTurmas()
+        this.props.dispatchListaAulas()
     }
 
     render() {
@@ -75,6 +76,9 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
+    dispatchListaAulas: () => {
+        dispatch(listaAulas())
+    },
     dispatchListaTurmas: () => {
         dispatch(listaTurmas())
     },

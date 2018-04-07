@@ -26,11 +26,11 @@ class Home extends React.Component {
 
             ) : (
 
-                    // user.type === 'professor' ? (
+                    user.tipousuario === 'Professor' ? (
                         <HomeProf />
-                    // ) : (
-                       // <HomeAluno />
-                    // )
+                    ) : (
+                       <HomeAluno />
+                    )
                 )
         )
     }

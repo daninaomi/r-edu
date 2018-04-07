@@ -35,8 +35,6 @@ class Login extends React.Component {
                 email: this.email,
                 senha: this.senha
             }
-            // this.props.logaUser(event, user)
-            console.log('user', user)
             
             this.props.logaUser(user)
 

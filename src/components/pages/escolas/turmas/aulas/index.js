@@ -12,7 +12,8 @@ import {
     listaTurmas,
     // listaDesafios,
     listaAlunos,
-    listaDisciplinas
+    listaDisciplinas,
+    buscaAula
 } from '../../../../../actions'
 import './aulas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
@@ -29,14 +30,17 @@ class AulaFases extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps() {
-        if (this.props.aulas && this.props.aulas.desafio.nome) {
-            this.props.dispatchPushPage(this.props.aulas.desafio.nome)
-        }
-    }
-
     componentDidMount() {
         this.props.dispatchListaAulas()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.aulas && nextProps.aulas.desafio.nome) {
+            this.props.dispatchPushPage(nextProps.aulas.desafio.nome)
+        }
+        if (nextProps.aulas && !nextProps.aula) {
+            this.props.dispatchBuscaAula(nextProps.aula)
+        }
     }
 
     render() {
@@ -91,37 +95,34 @@ class AulaFases extends React.Component {
                     <ContainerBox className="escolas__container">
 
                         {this.props.aula &&
-                            <Card className="disciplina-form__item fases-card"
+                            <Card className="aula-fases-card"
                                 style={{
                                     background: `${bgColor[this.props.aula.disciplina.nome] || bgColor['Matemática']}`
                                 }}>
 
-                                <div className="disciplinas__card-title">
+                                <div className="fases-card-title">
                                     <h2>{this.props.aula.disciplina.nome}</h2>
                                 </div>
 
                                 <div className="fases-card-item">
                                     <h4>1ª fase</h4>
-                                    {/* <label>
-                                        <Toggle
-                                            className='custom-classname'
-                                            defaultChecked={this.state.soupIsReady}
-                                            icons={{
-                                                checked: <IconUnlock />,
-                                                unchecked: <IconLock />,
-                                            }}
-                                            onChange={this.handleSoupChange} />
-                                        <span>Custom icons</span>
-                                    </label> */}
+                                    <div className="padlocks">
+                                        <IconUnlock />
+                                        <IconLock className="inactive" />
+                                    </div>
                                 </div>
 
                                 <div className="fases-card-item">
                                     <h4>2ª fase</h4>
-
+                                    <div className="padlocks">
+                                        <IconUnlock className="inactive" />
+                                        <IconLock />
+                                    </div>
                                 </div>
 
                             </Card>
                         }
+
 
 
                     </ContainerBox>
@@ -134,7 +135,8 @@ class AulaFases extends React.Component {
 const mapStateToProps = (state, props) => {
 
     const idAula = props.match.params.idAula
-    const aula = state.aulas[idAula]
+    // const aula = state.aulas[idAula]
+    const aula = state.aulas
 
     return {
         // turma,
@@ -157,6 +159,9 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
+    },
+    dispatchBuscaAula: (aula) => {
+        dispatch(buscaAula(aula))
     }
 })
 
