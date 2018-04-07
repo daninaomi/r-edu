@@ -8,7 +8,7 @@ import Card from '../../card'
 import { pushPage, listaEscolas } from '../../../actions'
 import './homeProf.css'
 
-
+ 
 class HomeProf extends React.Component {
     constructor(props) {
         super(props)
@@ -53,10 +53,12 @@ class HomeProf extends React.Component {
         )
     }
 }
-
+ 
 
 const mapStateToProps = state => ({
+    
     nome: state.user.usuario ? state.user.usuario.nome : '',
+    
     escolas: Object.keys(state.escolas).map(key => {
         return state.escolas[key]
     })

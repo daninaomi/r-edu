@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { alteraUser,selecionarUserType, cadastraUser, listaEscolas, pegaProfessor } from '../../../actions'
+import { alteraUser,selecionarUserType, cadastraUser, listaEscolas} from '../../../actions'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
@@ -15,28 +15,59 @@ import './perfil.css'
 class PerfilProf extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: false,
-        nome: "Leonardo",
-        sobrenome:"Couceiro",// {this.props.professor.sobrenome},
-        email:"leo@leo.com.br",// {this.props.professor.email},
-        senha:"123123", //{this.props.professor.senha},
-        confirmeSenha:"123123", //{this.props.professor.confirmeSenha},
-        sexo:"masculino", //{this.props.professor.sexo},
-        cpf:"34534534523", //{this.props.professor.cpf},
-        estado:"estado1", //{this.props.professor.estado},
-        cidade:"cidade1", //{this.props.professor.cidade},
-        telefone:"11934343434",// {this.props.professor.telefone},
-        dataNascimento:"10/07/1985",// {this.props.professor.dataNascimento},
-        idEscola:"escola1" //{this.props.professor.idEscola}
-        }
+       
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this._onFocus = this._onFocus.bind(this)
+        this.carregaDados = this.carregaDados.bind(this)
+        this.user = JSON.parse(localStorage.getItem('usuario')) || {};
+        console.log(this.user.usuario)
+     
+        this.state = { isInvalid: false,
+            nome : this.user.usuario.nome,
+            sobrenome:this.user.usuario.sobrenome,
+            email:this.user.usuario.email,
+            senha:this.user.usuario.senha,
+            
+            sexo:'masculino',
+            cpf:this.user.usuario.professor.cpf, //{this.props.professor.cpf},
+            estado:this.user.usuario.professor.estado, //{this.props.professor.estado},
+            cidade:this.user.usuario.professor.cidade, //{this.props.professor.cidade},
+            telefone:this.user.usuario.professor.telefone,// {this.props.professor.telefone},
+            dataNascimento:this.user.usuario.professor.dataNascimento,// {this.props.professor.dataNascimento},
+            idEscola:this.user.usuario.professor.idEscola //{this.props.professor.idEscola}
+            
+            }
+            // window.onload=function  (){
+        
+            //  document.getElementById("nome").innerHTML = this.user.usuario.nome;
+            //  document.getElementById("sobrenome").innerHTML = this.user.usuario.sobrenome;
+            //  document.getElementById("email").innerHTML = this.user.usuario.email    ;
+            //  document.getElementById("senha").innerHTML = this.user.usuario.senha;
+            //  document.getElementById("cpf").innerHTML = this.user.usuario.professor.cpf;
+            //  document.getElementById("estado").innerHTML = this.user.usuario.professor.estado;
+             //  document.getElementById("sexo").innerHTML = this.user.usuario.professor.sexo;
+            //  document.getElementById("cidade").innerHTML = this.user.usuario.professor.cidade;
+            //  document.getElementById("telefone").innerHTML = this.user.usuario.professor.telefone;
+            //  document.getElementById("dataNascimento").innerHTML = this.user.usuario.professor.dataNascimento;
+            //  document.getElementById("idEscola").innerHTML = this.user.usuario.professor.idEscola;
+            
+               
+        
+            // }
+
     }
 
-    componentDidMount() {
-        this.props.dispatchPerfilProfessor()
+    carregaDados(){
+        
+       
+       
+
     }
+    
+    
+   
+    
 
     handleChange(name, value, isInvalid) {
         this[name] = value;
@@ -77,11 +108,16 @@ class PerfilProf extends React.Component {
             // this.props.history.push('/homeProf')
         }
     }
+debugger;
+
+ 
 
     render() {
 
         const { user } = this.props
-        // <option value={escola.id}>{escola.nome}</option>
+       
+
+         
         return (
 
             <React.Fragment>
@@ -102,20 +138,21 @@ class PerfilProf extends React.Component {
                     <ContainerBox className="perfil__container">
                         <Form className="perfil__form" onSubmit={this.handleSubmit}>                        
                        
-                       <FormInput
-                           className="perfil__form-input"
-                           type="text"
-                           name="nome"
-                           placeholder="Nome"
-                           value={this.state.nome}
-                           onChange={this.handleChange}
-                           required />
-                   
+                        <FormInput
+                            className="cadastro__form-input"
+                            type="text"
+                            name="nome"
+                            id="nome"
+                            placeholder="Nome"
+                            value={this.state.nome}
+                            onChange={this.handleChange}
+                            required />
                    
                            <FormInput
                                className="perfil__form-input"
                                type="text"
                                name="sobrenome"
+                               id="sobrenome"                              
                                placeholder="Sobrenome"
                                value={this.state.sobrenome}
                                onChange={this.handleChange}
@@ -126,6 +163,7 @@ class PerfilProf extends React.Component {
                            className="perfil__form-input perfil__form-input--1"
                            type="email"
                            name="email"
+                           id="email"
                            placeholder="E-mail"
                            autoComplete="email"
                            aria-label="email"
@@ -138,6 +176,7 @@ class PerfilProf extends React.Component {
                            type="password"
                            name="senha"
                            placeholder="Senha"
+                           id="senha"
                            autoComplete="current-password"
                            aria-label="senha"
                            required
@@ -199,6 +238,7 @@ class PerfilProf extends React.Component {
                            placeholder="CPF"
                            aria-label="cpf"
                            required
+                           id="cpf"
                            value={this.state.cpf}
                            onChange={this.handleChange} />
                   
@@ -206,6 +246,7 @@ class PerfilProf extends React.Component {
                        <Select
                            className="perfil__form-select"
                            name="estado"
+                           id="estado"
                            onChange={this.handleChange}
                            value={this.state.estado}
                            required>
@@ -216,10 +257,11 @@ class PerfilProf extends React.Component {
                        </Select>
                        <Select
                            className="perfil__form-select"
-                           name="cidade"
+                           name="cidade"                           
+                           id="cidade"                           
                            value={this.state.cidade}
                            onChange={this.handleChange}
-                           required>
+                                                      required>
                            <option value="" disabled selected>Cidade</option>
                            <option value="cidade1">São Paulo</option>
                            <option value="cidade2">Rio de Janeiro</option>
@@ -230,6 +272,7 @@ class PerfilProf extends React.Component {
                            className="form-input perfil__form-input"
                            type="text"
                            name="telefone"
+                           id="telefone"
                            placeholder="Telefone"
                            aria-label="telefone"
                            mask="(11)11111-1111"
@@ -242,6 +285,7 @@ class PerfilProf extends React.Component {
                            className="perfil__form-input"
                            type="text"
                            name="dataNascimento"
+                           id="dataNascimento"
                            placeholder="Data de Nascimento"
                            aria-label="dataNascimento"
                            mask="11/11/1111"                            
@@ -250,9 +294,11 @@ class PerfilProf extends React.Component {
                            onChange={this.handleChange} />
                   
                        <Select
+                          
                            name="idEscola"
                            className="perfil__form-select perfil__form-input--1"
                            value={this.state.idEscola}
+                           id="idEscola"
                            onChange={this.handleChange}>
                            <option value="" disabled selected>Escola</option>
                            <option value="escola1">Escola 1</option>
@@ -271,11 +317,12 @@ class PerfilProf extends React.Component {
                 </Main>
                 
             </React.Fragment>
+           
         )
     }
 }
 
- 
+
 const mapStateToProps = state => ({
     userType: state.user.type,
     user: state.user,
@@ -288,9 +335,7 @@ const mapDispatchToProps = dispatch => ({
     alteraUser: (user) => {
         dispatch(alteraUser(user))
     },
-    dispatchPerfilProfessor: (user) => {
-        dispatch(pegaProfessor(user))
-    },
+    
     dispatchListaEscolas: () => {
         dispatch(listaEscolas())
     }
