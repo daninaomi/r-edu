@@ -29,7 +29,7 @@ class PerfilProf extends React.Component {
             email:this.user.usuario.email,
             senha:this.user.usuario.senha,
             
-            sexo:'masculino',
+            sexo:'',
             cpf:this.user.usuario.professor.cpf, //{this.props.professor.cpf},
             estado:this.user.usuario.professor.estado, //{this.props.professor.estado},
             cidade:this.user.usuario.professor.cidade, //{this.props.professor.cidade},

@@ -19,6 +19,27 @@ class PerfilAluno extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this._onFocus = this._onFocus.bind(this)
+        this.user = JSON.parse(localStorage.getItem('usuario')) || {};
+        console.log(this.user.usuario);
+
+        const date = new Date(this.user.usuario.aluno.dataNascimento);
+        let dataNascimento = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
+        dataNascimento = dataNascimento.padStart(10, '0');
+        this.state = { isInvalid: false,
+            nome : this.user.usuario.nome,
+            sobrenome:this.user.usuario.sobrenome,
+            email:this.user.usuario.email,
+            senha:this.user.usuario.senha,
+            
+            sexo:'',
+            cpf:this.user.usuario.aluno.cpf, //{this.props.professor.cpf},
+            estado:this.user.usuario.aluno.estado, //{this.props.professor.estado},
+            cidade:this.user.usuario.aluno.cidade, //{this.props.professor.cidade},
+            telefone:this.user.usuario.aluno.telefone,// {this.props.professor.telefone},
+            dataNascimento: dataNascimento,// {this.props.professor.dataNascimento},
+            idEscola:this.user.usuario.aluno.idEscola, //{this.props.professor.idEscola}
+            nomeResponsavel: this.user.usuario.aluno.nomeResponsavel
+            }
     }
 
 
@@ -83,6 +104,7 @@ class PerfilAluno extends React.Component {
                                 type="text"
                                 name="nome"
                                 placeholder="Nome"
+                                value={this.state.nome}
                                 onChange={this.handleChange}
                                 required />
                             <FormInput
@@ -90,6 +112,7 @@ class PerfilAluno extends React.Component {
                                 type="text"
                                 name="sobrenome"
                                 placeholder="Sobrenome"
+                                value={this.state.sobrenome}
                                 onChange={this.handleChange}
                                 required />
 
@@ -101,6 +124,7 @@ class PerfilAluno extends React.Component {
                                 autoComplete="email"
                                 aria-label="email"
                                 required
+                                value={this.state.email}
                                 onChange={this.handleChange} />
                             <FormInput
                                 className="cadastro__form-input"
@@ -110,6 +134,7 @@ class PerfilAluno extends React.Component {
                                 autoComplete="current-password"
                                 aria-label="senha"
                                 required
+                                value={this.state.senha}
                                 onChange={this.handleChange} />
                             <FormInput
                                 className="cadastro__form-input"
@@ -162,11 +187,12 @@ class PerfilAluno extends React.Component {
                                 placeholder="CPF"
                                 aria-label="cpf"
                                 required
-
+                                value={this.state.cpf}
                                 onChange={this.handleChange} />
                             <Select
                                 className="cadastro__form-select"
                                 name="estado"
+                                value={this.state.estado}
                                 onChange={this.handleChange}
                                 required>
                                 <option value="" disabled selected>Estado</option>
@@ -177,6 +203,7 @@ class PerfilAluno extends React.Component {
                             <Select
                                 className="cadastro__form-select"
                                 name="cidade"
+                                value={this.state.cidade}
                                 onChange={this.handleChange}
                                 required>
                                 <option value="" disabled selected>Cidade</option>
@@ -195,6 +222,7 @@ class PerfilAluno extends React.Component {
                                 mask="(11)11111-1111"
                                 size="14"
                                 required
+                                value={this.state.telefone}
                                 onChange={this.handleChange} />
                             <FormInputMask
                                 className="cadastro__form-input"
@@ -204,6 +232,7 @@ class PerfilAluno extends React.Component {
                                 aria-label="dataNascimento"
                                 mask="11/11/1111"
                                 required
+                                value={this.state.dataNascimento}
                                 onChange={this.handleChange} />
 
                             <FormInput
@@ -211,11 +240,13 @@ class PerfilAluno extends React.Component {
                                 type="text"
                                 name="nomeResponsavel"
                                 placeholder="Nome do Responsável"
+                                value={this.state.nomeResponsavel}
                                 onChange={this.handleChange}
                                 required />
                             <Select
                                 name="idEscola"
                                 className="cadastro__form-select cadastro__form-input--1"
+                                value={this.state.idEscola}
                                 onChange={this.handleChange}>
                                 <option value="" disabled selected>Escola</option>
                                 <option value="1">Escola 1</option>

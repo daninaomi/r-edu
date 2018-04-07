@@ -20,7 +20,6 @@ class Pontuacao extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.setAluno = this.setAluno.bind(this)
         this.user = JSON.parse(localStorage.getItem('usuario')) || {};
-        console.log(this.user.usuario)
        
         this.state = {
             isInvalid: false,
@@ -53,25 +52,26 @@ class Pontuacao extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
-debugger;
+
 
         // this.props.mandaRespostas
         this.props.dispatchpontuacao(this.state.aluno)
 
     }
 
-debugger;
+
 
 
     render() {
         const { mandaRespostas } = this.props
+        console.log(this.props)
         return (
             <Main>
                 <ContainerBox>
                     <Form className="cadastro-turma__form" onSubmit={this.handleSubmit}>
                         <h1 className="cadastro__title">Questionario Atividade 1</h1>
 
-                        {this.props.pontuacao && <h3>{this.props.pontuacao.respostas}</h3>}
+                        { this.props.pontuacao && <h3>{this.props.pontuacao.respostas}</h3>}
                         {/* <div onChange={this.setAluno.bind(this)}>
                             
 
@@ -96,8 +96,10 @@ debugger;
 
 const mapStateToProps = (state, props) => {
 
-    const id = 2 // const id = 0
-    const pontuacao = state.pontuacao[id]
+    const user = JSON.parse(localStorage.getItem('usuario')) || {};
+       
+    const id = user.usuario.aluno.id || null // const id = 0
+    const pontuacao = state.pontuacao[id];
     return {
         pontuacao
     }

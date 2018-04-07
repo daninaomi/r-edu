@@ -38,7 +38,7 @@ class FormInputMask extends React.Component {
         }
 
         if (this.props.name === 'dataNascimento' && value.length < 10) {
-           
+            
             this.setState({ error: 'Campo Incompleto' })
             console.log(this.setError)
             this.props.onChange(name, value, true, this.setError)
