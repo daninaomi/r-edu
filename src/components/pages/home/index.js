@@ -29,7 +29,7 @@ class Home extends React.Component {
                     // user.type === 'professor' ? (
                         <HomeProf />
                     // ) : (
-                       // <HomeAluno />
+                        //<HomeAluno />
                     // )
                 )
         )

@@ -115,5 +115,5 @@ export function getPontuacao(aluno) {
 }
 
 export function getProfessor(professor){
-    return instance.get(`/professor/buscarporid/${professor.idprofessor}`)
+    return instance.get(`/usuario/buscarporid/${professor.id}`)
 }

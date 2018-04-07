@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { alteraUser } from '../../../actions'
+import { alteraUser,selecionarUserType, cadastraUser, listaEscolas, pegaProfessor } from '../../../actions'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
@@ -16,24 +16,27 @@ class PerfilProf extends React.Component {
     constructor(props) {
         super(props)
         this.state = { isInvalid: false,
-        nome:"Leonardo",
-        sobrenome:"Couceiro",
-        email:"leo@leo.com.br",
-        senha:"123123",
-        confirmeSenha:"123123",
-        sexo:"masculino",
-        cpf:"34534534523",
-        estado:"estado1",
-        cidade:"cidade1",
-        telefone:"11934343434",
-        dataNascimento:"10/07/1985",
-        idEscola:"escola1"
+        nome: "Leonardo",
+        sobrenome:"Couceiro",// {this.props.professor.sobrenome},
+        email:"leo@leo.com.br",// {this.props.professor.email},
+        senha:"123123", //{this.props.professor.senha},
+        confirmeSenha:"123123", //{this.props.professor.confirmeSenha},
+        sexo:"masculino", //{this.props.professor.sexo},
+        cpf:"34534534523", //{this.props.professor.cpf},
+        estado:"estado1", //{this.props.professor.estado},
+        cidade:"cidade1", //{this.props.professor.cidade},
+        telefone:"11934343434",// {this.props.professor.telefone},
+        dataNascimento:"10/07/1985",// {this.props.professor.dataNascimento},
+        idEscola:"escola1" //{this.props.professor.idEscola}
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this._onFocus = this._onFocus.bind(this)
     }
 
+    componentDidMount() {
+        this.props.dispatchPerfilProfessor()
+    }
 
     handleChange(name, value, isInvalid) {
         this[name] = value;
@@ -78,17 +81,19 @@ class PerfilProf extends React.Component {
     render() {
 
         const { user } = this.props
-
+        // <option value={escola.id}>{escola.nome}</option>
         return (
 
             <React.Fragment>
+                
+                              
                 <header className="perfil__header">
                     <div className="perfil__banner">
                         <h2 className="perfil__title perfil__title--nome">
-                            {/* {user.nome} */} Nome
+                            {/* {this.props.professor.nome} */} Nome
                         </h2>
                         <h2 className="perfil__title perfil__title--sobrenome">
-                            {/* {user.sobrenome} */} Sobrenome
+                            {/* {this.props.professor.sobrenome} */} Sobrenome
                         </h2>
                     </div>
                     <h1 className="perfil__subtitle">PROFESSOR</h1>
@@ -264,24 +269,31 @@ class PerfilProf extends React.Component {
            </Form>
            </ContainerBox>
                 </Main>
+                
             </React.Fragment>
         )
     }
 }
 
-
+ 
 const mapStateToProps = state => ({
-    userType: state.user.type
+    userType: state.user.type,
+    user: state.user,
+    escolas: Object.keys(state.escolas).map(key => {
+        return state.escolas[key]
+    })
 })
 
 const mapDispatchToProps = dispatch => ({
     alteraUser: (user) => {
         dispatch(alteraUser(user))
+    },
+    dispatchPerfilProfessor: (user) => {
+        dispatch(pegaProfessor(user))
+    },
+    dispatchListaEscolas: () => {
+        dispatch(listaEscolas())
     }
-    // ,
-    // dispatchListaTurmas: () => {
-    //     dispatch(listaTurmas())
-    // }
 })
 
 

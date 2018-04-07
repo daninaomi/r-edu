@@ -40,7 +40,7 @@ class AddTurma extends React.Component {
                 descricao: this.descricao,
                 nome: `${this.serie} ${this.descricao}`
             }
-
+debugger;
             this.props.cadastraTurma(turma)
         }
     }

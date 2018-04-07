@@ -24,8 +24,7 @@ const NavProf = ({ user, deslogaUser, page, shouldHide }) => {
         <input id="menu-burger" className="nav-menu-button--logado" type="checkbox" hidden />
         <label htmlFor="menu-burger" className="icon-menu--logado">
             <IconMenu />
-        </label>
-         {/* <div className={shouldHide ? 'hidden' : ''}>  */}
+        </label>        
             <ul className="nav-menu-list--logado">
                 <li className="nav-menu-list__item--logado">
                     <h1 className="nav-menu-list__tipo-user">professor</h1>
@@ -66,7 +65,7 @@ const NavProf = ({ user, deslogaUser, page, shouldHide }) => {
                         Sair </Link>
                 </li>
             </ul>
-        {/* </div> */}
+        
 
         <h1 className="navbar__title">{page}</h1>
 

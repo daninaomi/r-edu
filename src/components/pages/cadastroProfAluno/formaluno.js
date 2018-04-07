@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { selecionarUserType, cadastraUser } from '../../../actions'
+import { selecionarUserType, cadastraUser, listaEscolas } from '../../../actions'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Form from '../../compSimples/form'
@@ -20,12 +20,24 @@ class FormAluno extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this._onFocus = this._onFocus.bind(this)
     }
+    componentDidMount() {
+        this.props.dispatchListaEscolas()
+    }
 
+    handleChange(name, value, isInvalid, setError) {
+        if (name === 'senha' && this.confirmeSenha !== "" && this.confirmeSenha !== value) {
+            // setError('')
+        }
 
-    handleChange(name, value, isInvalid) {
+        if (name === 'confirmaSenha' && this.senha !== "" && this.senha !== value) {
+            setError('Senhas não conferem')
+        }
+
         this[name] = value;
+
         this.setState({ isInvalid })
     }
+
 
     _onFocus(e) {
         e.currentTarget.type = "date";
@@ -207,16 +219,12 @@ class FormAluno extends React.Component {
                             placeholder="Nome do Responsável"
                             onChange={this.handleChange}
                             required />
-                        <Select
-                            name="idEscola"
+                        <Select name="idEscola"
                             className="cadastro__form-select cadastro__form-input--1"
                             onChange={this.handleChange}>
-                            <option value="" disabled selected>Escola</option>
-                            <option value="1">Escola 1</option>
-                            <option value="2">Escola 2</option>
-                            <option value="3">Escola 3</option>
+                            {this.props.escolas.map(escola =>
+                                <option value={escola.id}>{escola.nome}</option>)};
                         </Select>
-
                         <FormButton
                             className="cadastro__form-button"
                             type="submit"
@@ -232,12 +240,18 @@ class FormAluno extends React.Component {
 
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    escolas: Object.keys(state.escolas).map(key => {
+        return state.escolas[key]
+    })
 })
 
 const mapDispatchToProps = dispatch => ({
     cadastraUser: (user) => {
         dispatch(cadastraUser(user))
+    },
+    dispatchListaEscolas: () => {
+        dispatch(listaEscolas())
     }
 })
 

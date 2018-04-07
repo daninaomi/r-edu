@@ -61,7 +61,7 @@ class FormProf extends React.Component {
                 telefone: this.telefone,
                 dataNascimento: this.dataNascimento,
                 cpf: this.cpf,
-                idEscola: 1
+                idEscola: this.idEscola
             }
             this.props.cadastraUser(user)
             alert('Cadastro efetuado com sucesso!')
@@ -214,7 +214,8 @@ class FormProf extends React.Component {
 
 
                             required
-                            onChange={this.handleChange} />                       
+                            onChange={this.handleChange} />
+
                         <Select name="idEscola"
                             className="cadastro__form-select cadastro__form-input--1"
                             onChange={this.handleChange}>
