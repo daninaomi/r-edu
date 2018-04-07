@@ -16,9 +16,9 @@ class Escola extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps() {
-        if (this.props.escola && this.props.escola.nome) {
-            this.props.dispatchPushPage(this.props.escola.nome)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.escola && nextProps.escola.nome) {
+            this.props.dispatchPushPage(nextProps.escola.nome)
         }
     }
 

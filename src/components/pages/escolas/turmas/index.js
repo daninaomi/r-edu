@@ -122,7 +122,7 @@ const mapStateToProps = (state, props) => {
     return {
         turma,
         aulas: aulas.filter(aulas => {
-            return aulas.idTurma == id
+            return aulas.turma.idTurma == id
         })
     }
 }

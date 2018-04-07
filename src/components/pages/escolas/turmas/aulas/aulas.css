@@ -58,6 +58,19 @@
   color: rgba(255,255,255, .5);
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-row .pts {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 @media screen and (min-width: 992px) {
 
   .aula-header {

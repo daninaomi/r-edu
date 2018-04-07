@@ -77,6 +77,7 @@ class AulaFases extends React.Component {
                         <h1 className="aula-header-title">{this.props.aula.desafio.nomeDesafio}</h1>
                     </div>
                 }
+                
                 <nav className="turmas__nav">
 
                     <Link className="turmas__title turmas__title--active" to='#'>
@@ -135,8 +136,8 @@ class AulaFases extends React.Component {
 const mapStateToProps = (state, props) => {
 
     const idAula = props.match.params.idAula
-    // const aula = state.aulas[idAula]
-    const aula = state.aulas
+    const aula = state.aulas[idAula]
+    // const aula = state.aulas
 
     return {
         // turma,

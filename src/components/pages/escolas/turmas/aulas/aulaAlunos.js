@@ -59,18 +59,18 @@ class AulaAlunos extends React.Component {
 
         return (
             <React.Fragment>
-              {this.props.aula &&
-                <div className="aula-header" style={{
-                    backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
-                  }}>
-                  <h1 className="aula-header-title">{this.props.aula.desafio.nome}</h1>
-                </div>
-              }
+                {this.props.aula &&
+                    <div className="aula-header" style={{
+                        backgroundImage: `url('${backgrounds[this.props.aula.desafio.nomeDesafio] || backgrounds['Foguete']}')`
+                    }}>
+                        <h1 className="aula-header-title">{this.props.aula.desafio.nomeDesafio}</h1>
+                    </div>
+                }
 
                 <nav className="turmas__nav">
 
                     {this.props.aula &&
-                        <Link className="turmas__title" to={`/turmas/${this.props.aula.idTurma}/aula/${this.props.aula.id}`}>
+                        <Link className="turmas__title" to={`/turmas/${this.props.aula.turma.idTurma}/aula/${this.props.aula.id}`}>
                           <h2>Fases</h2>
                         </Link>
                     }
@@ -87,8 +87,9 @@ class AulaAlunos extends React.Component {
 
                         {this.props.turmaAluno && this.props.turmaAluno.alunos.map((aluno) => (
                             <Card className="turmas__card-aluno">
-                                <h2 className="turmas__card-aluno-title">
-                                    {`${aluno.nomeAluno} ${aluno.sobrenomeAluno}`}
+                                <h2 className="turmas__card-aluno-title flex-row">
+                                    <p>{`${aluno.nomeAluno} ${aluno.sobrenomeAluno}`}</p>
+                                    <p className="pts">23 pts</p>
                                 </h2>
                             </Card>
                         ))}
