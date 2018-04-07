@@ -19,12 +19,13 @@ class Pontuacao extends React.Component {
         this.validate = this.validate.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.setAluno = this.setAluno.bind(this)
-
+        this.user = JSON.parse(localStorage.getItem('usuario')) || {};
+        console.log(this.user.usuario)
        
         this.state = {
             isInvalid: false,
             aluno: {
-                idaluno: 2
+                idaluno: this.user.usuario.aluno.id
             }
 
 
@@ -44,7 +45,7 @@ class Pontuacao extends React.Component {
 
     setAluno(event) {
         const aluno = {
-            idaluno: 1
+            idaluno: this.user.usuario.aluno.id
         }
 
         //this.props.pontuacao = this.state.aluno;
@@ -59,7 +60,7 @@ debugger;
 
     }
 
-
+debugger;
 
 
     render() {
@@ -75,6 +76,10 @@ debugger;
                             
 
                         </div> */}
+                         <FormButton onClick={()=>(alert(this.props.pontuacao))}
+                         className="cadastro__form-button" type="button"> 
+                        Pontos
+                        </FormButton>
                         <FormButton
 
                             className="cadastro__form-button"

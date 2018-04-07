@@ -15,8 +15,13 @@ import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 import './navProfAluno.css'
 
 
-const NavAluno = ({ user, deslogaUser }) => (
+const NavAluno = ({ user, deslogaUser }) => {
 
+    function closeMenu(){
+        
+        document.getElementsByClassName("icon-menu--logado")[0].click()
+    }
+    return (
     <nav className="navbar--logado">
         <input id="menu-burger" className="nav-menu-button--logado" type="checkbox" hidden />
         <label htmlFor="menu-burger" className="icon-menu--logado">
@@ -32,17 +37,17 @@ const NavAluno = ({ user, deslogaUser }) => (
             </li>
 
             <li className="nav-menu-list__item--logado">
-                <Link to='/' className="nav-menu-list__link">
+                <Link to='/' className="nav-menu-list__link" onClick={() => { closeMenu() }}>
                     <FaTrophy className="navbar-pages-link-icon" />
                     desafios</Link>
             </li>
             <li className="nav-menu-list__item--logado">
-                <Link to='/perfil' className="nav-menu-list__link">
+                <Link to='/perfil' className="nav-menu-list__link" onClick={() => { closeMenu() }}>
                     <FaUser className="navbar-pages-link-icon" />
                     meu perfil </Link>
             </li>
             <li className="nav-menu-list__item--logado">
-                <Link to='/' className="nav-menu-list__link">
+                <Link to='/' className="nav-menu-list__link" onClick={() => { closeMenu() }}>
                     <FaQuestionCircle className="navbar-pages-link-icon" />
                     ajuda </Link>
             </li>
@@ -53,7 +58,7 @@ const NavAluno = ({ user, deslogaUser }) => (
             </li>
         </ul>
     </nav>
-)
+)}
 
 
 

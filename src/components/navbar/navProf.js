@@ -14,7 +14,7 @@ import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 import './navProfAluno.css'
 
 
-const NavProf = ({ user, deslogaUser, page, shouldHide }) => { 
+const NavProf = ({ user, deslogaUser, page }) => { 
     function closeMenu(){
         document.getElementsByClassName("icon-menu--logado")[0].click()
     }
