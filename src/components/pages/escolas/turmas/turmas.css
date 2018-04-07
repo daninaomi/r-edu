@@ -19,6 +19,7 @@
 }
 
 .turmas__card {
+    cursor: pointer;
     width: 47%;
     height: 170px;
     margin: 10px 0;

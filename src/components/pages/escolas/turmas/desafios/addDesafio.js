@@ -93,10 +93,11 @@ class CadastraDesafio extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
+        // console.log(`state usuario`, this.props.usuario)
 
         if (!this.state.isInvalid) {
             const aula = {
-                "idProfessor": this.props.user.id,
+                "idProfessor": this.props.usuario.professor.id,
                 "idTurma": this.props.turma.id,
                 "idDisciplina": parseInt(this.disciplina),
                 "idDesafio": this.state.desafioEscolhido.id
@@ -258,11 +259,11 @@ const mapStateToProps = (state, props) => {
     const turma = state.turmas[id]
     const desafios = state.desafios
     const disciplinas = state.disciplinas
-    const user = state.user.usuario
+    const usuario = state.user.usuario
 
     return {
         turma,
-        user,
+        usuario,
         desafios: Object.keys(state.desafios).map(key => {
             return state.desafios[key]
         }),

@@ -9,7 +9,8 @@ import {
     pushPage,
     listaAulas,
     listaTurmas,
-    listaDesafios
+    listaDesafios,
+    buscaAula
 } from '../../../../actions'
 import './turmas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
@@ -18,28 +19,30 @@ import bgVulcao from '../img/card-desafio-vulcao.png'
 import bgCamera from '../img/card-desafio-camera.png'
 import bgJardim from '../img/card-desafio-jardim.png'
 
+import IconLock from 'react-icons/lib/fa/lock'
+import IconUnlock from 'react-icons/lib/fa/unlock-alt'
+
 
 class Turma extends React.Component {
     constructor(props) {
         super(props)
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.aulas.length > 0 && nextProps.aulas[0].turma.nome) {
-    //         this.props.dispatchPushPage(nextProps.aulas[0].turma.nome)
-    //     }
-    // }
+    componentDidMount() {
+        this.props.dispatchListaAulas()
+        this.props.dispatchListaTurmas()
+        // this.props.dispatchBuscaAula(this.props.aula)
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.turma && nextProps.turma.nome) {
             this.props.dispatchPushPage(nextProps.turma.nome)
         }
+        // if (nextProps.turma && !nextProps.aulas) {
+        //     this.props.dispatchListaAulas(nextProps.aulas)
+        // }
     }
 
-    componentDidMount() {
-        this.props.dispatchListaAulas()
-        this.props.dispatchListaTurmas()
-        // this.props.dispatchListaDesafios()
-    }
 
     render() {
 
@@ -50,7 +53,7 @@ class Turma extends React.Component {
             'Camera': bgCamera
         }
 
-        const {  desafio, aulas, turma } = this.props
+        const { desafio, aulas, turma } = this.props
 
 
         return (
@@ -60,12 +63,12 @@ class Turma extends React.Component {
                         <h2>Desafios</h2>
                     </Link>
 
-                        
-                      {this.props.turma &&
-                          <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
-                          <h2>Alunos</h2>
-                          </Link>
-                      }
+
+                    {this.props.turma &&
+                        <Link className="turmas__title" to={`/turmas/${this.props.turma.id}/alunos`}>
+                            <h2>Alunos</h2>
+                        </Link>
+                    }
 
                 </nav>
 
@@ -76,25 +79,29 @@ class Turma extends React.Component {
                         {this.props.aulas.length > 0 && this.props.aulas.map(aula => (
                             <Link
                                 className="turmas__card"
-                                to={`/turmas/${aula.idTurma}/aula/${aula.id}`}
+                                to={`/turmas/${aula.turma.idTurma}/aula/${aula.id}`}
                                 style={{
-                                    backgroundImage: `url('${backgrounds[aula.desafio.nome] || backgrounds['Foguete']}')`
+                                    backgroundImage: `url('${backgrounds[aula.desafio.nomeDesafio] || backgrounds['Foguete']}')`
                                 }}>
                                 <Card>
                                     <h2 className="turmas__card-title">
-                                        {aula.desafio.nome}
+                                        {aula.desafio.nomeDesafio}
                                     </h2>
                                 </Card>
                             </Link>
                         ))}
 
 
-                        <Card className="turmas__card escolas__card-icon">
-                            <FaPlusCircle className="escolas__icon" />
-                            {this.props.turma &&
-                                <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}></Link>
-                            }
-                        </Card>
+                        {/* <Card className="turmas__card escolas__card-icon"> */}
+
+                        {this.props.turma &&
+                            <Link className="turmas__card escolas__card-icon" to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
+                                <Card>
+                                    <FaPlusCircle className="escolas__icon" />
+                                </Card>
+                            </Link>
+                        }
+                        {/* </Card> */}
 
                     </ContainerBox>
                 </Main>
@@ -110,6 +117,7 @@ const mapStateToProps = (state, props) => {
     const aulas = Object.keys(state.aulas).map(key => {
         return state.aulas[key]
     })
+    console.log(`aulas`, aulas)
 
     return {
         turma,
@@ -129,6 +137,10 @@ const mapDispatchToProps = dispatch => ({
     dispatchListaTurmas: () => {
         dispatch(listaTurmas())
     }
+    // ,
+    // dispatchBuscaAula: (aula) => {
+    //     dispatch(buscaAula(aula))
+    // }
 })
 
 

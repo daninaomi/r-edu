@@ -2,9 +2,9 @@ import { getPontuacao } from '../api'
 
 export const PEGA_PONTUACAO_ALUNO = 'PEGAR_PONTUACAO_ALUNO'
 
-export function pontuacao(aluno) {
+export function pontuacao(user) {
     return dispatch => {
-        getPontuacao(aluno)
+        getPontuacao(user)
             .then(response => dispatch({
                 type: PEGA_PONTUACAO_ALUNO,
                 pontuacao: response.data

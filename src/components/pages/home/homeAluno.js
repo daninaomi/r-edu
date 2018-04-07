@@ -5,8 +5,12 @@ import { withRouter } from 'react-router'
 import Main from '../../compSimples/main'
 import ContainerBox from '../../compSimples/container-box'
 import Card from '../../card'
-import { pushPage, listaEscolas } from '../../../actions'
+import { pushPage, pontuacao } from '../../../actions'
 import './homeProf.css'
+import bgFoguete from '../escolas/img/card-desafio-foguete.png'
+import bgVulcao from '../escolas/img/card-desafio-vulcao.png'
+import bgCamera from '../escolas/img/card-desafio-camera.png'
+import bgJardim from '../escolas/img/card-desafio-jardim.png'
 
 
 class HomeAluno extends React.Component {
@@ -14,35 +18,61 @@ class HomeAluno extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
+    componentWillReceiveProps() {
         this.props.dispatchPushPage("Escolas")
-        this.props.dispatchListaEscolas()
+    }
+
+    componentDidMount() {
+        // this.props.dispatchpontuacao(this.props.user)
     }
 
     render() {
 
+        const backgrounds = {
+            'Foguete': bgFoguete,
+            'Vulcão': bgVulcao,
+            'Jardim': bgJardim,
+            'Camera': bgCamera
+        }
+
+        const { user, aulas, pontuacao } = this.props
+
         return (
             <Main className="home__main">
+                {/* <ContainerBox> */}
+                <h1 className="home__title">Olá Carol!</h1>
+                {/* <h1 className="home__title">Olá {this.props.user.nome}!</h1> */}
 
-                {/* <h1 className="home__title">Escolas</h1> */}
-
-                {/* <h1 className="home__title">Olá {user.name} !</h1> */}
-                <h1 className="home__title">Olá Aluno(a) {this.props.nome}!</h1>
-                <h2 className="home__subtitle">Selecione sua escola</h2>
+                <div className="home__subtitle">
+                    <h3>Você tem:</h3>
+                    <h2>23 pts</h2>
+                    {/* <h2>{this.props.pontuacao} pts</h2> ! */}
+                </div>
+                
 
                 <ContainerBox className="home__container">
 
-                    {this.props.escolas.map(escola => (
-                        <Link
-                            className="home__card"
-                            to={`/escolas/${escola.id}`}>
-                            <Card >
-                                <h2 className="home__card-title">
-                                    {escola.nome}
-                                </h2>
-                            </Card>
-                        </Link>
-                    ))}
+                    <Link
+                        className="turmas__card"
+                        to="#"
+                        style={{ backgroundImage: `url('${backgrounds['Vulcão']}')` }}>
+                        <Card>
+                            <h2 className="turmas__card-title">
+                                Vulcão
+                            </h2>
+                        </Card>
+                    </Link>
+
+                    <Link
+                        className="turmas__card"
+                        to="#"
+                        style={{ backgroundImage: `url('${backgrounds['Foguete']}')` }}>
+                        <Card>
+                            <h2 className="turmas__card-title">
+                                Foguete
+                            </h2>
+                        </Card>
+                    </Link>
 
                 </ContainerBox>
             </Main>
@@ -51,45 +81,27 @@ class HomeAluno extends React.Component {
 }
 
 
-const mapStateToProps = state => ({
-    nome: state.user.usuario ? state.user.usuario.nome : '',
-    escolas: Object.keys(state.escolas).map(key => {
-        return state.escolas[key]
-    })
-})
+const mapStateToProps = (state, props) => {
+
+    const user = state.user.usuario.aluno
+    const pontuacao = state.pontuacao
+    // nome = state.user.usuario ? state.user.usuario.aluno.nome : ''
+
+    return {
+        user,
+        pontuacao
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     dispatchPushPage: page => {
         dispatch(pushPage(page))
     },
-    dispatchListaEscolas: () => {
-        dispatch(listaEscolas())
-    }
+    // dispatchpontuacao: (user) => {
+    //     dispatch(pontuacao(user))
+    // }
 })
 
 
-export default withRouter(connect(mapStateToProps , mapDispatchToProps)(HomeAluno))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeAluno))
 
-
-{/* <Main>
-    <ContainerBox>
-        <h1 className="login__title">Olá Fulana!</h1>
-        <h1 className="login__title">Olá {user.nome}!</h1>
-
-        <h3>Você tem:</h3>
-        <h2>23 pts</h2>
-        <h2>{user.points} pts</h2>1
-
-        <FormButton
-            className="card-button"
-            type="submit">
-
-            <Card className="">
-                Card de desafios
-                {desafio}
-            </Card>
-        </FormButton>
-
-
-    </ContainerBox>
-</Main> */}

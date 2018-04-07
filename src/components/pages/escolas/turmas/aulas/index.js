@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import Toggle from 'react-toggle'
 import Main from '../../../../compSimples/main'
 import ContainerBox from '../../../../compSimples/container-box'
 import Card from '../../../../card'
@@ -11,14 +12,17 @@ import {
     listaTurmas,
     // listaDesafios,
     listaAlunos,
-    listaDisciplinas
+    listaDisciplinas,
+    buscaAula
 } from '../../../../../actions'
-// import './turmas.css'
+import './aulas.css'
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 import bgFoguete from '../../img/card-desafio-foguete.png'
 import bgVulcao from '../../img/card-desafio-vulcao.png'
 import bgCamera from '../../img/card-desafio-camera.png'
 import bgJardim from '../../img/card-desafio-jardim.png'
+import IconLock from 'react-icons/lib/fa/lock'
+import IconUnlock from 'react-icons/lib/fa/unlock-alt'
 
 
 class AulaFases extends React.Component {
@@ -26,14 +30,17 @@ class AulaFases extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps() {
-        if (this.props.aulas && this.props.aulas.desafio.nome) {
-            this.props.dispatchPushPage(this.props.aulas.desafio.nome)
-        }
-    }
-
     componentDidMount() {
         this.props.dispatchListaAulas()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.aulas && nextProps.aulas.desafio.nome) {
+            this.props.dispatchPushPage(nextProps.aulas.desafio.nome)
+        }
+        if (nextProps.aulas && !nextProps.aula) {
+            this.props.dispatchBuscaAula(nextProps.aula)
+        }
     }
 
     render() {
@@ -60,30 +67,27 @@ class AulaFases extends React.Component {
 
         const { aula } = this.props
 
-
         return (
             <React.Fragment>
 
-              {this.props.aula &&
-                <div className="aula-header" style={{
-                    backgroundImage: `url('${backgrounds[this.props.aula.desafio.nome] || backgrounds['Foguete']}')`
-                  }}>
-                  <h1 className="aula-header-title">{this.props.aula.desafio.nome}</h1>
-                </div>
-              }
+                {this.props.aula &&
+                    <div className="aula-header" style={{
+                        backgroundImage: `url('${backgrounds[this.props.aula.desafio.nomeDesafio] || backgrounds['Foguete']}')`
+                    }}>
+                        <h1 className="aula-header-title">{this.props.aula.desafio.nomeDesafio}</h1>
+                    </div>
+                }
                 <nav className="turmas__nav">
 
                     <Link className="turmas__title turmas__title--active" to='#'>
                         <h2>Fases</h2>
                     </Link>
 
-
                     {this.props.aula &&
-                        <Link className="turmas__title" to={`/turmas/${this.props.aula.idTurma}/aula/${this.props.aula.id}/alunos`}>
+                        <Link className="turmas__title" to={`/turmas/${this.props.aula.turma.idTurma}/aula/${this.props.aula.id}/alunos`}>
                             <h2>Alunos</h2>
                         </Link>
                     }
-
                 </nav>
 
                 <Main className="escolas__main">
@@ -91,27 +95,34 @@ class AulaFases extends React.Component {
                     <ContainerBox className="escolas__container">
 
                         {this.props.aula &&
-                            <Card className="disciplina-form__item disciplinas__card"
+                            <Card className="aula-fases-card"
                                 style={{
-                                    background: `${bgColor[this.props.aula.disciplina.nome] || bgColor['Matemática']}`
+                                    background: `${bgColor[this.props.aula.disciplina.nomeDisciplina] || bgColor['Matemática']}`
                                 }}>
 
-                                <div className="disciplinas__card-title">
-                                    <h2>{this.props.aula.disciplina.nome}</h2>
+                                <div className="fases-card-title">
+                                    <h2>{this.props.aula.disciplina.nomeDisciplina}</h2>
                                 </div>
 
-                                <div className="fases-card fases-card-title">
+                                <div className="fases-card-item">
                                     <h4>1ª fase</h4>
-
+                                    <div className="padlocks">
+                                        <IconUnlock />
+                                        <IconLock className="inactive" />
+                                    </div>
                                 </div>
 
-                                <div className="fases-card fases-card-title">
+                                <div className="fases-card-item">
                                     <h4>2ª fase</h4>
-
+                                    <div className="padlocks">
+                                        <IconUnlock className="inactive" />
+                                        <IconLock />
+                                    </div>
                                 </div>
 
                             </Card>
                         }
+
 
 
                     </ContainerBox>
@@ -124,7 +135,8 @@ class AulaFases extends React.Component {
 const mapStateToProps = (state, props) => {
 
     const idAula = props.match.params.idAula
-    const aula = state.aulas[idAula]
+    // const aula = state.aulas[idAula]
+    const aula = state.aulas
 
     return {
         // turma,
@@ -147,6 +159,9 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchListaAulas: () => {
         dispatch(listaAulas())
+    },
+    dispatchBuscaAula: (aula) => {
+        dispatch(buscaAula(aula))
     }
 })
 
