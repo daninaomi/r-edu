@@ -10,6 +10,19 @@
   text-align: center;
 }
 
+.fases-card {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6%;
+  margin: 5% 0;
+  border-radius: 10px;
+  color: white;
+}
+
+.fases-card-item {
+  font-size: 1rem;
+}
 
 @media screen and (min-width: 992px) {
 

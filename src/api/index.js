@@ -69,7 +69,7 @@ export function getDesafio() {
 }
 
 export function postDesafio(desafio) {
-    return instance.get('/desafio/cadastrar', { desafio })
+    return instance.get('/desafio/cadastrar', { ...desafio })
 }
 
 export function getDisciplina() {
@@ -81,7 +81,7 @@ export function getAulas() {
 }
 
 export function postAula(aula) {
-    return instance.post('/aula/cadastrar', aula )
+    return instance.post('/aula/cadastrar', {...aula} )
 }
 
 // export function getTurmasDesafios(turma) {

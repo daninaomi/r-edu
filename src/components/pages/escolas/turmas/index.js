@@ -89,12 +89,14 @@ class Turma extends React.Component {
                         ))}
 
 
-                        <Card className="turmas__card escolas__card-icon">
-                            <FaPlusCircle className="escolas__icon" />
+                        {/* <Card className="turmas__card escolas__card-icon"> */}
+                            
                             {this.props.turma &&
-                                <Link to={`/turmas/${this.props.turma.id}/cadastro-desafios`}></Link>
+                                <Link className="turmas__card escolas__card-icon"to={`/turmas/${this.props.turma.id}/cadastro-desafios`}>
+                                    <FaPlusCircle className="escolas__icon" />
+                                </Link>
                             }
-                        </Card>
+                        {/* </Card> */}
 
                     </ContainerBox>
                 </Main>
