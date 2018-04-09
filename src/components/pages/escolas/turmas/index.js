@@ -117,7 +117,7 @@ const mapStateToProps = (state, props) => {
     const aulas = Object.keys(state.aulas).map(key => {
         return state.aulas[key]
     })
-    console.log(`aulas`, aulas)
+    
 
     return {
         turma,

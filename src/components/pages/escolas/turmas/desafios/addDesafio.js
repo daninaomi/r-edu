@@ -104,7 +104,7 @@ class CadastraDesafio extends React.Component {
             }
             this.props.cadastraAula(aula)
 
-            // this.props.history.push(`/turmas/${this.props.turma.id}`)
+            this.props.history.push(`/turmas/${this.props.turma.id}`)
         }
     }
 
