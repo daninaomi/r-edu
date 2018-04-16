@@ -20,7 +20,7 @@ class FormAluno extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this._onFocus = this._onFocus.bind(this)
     }
-    
+
     componentDidMount() {
         this.props.dispatchListaEscolas()
     }
@@ -204,13 +204,13 @@ class FormAluno extends React.Component {
                             size="14"
                             required
                             onChange={this.handleChange} />
+
                         <FormInput
                             className="cadastro__form-input"
                             type="text"
                             name="dataNascimento"
                             placeholder="Data de Nascimento"
                             aria-label="dataNascimento"
-                            mask="11/11/1111"
                             required
                             onChange={this.handleChange}
                             onFocus={this._onFocus} />
@@ -222,6 +222,7 @@ class FormAluno extends React.Component {
                             placeholder="Nome do Responsável"
                             onChange={this.handleChange}
                             required />
+
                         <Select name="idEscola"
                             className="cadastro__form-select"
                             onChange={this.handleChange}
@@ -229,12 +230,14 @@ class FormAluno extends React.Component {
                             {this.props.escolas.map(escola =>
                                 <option value={escola.id}>{escola.nome}</option>)};
                         </Select>
+
                         <FormButton
                             className="cadastro__form-button"
                             type="submit"
                             disabled={this.state.isInvalid}>
                             Cadastrar
                         </FormButton>
+
                     </Form>
                 </ContainerBox>
             </Main>

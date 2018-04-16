@@ -20,7 +20,7 @@ const NavProf = ({ user, deslogaUser, page }) => {
     }
 
     return (
-        
+
         <nav className="navbar--logado">
             <input id="menu-burger" className="nav-menu-button--logado" type="checkbox" hidden />
             <label htmlFor="menu-burger" className="icon-menu--logado">
@@ -32,8 +32,6 @@ const NavProf = ({ user, deslogaUser, page }) => {
                     <h1 className="nav-menu-list__tipo-user">professor</h1>
                     <h2 className="nav-menu-list__nome">{user.usuario.nome}</h2>
                     <h2 className="nav-menu-list__sobrenome">{user.usuario.sobrenome}</h2>
-                    {/* <h2 className="nav-menu-list__nome">Nome</h2>
-                    <h2 className="nav-menu-list__sobrenome">Sobrenome</h2> */}
                 </li>
 
                 <li className="nav-menu-list__item--logado">

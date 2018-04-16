@@ -10,7 +10,6 @@ class Select extends React.Component {
     }
 
     validate(event) {
-        console.log('chamou o validate')
         const value = event.target.value
         const name = event.target.name
 

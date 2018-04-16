@@ -6,7 +6,7 @@ import {
 
 
 export function aulas(estadoAtual = {}, acao) {
-    console.log(`lista reducer`)
+    
     switch (acao.type) {
         case LISTA_AULAS:
             let novoEstado = {};
