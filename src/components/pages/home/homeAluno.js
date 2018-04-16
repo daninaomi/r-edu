@@ -40,8 +40,7 @@ class HomeAluno extends React.Component {
         return (
             <Main className="home__main">
                 {/* <ContainerBox> */}
-                <h1 className="home__title">Olá Carol!</h1>
-                {/* <h1 className="home__title">Olá {this.props.user.nome}!</h1> */}
+                <h1 className="home__title">Olá {this.props.user.usuario.nome}!</h1>
 
                 <div className="home__subtitle">
                     <h3>Você tem:</h3>
@@ -83,7 +82,7 @@ class HomeAluno extends React.Component {
 
 const mapStateToProps = (state, props) => {
 
-    const user = state.user.usuario.aluno
+    const user = state.user
     const pontuacao = state.pontuacao
     // nome = state.user.usuario ? state.user.usuario.aluno.nome : ''
 

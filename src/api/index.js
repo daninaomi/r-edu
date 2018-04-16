@@ -31,7 +31,7 @@ export function postNewUser(user) {
 }
 
 export function editUser(user) {
-    const url = user.type === 'professor' ? `/professor/atualizar/${user.id}` : `/aluno/atualizar/${user.id}`
+    const url = user.usuario.tipoUsuario === 1 ? `/professor/atualizar/${user.id}` : `/aluno/atualizar/${user.id}`
     return instance.put(url, { ...user })
 }
 

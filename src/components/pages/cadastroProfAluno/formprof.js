@@ -212,7 +212,6 @@ class FormProf extends React.Component {
                             aria-label="dataNascimento"
                             mask="11/11/1111"
 
-
                             required
                             onChange={this.handleChange} />
 
