@@ -26,7 +26,7 @@ class Home extends React.Component {
 
             ) : (
 
-                    user.tipousuario === 'Professor' ? (
+                    user.usuario.tipoUsuario === 1 ? (
                         <HomeProf />
                     ) : (
                        <HomeAluno />

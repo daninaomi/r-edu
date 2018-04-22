@@ -44,8 +44,8 @@ class HomeAluno extends React.Component {
 
                 <div className="home__subtitle">
                     <h3>Você tem:</h3>
-                    <h2>23 pts</h2>
-                    {/* <h2>{this.props.pontuacao} pts</h2> ! */}
+                    {/* <h2>23 pts</h2> */}
+                    {/* <h2>{this.props.pontuacao} pts !</h2> */}
                 </div>
                 
 
@@ -84,7 +84,6 @@ const mapStateToProps = (state, props) => {
 
     const user = state.user
     const pontuacao = state.pontuacao
-    // nome = state.user.usuario ? state.user.usuario.aluno.nome : ''
 
     return {
         user,

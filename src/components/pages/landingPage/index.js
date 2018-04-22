@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import './landingPage.css'
 
 import FaFacebook from 'react-icons/lib/fa/facebook'
@@ -11,91 +13,111 @@ import FaGamepad from 'react-icons/lib/fa/gamepad'
 
 import logo from './img/logo.png'
 
-const LandingPage = () => (
 
-    <React.Fragment>
-        <header className="hero" role="banner">
-            <div className="home-container">
-                <img src={logo} className="home-logo" alt="logo" />
-                <h1 className="title">r.edu, a educação refeita.</h1>
-                <h2 className="subtitle">
-                    Transforme sua experiência em sala de aula, <em>totalmente de graça</em>, para sempre.
+class LandingPage extends React.Component {
+
+    render() {
+
+        const { user } = this.props
+
+        return (
+            user.logado ? (
+
+                <Redirect to="/home" />
+
+            ) : (
+
+                    <React.Fragment>
+                        <header className="hero" role="banner">
+                            <div className="home-container">
+                                <img src={logo} className="home-logo" alt="logo" />
+                                < h1 className="title" > r.edu, a educação refeita.</h1 >
+                                <h2 className="subtitle">
+                                    Transforme sua experiência em sala de aula, <em>totalmente de graça</em>, para sempre.
                         </h2>
-                <button className="button">
-                    <Link to='/cadastro' className="button-link">Cadastre-se agora</Link></button>
-                <ul className="hero__links">
-                    <li className="hero__links-item"><FaTwitter className="social-share" /> 970</li>
-                    <li className="hero__links-item"><FaFacebook className="social-share" /> 1.277</li>
-                    <li className="hero__links-item"><FaLinkedin className="social-share" /> 406</li>
-                </ul>
-            </div>
-        </header>
+                                <button className="button">
+                                    <Link to='/cadastro' className="button-link">Cadastre-se agora</Link></button>
+                                <ul className="hero__links">
+                                    <li className="hero__links-item"><FaTwitter className="social-share" /> 970</li>
+                                    <li className="hero__links-item"><FaFacebook className="social-share" /> 1.277</li>
+                                    <li className="hero__links-item"><FaLinkedin className="social-share" /> 406</li>
+                                </ul>
+                            </div >
+                        </header >
 
-        <main>
-
-            <section className="section-intro">
-                <div className="home-container">
-                    <h3 className="title section-intro__title">Desenvolva projetos divertidos, com conteúdos complexos!</h3>
-                    <p className="text">
-                        R.edu é uma multiplataforma de projetos interdisciplinares, para o aluno sentir seu aprendizado aplicado no mundo real.
+                        <main>
+                            <section className="section-intro">
+                                <div className="home-container">
+                                    <h3 className="title section-intro__title">Desenvolva projetos divertidos, com conteúdos complexos!</h3>
+                                    <p className="text">
+                                        R.edu é uma multiplataforma de projetos interdisciplinares, para o aluno sentir seu aprendizado aplicado no mundo real.
                             </p>
-                </div>
-            </section>
+                                </div>
+                            </section>
 
-            <section className="section-features">
-                <div className="home-container section-features__container">
-                    <div className="feature-card">
-                        <FaConnectdevelop className="feature-icon" />
-                        <h4 className="title card-title">Inter</h4>
-                        <h6 className="subtitle card-subtitle">disciplinaridade</h6>
-                        <p className="text card-text">
-                            Porque, na prática, nenhuma matéria é isolada da outra.
+                            <section className="section-features">
+                                <div className="home-container section-features__container">
+                                    <div className="feature-card">
+                                        <FaConnectdevelop className="feature-icon" />
+                                        <h4 className="title card-title">Inter</h4>
+                                        <h6 className="subtitle card-subtitle">disciplinaridade</h6>
+                                        <p className="text card-text">
+                                            Porque, na prática, nenhuma matéria é isolada da outra.
                                             </p>
-                    </div>
-                    <div className="feature-card">
-                        <FaGroup className="feature-icon" />
-                        <h4 className="title card-title">Inte</h4>
-                        <h6 className="subtitle card-subtitle">gração</h6>
-                        <p className="text card-text">
-                            Entre alunos, alunos e professores, e entre professores.
+                                    </div>
+                                    <div className="feature-card">
+                                        <FaGroup className="feature-icon" />
+                                        <h4 className="title card-title">Inte</h4>
+                                        <h6 className="subtitle card-subtitle">gração</h6>
+                                        <p className="text card-text">
+                                            Entre alunos, alunos e professores, e entre professores.
                                             </p>
-                    </div>
-                    <div className="feature-card">
-                        <FaGamepad className="feature-icon" />
-                        <h4 className="title card-title">Lúdico</h4>
-                        <h6 className="subtitle card-subtitle">e gamificado</h6>
-                        <p className="text card-text">
-                            Aplique nossa ferramenta IoT em sala de aula e promova debates críticos em formato de jogo.
+                                    </div>
+                                    <div className="feature-card">
+                                        <FaGamepad className="feature-icon" />
+                                        <h4 className="title card-title">Lúdico</h4>
+                                        <h6 className="subtitle card-subtitle">e gamificado</h6>
+                                        <p className="text card-text">
+                                            Aplique nossa ferramenta IoT em sala de aula e promova debates críticos em formato de jogo.
                                             </p>
-                    </div>
-                </div>
-            </section >
+                                    </div>
+                                </div>
+                            </section >
 
-            <section className="section-text">
-                <div className="home-container">
-                    <h3 className="title section-text__title">Reescreva sua própria forma de aprender e ensinar</h3>
-                    <div className="section-text__block">
-                        <p className="text section-text__text">A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit massa ut.</p>
+                            <section className="section-text">
+                                <div className="home-container">
+                                    <h3 className="title section-text__title">Reescreva sua própria forma de aprender e ensinar</h3>
+                                    <div className="section-text__block">
+                                        <p className="text section-text__text">A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit massa ut.</p>
 
-                        <p className="text section-text__text">A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit massa ut.</p>
+                                        <p className="text section-text__text">A posuere donec senectus suspendisse bibendum magna ridiculus a justo orci parturient suspendisse ad rhoncus cursus ut parturient viverra elit aliquam ultrices est sem. Tellus nam ad fermentum ac enim est duis facilisis congue a lacus adipiscing consequat risus consectetur scelerisque integer suspendisse a mus integer elit massa ut.</p>
 
-                    </div>
-                </div>
-            </section>
-            
-        </main >
+                                    </div>
+                                </div>
+                            </section>
 
-        <footer className="section-footer">
-            <div className="home-container section-footer__container">
-                <img src={logo} className="home-logo" />
-                <h5 className="footer-credits">
-                    &copy; R.Edu 2018. <br />
-                    Designed by Danielle Nakatsu, developed by R.Edu Team.
+                        </main >
+
+                        <footer className="section-footer">
+                            <div className="home-container section-footer__container">
+                                <img src={logo} className="home-logo" />
+                                <h5 className="footer-credits">
+                                    &copy; R.Edu 2018. <br />
+                                    Designed by Danielle Nakatsu, developed by R.Edu Team.
                         </h5>
 
-            </div>
-        </footer>
-    </React.Fragment >
-)
+                            </div>
+                        </footer>
+                    </React.Fragment >
+                )
+        )
+    }
 
-export default LandingPage
+} 
+
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+
+export default withRouter(connect(mapStateToProps)(LandingPage))
